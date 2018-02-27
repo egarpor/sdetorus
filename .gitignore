@@ -1,0 +1,11 @@
+*.o
+*.so
+*.history
+*.Rproj.user
+*.map
+.Rproj.user
+/TODO
+/README/*.RData
+/README/*.rdb
+/README/*.rdx
+/README/__packages

@@ -1,0 +1,10 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.travis\.yml$
+^figures$
+^simulation$
+^MD$
+^logo$
+^README$
+^README.*$
+^TODO$
