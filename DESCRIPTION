@@ -1,8 +1,8 @@
 Package: sdetorus
 Type: Package
 Title: Statistical tools for maximum likelihood inference in toroidal diffusions
-Version: 0.1-4
-Date: 2017-09-27
+Version: 0.1-5
+Date: 2018-02-27
 Authors@R: c(person("Eduardo", "García-Portugués", role = c("aut", "cre"),
 		     email = "edgarcia@est-econ.uc3m.es"))
 Description: This package implements statistical methods for estimation of toroidal diffusions. Several diffusive models are provided, most of them belonging to the Langevin family of diffusions on the torus. Specifically, the wrapped normal and von Mises processes are included, which can be seen as toroidal analogues of the Ornstein-Uhlenbeck diffusion. A collection of methods for approximate maximum likelihood estimation, organized in four blocks, is given: (i) based on the exact transition probability density, obtained as the numerical solution to the Fokker-Plank equation; (ii) based on wrapped pseudo-likelihoods; (iii) based on specific analytic approximations by wrapped processes; (iv) based on maximum likelihood of the stationary densities. The package allows the reproducibility of the results in García-Portugués et al. (2017).
