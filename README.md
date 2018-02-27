@@ -306,4 +306,4 @@ The directories [`/MD`](https://github.com/egarpor/sdetorus/tree/master/MD) and 
 References
 ----------
 
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2017). Langevin diffusions on the torus: estimation and applications. *Stat. Comput.*, <https://doi.org/10.1007/s11222-017-9790-2>.
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2017). Langevin diffusions on the torus: estimation and applications. *Statistics and Computing*, <https://doi.org/10.1007/s11222-017-9790-2>.
