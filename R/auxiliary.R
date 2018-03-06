@@ -88,6 +88,87 @@ linesTorus <- function(x, y, col = 1, lty = 1, ltyCross = lty, arrows = FALSE,
 }
 
 
+#' @title Lines and arrows with wrapping in the torus
+#'
+#' @description Joins the corresponding points with line segments or arrows that exhibit wrapping in \eqn{[-\pi,\pi)} in the horizontal and vertical axes.
+#'
+#' @param x,y vectors with horizontal coordinates, wrapped in \eqn{[-\pi,\pi)}.
+#' @param z vector with vertical coordinates, wrapped in \eqn{[-\pi,\pi)}.
+#' @inheritParams linesTorus
+#' @return Nothing. The functions are called for drawing wrapped lines.
+#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
+#' @details \code{x}, \code{y}, and \code{z} are wrapped to \eqn{[-\pi,\pi)} before plotting. \code{arrows = TRUE} makes sequential calls to \code{\link[rgl]{arrow3d}}, and is substantially slower than \code{arrows = FALSE}.
+#' @examples
+#' library(rgl)
+#' x <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
+#' y <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
+#' z <- toPiInt(x + y + rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
+#' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi), 
+#'        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
+#' linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), ltyCross = 2)
+#' torusAxis3d()
+#' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi), 
+#'        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
+#' linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), ltyCross = 2,
+#'              arrows = TRUE)
+#' torusAxis3d()
+#' @export
+linesTorus3d <- function(x, y, z, col = 1, lty = 1, ltyCross = lty, 
+                         arrows = FALSE, ...) {
+  
+  # For determining crossings
+  twoPi <- 2 * pi
+  x <- toPiInt(x)
+  y <- toPiInt(y)
+  z <- toPiInt(z)
+  dx <- diff(x)
+  dy <- diff(y)
+  dz <- diff(z)
+  kx <- -(dx < -pi) + (dx > pi)
+  ky <- -(dy < -pi) + (dy > pi)
+  kz <- -(dz < -pi) + (dz > pi)
+  
+  # Draw segments and avoid plotting two times the non-crossing ones
+  l <- length(x)
+  if (length(y) != l | length(z) != l) stop("'x', 'y' or 'z' lengths differ")
+  cross <- (abs(kx) | abs(ky) | abs(kz)) + 1
+  if (arrows) {
+    
+    xyz1 <- cbind(x, y, z)
+    k <- cbind(kx, ky, kz) * twoPi
+    xyz2 <- xyz1[-1, ]
+    xyz1 <- xyz1[-l, ]
+    xyzk2 <- xyz2 - k
+    xyzk1 <- xyz1 + k
+    if (length(col) == 1) {
+      
+      col <- rep(col, l)
+      
+    }
+    sapply(1:(l - 1), function(i) {
+      rgl::arrow3d(p0 = xyz1[i, ], p1 = xyzk2[i, ], barblen = 0.02, 
+                   theta = pi / 25, type = "lines", col = col[i], ...)
+      rgl::arrow3d(p0 = xyzk1[i, ], p1 = xyz2[i, ], barblen = 0.02, 
+                   theta = pi / 25, type = "lines", col = col[i], ...)
+    })
+    invisible()
+    
+  } else {
+    
+    rgl::segments3d(x = c(rbind(x[-l], x[-1] - kx * twoPi)),
+                    y = c(rbind(y[-l], y[-1] - ky * twoPi)),
+                    z = c(rbind(z[-l], z[-1] - kz * twoPi)),
+                    lty = c(lty, ltyCross)[cross], col = col, ...)
+    rgl::segments3d(x = c(rbind(x[-l] + kx * twoPi, x[-1])),
+                    y = c(rbind(y[-l] + ky * twoPi, y[-1])),
+                    z = c(rbind(z[-l] + kz * twoPi, z[-1])),
+                    lty = c(0, ltyCross)[cross], col = col, ...)
+    
+  }
+  
+}
+
+
 #' @title Quadrature rules in 1D, 2D and 3D
 #'
 #' @description Quadrature rules for definite integrals over intervals in 1D, \eqn{\int_{x_1}^{x_2} f(x)dx}, rectangles in 2D, \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2} f(x,y)dydx} and cubes in 3D, \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2}\int_{z_1}^{z_2} f(x,y,z)dzdydx}. The trapezoidal rules assume that the function is periodic, whereas the Simpson rules work for arbitrary functions.
@@ -946,7 +1027,7 @@ matMatch <- function(x, mat, rows = TRUE, useMatch = FALSE, ...) {
 }
 
 
-#' @title Draw pretty axis labels for circular variables
+#' @title Draws pretty axis labels for circular variables
 #'
 #' @description Wrapper for drawing pretty axis labels for circular variables. To be invoked after \code{plot} with \code{axes = FALSE} has been called.
 #'
@@ -985,4 +1066,50 @@ torusAxis <- function(sides = 1:2, twoPi = FALSE, ...) {
 
   }
 
+}
+
+
+#' @title Draws pretty axis labels for circular variables
+#'
+#' @description Wrapper for drawing pretty axis labels for circular variables. To be invoked after \code{plot3d} with \code{axes = FALSE} and \code{box = FALSE} has been called.
+#'
+#' @param sides an integer vector specifying which side of the plot the axes are to be drawn on. The axes are placed as follows: \code{1} = x, \code{2} = y, \code{3} = z.
+#' @inheritParams torusAxis
+#' @param ... further parameters passed to \code{\link[rgl]{axis3d}}.
+#' @return This function is usually invoked for its side effect, which is to add axes to an already existing plot.
+#' @details The function calls \code{\link[rgl]{box3d}}.
+#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
+#' @examples
+#' library(rgl)
+#' x <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
+#' y <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
+#' z <- toPiInt(x + y + rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
+#' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi), 
+#'        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
+#' torusAxis3d()
+#' @export
+torusAxis3d <- function(sides = 1:3, twoPi = FALSE, ...) {
+  
+  # Choose (-pi, pi) or (0, 2*pi)
+  if (twoPi) {
+    
+    at <- seq(0, 2 * pi, l = 5)
+    labels <- expression(0, pi/2, pi, 3*pi/2, 2*pi)
+    
+  } else {
+    
+    at <- seq(-pi, pi, l = 5)
+    labels <- expression(-pi, -pi/2, 0, pi/2, pi)
+    
+  }
+  
+  # Draw box + axis
+  rgl::box3d()
+  for (i in sides) {
+    
+    suppressWarnings(rgl::axis3d(c("x", "y", "z")[i], at = at,
+                                 labels = labels, ...))
+    
+  }
+  
 }

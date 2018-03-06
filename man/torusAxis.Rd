@@ -2,7 +2,7 @@
 % Please edit documentation in R/auxiliary.R
 \name{torusAxis}
 \alias{torusAxis}
-\title{Draw pretty axis labels for circular variables}
+\title{Draws pretty axis labels for circular variables}
 \usage{
 torusAxis(sides = 1:2, twoPi = FALSE, ...)
 }

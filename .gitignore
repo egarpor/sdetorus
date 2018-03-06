@@ -9,3 +9,4 @@
 /README/*.rdb
 /README/*.rdx
 /README/__packages
+.DS_Store
