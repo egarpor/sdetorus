@@ -4,19 +4,14 @@
 \alias{linesTorus3d}
 \title{Lines and arrows with wrapping in the torus}
 \usage{
-linesTorus3d(x, y, z, col = 1, lty = 1, ltyCross = lty, arrows = FALSE,
-  ...)
+linesTorus3d(x, y, z, col = 1, arrows = FALSE, ...)
 }
 \arguments{
 \item{x, y}{vectors with horizontal coordinates, wrapped in \eqn{[-\pi,\pi)}.}
 
 \item{z}{vector with vertical coordinates, wrapped in \eqn{[-\pi,\pi)}.}
 
-\item{col}{color vector of length \code{1} or the same length of \code{x} and \code{y}.}
-
-\item{lty}{line type as in \code{\link[graphics]{par}}.}
-
-\item{ltyCross}{specific line type for crossing segments.}
+\item{col}{color vector of length \code{1} or the same length of \code{x}, \code{y}, and \code{z}.}
 
 \item{arrows}{flag for drawing arrows instead of line segments.}
 
@@ -38,12 +33,12 @@ y <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
 z <- toPiInt(x + y + rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
 plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi), 
        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
-linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), ltyCross = 2)
+linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), lwd = 2)
 torusAxis3d()
 plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi), 
        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
 linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), ltyCross = 2,
-             arrows = TRUE)
+             arrows = TRUE, theta = 0.1 * pi / 180, barblen = 0.1)
 torusAxis3d()
 }
 \author{

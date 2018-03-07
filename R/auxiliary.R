@@ -94,6 +94,7 @@ linesTorus <- function(x, y, col = 1, lty = 1, ltyCross = lty, arrows = FALSE,
 #'
 #' @param x,y vectors with horizontal coordinates, wrapped in \eqn{[-\pi,\pi)}.
 #' @param z vector with vertical coordinates, wrapped in \eqn{[-\pi,\pi)}.
+#' @param col color vector of length \code{1} or the same length of \code{x}, \code{y}, and \code{z}.
 #' @inheritParams linesTorus
 #' @return Nothing. The functions are called for drawing wrapped lines.
 #' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
@@ -105,16 +106,15 @@ linesTorus <- function(x, y, col = 1, lty = 1, ltyCross = lty, arrows = FALSE,
 #' z <- toPiInt(x + y + rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
 #' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi), 
 #'        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
-#' linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), ltyCross = 2)
+#' linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), lwd = 2)
 #' torusAxis3d()
 #' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi), 
 #'        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
 #' linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), ltyCross = 2,
-#'              arrows = TRUE)
+#'              arrows = TRUE, theta = 0.1 * pi / 180, barblen = 0.1)
 #' torusAxis3d()
 #' @export
-linesTorus3d <- function(x, y, z, col = 1, lty = 1, ltyCross = lty, 
-                         arrows = FALSE, ...) {
+linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
   
   # For determining crossings
   twoPi <- 2 * pi
@@ -128,10 +128,14 @@ linesTorus3d <- function(x, y, z, col = 1, lty = 1, ltyCross = lty,
   ky <- -(dy < -pi) + (dy > pi)
   kz <- -(dz < -pi) + (dz > pi)
   
-  # Draw segments and avoid plotting two times the non-crossing ones
+  # Draw segments
   l <- length(x)
   if (length(y) != l | length(z) != l) stop("'x', 'y' or 'z' lengths differ")
-  cross <- (abs(kx) | abs(ky) | abs(kz)) + 1
+  if (length(col) == 1) {
+    
+    col <- rep(col, l - 1)
+    
+  }
   if (arrows) {
     
     xyz1 <- cbind(x, y, z)
@@ -140,16 +144,11 @@ linesTorus3d <- function(x, y, z, col = 1, lty = 1, ltyCross = lty,
     xyz1 <- xyz1[-l, ]
     xyzk2 <- xyz2 - k
     xyzk1 <- xyz1 + k
-    if (length(col) == 1) {
-      
-      col <- rep(col, l)
-      
-    }
     sapply(1:(l - 1), function(i) {
-      rgl::arrow3d(p0 = xyz1[i, ], p1 = xyzk2[i, ], barblen = 0.02, 
-                   theta = pi / 25, type = "lines", col = col[i], ...)
-      rgl::arrow3d(p0 = xyzk1[i, ], p1 = xyz2[i, ], barblen = 0.02, 
-                   theta = pi / 25, type = "lines", col = col[i], ...)
+      rgl::arrow3d(p0 = xyz1[i, ], p1 = xyzk2[i, ], type = "lines", 
+                   col = col[i], ...)
+      rgl::arrow3d(p0 = xyzk1[i, ], p1 = xyz2[i, ], type = "lines", 
+                   col = col[i], ...)
     })
     invisible()
     
@@ -158,11 +157,11 @@ linesTorus3d <- function(x, y, z, col = 1, lty = 1, ltyCross = lty,
     rgl::segments3d(x = c(rbind(x[-l], x[-1] - kx * twoPi)),
                     y = c(rbind(y[-l], y[-1] - ky * twoPi)),
                     z = c(rbind(z[-l], z[-1] - kz * twoPi)),
-                    lty = c(lty, ltyCross)[cross], col = col, ...)
+                    col = col, ...)
     rgl::segments3d(x = c(rbind(x[-l] + kx * twoPi, x[-1])),
                     y = c(rbind(y[-l] + ky * twoPi, y[-1])),
                     z = c(rbind(z[-l] + kz * twoPi, z[-1])),
-                    lty = c(0, ltyCross)[cross], col = col, ...)
+                    col = col, ...)
     
   }
   
