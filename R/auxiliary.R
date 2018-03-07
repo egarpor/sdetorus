@@ -140,8 +140,8 @@ linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
     
     xyz1 <- cbind(x, y, z)
     k <- cbind(kx, ky, kz) * twoPi
-    xyz2 <- xyz1[-1, ]
-    xyz1 <- xyz1[-l, ]
+    xyz2 <- xyz1[-1, , drop = FALSE]
+    xyz1 <- xyz1[-l, , drop = FALSE]
     xyzk2 <- xyz2 - k
     xyzk1 <- xyz1 + k
     sapply(1:(l - 1), function(i) {
