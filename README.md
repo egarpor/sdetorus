@@ -285,8 +285,6 @@ est3 <- approxMleWn2D(data = samp, delta = delta, start = start, lower = low,
 
 #> Warning in specPars[indUnSpecPars] <- pars: number of items to replace is
 #> not a multiple of replacement length
-#> 
-#> error: inv_sympd(): matrix is singular or not positive definite
 #> <std::runtime_error in dTpdWou2D(x = y, x0 = x, t = delta, alpha = specPars[1:3], mu = specPars[4:5],     sigma = specPars[6:7], rho = specPars[8], maxK = maxK): inv_sympd(): matrix is singular or not positive definite>
 
 # Comparison
@@ -301,7 +299,7 @@ est3$par
 Reproducibility of García-Portugués *et al.* (2017)
 ---------------------------------------------------
 
-The directories [`/MD`](https://github.com/egarpor/sdetorus/tree/master/MD) and [`/simulation`](https://github.com/egarpor/sdetorus/tree/master/simulation) contain the scripts used in the empirical analyses of the aforementioned paper, as well as their `.RData` outputs. Note that the size of `/MD` and `/simulations` is 46.1 Mb and those files are not downloaded when installing `sdetorus`.
+The directories [`/MD`](https://github.com/egarpor/data-langevintorus/tree/master/MD) and [`/simulation`](https://github.com/egarpor/data-langevintorus/tree/master/simulation) in the [data-langevintorus](https://github.com/egarpor/data-langevintorus) repository contain the scripts used in the empirical analyses of the aforementioned paper, as well as their `.RData` outputs. Those files are not downloaded when installing `sdetorus`.
 
 References
 ----------
