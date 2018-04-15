@@ -45,20 +45,23 @@ logBesselI0Scaled <- function(x, splineApprox = TRUE) {
 
   if (splineApprox) {
 
-    if (!exists(".logBesselI0ScaledSpline")) {
+    if (is.null(logBesselI0ScaledSpline)) {
 
-      .logBesselI0ScaledSpline <<- splinefun(x = x1, y = logBesselI0ScaledEvalGrid)
+      assign(x = "logBesselI0ScaledSpline",
+             value = splinefun(x = x1, y = logBesselI0ScaledEvalGrid),
+             pos = environment(logBesselI0Scaled))
 
     }
 
     res <- numeric(length(x))
     indAsymp <- x >= 5e4
     indNoAsymp <- !indAsymp
-    res[indNoAsymp] <- .logBesselI0ScaledSpline(x[indNoAsymp])
+    res[indNoAsymp] <- logBesselI0ScaledSpline(x[indNoAsymp])
 
     if (any(indAsymp)) {
 
-      res[indAsymp] <- Bessel::besselIasym(x = x[indAsymp], nu = 0, expon.scaled = TRUE, log = TRUE)
+      res[indAsymp] <- Bessel::besselIasym(x = x[indAsymp], nu = 0, 
+                                           expon.scaled = TRUE, log = TRUE)
 
     }
 
@@ -79,13 +82,15 @@ a1Inv <- function(x, splineApprox = TRUE) {
 
   if (splineApprox) {
 
-    if (!exists(".a1InvSpline")) {
+    if (is.null(a1InvSpline)) {
 
-      .a1InvSpline <<- splinefun(x = x2, y = a1InvEvalGrid)
+      assign(x = "a1InvSpline",
+             value = splinefun(x = x2, y = a1InvEvalGrid),
+             envir = environment(a1Inv))
 
     }
 
-    res <- pmax(.a1InvSpline(x), 0)
+    res <- pmax(a1InvSpline(x), 0)
     indOne <- x >= 1
 
     if (any(indOne)) {
@@ -104,6 +109,10 @@ a1Inv <- function(x, splineApprox = TRUE) {
   return(res)
 
 }
+
+
+logBesselI0ScaledSpline <- NULL
+a1InvSpline <- NULL
 
 
 #' @title Score and moment matching of a univariate or bivariate wrapped normal by a von Mises
