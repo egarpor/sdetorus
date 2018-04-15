@@ -45,14 +45,6 @@ logBesselI0Scaled <- function(x, splineApprox = TRUE) {
 
   if (splineApprox) {
 
-    if (is.null(logBesselI0ScaledSpline)) {
-
-      assign(x = "logBesselI0ScaledSpline",
-             value = splinefun(x = x1, y = logBesselI0ScaledEvalGrid),
-             pos = environment(logBesselI0Scaled))
-
-    }
-
     res <- numeric(length(x))
     indAsymp <- x >= 5e4
     indNoAsymp <- !indAsymp
@@ -82,14 +74,6 @@ a1Inv <- function(x, splineApprox = TRUE) {
 
   if (splineApprox) {
 
-    if (is.null(a1InvSpline)) {
-
-      assign(x = "a1InvSpline",
-             value = splinefun(x = x2, y = a1InvEvalGrid),
-             envir = environment(a1Inv))
-
-    }
-
     res <- pmax(a1InvSpline(x), 0)
     indOne <- x >= 1
 
@@ -109,10 +93,6 @@ a1Inv <- function(x, splineApprox = TRUE) {
   return(res)
 
 }
-
-
-logBesselI0ScaledSpline <- NULL
-a1InvSpline <- NULL
 
 
 #' @title Score and moment matching of a univariate or bivariate wrapped normal by a von Mises
