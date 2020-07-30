@@ -15,13 +15,13 @@
 #' @param sigma2 diagonal of the diffusion matrix (if univariate, this is the square of the diffusion coefficient). Must return an object of the same size as \code{x}.
 #' @param circular flag to indicate circular data.
 #' @param maxK maximum absolute winding number used if \code{circular = TRUE}.
-#' @param vmApprox flag to indicate von Mises approximation to wrapped normal. See \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.
+#' @param vmApprox flag to indicate von Mises approximation to wrapped normal. See\cr \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.
 #' @param twokpi optional matrix of winding numbers to avoid its recomputation. See details.
 #' @param ... additional parameters passed to \code{b}, \code{b1}, \code{b2}, \code{jac.b} and \code{sigma2}.
 #' @return Output from \code{\link{mleOptimWrapper}}.
 #' @details See Section 3.2 in García-Portugués et al. (2019) for details. \code{"SO2"} implements Shoji and Ozai (1998)'s expansion with for \code{p = 1}. \code{"SO"} is the same expansion, for arbitrary \code{p}, but considering null second derivatives.
 #'
-#' \code{twokpi} is \code{repRow(2 * pi * c(-maxK:maxK), n = n)} if \code{p = 1} and \code{as.matrix(do.call(what = expand.grid, args = rep(list(2 * pi * c(-maxK:maxK)), p)))} otherwise.
+#' \code{twokpi} is \code{repRow(2 * pi * c(-maxK:maxK), n = n)} if \code{p = 1} and\cr \code{as.matrix(do.call(what = expand.grid, args = rep(list(2 * pi * c(-maxK:maxK)), p)))} otherwise.
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 #'
@@ -119,7 +119,7 @@
 #'   sigma2 <- function(x) matrix(sigma^2, nrow = length(x) / 2L, ncol = 2)
 #'
 #'   # Plot
-#'   par(mfrow = c(3, 2))
+#'   old_par <- par(mfrow = c(3, 2))
 #'   plotSurface2D(grid, grid, z = dTpdPde2D(Mx = length(grid), My = length(grid),
 #'                                           x0 = x0, t = t, alpha = alpha,
 #'                                           mu = rep(0, 2), sigma = sigma),
@@ -149,6 +149,7 @@
 #'                                        method = "SO", b = b, jac.b = jac.b,
 #'                                        sigma2 = sigma2, vmApprox = TRUE),
 #'                 levels = seq(0, 1, l = 20), fVect = TRUE, main = "SOvM")
+#'   par(old_par)
 #'
 #' # }, x01 = slider(-pi, pi, step = 0.1, initial = -pi),
 #' # x02 = slider(-pi, pi, step = 0.1, initial = -pi),

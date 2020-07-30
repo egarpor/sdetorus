@@ -12,7 +12,6 @@ using namespace Rcpp;
 //' @param logs matrix of logarithms where each row contains a set of \eqn{p_1,\ldots,p_k} to compute the weights from.
 //' @param expTrc truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.
 //' @return A matrix of the size as \code{logs} containing the weights for each row.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @details The \code{logs} argument must be always a matrix.
 //' @examples
 //' # A matrix
@@ -58,7 +57,7 @@ arma::mat safeSoftMax(arma::mat logs, double expTrc = 30) {
 //' @param LU flag denoting if the forward sweep encoding the LU decomposition is supplied in vectors \code{b} and \code{c}. See details and examples.
 //' @return
 //' \itemize{
-//' \item \code{solve*} functions: the solution, a vector of length \code{n} and a matrix with \code{n} rows for \code{solveTridiagMatConsts}.
+//' \item \code{solve*} functions: the solution, a vector of length \code{n} and a matrix with \code{n} rows for\cr \code{solveTridiagMatConsts}.
 //' \item \code{forward*} functions: the matrix \code{cbind(b, c)} creating the suitable \code{b} and \code{c} arguments for calling \code{solve*} when \code{LU} is \code{TRUE}.
 //' }
 //' @details The Thomas algorithm is stable if the matrix is diagonally dominant.
@@ -67,8 +66,7 @@ arma::mat safeSoftMax(arma::mat logs, double expTrc = 30) {
 //'
 //' Note that the output of \code{solveTridiag} and \code{solveTridiagMatConsts} are independent from the values of \code{a[1]} and \code{c[n]}, but \code{solvePeriodicTridiag} is not.
 //'
-//' If \code{LU} is \code{TRUE}, then \code{b} and \code{c} must be precomputed with \code{forwardSweepTridiag} or \code{forwardSweepPeriodicTridiag} for its use in the call of the appropriate solver, which will be slightly faster.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
+//' If \code{LU} is \code{TRUE}, then \code{b} and \code{c} must be precomputed with \code{forwardSweepTridiag} or\cr \code{forwardSweepPeriodicTridiag} for its use in the call of the appropriate solver, which will be slightly faster.
 //' @references
 //' Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
 //'

@@ -30,7 +30,7 @@ dPsTpd(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
 
 \item{maxK}{maximum absolute winding number used if \code{circular = TRUE}.}
 
-\item{vmApprox}{flag to indicate von Mises approximation to wrapped normal. See \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
+\item{vmApprox}{flag to indicate von Mises approximation to wrapped normal. See\cr \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
 
 \item{twokpi}{optional matrix of winding numbers to avoid its recomputation. See details.}
 
@@ -45,7 +45,7 @@ Wrapped pseudo-transition probability densities.
 \details{
 See Section 3.2 in García-Portugués et al. (2019) for details. \code{"SO2"} implements Shoji and Ozai (1998)'s expansion with for \code{p = 1}. \code{"SO"} is the same expansion, for arbitrary \code{p}, but considering null second derivatives.
 
-\code{twokpi} is \code{repRow(2 * pi * c(-maxK:maxK), n = n)} if \code{p = 1} and \code{as.matrix(do.call(what = expand.grid, args = rep(list(2 * pi * c(-maxK:maxK)), p)))} otherwise.
+\code{twokpi} is \code{repRow(2 * pi * c(-maxK:maxK), n = n)} if \code{p = 1} and\cr \code{as.matrix(do.call(what = expand.grid, args = rep(list(2 * pi * c(-maxK:maxK)), p)))} otherwise.
 }
 \examples{
 # 1D
@@ -140,7 +140,7 @@ x02 <- -pi/2
   sigma2 <- function(x) matrix(sigma^2, nrow = length(x) / 2L, ncol = 2)
 
   # Plot
-  par(mfrow = c(3, 2))
+  old_par <- par(mfrow = c(3, 2))
   plotSurface2D(grid, grid, z = dTpdPde2D(Mx = length(grid), My = length(grid),
                                           x0 = x0, t = t, alpha = alpha,
                                           mu = rep(0, 2), sigma = sigma),
@@ -170,6 +170,7 @@ x02 <- -pi/2
                                        method = "SO", b = b, jac.b = jac.b,
                                        sigma2 = sigma2, vmApprox = TRUE),
                 levels = seq(0, 1, l = 20), fVect = TRUE, main = "SOvM")
+  par(old_par)
 
 # }, x01 = slider(-pi, pi, step = 0.1, initial = -pi),
 # x02 = slider(-pi, pi, step = 0.1, initial = -pi),

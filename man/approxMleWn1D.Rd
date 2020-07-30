@@ -21,7 +21,7 @@ approxMleWn1D(data, delta, start, alpha = NA, mu = NA, sigma = NA,
 
 \item{upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
 
-\item{vmApprox}{flag to indicate von Mises approximation to wrapped normal. See \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
+\item{vmApprox}{flag to indicate von Mises approximation to wrapped normal. See\cr \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
 
 \item{maxK}{maximum absolute winding number used if \code{circular = TRUE}.}
 

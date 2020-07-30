@@ -51,6 +51,3 @@ points(stepAheadWn2D(x0 = rbind(c(0, 0)), delta = t / 500,
                      mu = mu, sigma = sigma, N = 500, M = 500, maxK = 2,
                      expTrc = 30), col = 4)
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

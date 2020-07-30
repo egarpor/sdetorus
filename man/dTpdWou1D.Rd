@@ -58,6 +58,3 @@ dTpdWou1D(x = seq(-pi, pi, l = 10), x0 = rep(x0, 10), t = t, alpha = alpha,
 \references{
 García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

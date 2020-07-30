@@ -30,6 +30,3 @@ rbind(exp(1:10) / sum(exp(1:10)), exp(20:11) / sum(exp(20:11)))
 safeSoftMax(rbind(-100:100), expTrc = 30)
 exp(-100:100) / sum(exp(-100:100))
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

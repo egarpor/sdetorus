@@ -8,9 +8,9 @@ using namespace Rcpp;
 arma::vec solvePeriodicTridiag(arma::vec a, arma::vec b, arma::vec c, arma::vec d, int LU);
 arma::vec forwardSweepPeriodicTridiag(arma::vec a, arma::vec b, arma::vec c);
 
-//' @title Crank-Nicolson finite difference scheme for the 1D Fokker-Planck equation with periodic boundaries
+//' @title Crank--Nicolson finite difference scheme for the 1D Fokker--Planck equation with periodic boundaries
 //'
-//' @description Implementation of the Crank-Nicolson scheme for solving the Fokker-Planck equation
+//' @description Implementation of the Crank--Nicolson scheme for solving the Fokker--Planck equation
 //' \deqn{p(x, t)_t = -(p(x, t) b(x))_x + \frac{1}{2}(\sigma^2(x) p(x, t))_{xx},}{p(x, t)_t = -(p(x, t) * b(x))_x + 1/2 * (\sigma^2(x) p(x, t))_{xx},}
 //' where \eqn{p(x, t)} is the transition probability density of the circular diffusion
 //' \deqn{dX_t=b(X_t)dt+\sigma(X_t)dW_t}{dX_t=b(X_t)dt+\sigma(X_t)dW_t}.
@@ -31,7 +31,6 @@ arma::vec forwardSweepPeriodicTridiag(arma::vec a, arma::vec b, arma::vec c);
 //' @details The function makes use of \code{\link{solvePeriodicTridiag}} for obtaining implicitly the next step in time of the solution.
 //'
 //' If \code{imposePositive = TRUE}, the code implicitly assumes that the solution integrates to one at any step. This might b unrealistic if the initial condition is not properly represented in the grid (for example, highly concentrated density in a sparse grid).
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @references
 //' Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
 //' @examples
@@ -201,17 +200,18 @@ arma::mat crankNicolson1D(arma::mat u0, arma::vec b, arma::vec sigma2, arma::uve
 }
 
 
-//' @title Crank-Nicolson finite difference scheme for the 2D Fokker-Planck equation with periodic boundaries
+//' @title Crank--Nicolson finite difference scheme for the 2D Fokker--Planck equation with periodic boundaries
 //'
-//' @description Implementation of the Crank-Nicolson scheme for solving the Fokker-Planck equation
-//' \deqn{p(x, y, t)_t = -(p(x, y, t) b_1(x, y))_x -(p(x, y, t) b_2(x, y))_y + \frac{1}{2}(\sigma_1^2(x, y) p(x, y, t))_{xx} + \frac{1}{2}(\sigma_2^2(x, y) p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}{p(x, y, t)_t = -(p(x, y, t) * b_1(x, y))_x -(p(x, y, t) * b_2(x, y))_y + 1/2 * (\sigma_1^2(x, y) *p(x, y, t))_{xx} + 1/2 * (\sigma_2^2(x, y) p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}
+//' @description Implementation of the Crank--Nicolson scheme for solving the Fokker--Planck equation
+//' \deqn{p(x, y, t)_t = -(p(x, y, t) b_1(x, y))_x -(p(x, y, t) b_2(x, y))_y+}
+//' \deqn{+ \frac{1}{2}(\sigma_1^2(x, y) p(x, y, t))_{xx} + \frac{1}{2}(\sigma_2^2(x, y) p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}{p(x, y, t)_t = -(p(x, y, t) * b_1(x, y))_x -(p(x, y, t) * b_2(x, y))_y + 1/2 * (\sigma_1^2(x, y) *p(x, y, t))_{xx} + 1/2 * (\sigma_2^2(x, y) p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}
 //' where \eqn{p(x, y, t)} is the transition probability density of the toroidal diffusion
 //' \deqn{dX_t=b_1(X_t,Y_t)dt+\sigma_1(X_t,Y_t)dW^1_t+\sigma_{12}(X_t,Y_t)dW^2_t,}{dX_t=b_1(X_t,Y_t)dt+\sigma_1(X_t,Y_t)dW^1_t+\sigma_{12}(X_t,Y_t)dW^2_t,}
 //' \deqn{dY_t=b_2(X_t,Y_t)dt+\sigma_{12}(X_t,Y_t)dW^1_t+\sigma_2(X_t,Y_t)dW^2_t.}{dY_t=b_2(X_t,Y_t)dt+\sigma_{12}(X_t,Y_t)dW^1_t+\sigma_2(X_t,Y_t)dW^2_t.}
 //'
 //' @param u0 matrix of size \code{c(Mx * My, 1)} giving the initial condition matrix column-wise stored. Typically, the evaluation of a density highly concentrated at a given point. If \code{nt == 1}, then \code{u0} can be a matrix \code{c(Mx * My, nu0)} containing different starting values in the columns.
 //' @param bx,by matrices of size \code{c(Mx, My)} containing the evaluation of the drift in the first and second space coordinates, respectively.
-//' @param sigma2x,sigma2y,sigmaxy matrices of size \code{c(Mx, My)} containing the evaluation of the entries of the diffusion matrix (it has to be positive definite)
+//' @param sigma2x,sigma2y,sigmaxy matrices of size \code{c(Mx, My)} containing the evaluation of the entries of the diffusion matrix (it has to be positive definite)\cr
 //' \code{rbind(c(sigma2x, sigmaxy),
 //'             c(sigmaxy, sigma2y))}.
 //' @inheritParams crankNicolson1D
@@ -226,7 +226,6 @@ arma::mat crankNicolson1D(arma::mat u0, arma::vec b, arma::vec sigma2, arma::uve
 //' @details The function makes use of \code{\link{solvePeriodicTridiag}} for obtaining implicitly the next step in time of the solution.
 //'
 //' If \code{imposePositive = TRUE}, the code implicitly assumes that the solution integrates to one at any step. This might b unrealistic if the initial condition is not properly represented in the grid (for example, highly concentrated density in a sparse grid).
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @references
 //' Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
 //' @examples

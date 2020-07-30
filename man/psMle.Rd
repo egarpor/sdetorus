@@ -34,7 +34,7 @@ psMle(data, delta, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
 
 \item{maxK}{maximum absolute winding number used if \code{circular = TRUE}.}
 
-\item{vmApprox}{flag to indicate von Mises approximation to wrapped normal. See \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
+\item{vmApprox}{flag to indicate von Mises approximation to wrapped normal. See\cr \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
 
 \item{...}{further parameters passed to \code{\link{mleOptimWrapper}}.}
 }

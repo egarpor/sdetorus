@@ -169,7 +169,7 @@ linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
 
 #' @title Quadrature rules in 1D, 2D and 3D
 #'
-#' @description Quadrature rules for definite integrals over intervals in 1D, \eqn{\int_{x_1}^{x_2} f(x)dx}, rectangles in 2D, \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2} f(x,y)dydx} and cubes in 3D, \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2}\int_{z_1}^{z_2} f(x,y,z)dzdydx}. The trapezoidal rules assume that the function is periodic, whereas the Simpson rules work for arbitrary functions.
+#' @description Quadrature rules for definite integrals over intervals in 1D, \eqn{\int_{x_1}^{x_2} f(x)dx}, rectangles in 2D,\cr \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2} f(x,y)dydx} and cubes in 3D, \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2}\int_{z_1}^{z_2} f(x,y,z)dzdydx}. The trapezoidal rules assume that the function is periodic, whereas the Simpson rules work for arbitrary functions.
 #'
 #' @param fx vector containing the evaluation of the function to integrate over a uniform grid in \eqn{[x_1,x_2]}.
 #' @param fxy matrix containing the evaluation of the function to integrate over a uniform grid in \eqn{[x_1,x_2]\times[y_1,y_2]}.
@@ -752,7 +752,7 @@ plotSurface3D <- function(x = 1:nrow(t), y = 1:ncol(t), z = 1:dim(t)[3], f, t,
 #' @param call whether to invoke VMD for immediate visualization or not.
 #' @param path path to VMD in the system. See details.
 #' @return The function creates a XPLOR map file in the current working directory. This file contains \code{t} and other data that allows its readily interpretation by VMD. An optional call to VMD can also be done for immediate visualization.
-#' @details If \code{call = TRUE}, then a call to VMD with \code{outFile} is produced. VMD needs to be installed (\url{http://www.ks.uiuc.edu/Research/vmd/}) and its \code{path} must be properly specified. For example, for Mac OS it should be something similar to \code{path = "/Applications/VMD\\ 1.9.2.app/Contents/MacOs/startup.command"}, with the version number depending on the installed one. The R session will wait until finalization of VMD.
+#' @details If \code{call = TRUE}, then a call to VMD with \code{outFile} is produced. VMD needs to be installed (\url{http://www.ks.uiuc.edu/Research/vmd/}) and its \code{path} must be properly specified. For example, for Mac OS it should be something similar to\cr \code{path = "/Applications/VMD\\ 1.9.2.app/Contents/MacOs/startup.command"}, with the version number depending on the installed one. The R session will wait until finalization of VMD.
 #'
 #' After launching VMD, a 3D scatterplot is shown. The options for exploration of the 3D contours can be accessed in "VMD Main -> Graphics -> Representations ...". This will open a new window with the available choices. The drawing methods 'Isosurface', 'VolumeSlice' and 'Fieldlines' are the most useful.
 #'

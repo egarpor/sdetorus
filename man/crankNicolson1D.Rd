@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{crankNicolson1D}
 \alias{crankNicolson1D}
-\title{Crank-Nicolson finite difference scheme for the 1D Fokker-Planck equation with periodic boundaries}
+\title{Crank--Nicolson finite difference scheme for the 1D Fokker--Planck equation with periodic boundaries}
 \usage{
 crankNicolson1D(u0, b, sigma2, N, deltat, Mx, deltax, imposePositive = 0L)
 }
@@ -30,7 +30,7 @@ crankNicolson1D(u0, b, sigma2, N, deltat, Mx, deltax, imposePositive = 0L)
 }
 }
 \description{
-Implementation of the Crank-Nicolson scheme for solving the Fokker-Planck equation
+Implementation of the Crank--Nicolson scheme for solving the Fokker--Planck equation
 \deqn{p(x, t)_t = -(p(x, t) b(x))_x + \frac{1}{2}(\sigma^2(x) p(x, t))_{xx},}{p(x, t)_t = -(p(x, t) * b(x))_x + 1/2 * (\sigma^2(x) p(x, t))_{xx},}
 where \eqn{p(x, t)} is the transition probability density of the circular diffusion
 \deqn{dX_t=b(X_t)dt+\sigma(X_t)dW_t}{dX_t=b(X_t)dt+\sigma(X_t)dW_t}.
@@ -67,7 +67,4 @@ sum(abs(u[, N + 1] - v))
 }
 \references{
 Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

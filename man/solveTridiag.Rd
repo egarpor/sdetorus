@@ -27,7 +27,7 @@ forwardSweepPeriodicTridiag(a, b, c)
 }
 \value{
 \itemize{
-\item \code{solve*} functions: the solution, a vector of length \code{n} and a matrix with \code{n} rows for \code{solveTridiagMatConsts}.
+\item \code{solve*} functions: the solution, a vector of length \code{n} and a matrix with \code{n} rows for\cr \code{solveTridiagMatConsts}.
 \item \code{forward*} functions: the matrix \code{cbind(b, c)} creating the suitable \code{b} and \code{c} arguments for calling \code{solve*} when \code{LU} is \code{TRUE}.
 }
 }
@@ -47,7 +47,7 @@ For the periodic case, two non-periodic tridiagonal systems with different const
 
 Note that the output of \code{solveTridiag} and \code{solveTridiagMatConsts} are independent from the values of \code{a[1]} and \code{c[n]}, but \code{solvePeriodicTridiag} is not.
 
-If \code{LU} is \code{TRUE}, then \code{b} and \code{c} must be precomputed with \code{forwardSweepTridiag} or \code{forwardSweepPeriodicTridiag} for its use in the call of the appropriate solver, which will be slightly faster.
+If \code{LU} is \code{TRUE}, then \code{b} and \code{c} must be precomputed with \code{forwardSweepTridiag} or\cr \code{forwardSweepPeriodicTridiag} for its use in the call of the appropriate solver, which will be slightly faster.
 }
 \examples{
 # Tridiagonal matrix
@@ -95,7 +95,4 @@ drop(solvePeriodicTridiag(a = a, b = LU[, 1], c = LU[, 2], d = d, LU = 1))
 Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
 
 Conte, S.D. and de Boor, C. (1980). \emph{Elementary Numerical Analysis: An Algorithmic Approach}. Third edition. McGraw-Hill, New York.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

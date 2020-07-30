@@ -20,7 +20,6 @@ arma::mat driftWn2D(arma::mat x, arma::mat A, arma::vec mu, arma::vec sigma, dou
 //' @param delta discretization step.
 //' @param type integer giving the type of diffusion. Currently, only \code{1} for WN and \code{2} for vM are supported.
 //' @return A matrix of size \code{c(nx0, N + 1)} containing the \code{nx0} discretized trajectories. The first column corresponds to the vector \code{x0}.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @examples
 //' N <- 100
 //' nx0 <- 20
@@ -96,7 +95,6 @@ arma::mat euler1D(arma::vec x0, double alpha, double mu, double sigma, arma::uwo
 //' @inheritParams euler1D
 //' @inheritParams safeSoftMax
 //' @return An array of size \code{c(nx0, 2, N + 1)} containing the \code{nx0} discretized trajectories. The first slice corresponds to the matrix \code{x0}.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @examples
 //' N <- 100
 //' nx0 <- 5
@@ -194,7 +192,6 @@ arma::cube euler2D(arma::mat x0, arma::mat A, arma::vec mu, arma::vec sigma, dou
 //' @inheritParams dTpdWou1D
 //' @param M number of Monte Carlo replicates.
 //' @return A matrix of size \code{c(nx0, M)} containing the \code{M} trajectory ends for each starting value \code{x0}.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @examples
 //' N <- 100
 //' nx0 <- 20
@@ -273,7 +270,6 @@ arma::mat stepAheadWn1D(arma::vec x0, double alpha, double mu, double sigma, arm
 //' @inheritParams dTpdWou2D
 //' @inheritParams stepAheadWn1D
 //' @return An array of size \code{c(nx0, 2, M)} containing the \code{M} trajectory ends for each starting value \code{x0}.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @examples
 //' N <- 100
 //' nx0 <- 3

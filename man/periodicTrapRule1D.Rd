@@ -42,7 +42,7 @@ integrateSimp3D(fxyz, lengthInterval = rep(2 * pi, 3), na.rm = TRUE)
 The value of the integral.
 }
 \description{
-Quadrature rules for definite integrals over intervals in 1D, \eqn{\int_{x_1}^{x_2} f(x)dx}, rectangles in 2D, \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2} f(x,y)dydx} and cubes in 3D, \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2}\int_{z_1}^{z_2} f(x,y,z)dzdydx}. The trapezoidal rules assume that the function is periodic, whereas the Simpson rules work for arbitrary functions.
+Quadrature rules for definite integrals over intervals in 1D, \eqn{\int_{x_1}^{x_2} f(x)dx}, rectangles in 2D,\cr \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2} f(x,y)dydx} and cubes in 3D, \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2}\int_{z_1}^{z_2} f(x,y,z)dzdydx}. The trapezoidal rules assume that the function is periodic, whereas the Simpson rules work for arbitrary functions.
 }
 \details{
 The simple trapezoidal rule has a very good performance for periodic functions in 1D and 2D(order of error ). The higher dimensional extensions are obtained by iterative usage of the 1D rules.

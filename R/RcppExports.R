@@ -14,7 +14,6 @@
 #' @param kt concentration for the von Mises, a suitable output from \code{\link{momentMatchWnVm}} (see examples).
 #' @param logConstKt the logarithm of the von Mises normalizing constant associated to the concentration \code{kt} (see examples)
 #' @return A vector of size \code{n} containing the density evaluated at \code{x}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' mu <- 0
 #' sigma <- 1
@@ -40,7 +39,6 @@ dWn1D <- function(x, mu, sigma, maxK = 2L, expTrc = 30, vmApprox = 0L, kt = 0, l
 #' @param sigma diffusion coefficient.
 #' @inheritParams safeSoftMax
 #' @return A vector of size \code{n} containing the tpd evaluated at \code{x}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details See Section 3.3 in García-Portugués et al. (2019) for details. See \code{\link{dTpdWou}} for the general case (less efficient for 2D).
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
@@ -78,7 +76,6 @@ dTpdWou1D <- function(x, x0, t, alpha, mu, sigma, maxK = 2L, expTrc = 30, vmAppr
 #' @inheritParams safeSoftMax
 #' @return A vector of size \code{n} containing the tpd evaluated at \code{x}.
 #' @details The function checks for positive definiteness. If violated, it resets \code{A} such that \code{solve(A) \%*\% Sigma} is positive definite.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details See Section 3.3 in García-Portugués et al. (2019) for details. See \code{\link{dTpdWou}} for the general case (less efficient for 1D).
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
@@ -147,7 +144,6 @@ dTpdWou2D <- function(x, x0, t, alpha, mu, sigma, rho = 0, maxK = 2L, expTrc = 3
 #' @inheritParams safeSoftMax
 #' @return An array of dimension \code{c(n, 2, nx0)} containing the \code{n} samples of the transition distribution,
 #' conditioned on that the process was at \code{x0} at \code{t} instants ago. The samples are all in \eqn{[\pi,\pi)}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' alpha <- c(3, 2, -1)
 #' sigma <- c(0.5, 1)
@@ -178,7 +174,6 @@ rTpdWn2D <- function(n, x0, t, mu, alpha, sigma, rho = 0, maxK = 2L, expTrc = 30
 #' @inheritParams dTpdWou2D
 #' @inheritParams safeSoftMax
 #' @return A vector of size \code{n} containing the stationary density evaluated at \code{x}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' set.seed(345567)
 #' alpha <- c(2, 1, -1)
@@ -207,7 +202,6 @@ dStatWn2D <- function(x, alpha, mu, sigma, rho = 0, maxK = 2L, expTrc = 30) {
 #' @param n sample size.
 #' @inheritParams dTpdWou2D
 #' @return A matrix of dimension \code{c(n, 2)} containing the samples from the stationary distribution.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' set.seed(345567)
 #' alpha <- c(2, 1, -1)
@@ -232,7 +226,6 @@ rStatWn2D <- function(n, mu, alpha, sigma, rho = 0) {
 #' @param logs matrix of logarithms where each row contains a set of \eqn{p_1,\ldots,p_k} to compute the weights from.
 #' @param expTrc truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.
 #' @return A matrix of the size as \code{logs} containing the weights for each row.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details The \code{logs} argument must be always a matrix.
 #' @examples
 #' # A matrix
@@ -262,7 +255,7 @@ safeSoftMax <- function(logs, expTrc = 30) {
 #' @param LU flag denoting if the forward sweep encoding the LU decomposition is supplied in vectors \code{b} and \code{c}. See details and examples.
 #' @return
 #' \itemize{
-#' \item \code{solve*} functions: the solution, a vector of length \code{n} and a matrix with \code{n} rows for \code{solveTridiagMatConsts}.
+#' \item \code{solve*} functions: the solution, a vector of length \code{n} and a matrix with \code{n} rows for\cr \code{solveTridiagMatConsts}.
 #' \item \code{forward*} functions: the matrix \code{cbind(b, c)} creating the suitable \code{b} and \code{c} arguments for calling \code{solve*} when \code{LU} is \code{TRUE}.
 #' }
 #' @details The Thomas algorithm is stable if the matrix is diagonally dominant.
@@ -271,8 +264,7 @@ safeSoftMax <- function(logs, expTrc = 30) {
 #'
 #' Note that the output of \code{solveTridiag} and \code{solveTridiagMatConsts} are independent from the values of \code{a[1]} and \code{c[n]}, but \code{solvePeriodicTridiag} is not.
 #'
-#' If \code{LU} is \code{TRUE}, then \code{b} and \code{c} must be precomputed with \code{forwardSweepTridiag} or \code{forwardSweepPeriodicTridiag} for its use in the call of the appropriate solver, which will be slightly faster.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
+#' If \code{LU} is \code{TRUE}, then \code{b} and \code{c} must be precomputed with \code{forwardSweepTridiag} or\cr \code{forwardSweepPeriodicTridiag} for its use in the call of the appropriate solver, which will be slightly faster.
 #' @references
 #' Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
 #'
@@ -347,9 +339,9 @@ forwardSweepPeriodicTridiag <- function(a, b, c) {
     .Call('_sdetorus_forwardSweepPeriodicTridiag', PACKAGE = 'sdetorus', a, b, c)
 }
 
-#' @title Crank-Nicolson finite difference scheme for the 1D Fokker-Planck equation with periodic boundaries
+#' @title Crank--Nicolson finite difference scheme for the 1D Fokker--Planck equation with periodic boundaries
 #'
-#' @description Implementation of the Crank-Nicolson scheme for solving the Fokker-Planck equation
+#' @description Implementation of the Crank--Nicolson scheme for solving the Fokker--Planck equation
 #' \deqn{p(x, t)_t = -(p(x, t) b(x))_x + \frac{1}{2}(\sigma^2(x) p(x, t))_{xx},}{p(x, t)_t = -(p(x, t) * b(x))_x + 1/2 * (\sigma^2(x) p(x, t))_{xx},}
 #' where \eqn{p(x, t)} is the transition probability density of the circular diffusion
 #' \deqn{dX_t=b(X_t)dt+\sigma(X_t)dW_t}{dX_t=b(X_t)dt+\sigma(X_t)dW_t}.
@@ -370,7 +362,6 @@ forwardSweepPeriodicTridiag <- function(a, b, c) {
 #' @details The function makes use of \code{\link{solvePeriodicTridiag}} for obtaining implicitly the next step in time of the solution.
 #'
 #' If \code{imposePositive = TRUE}, the code implicitly assumes that the solution integrates to one at any step. This might b unrealistic if the initial condition is not properly represented in the grid (for example, highly concentrated density in a sparse grid).
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @references
 #' Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
 #' @examples
@@ -402,17 +393,18 @@ crankNicolson1D <- function(u0, b, sigma2, N, deltat, Mx, deltax, imposePositive
     .Call('_sdetorus_crankNicolson1D', PACKAGE = 'sdetorus', u0, b, sigma2, N, deltat, Mx, deltax, imposePositive)
 }
 
-#' @title Crank-Nicolson finite difference scheme for the 2D Fokker-Planck equation with periodic boundaries
+#' @title Crank--Nicolson finite difference scheme for the 2D Fokker--Planck equation with periodic boundaries
 #'
-#' @description Implementation of the Crank-Nicolson scheme for solving the Fokker-Planck equation
-#' \deqn{p(x, y, t)_t = -(p(x, y, t) b_1(x, y))_x -(p(x, y, t) b_2(x, y))_y + \frac{1}{2}(\sigma_1^2(x, y) p(x, y, t))_{xx} + \frac{1}{2}(\sigma_2^2(x, y) p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}{p(x, y, t)_t = -(p(x, y, t) * b_1(x, y))_x -(p(x, y, t) * b_2(x, y))_y + 1/2 * (\sigma_1^2(x, y) *p(x, y, t))_{xx} + 1/2 * (\sigma_2^2(x, y) p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}
+#' @description Implementation of the Crank--Nicolson scheme for solving the Fokker--Planck equation
+#' \deqn{p(x, y, t)_t = -(p(x, y, t) b_1(x, y))_x -(p(x, y, t) b_2(x, y))_y+}
+#' \deqn{+ \frac{1}{2}(\sigma_1^2(x, y) p(x, y, t))_{xx} + \frac{1}{2}(\sigma_2^2(x, y) p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}{p(x, y, t)_t = -(p(x, y, t) * b_1(x, y))_x -(p(x, y, t) * b_2(x, y))_y + 1/2 * (\sigma_1^2(x, y) *p(x, y, t))_{xx} + 1/2 * (\sigma_2^2(x, y) p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}
 #' where \eqn{p(x, y, t)} is the transition probability density of the toroidal diffusion
 #' \deqn{dX_t=b_1(X_t,Y_t)dt+\sigma_1(X_t,Y_t)dW^1_t+\sigma_{12}(X_t,Y_t)dW^2_t,}{dX_t=b_1(X_t,Y_t)dt+\sigma_1(X_t,Y_t)dW^1_t+\sigma_{12}(X_t,Y_t)dW^2_t,}
 #' \deqn{dY_t=b_2(X_t,Y_t)dt+\sigma_{12}(X_t,Y_t)dW^1_t+\sigma_2(X_t,Y_t)dW^2_t.}{dY_t=b_2(X_t,Y_t)dt+\sigma_{12}(X_t,Y_t)dW^1_t+\sigma_2(X_t,Y_t)dW^2_t.}
 #'
 #' @param u0 matrix of size \code{c(Mx * My, 1)} giving the initial condition matrix column-wise stored. Typically, the evaluation of a density highly concentrated at a given point. If \code{nt == 1}, then \code{u0} can be a matrix \code{c(Mx * My, nu0)} containing different starting values in the columns.
 #' @param bx,by matrices of size \code{c(Mx, My)} containing the evaluation of the drift in the first and second space coordinates, respectively.
-#' @param sigma2x,sigma2y,sigmaxy matrices of size \code{c(Mx, My)} containing the evaluation of the entries of the diffusion matrix (it has to be positive definite)
+#' @param sigma2x,sigma2y,sigmaxy matrices of size \code{c(Mx, My)} containing the evaluation of the entries of the diffusion matrix (it has to be positive definite)\cr
 #' \code{rbind(c(sigma2x, sigmaxy),
 #'             c(sigmaxy, sigma2y))}.
 #' @inheritParams crankNicolson1D
@@ -427,7 +419,6 @@ crankNicolson1D <- function(u0, b, sigma2, N, deltat, Mx, deltax, imposePositive
 #' @details The function makes use of \code{\link{solvePeriodicTridiag}} for obtaining implicitly the next step in time of the solution.
 #'
 #' If \code{imposePositive = TRUE}, the code implicitly assumes that the solution integrates to one at any step. This might b unrealistic if the initial condition is not properly represented in the grid (for example, highly concentrated density in a sparse grid).
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @references
 #' Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
 #' @examples
@@ -485,7 +476,6 @@ crankNicolson2D <- function(u0, bx, by, sigma2x, sigma2y, sigmaxy, N, deltat, Mx
 #' @inheritParams dTpdWou1D
 #' @inheritParams safeSoftMax
 #' @return A vector of length \code{n} containing the drift evaluated at \code{x}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' driftWn1D(x = seq(0, pi, l = 10), alpha = 1, mu = 0, sigma = 1, maxK = 2,
 #'           expTrc = 30)
@@ -503,7 +493,6 @@ driftWn1D <- function(x, alpha, mu, sigma, maxK = 2L, expTrc = 30) {
 #' @inheritParams dWn1D
 #' @inheritParams safeSoftMax
 #' @return A matrix of size \code{c(n, 2)} containing the drift evaluated at \code{x}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' alpha <- 3:1
 #' mu <- c(0, 0)
@@ -531,7 +520,6 @@ driftWn2D <- function(x, A, mu, sigma, rho = 0, maxK = 2L, expTrc = 30) {
 #' @param delta discretization step.
 #' @param type integer giving the type of diffusion. Currently, only \code{1} for WN and \code{2} for vM are supported.
 #' @return A matrix of size \code{c(nx0, N + 1)} containing the \code{nx0} discretized trajectories. The first column corresponds to the vector \code{x0}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' N <- 100
 #' nx0 <- 20
@@ -556,7 +544,6 @@ euler1D <- function(x0, alpha, mu, sigma, N = 100L, delta = 0.01, type = 1L, max
 #' @inheritParams euler1D
 #' @inheritParams safeSoftMax
 #' @return An array of size \code{c(nx0, 2, N + 1)} containing the \code{nx0} discretized trajectories. The first slice corresponds to the matrix \code{x0}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' N <- 100
 #' nx0 <- 5
@@ -583,7 +570,6 @@ euler2D <- function(x0, A, mu, sigma, rho = 0, N = 100L, delta = 0.01, type = 1L
 #' @inheritParams dTpdWou1D
 #' @param M number of Monte Carlo replicates.
 #' @return A matrix of size \code{c(nx0, M)} containing the \code{M} trajectory ends for each starting value \code{x0}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' N <- 100
 #' nx0 <- 20
@@ -613,7 +599,6 @@ stepAheadWn1D <- function(x0, alpha, mu, sigma, M, N = 100L, delta = 0.01, type 
 #' @inheritParams dTpdWou2D
 #' @inheritParams stepAheadWn1D
 #' @return An array of size \code{c(nx0, 2, M)} containing the \code{M} trajectory ends for each starting value \code{x0}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' N <- 100
 #' nx0 <- 3
@@ -672,7 +657,6 @@ stepAheadWn2D <- function(x0, mu, A, sigma, rho = 0, M = 100L, N = 100L, delta =
 #' @return A scalar giving the final loglikelihood, defined as the sum of the loglikelihood of the initial angles according to the stationary density
 #' and the loglikelihood of the transitions from initial to final angles.
 #' @details A negative penalty is added if positive definiteness is violated. If the output value is Inf, -100 * N is returned instead.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' set.seed(345567)
 #' x <- toPiInt(matrix(rnorm(200, mean = pi), ncol = 4, nrow = 50))

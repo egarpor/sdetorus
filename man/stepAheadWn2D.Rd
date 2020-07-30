@@ -57,6 +57,3 @@ points(samp2[, 1, 1], samp2[, 2, 1], pch = 16, col = rainbow(nx0))
 samp1[, , N + 1]
 samp2[, , 1]
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}
