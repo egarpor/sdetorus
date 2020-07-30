@@ -2,7 +2,7 @@
 
 #' @title sdetorus - Statistical Tools for Toroidal Diffusions
 #'
-#' @description This package implements statistical methods for estimation of
+#' @description Implementation of statistical methods for the estimation of
 #' toroidal diffusions. Several diffusive models are provided, most of them
 #' belonging to the Langevin family of diffusions on the torus. Specifically,
 #' the wrapped normal and von Mises processes are included, which can be seen
