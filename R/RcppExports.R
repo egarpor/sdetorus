@@ -248,7 +248,7 @@ safeSoftMax <- function(logs, expTrc = 30) {
 #' \deqn{\vdots \vdots \vdots}{...}
 #' \deqn{a_{n-1} x_{n-2} + b_{n-1} x_{n-1} + c_{n-1}x_{n} = d_{n-1}}{a[n-1] x[n-2] + b[n-1] x[n-1] + c[n-1]x[n] = d[n-1]}
 #' \deqn{c_n x_1 + a_{n} x_{n-1} + b_nx_n = d_n}{c[n] x[1] + a[n] x[n-1] + b[n]x[n] = d[n]}
-#' with \eqn{a_1=c_n=0}{a[1]=c[n]=0} (usual tridiagonal matrix). If \eqn{a_1\neq0}{a[1]/=0} or \eqn{c_n\neq0}{c[n]/=0} (circulant tridiagonal matrix), then the Sherman-Morrison formula is employed.
+#' with \eqn{a_1=c_n=0}{a[1]=c[n]=0} (usual tridiagonal matrix). If \eqn{a_1\neq0}{a[1]/=0} or \eqn{c_n\neq0}{c[n]/=0} (circulant tridiagonal matrix), then the Sherman--Morrison formula is employed.
 #'
 #' @param a,b,c subdiagonal (below main diagonal), diagonal and superdiagonal (above main diagonal), respectively. They all are vectors of length \code{n}.
 #' @param d vector of constant terms, of length \code{n}. For \code{solveTridiagMatConsts}, it can be a matrix with \code{n} rows.
@@ -260,7 +260,7 @@ safeSoftMax <- function(logs, expTrc = 30) {
 #' }
 #' @details The Thomas algorithm is stable if the matrix is diagonally dominant.
 #'
-#' For the periodic case, two non-periodic tridiagonal systems with different constant terms (but same coefficients) are solved using \code{solveTridiagMatConsts}. These two solutions are combined by the Sherman-Morrison formula to obtain the solution to the periodic system.
+#' For the periodic case, two non-periodic tridiagonal systems with different constant terms (but same coefficients) are solved using \code{solveTridiagMatConsts}. These two solutions are combined by the Sherman--Morrison formula to obtain the solution to the periodic system.
 #'
 #' Note that the output of \code{solveTridiag} and \code{solveTridiagMatConsts} are independent from the values of \code{a[1]} and \code{c[n]}, but \code{solvePeriodicTridiag} is not.
 #'

@@ -2,7 +2,7 @@
 
 #' @title Simulation of trajectories for the univariate OU diffusion
 #'
-#' @description Simulation of trajectories of the \emph{univariate} Ornstein-Uhlenbeck (OU) diffusion
+#' @description Simulation of trajectories of the \emph{univariate} Ornstein--Uhlenbeck (OU) diffusion
 #' \deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0} using the exact transition probability density.
 #'
 #' @param x0 initial point.
@@ -45,7 +45,7 @@ rTrajOu <- function(x0, alpha, mu, sigma, N = 100, delta = 1e-3) {
 
 #' @title Transition probability density of the univariate OU diffusion
 #'
-#' @description Transition probability density of the \emph{univariate} Ornstein-Uhlenbeck (OU) diffusion
+#' @description Transition probability density of the \emph{univariate} Ornstein--Uhlenbeck (OU) diffusion
 #' \deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0.}{dX_t=alpha(mu - X_t)dt+sigma dW_t, X0=x0.}
 #'
 #' @param x vector with the evaluation points.
@@ -102,7 +102,7 @@ covstOu <- function(s, t, alpha, sigma) {
 
 #' @title Maximum likelihood estimation of the OU diffusion
 #'
-#' @description Computation of the maximum likelihood estimator of the parameters of the \emph{univariate} Ornstein-Uhlenbeck (OU) diffusion from a discretized trajectory \eqn{\{X_{\Delta i}\}_{i=1}^N}{\{X_{Delta * i}\}_{i=1}^N}. The objective function to minimize is
+#' @description Computation of the maximum likelihood estimator of the parameters of the \emph{univariate} Ornstein--Uhlenbeck (OU) diffusion from a discretized trajectory \eqn{\{X_{\Delta i}\}_{i=1}^N}{\{X_{Delta * i}\}_{i=1}^N}. The objective function to minimize is
 #' \deqn{\sum_{i=2}^n\log p_{\Delta}(X_{\Delta i} | X_{\Delta (i - 1)}).}{\sum_{i=2}^N log p_{Delta}(X_{Delta * i} | X_{Delta * (i - 1)}).}
 #'
 #' @param data a vector of size \code{N} with the discretized trajectory of the diffusion.
@@ -155,7 +155,7 @@ mleOu <- function(data, delta, alpha = NA, mu = NA, sigma = NA, start,
 
 #' @title Simulation of trajectories for the multivariate OU diffusion
 #'
-#' @description Simulation of trajectories of the \emph{multivariate} Ornstein-Uhlenbeck (OU) diffusion
+#' @description Simulation of trajectories of the \emph{multivariate} Ornstein--Uhlenbeck (OU) diffusion
 #' \deqn{dX_t=A(\mu - X_t)dt+\Sigma^\frac{1}{2}dW_t, X_0=x_0}{dX_t=A(mu - X_t)dt+Sigma^(1/2) dW_t, X0=x0} using the exact transition probability density.
 #'
 #' @param x0 a vector of length \code{p} containing initial point.
@@ -203,7 +203,7 @@ rTrajMou <- function(x0, A, mu, Sigma, N = 100, delta = 1e-3) {
 
 #' @title Transition probability density of the multivariate OU diffusion
 #'
-#' @description Transition probability density of the \emph{multivariate} Ornstein-Uhlenbeck (OU) diffusion
+#' @description Transition probability density of the \emph{multivariate} Ornstein--Uhlenbeck (OU) diffusion
 #' \deqn{dX_t=A(\mu - X_t)dt+\Sigma^\frac{1}{2}dW_t, X_0=x_0.}{dX_t=A(mu - X_t)dt+Sigma^(1/2) dW_t, X0=x0.}
 #'
 #' @param x matrix of with \code{p} columns containing the evaluation points.
@@ -293,7 +293,7 @@ covtMou <- function(t, A, Sigma, eigA) {
 
 #' @title Maximum likelihood estimation of the multivariate OU diffusion
 #'
-#' @description Computation of the maximum likelihood estimator of the parameters of the \emph{multivariate} Ornstein-Uhlenbeck (OU) diffusion from a discretized trajectory \eqn{\{X_{\Delta i}\}_{i=1}^N}{\{X_{Delta * i}\}_{i=1}^N}. The objective function to minimize is
+#' @description Computation of the maximum likelihood estimator of the parameters of the \emph{multivariate} Ornstein--Uhlenbeck (OU) diffusion from a discretized trajectory \eqn{\{X_{\Delta i}\}_{i=1}^N}{\{X_{Delta * i}\}_{i=1}^N}. The objective function to minimize is
 #' \deqn{\sum_{i=2}^n\log p_{\Delta}(X_{\Delta i} | X_{\Delta (i - 1)}).}{\sum_{i=2}^N log p_{Delta}(X_{Delta * i} | X_{Delta * (i - 1)}).}
 #'
 #' @param data a matrix of size \code{c(N, p)} with the discretized trajectory of the diffusion.
@@ -388,7 +388,7 @@ mleMou <- function(data, delta, alpha = rep(NA, 3), mu = rep(NA, 2),
 }
 
 
-#' @title Valid drift matrices for the Ornstein-Uhlenbeck diffusion in 2D
+#' @title Valid drift matrices for the Ornstein--Uhlenbeck diffusion in 2D
 #'
 #' @description Constructs drift matrices \eqn{A} such that \code{solve(A) \%*\% Sigma} is symmetric.
 #'

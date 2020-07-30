@@ -30,7 +30,7 @@ approxMleWn2D(data, delta, start, alpha = rep(NA, 3), mu = rep(NA, 2),
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 2D using the wrapped Ornstein-Uhlenbeck diffusion.
+Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 2D using the wrapped Ornstein--Uhlenbeck diffusion.
 }
 \details{
 See Section 3.3 in García-Portugués et al. (2019) for details.

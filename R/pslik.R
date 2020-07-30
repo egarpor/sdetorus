@@ -1,13 +1,13 @@
 
 
-#' @title Wrapped Euler and Shoji-Ozaki pseudo-transition probability densities
+#' @title Wrapped Euler and Shoji--Ozaki pseudo-transition probability densities
 #'
 #' @description Wrapped pseudo-transition probability densities.
 #'
 #' @param x a matrix of dimension \code{c(n, p)}. If a vector is provided, is assumed that \code{p = 1}.
 #' @param x0 a matrix of dimension \code{c(n, p)}. If all \code{x0} are the same, a matrix of dimension \code{c(1, p)} can be passed for better performance. If a vector is provided, is assumed that \code{p = 1}.
 #' @param t time step between \code{x} and \code{x0}.
-#' @param method a string for choosing \code{"E"} (Euler), \code{"SO"} (Shoji-Ozaki) or \code{"SO2"} (Shoji-Ozaki with Ito's expansion in the drift) method.
+#' @param method a string for choosing \code{"E"} (Euler), \code{"SO"} (Shoji--Ozaki) or \code{"SO2"} (Shoji--Ozaki with Ito's expansion in the drift) method.
 #' @param b drift function. Must return a matrix of the same size as \code{x}.
 #' @param jac.b jacobian of the drift function.
 #' @param b1 first derivative of the drift function (univariate). Must return a vector of the same length as \code{x}.

@@ -10,7 +10,7 @@ Implementation of statistical methods for the estimation of
 toroidal diffusions. Several diffusive models are provided, most of them
 belonging to the Langevin family of diffusions on the torus. Specifically,
 the wrapped normal and von Mises processes are included, which can be seen
-as toroidal analogues of the Ornstein-Uhlenbeck diffusion. A collection of
+as toroidal analogues of the Ornstein--Uhlenbeck diffusion. A collection of
 methods for approximate maximum likelihood estimation, organized in four
 blocks, is given: (i) based on the exact transition probability density,
 obtained as the numerical solution to the Fokker-Plank equation;

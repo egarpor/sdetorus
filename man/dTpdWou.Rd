@@ -29,7 +29,7 @@ dTpdWou(x, t, A, mu, Sigma, x0, maxK = 2, eigA, invASigma)
 A vector of length \code{n} with the density evaluated at \code{x}.
 }
 \description{
-Conditional probability density of the Wrapped Ornstein-Uhlenbeck (WOU) process.
+Conditional probability density of the Wrapped Ornstein--Uhlenbeck (WOU) process.
 }
 \details{
 See Section 3.3 in García-Portugués et al. (2019) for details. \code{\link{dTpdWou1D}} and \code{\link{dTpdWou2D}} are more efficient implementations for the 1D and 2D cases, respectively.

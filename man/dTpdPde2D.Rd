@@ -36,7 +36,7 @@ dTpdPde2D(Mx = 50, My = 50, x0, t, alpha, mu, sigma, rho = 0,
 A matrix of size \code{c(Mx, My)} with the tpd evaluated at the combinations of \code{seq(-pi, pi, l = Mx + 1)[-(Mx + 1)]} and \code{seq(-pi, pi, l = My + 1)[-(My + 1)]}.
 }
 \description{
-Computation of the transition probability density (tpd) of the Wrapped Normal (WN) or Multivariate von Mises (MvM) diffusion, by solving its associated Fokker-Planck Partial Differential Equation (PDE) in 2D.
+Computation of the transition probability density (tpd) of the Wrapped Normal (WN) or Multivariate von Mises (MvM) diffusion, by solving its associated Fokker--Planck Partial Differential Equation (PDE) in 2D.
 }
 \details{
 A combination of small \code{sdInitial} and coarse space-time discretization (small \code{Mx} and \code{Mt}) is prone to create numerical instabilities. See Sections 3.4.2, 2.2.1 and 2.2.2 in García-Portugués et al. (2019) for details.

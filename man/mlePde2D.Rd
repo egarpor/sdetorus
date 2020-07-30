@@ -38,7 +38,7 @@ mlePde2D(data, delta, b, sigma2, Mx = 50, My = 50, Mt = ceiling(100 *
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker-Planck Partial Differential Equation (PDE) in 2D.
+Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker--Planck Partial Differential Equation (PDE) in 2D.
 }
 \details{
 See Sections 3.4.2 and 3.4.4 in García-Portugués et al. (2019) for details. The function currently includes the \code{region} function for imposing a feasibility region on the parameters of the bivariate WN diffusion.

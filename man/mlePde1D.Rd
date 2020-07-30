@@ -36,7 +36,7 @@ mlePde1D(data, delta, b, sigma2, Mx = 500, Mt = ceiling(100 * delta),
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker-Planck Partial Differential Equation (PDE) in 1D.
+Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker--Planck Partial Differential Equation (PDE) in 1D.
 }
 \details{
 See Sections 3.4.1 and 3.4.4 in García-Portugués et al. (2019) for details.

@@ -26,7 +26,7 @@ mleOu(data, delta, alpha = NA, mu = NA, sigma = NA, start,
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Computation of the maximum likelihood estimator of the parameters of the \emph{univariate} Ornstein-Uhlenbeck (OU) diffusion from a discretized trajectory \eqn{\{X_{\Delta i}\}_{i=1}^N}{\{X_{Delta * i}\}_{i=1}^N}. The objective function to minimize is
+Computation of the maximum likelihood estimator of the parameters of the \emph{univariate} Ornstein--Uhlenbeck (OU) diffusion from a discretized trajectory \eqn{\{X_{\Delta i}\}_{i=1}^N}{\{X_{Delta * i}\}_{i=1}^N}. The objective function to minimize is
 \deqn{\sum_{i=2}^n\log p_{\Delta}(X_{\Delta i} | X_{\Delta (i - 1)}).}{\sum_{i=2}^N log p_{Delta}(X_{Delta * i} | X_{Delta * (i - 1)}).}
 }
 \details{

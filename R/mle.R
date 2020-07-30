@@ -2,7 +2,7 @@
 
 #' @title Maximum pseudo-likelihood estimation by wrapped pseudo-likelihoods
 #'
-#' @description Maximum pseudo-likelihood using the Euler and Shoji-Ozaki pseudo-likelihoods.
+#' @description Maximum pseudo-likelihood using the Euler and Shoji--Ozaki pseudo-likelihoods.
 #'
 #' @param data a matrix of dimension \code{c(n, p)}.
 #' @param delta discretization step.
@@ -157,7 +157,7 @@ psMle <- function(data, delta, method = c("E", "SO", "SO2"), b, jac.b, sigma2,
 
 #' @title Approximate MLE of the WN diffusion in 1D
 #'
-#' @description Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 1D using the wrapped Ornstein-Uhlenbeck diffusion.
+#' @description Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 1D using the wrapped Ornstein--Uhlenbeck diffusion.
 #'
 #' @inheritParams psMle
 #' @param alpha,mu,sigma if their values are provided, the likelihood function is optimized with respect to the rest of unspecified parameters. The number of elements in \code{start}, \code{lower} and \code{upper} has to be modified accordingly (see examples).
@@ -212,7 +212,7 @@ approxMleWn1D <- function(data, delta, start, alpha = NA, mu = NA, sigma = NA,
 
 #' @title Approximate MLE of the WN diffusion in 2D
 #'
-#' @description Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 2D using the wrapped Ornstein-Uhlenbeck diffusion.
+#' @description Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 2D using the wrapped Ornstein--Uhlenbeck diffusion.
 #'
 #' @inheritParams psMle
 #' @inheritParams approxMleWn1D
@@ -379,7 +379,7 @@ sigmaDiff <- function(data, delta, circular = TRUE, diagonal = FALSE,
 
 #' @title Approximate MLE of the WN diffusion in 2D from a sample of initial and final pairs of angles.
 #'
-#' @description Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) diffusion, using the wrapped Ornstein-Uhlenbeck diffusion and assuming initial stationarity.
+#' @description Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) diffusion, using the wrapped Ornstein--Uhlenbeck diffusion and assuming initial stationarity.
 #'
 #' @inheritParams logLikWouPairs
 #' @inheritParams approxMleWn2D

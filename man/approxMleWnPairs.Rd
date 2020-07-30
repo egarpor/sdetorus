@@ -38,7 +38,7 @@ approxMleWnPairs(data, delta, start = c(0, 0, 1, 1, 0, 1, 1),
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) diffusion, using the wrapped Ornstein-Uhlenbeck diffusion and assuming initial stationarity.
+Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) diffusion, using the wrapped Ornstein--Uhlenbeck diffusion and assuming initial stationarity.
 }
 \examples{
 mu <- c(0, 0)

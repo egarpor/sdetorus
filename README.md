@@ -225,7 +225,7 @@ est1 <- mlePde1D(data = samp, delta = delta, b = b, sigma2 = sigma2, Mx = 5e2,
 est2 <- psMle(data = samp, delta = delta, method = "E", b = b, sigma2 = sigma2,
               start = start, lower = low, upper = up)
 
-# Shoji-Ozaki pseudo-likelihood
+# Shoji--Ozaki pseudo-likelihood
 est3 <- psMle(data = samp, delta = delta, method = "SO", b = b, b1 = b1,
               sigma2 = sigma2, start = start, lower = low, upper = up)
 
@@ -290,7 +290,7 @@ up <- c(25, 25, 25, pi, pi, 25, 25)
 est1 <- psMle(data = samp, delta = delta, method = "E", b = b, sigma2 = sigma2,
               start = start, lower = low, upper = up)
 
-# Shoji-Ozaki pseudo-likelihood
+# Shoji--Ozaki pseudo-likelihood
 est2 <- psMle(data = samp, delta = delta, method = "SO", b = b, jac.b = jac.b,
               sigma2 = sigma2, start = start, lower = low, upper = up)
 #> <simpleError in eigen(x = jac.bx, symmetric = FALSE): infinite or missing values in 'x'>

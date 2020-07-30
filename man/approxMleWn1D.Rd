@@ -31,7 +31,7 @@ approxMleWn1D(data, delta, start, alpha = NA, mu = NA, sigma = NA,
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 1D using the wrapped Ornstein-Uhlenbeck diffusion.
+Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 1D using the wrapped Ornstein--Uhlenbeck diffusion.
 }
 \details{
 See Section 3.3 in García-Portugués et al. (2019) for details.

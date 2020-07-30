@@ -2,7 +2,7 @@
 
 #' @title Conditional probability density of the WOU process
 #'
-#' @description Conditional probability density of the Wrapped Ornstein-Uhlenbeck (WOU) process.
+#' @description Conditional probability density of the Wrapped Ornstein--Uhlenbeck (WOU) process.
 #'
 #' @param x matrix of size \code{c(n, p)} with the evaluation points in \eqn{[-\pi,\pi)^p}.
 #' @inheritParams dTpdWou1D

@@ -2,7 +2,7 @@
 % Please edit documentation in R/pslik.R
 \name{dPsTpd}
 \alias{dPsTpd}
-\title{Wrapped Euler and Shoji-Ozaki pseudo-transition probability densities}
+\title{Wrapped Euler and Shoji--Ozaki pseudo-transition probability densities}
 \usage{
 dPsTpd(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
   circular = TRUE, maxK = 2, vmApprox = FALSE, twokpi, ...)
@@ -14,7 +14,7 @@ dPsTpd(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
 
 \item{t}{time step between \code{x} and \code{x0}.}
 
-\item{method}{a string for choosing \code{"E"} (Euler), \code{"SO"} (Shoji-Ozaki) or \code{"SO2"} (Shoji-Ozaki with Ito's expansion in the drift) method.}
+\item{method}{a string for choosing \code{"E"} (Euler), \code{"SO"} (Shoji--Ozaki) or \code{"SO2"} (Shoji--Ozaki with Ito's expansion in the drift) method.}
 
 \item{b}{drift function. Must return a matrix of the same size as \code{x}.}
 

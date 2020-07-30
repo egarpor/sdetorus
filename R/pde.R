@@ -2,7 +2,7 @@
 
 #' @title Transition probability density in 1D by PDE solving
 #'
-#' @description Computation of the transition probability density (tpd) of the Wrapped Normal (WN) or von Mises (vM) diffusion, by solving its associated Fokker-Planck Partial Differential Equation (PDE) in 1D.
+#' @description Computation of the transition probability density (tpd) of the Wrapped Normal (WN) or von Mises (vM) diffusion, by solving its associated Fokker--Planck Partial Differential Equation (PDE) in 1D.
 #'
 #' @inheritParams crankNicolson1D
 #' @param x0 point giving the mean of the initial circular density, a WN with standard deviation equal to \code{sdInitial}.
@@ -69,7 +69,7 @@ dTpdPde1D <- function(Mx = 500, x0, t, alpha, mu, sigma, type = "WN",
 
 #' @title Transition probability density in 2D by PDE solving
 #'
-#' @description Computation of the transition probability density (tpd) of the Wrapped Normal (WN) or Multivariate von Mises (MvM) diffusion, by solving its associated Fokker-Planck Partial Differential Equation (PDE) in 2D.
+#' @description Computation of the transition probability density (tpd) of the Wrapped Normal (WN) or Multivariate von Mises (MvM) diffusion, by solving its associated Fokker--Planck Partial Differential Equation (PDE) in 2D.
 #'
 #' @inheritParams crankNicolson2D
 #' @inheritParams dTpdPde1D
@@ -143,7 +143,7 @@ dTpdPde2D <- function(Mx = 50, My = 50, x0, t, alpha, mu, sigma, rho = 0,
 
 #' @title MLE for toroidal process via PDE solving in 1D
 #'
-#' @description Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker-Planck Partial Differential Equation (PDE) in 1D.
+#' @description Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker--Planck Partial Differential Equation (PDE) in 1D.
 #'
 #' @param b drift function. Must return a vector of the same size as its argument.
 #' @param sigma2 function giving the squared diffusion coefficient. Must return a vector of the same size as its argument.
@@ -331,7 +331,7 @@ mlePde1D <- function(data, delta, b, sigma2, Mx = 500,
 
 #' @title MLE for toroidal process via PDE solving in 2D
 #'
-#' @description Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker-Planck Partial Differential Equation (PDE) in 2D.
+#' @description Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker--Planck Partial Differential Equation (PDE) in 2D.
 #'
 #' @param b drift function. Must return a vector of the same size as its argument.
 #' @param sigma2 function giving the diagonal of the diffusion matrix. Must return a vector of the same size as its argument.

@@ -12,7 +12,7 @@ psMle(data, delta, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
 
 \item{delta}{discretization step.}
 
-\item{method}{a string for choosing \code{"E"} (Euler), \code{"SO"} (Shoji-Ozaki) or \code{"SO2"} (Shoji-Ozaki with Ito's expansion in the drift) method.}
+\item{method}{a string for choosing \code{"E"} (Euler), \code{"SO"} (Shoji--Ozaki) or \code{"SO2"} (Shoji--Ozaki with Ito's expansion in the drift) method.}
 
 \item{b}{drift function. Must return a matrix of the same size as \code{x}.}
 
@@ -42,7 +42,7 @@ psMle(data, delta, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Maximum pseudo-likelihood using the Euler and Shoji-Ozaki pseudo-likelihoods.
+Maximum pseudo-likelihood using the Euler and Shoji--Ozaki pseudo-likelihoods.
 }
 \details{
 See Section 3.2 in García-Portugués et al. (2019) for details. \code{"SO2"} implements Shoji and Ozai (1998)'s expansion with for \code{p = 1}. \code{"SO"} is the same expansion, for arbitrary \code{p}, but considering null second derivatives.
