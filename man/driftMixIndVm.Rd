@@ -26,7 +26,7 @@ A matrix of the same size as \code{x} containing the drift.
 Drift for the Langevin diffusion associated to a mixture of \code{m} independent (multivariate) von Mises (mivM) of dimension \code{p}.
 }
 \details{
-\code{\link{driftMixVm}} is more efficient for the circular case. The diffusion matrix is \eqn{\sigma\bold{I}}{sigma}. See Section 2.2.4 in García-Portugués et al. (2017) for details.
+\code{\link{driftMixVm}} is more efficient for the circular case. The diffusion matrix is \eqn{\sigma\bold{I}}{sigma}. See Section 2.2.4 in García-Portugués et al. (2019) for details.
 }
 \examples{
 # 1D
@@ -45,8 +45,5 @@ plotSurface2D(x, x, f = function(x) sqrt(rowSums(driftMixIndVm(x = x,
               sigma = 1, p = c(0.25, 0.75))^2)), fVect = TRUE)
 }
 \references{
-García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 }

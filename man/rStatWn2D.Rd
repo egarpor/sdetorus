@@ -35,6 +35,3 @@ points(toPiInt(mvtnorm::rmvnorm(n = 1000, mean = mu,
                                 sigma = solve(A) \%*\% Sigma / 2,
                                 method = "chol")), col = 2)
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

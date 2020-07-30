@@ -42,6 +42,3 @@ plot(samp, xlim = c(-pi, pi), ylim = c(-pi, pi), pch = 19, cex = 0.25,
      xlab = expression(X[t]), ylab = expression(Y[t]), col = rainbow(1000))
 linesTorus(samp[, 1], samp[, 2], col = rainbow(1000))
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

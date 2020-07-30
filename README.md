@@ -1,39 +1,57 @@
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-sdetorus
-========
+# sdetorus
 
-[![Travis-CI Build Status](https://travis-ci.org/egarpor/sdetorus.svg?branch=master)](https://travis-ci.org/egarpor/sdetorus) [![License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+<!-- badges: start -->
+
+[![License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Travis build
+status](https://travis-ci.org/egarpor/sdetorus.svg?branch=master)](https://travis-ci.org/egarpor/sdetorus)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/sdetorus)](https://cran.r-project.org/package=sdetorus)
+<!-- badges: end -->
 
 <p align="center">
-<img style="width:90%;" id="sdetorus" src="https://raw.githubusercontent.com/egarpor/sdetorus/master/logo/sdetorus-small.gif"> <br> <i>Transition probability density of the Langevin diffusion guided by the "sdetorus" density</i>
+
+<img style="width:90%;" id="sdetorus" src="https://raw.githubusercontent.com/egarpor/sdetorus/master/logo/sdetorus-small.gif">
+<br> <i>Transition probability density of the Langevin diffusion guided
+by the “sdetorus” density</i>
+
 </p>
+
  
 
-Overview
---------
+## Overview
 
-This library provides statistical tools for Maximum Likelihood Estimation (MLE) of toroidal diffusions. It is the package companion for the paper *Langevin diffusions on the torus: estimation and applications* (García-Portugués *et al.*, 2017).
+This library provides statistical tools for estimation of toroidal
+diffusions. It is the package companion for the paper *Langevin
+diffusions on the torus: estimation and applications* (García-Portugués
+et al., 2019).
 
-Disclaimer
-----------
+## Install
 
-The package is still in development and not fully tested nor documented. Use at your own risk!
-
-Install
--------
-
-The package uses lambda functions from `C++11` so it is required to set the appropriate compiler flags. [`Rtools`](https://cran.r-project.org/bin/windows/Rtools/) is required in Windows.
+Get the released version from CRAN:
 
 ``` r
-# install.packages("devtools")
+# Install the package
+install.packages("sdetorus")
+
+# Load package
+library(sdetorus)
+```
+
+Alternatively, get the latest version from GitHub:
+
+``` r
+# Install the package
 library(devtools)
 Sys.setenv("PKG_CXXFLAGS" = "-std=c++11")
 Sys.setenv("PKG_LIBS" = "-llapack")
 install_github("egarpor/sdetorus")
+
+# Load package
+library(sdetorus)
 ```
 
-Usage
------
+## Usage
 
 ### Example 1: simulation of diffusion trajectories
 
@@ -158,7 +176,7 @@ plotTpd(t = 3.0)
 
 <img src="README/README-example2-2.png" style="display: block; margin: auto;" />
 
-### Example 3: approximate MLE in 1D
+### Example 3: approximate maximum likelihood estimation in 1D
 
 ``` r
 # Load package
@@ -207,7 +225,7 @@ est1 <- mlePde1D(data = samp, delta = delta, b = b, sigma2 = sigma2, Mx = 5e2,
 est2 <- psMle(data = samp, delta = delta, method = "E", b = b, sigma2 = sigma2,
               start = start, lower = low, upper = up)
 
-# Shoji-Ozaki pseudo-likelihood
+# Shoji--Ozaki pseudo-likelihood
 est3 <- psMle(data = samp, delta = delta, method = "SO", b = b, b1 = b1,
               sigma2 = sigma2, start = start, lower = low, upper = up)
 
@@ -272,7 +290,7 @@ up <- c(25, 25, 25, pi, pi, 25, 25)
 est1 <- psMle(data = samp, delta = delta, method = "E", b = b, sigma2 = sigma2,
               start = start, lower = low, upper = up)
 
-# Shoji-Ozaki pseudo-likelihood
+# Shoji--Ozaki pseudo-likelihood
 est2 <- psMle(data = samp, delta = delta, method = "SO", b = b, jac.b = jac.b,
               sigma2 = sigma2, start = start, lower = low, upper = up)
 #> <simpleError in eigen(x = jac.bx, symmetric = FALSE): infinite or missing values in 'x'>
@@ -280,11 +298,14 @@ est2 <- psMle(data = samp, delta = delta, method = "SO", b = b, jac.b = jac.b,
 # Approximate MLE based on the WOU process
 est3 <- approxMleWn2D(data = samp, delta = delta, start = start, lower = low,
                       upper = up)
-#> Warning in specPars[indUnSpecPars] <- pars: number of items to replace is
-#> not a multiple of replacement length
+#> Warning in specPars[indUnSpecPars] <- pars: number of items to replace is not a
+#> multiple of replacement length
 
-#> Warning in specPars[indUnSpecPars] <- pars: number of items to replace is
-#> not a multiple of replacement length
+#> Warning in specPars[indUnSpecPars] <- pars: number of items to replace is not a
+#> multiple of replacement length
+
+#> Warning in specPars[indUnSpecPars] <- pars: number of items to replace is not a
+#> multiple of replacement length
 #> <std::runtime_error in dTpdWou2D(x = y, x0 = x, t = delta, alpha = specPars[1:3], mu = specPars[4:5],     sigma = specPars[6:7], rho = specPars[8], maxK = maxK): inv_sympd(): matrix is singular or not positive definite>
 
 # Comparison
@@ -296,12 +317,21 @@ est3$par
 #> [1] NA
 ```
 -->
-Reproducibility of García-Portugués *et al.* (2017)
----------------------------------------------------
 
-The directories [`/MD`](https://github.com/egarpor/data-langevintorus/tree/master/MD) and [`/simulation`](https://github.com/egarpor/data-langevintorus/tree/master/simulation) in the [data-langevintorus](https://github.com/egarpor/data-langevintorus) repository contain the scripts used in the empirical analyses of the aforementioned paper, as well as their `.RData` outputs. Those files are not downloaded when installing `sdetorus`.
+## Reproducibility of García-Portugués et al. (2019)
 
-References
-----------
+The directories
+[`/MD`](https://github.com/egarpor/data-langevintorus/tree/master/MD)
+and
+[`/simulation`](https://github.com/egarpor/data-langevintorus/tree/master/simulation)
+in the
+[data-langevintorus](https://github.com/egarpor/data-langevintorus)
+repository contain the scripts used in the empirical analyses of the
+aforementioned paper, as well as their `.RData` outputs.
 
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2017). Langevin diffusions on the torus: estimation and applications. *Statistics and Computing*, <https://doi.org/10.1007/s11222-017-9790-2>.
+## References
+
+García-Portugués, E., Sørensen, M., Mardia, K. V., and Hamelryck, T.
+(2019). Langevin diffusions on the torus: estimation and applications.
+*Statistics and Computing*, 29(2):1–22.
+<https://doi.org/10.1007/s11222-017-9790-2>

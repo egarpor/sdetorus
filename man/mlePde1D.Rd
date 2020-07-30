@@ -36,10 +36,10 @@ mlePde1D(data, delta, b, sigma2, Mx = 500, Mt = ceiling(100 * delta),
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker-Planck Partial Differential Equation (PDE) in 1D.
+Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker--Planck Partial Differential Equation (PDE) in 1D.
 }
 \details{
-See Sections 3.4.1 and 3.4.4 in García-Portugués et al. (2017) for details.
+See Sections 3.4.1 and 3.4.4 in García-Portugués et al. (2019) for details.
 }
 \examples{
 \dontrun{
@@ -93,8 +93,5 @@ head(pdeWnLin)
 }
 }
 \references{
-García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 }

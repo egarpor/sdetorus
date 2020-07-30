@@ -26,7 +26,7 @@ A vector of the same length as \code{x} containing the drift.
 Drift for the Langevin diffusion associated to a mixture of \code{m} independent von Mises (mivM) of dimension one.
 }
 \details{
-\code{\link{driftMixIndVm}} is more general, but less efficient for the circular case. See Section 2.2.4 in García-Portugués et al. (2017) for details.
+\code{\link{driftMixIndVm}} is more general, but less efficient for the circular case. See Section 2.2.4 in García-Portugués et al. (2019) for details.
 }
 \examples{
 x <- seq(-pi, pi, l = 200)
@@ -37,8 +37,5 @@ for (i in 1:10) {
 }
 }
 \references{
-García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 }

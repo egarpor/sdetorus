@@ -15,7 +15,6 @@ arma::mat safeSoftMax(arma::mat logs, double expTrc = 30);
 //' @inheritParams dTpdWou1D
 //' @inheritParams safeSoftMax
 //' @return A vector of length \code{n} containing the drift evaluated at \code{x}.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @examples
 //' driftWn1D(x = seq(0, pi, l = 10), alpha = 1, mu = 0, sigma = 1, maxK = 2,
 //'           expTrc = 30)
@@ -52,7 +51,6 @@ arma::vec driftWn1D(arma::vec x, double alpha, double mu, double sigma, int maxK
 //' @inheritParams dWn1D
 //' @inheritParams safeSoftMax
 //' @return A matrix of size \code{c(n, 2)} containing the drift evaluated at \code{x}.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @examples
 //' alpha <- 3:1
 //' mu <- c(0, 0)

@@ -39,6 +39,3 @@ x <- rbind(c(0, 1), c(1, 0.1), c(pi, pi), c(-pi, -pi), c(pi / 2, 0))
 driftWn2D(x = x, A = A, mu = mu, sigma = sigma, rho = rho)
 driftWn(x = x, A = A, mu = c(0, 0), Sigma = Sigma)
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

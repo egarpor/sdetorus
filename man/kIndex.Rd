@@ -56,6 +56,3 @@ matrix(1:10, nr = 2, nc = 5)
 kColToRow(1:10, nr = 2, nc = 5)
 kRowToCol(kColToRow(1:10, nr = 2, nc = 5), nr = 2, nc = 5)
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

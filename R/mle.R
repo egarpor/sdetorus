@@ -2,7 +2,7 @@
 
 #' @title Maximum pseudo-likelihood estimation by wrapped pseudo-likelihoods
 #'
-#' @description Maximum pseudo-likelihood using the Euler and Shoji-Ozaki pseudo-likelihoods.
+#' @description Maximum pseudo-likelihood using the Euler and Shoji--Ozaki pseudo-likelihoods.
 #'
 #' @param data a matrix of dimension \code{c(n, p)}.
 #' @param delta discretization step.
@@ -10,10 +10,9 @@
 #' @inheritParams mleOptimWrapper
 #' @param ... further parameters passed to \code{\link{mleOptimWrapper}}.
 #' @return Output from \code{\link{mleOptimWrapper}}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
-#' @details See Section 3.2 in García-Portugués et al. (2017) for details. \code{"SO2"} implements Shoji and Ozai (1998)'s expansion with for \code{p = 1}. \code{"SO"} is the same expansion, for arbitrary \code{p}, but considering null second derivatives.
+#' @details See Section 3.2 in García-Portugués et al. (2019) for details. \code{"SO2"} implements Shoji and Ozai (1998)'s expansion with for \code{p = 1}. \code{"SO"} is the same expansion, for arbitrary \code{p}, but considering null second derivatives.
 #' @references
-#' García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 #'
 #' Shoji, I. and Ozaki, T. (1998) A statistical method of estimation and simulation for systems of stochastic differential equations. \emph{Biometrika}, 85(1):240-243.
 #' @examples
@@ -158,16 +157,15 @@ psMle <- function(data, delta, method = c("E", "SO", "SO2"), b, jac.b, sigma2,
 
 #' @title Approximate MLE of the WN diffusion in 1D
 #'
-#' @description Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 1D using the wrapped Ornstein-Uhlenbeck diffusion.
+#' @description Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 1D using the wrapped Ornstein--Uhlenbeck diffusion.
 #'
 #' @inheritParams psMle
 #' @param alpha,mu,sigma if their values are provided, the likelihood function is optimized with respect to the rest of unspecified parameters. The number of elements in \code{start}, \code{lower} and \code{upper} has to be modified accordingly (see examples).
 #' @inheritParams safeSoftMax
 #' @return Output from \code{\link{mleOptimWrapper}}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
-#' @details See Section 3.3 in García-Portugués et al. (2017) for details.
+#' @details See Section 3.3 in García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 #' @examples
 #' alpha <- 0.5
 #' mu <- 0
@@ -214,17 +212,16 @@ approxMleWn1D <- function(data, delta, start, alpha = NA, mu = NA, sigma = NA,
 
 #' @title Approximate MLE of the WN diffusion in 2D
 #'
-#' @description Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 2D using the wrapped Ornstein-Uhlenbeck diffusion.
+#' @description Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 2D using the wrapped Ornstein--Uhlenbeck diffusion.
 #'
 #' @inheritParams psMle
 #' @inheritParams approxMleWn1D
 #' @param alpha,mu,sigma,rho if their values are provided, the likelihood function is optimized with respect to the rest of unspecified parameters. The number of elements in \code{start}, \code{lower} and \code{upper} has to be modified accordingly (see examples).
 #' @inheritParams safeSoftMax
 #' @return Output from \code{\link{mleOptimWrapper}}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
-#' @details See Section 3.3 in García-Portugués et al. (2017) for details.
+#' @details See Section 3.3 in García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 #' @examples
 #' alpha <- c(2, 2, -0.5)
 #' mu <- c(0, 0)
@@ -326,10 +323,9 @@ approxMleWn2D <- function(data, delta, start, alpha = rep(NA, 3),
 #' @param circular whether the process is circular or not.
 #' @param diagonal,isotropic enforce different constraints for the diffusion matrix.
 #' @return The estimated diffusion matrix of size \code{c(p, p)}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
-#' @details See Section 3.1 in García-Portugués et al. (2017) for details.
+#' @details See Section 3.1 in García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 #' @examples
 #' # 1D
 #' x <- drop(euler1D(x0 = 0, alpha = 1, mu = 0, sigma = 1, N = 1000,
@@ -383,14 +379,13 @@ sigmaDiff <- function(data, delta, circular = TRUE, diagonal = FALSE,
 
 #' @title Approximate MLE of the WN diffusion in 2D from a sample of initial and final pairs of angles.
 #'
-#' @description Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) diffusion, using the wrapped Ornstein-Uhlenbeck diffusion and assuming initial stationarity.
+#' @description Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) diffusion, using the wrapped Ornstein--Uhlenbeck diffusion and assuming initial stationarity.
 #'
 #' @inheritParams logLikWouPairs
 #' @inheritParams approxMleWn2D
 #' @inheritParams safeSoftMax
 #' @inheritParams psMle
 #' @return Output from \code{\link{mleOptimWrapper}}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' mu <- c(0, 0)
 #' alpha <- c(1, 2, 0.5)

@@ -12,7 +12,7 @@ psMle(data, delta, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
 
 \item{delta}{discretization step.}
 
-\item{method}{a string for choosing \code{"E"} (Euler), \code{"SO"} (Shoji-Ozaki) or \code{"SO2"} (Shoji-Ozaki with Ito's expansion in the drift) method.}
+\item{method}{a string for choosing \code{"E"} (Euler), \code{"SO"} (Shoji--Ozaki) or \code{"SO2"} (Shoji--Ozaki with Ito's expansion in the drift) method.}
 
 \item{b}{drift function. Must return a matrix of the same size as \code{x}.}
 
@@ -34,7 +34,7 @@ psMle(data, delta, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
 
 \item{maxK}{maximum absolute winding number used if \code{circular = TRUE}.}
 
-\item{vmApprox}{flag to indicate von Mises approximation to wrapped normal. See \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
+\item{vmApprox}{flag to indicate von Mises approximation to wrapped normal. See\cr \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
 
 \item{...}{further parameters passed to \code{\link{mleOptimWrapper}}.}
 }
@@ -42,10 +42,10 @@ psMle(data, delta, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Maximum pseudo-likelihood using the Euler and Shoji-Ozaki pseudo-likelihoods.
+Maximum pseudo-likelihood using the Euler and Shoji--Ozaki pseudo-likelihoods.
 }
 \details{
-See Section 3.2 in García-Portugués et al. (2017) for details. \code{"SO2"} implements Shoji and Ozai (1998)'s expansion with for \code{p = 1}. \code{"SO"} is the same expansion, for arbitrary \code{p}, but considering null second derivatives.
+See Section 3.2 in García-Portugués et al. (2019) for details. \code{"SO2"} implements Shoji and Ozai (1998)'s expansion with for \code{p = 1}. \code{"SO"} is the same expansion, for arbitrary \code{p}, but considering null second derivatives.
 }
 \examples{
 \dontrun{
@@ -124,10 +124,7 @@ mlePde2D(data = samp, delta = delta, b = b, start = pars)
 }
 }
 \references{
-García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 
 Shoji, I. and Ozaki, T. (1998) A statistical method of estimation and simulation for systems of stochastic differential equations. \emph{Biometrika}, 85(1):240-243.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

@@ -27,7 +27,7 @@ forwardSweepPeriodicTridiag(a, b, c)
 }
 \value{
 \itemize{
-\item \code{solve*} functions: the solution, a vector of length \code{n} and a matrix with \code{n} rows for \code{solveTridiagMatConsts}.
+\item \code{solve*} functions: the solution, a vector of length \code{n} and a matrix with \code{n} rows for\cr \code{solveTridiagMatConsts}.
 \item \code{forward*} functions: the matrix \code{cbind(b, c)} creating the suitable \code{b} and \code{c} arguments for calling \code{solve*} when \code{LU} is \code{TRUE}.
 }
 }
@@ -38,16 +38,16 @@ Implementation of the Thomas algorithm to solve efficiently the tridiagonal matr
 \deqn{\vdots \vdots \vdots}{...}
 \deqn{a_{n-1} x_{n-2} + b_{n-1} x_{n-1} + c_{n-1}x_{n} = d_{n-1}}{a[n-1] x[n-2] + b[n-1] x[n-1] + c[n-1]x[n] = d[n-1]}
 \deqn{c_n x_1 + a_{n} x_{n-1} + b_nx_n = d_n}{c[n] x[1] + a[n] x[n-1] + b[n]x[n] = d[n]}
-with \eqn{a_1=c_n=0}{a[1]=c[n]=0} (usual tridiagonal matrix). If \eqn{a_1\neq0}{a[1]/=0} or \eqn{c_n\neq0}{c[n]/=0} (circulant tridiagonal matrix), then the Sherman-Morrison formula is employed.
+with \eqn{a_1=c_n=0}{a[1]=c[n]=0} (usual tridiagonal matrix). If \eqn{a_1\neq0}{a[1]/=0} or \eqn{c_n\neq0}{c[n]/=0} (circulant tridiagonal matrix), then the Sherman--Morrison formula is employed.
 }
 \details{
 The Thomas algorithm is stable if the matrix is diagonally dominant.
 
-For the periodic case, two non-periodic tridiagonal systems with different constant terms (but same coefficients) are solved using \code{solveTridiagMatConsts}. These two solutions are combined by the Sherman-Morrison formula to obtain the solution to the periodic system.
+For the periodic case, two non-periodic tridiagonal systems with different constant terms (but same coefficients) are solved using \code{solveTridiagMatConsts}. These two solutions are combined by the Sherman--Morrison formula to obtain the solution to the periodic system.
 
 Note that the output of \code{solveTridiag} and \code{solveTridiagMatConsts} are independent from the values of \code{a[1]} and \code{c[n]}, but \code{solvePeriodicTridiag} is not.
 
-If \code{LU} is \code{TRUE}, then \code{b} and \code{c} must be precomputed with \code{forwardSweepTridiag} or \code{forwardSweepPeriodicTridiag} for its use in the call of the appropriate solver, which will be slightly faster.
+If \code{LU} is \code{TRUE}, then \code{b} and \code{c} must be precomputed with \code{forwardSweepTridiag} or\cr \code{forwardSweepPeriodicTridiag} for its use in the call of the appropriate solver, which will be slightly faster.
 }
 \examples{
 # Tridiagonal matrix
@@ -95,7 +95,4 @@ drop(solvePeriodicTridiag(a = a, b = LU[, 1], c = LU[, 2], d = d, LU = 1))
 Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
 
 Conte, S.D. and de Boor, C. (1980). \emph{Elementary Numerical Analysis: An Algorithmic Approach}. Third edition. McGraw-Hill, New York.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

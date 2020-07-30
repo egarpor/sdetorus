@@ -28,6 +28,3 @@ plotSurface2D(grid, grid, f = function(x) sin(x[1]) * cos(x[2]),
               nLev = 20, axes = FALSE)
 torusAxis()
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

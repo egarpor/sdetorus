@@ -20,7 +20,6 @@ arma::mat safeSoftMax(arma::mat logs, double expTrc = 30);
 //' @return A scalar giving the final loglikelihood, defined as the sum of the loglikelihood of the initial angles according to the stationary density
 //' and the loglikelihood of the transitions from initial to final angles.
 //' @details A negative penalty is added if positive definiteness is violated. If the output value is Inf, -100 * N is returned instead.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @examples
 //' set.seed(345567)
 //' x <- toPiInt(matrix(rnorm(200, mean = pi), ncol = 4, nrow = 50))

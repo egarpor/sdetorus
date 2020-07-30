@@ -7,7 +7,6 @@
 #' @param x evaluation vector. For \code{logBesselI0Scaled}, \code{x} must contain non-negative values. For \code{a1Inv}, \code{x} must be in \eqn{[0,1]}.
 #' @param splineApprox whether to use a pre-computed spline approximation (faster) or not.
 #' @return A vector of the same length as \code{x}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details Both functions may rely on pre-computed spline interpolations (\code{logBesselI0ScaledSpline} and \code{a1InvSpline}) that are created in \code{\link{.GlobalEnv}} the first time the functions are used. Otherwise, a call to \code{besselI} is done for \eqn{\log(I_0(x))-x}{log(I0(x))-x} and \eqn{A_1(k)=x}{A1(k)=x} is solved numerically. The data in which the interpolation is based is given in the examples.
 #'
 #' For \code{x} larger than \code{5e4}, the asymptotic expansion of \code{\link[Bessel]{besselIasym}} is employed.
@@ -102,7 +101,6 @@ a1Inv <- function(x, splineApprox = TRUE) {
 #' @param sigma,sigma2 standard deviation or variance of the wrapped normal.
 #' @param Sigma,invSigma covariance or precision matrix of the bivariate wrapped normal.
 #' @return Vector of parameters \eqn{(\kappa_1,\kappa_2,\lambda)}, where \eqn{(\kappa_1,\kappa_2,2\lambda)} is a suitable input for \code{kappa} in \code{dBvm}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details If the precision matrix is singular or if there are no solutions for the score matching estimator, \code{c(0, 0, 0)} is returned.
 #' @references
 #' Mardia, K. V., Kent, J. T., Laha, A. K. (2016). Score matching estimators for directional distributions. \emph{arXiv:1604.0847}.

@@ -12,7 +12,6 @@
 #' @param arrows flag for drawing arrows instead of line segments.
 #' @param ... further graphical parameters passed to \code{\link[graphics]{segments}} or \code{\link[graphics]{arrows}}.
 #' @return Nothing. The functions are called for drawing wrapped lines.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details \code{y} is wrapped to \eqn{[-\pi,\pi)} before plotting.
 #' @examples
 #' x <- 1:100
@@ -51,7 +50,6 @@ linesCirc <- function(x = seq_along(y), y, col = 1, lty = 1, ltyCross = lty,
 #' @param x vector with horizontal coordinates, wrapped in \eqn{[-\pi,\pi)}.
 #' @inheritParams linesCirc
 #' @return Nothing. The functions are called for drawing wrapped lines.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details \code{x} and \code{y} are wrapped to \eqn{[-\pi,\pi)} before plotting.
 #' @examples
 #' x <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
@@ -97,13 +95,13 @@ linesTorus <- function(x, y, col = 1, lty = 1, ltyCross = lty, arrows = FALSE,
 #' @param col color vector of length \code{1} or the same length of \code{x}, \code{y}, and \code{z}.
 #' @inheritParams linesTorus
 #' @return Nothing. The functions are called for drawing wrapped lines.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details \code{x}, \code{y}, and \code{z} are wrapped to \eqn{[-\pi,\pi)} before plotting. \code{arrows = TRUE} makes sequential calls to \code{\link[rgl]{arrow3d}}, and is substantially slower than \code{arrows = FALSE}.
 #' @examples
+#' \dontrun{
 #' library(rgl)
-#' x <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
-#' y <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
-#' z <- toPiInt(x + y + rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
+#' x <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
+#' y <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
+#' z <- toPiInt(x + y + rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
 #' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi), 
 #'        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
 #' linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), lwd = 2)
@@ -113,6 +111,7 @@ linesTorus <- function(x, y, col = 1, lty = 1, ltyCross = lty, arrows = FALSE,
 #' linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), ltyCross = 2,
 #'              arrows = TRUE, theta = 0.1 * pi / 180, barblen = 0.1)
 #' torusAxis3d()
+#' }
 #' @export
 linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
   
@@ -170,7 +169,7 @@ linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
 
 #' @title Quadrature rules in 1D, 2D and 3D
 #'
-#' @description Quadrature rules for definite integrals over intervals in 1D, \eqn{\int_{x_1}^{x_2} f(x)dx}, rectangles in 2D, \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2} f(x,y)dydx} and cubes in 3D, \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2}\int_{z_1}^{z_2} f(x,y,z)dzdydx}. The trapezoidal rules assume that the function is periodic, whereas the Simpson rules work for arbitrary functions.
+#' @description Quadrature rules for definite integrals over intervals in 1D, \eqn{\int_{x_1}^{x_2} f(x)dx}, rectangles in 2D,\cr \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2} f(x,y)dydx} and cubes in 3D, \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2}\int_{z_1}^{z_2} f(x,y,z)dzdydx}. The trapezoidal rules assume that the function is periodic, whereas the Simpson rules work for arbitrary functions.
 #'
 #' @param fx vector containing the evaluation of the function to integrate over a uniform grid in \eqn{[x_1,x_2]}.
 #' @param fxy matrix containing the evaluation of the function to integrate over a uniform grid in \eqn{[x_1,x_2]\times[y_1,y_2]}.
@@ -179,7 +178,6 @@ linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
 #' @inheritParams base::sum
 #' @param lengthInterval vector containing the lengths of the intervals of integration.
 #' @return The value of the integral.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details The simple trapezoidal rule has a very good performance for periodic functions in 1D and 2D(order of error ). The higher dimensional extensions are obtained by iterative usage of the 1D rules.
 #' @references
 #' Press, W. H., Teukolsky, S. A., Vetterling, W. T., Flannery, B. P. (1996). \emph{Numerical Recipes in Fortran 77: The Art of Scientific Computing (Vol. 1 of Fortran Numerical Recipes)}. Cambridge University Press, Cambridge.
@@ -356,7 +354,6 @@ integrateSimp3D <- function(fxyz, lengthInterval = rep(2 * pi, 3),
 #' @param x a vector, matrix or object for whom \code{\link[base]{Arithmetic}} is defined.
 #' @param a,b the lower and upper limits of \eqn{[a, b)}.
 #' @return The wrapped vector in the chosen interval.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details Note that \eqn{b} is \bold{excluded} from the result, see examples.
 #' @examples
 #' # Wrapping of angles
@@ -406,7 +403,6 @@ toInt <- function(x, a, b) {
 #' @param circular convenience flag to indicate whether wrapping should be done. If \code{FALSE}, the function is exactly \code{\link{diff}}.
 #' @param ... parameters to be passed to \code{\link{diff}}.
 #' @return The value of \code{diff(x, ...)}, circularly wrapped. Default parameters give an object of the kind of \code{x} with one less entry or row.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details If \code{x} is a matrix then the difference operations are carried out row-wise, on each column separately.
 #' @examples
 #' # Vectors
@@ -443,7 +439,6 @@ diffCirc <- function(x, circular = TRUE, ...) {
 #'
 #' @param x wrapped angles. Must be a vector or a matrix, see details.
 #' @return A vector or matrix containing a choice of unwrapped angles of \code{x} that maximizes linear continuity.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details If \code{x} is a matrix then the unwrapping is carried out row-wise, on each column separately.
 #' @examples
 #' # Vectors
@@ -497,7 +492,6 @@ unwrapCircSeries <- function(x) {
 #' \item For 2D, a matrix of size \code{c(n, 4)} containing the weights for lower-lower (\code{g1x}, \code{g1y}), \emph{upper-lower} (\code{g2x}, \code{g1y}), \emph{lower-upper} (\code{g1x}, \code{g2y}) and upper-upper (\code{g2x}, \code{g2y}) bins.
 #' \code{cbind(g1x, g1y)}, \code{cbind(g1x, g1y)}, \code{cbind(g1x, g1y)} and \code{cbind(g2x, g2y)}.
 #' }
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details See the examples for how to use the weights for linear binning.
 #' @examples
 #' # 1D, linear
@@ -625,7 +619,6 @@ weightsLinearInterp2D <- function(x, y, gx1, gx2, gy1, gy2, circular = FALSE) {
 #' @param levels vector of contour levels. If not provided, it is set to \code{quantile(z, probs = seq(0, 1, l = nLev))}.
 #' @param fVect flag to indicate whether \code{f} is a vectorized function (see examples).
 #' @param ... further arguments passed to \code{\link[graphics]{image}}
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @return The matrix \code{z}, invisible.
 #' @examples
 #' \dontrun{
@@ -692,7 +685,6 @@ plotSurface2D <- function(x = 1:nrow(z), y = 1:ncol(z), f, z, nLev = 20, levels,
 #' @param alpha alpha value between \code{0} (fully transparent) and \code{1} (opaque).
 #' @param ... further arguments passed to \code{\link[rgl]{plot3d}}
 #' @return The vector \code{t}, invisible.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' \dontrun{
 #' grid <- seq(-pi, pi, l = 50)
@@ -760,8 +752,7 @@ plotSurface3D <- function(x = 1:nrow(t), y = 1:ncol(t), z = 1:dim(t)[3], f, t,
 #' @param call whether to invoke VMD for immediate visualization or not.
 #' @param path path to VMD in the system. See details.
 #' @return The function creates a XPLOR map file in the current working directory. This file contains \code{t} and other data that allows its readily interpretation by VMD. An optional call to VMD can also be done for immediate visualization.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
-#' @details If \code{call = TRUE}, then a call to VMD with \code{outFile} is produced. VMD needs to be installed (\url{http://www.ks.uiuc.edu/Research/vmd/}) and its \code{path} must be properly specified. For example, for Mac OS it should be something similar to \code{path = "/Applications/VMD\\ 1.9.2.app/Contents/MacOs/startup.command"}, with the version number depending on the installed one. The R session will wait until finalization of VMD.
+#' @details If \code{call = TRUE}, then a call to VMD with \code{outFile} is produced. VMD needs to be installed (\url{http://www.ks.uiuc.edu/Research/vmd/}) and its \code{path} must be properly specified. For example, for Mac OS it should be something similar to\cr \code{path = "/Applications/VMD\\ 1.9.2.app/Contents/MacOs/startup.command"}, with the version number depending on the installed one. The R session will wait until finalization of VMD.
 #'
 #' After launching VMD, a 3D scatterplot is shown. The options for exploration of the 3D contours can be accessed in "VMD Main -> Graphics -> Representations ...". This will open a new window with the available choices. The drawing methods 'Isosurface', 'VolumeSlice' and 'Fieldlines' are the most useful.
 #'
@@ -823,7 +814,6 @@ plotVmdSurface3D <- function(t, nx, ny, nz, outFile = "test.map", call = FALSE,
 #' @param x a numerical vector or matrix of dimension \code{c(nr, nc)}.
 #' @param n the number of replicates of \code{x} by rows or columns.
 #' @return A matrix of dimension \code{c(nr * n, nc)} for \code{repRow} or \code{c(nr, nc * n)} for \code{repCol}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' repRow(1:5, 2)
 #' repCol(1:5, 2)
@@ -890,7 +880,6 @@ repCol <- function(x, n) {
 #' \item \code{ijIndex}: a matrix of dimension \code{c(length(k), 2)} giving \code{cbind(i, j)}.
 #' \item \code{kColToRow} and \code{kRowToCol}: a vector of length \code{nr * nc} giving the permuting indexes to change the ordering of the linear indexes.
 #' }
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' # Indexes of a 3 x 5 matrix
 #' ij <- expand.grid(i = 1:3, j = 1:5)
@@ -976,7 +965,6 @@ kRowToCol <- function(k, nr, nc) {
 #' @param useMatch whether to rely on \code{\link[base]{match}} or not. Might give unexpected mismatches due to working with lists.
 #' @param ... further parameters passed to \code{\link[base]{match}}.
 #' @return An integer vector of length \code{nrow(x)} (or \code{ncol(x)}) giving the row (or col) position in table of the first match, if there is a match.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' # By rows
 #' A <- rbind(5:6, repRow(1:2, 3), 3:4)
@@ -1035,7 +1023,6 @@ matMatch <- function(x, mat, rows = TRUE, useMatch = FALSE, ...) {
 #' @param ... further parameters passed to \code{\link[graphics]{axis}}.
 #' @return This function is usually invoked for its side effect, which is to add axes to an already existing plot.
 #' @details The function calls \code{\link[graphics]{box}}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @examples
 #' grid <- seq(-pi, pi, l = 100)
 #' plotSurface2D(grid, grid, f = function(x) sin(x[1]) * cos(x[2]),
@@ -1074,10 +1061,9 @@ torusAxis <- function(sides = 1:2, twoPi = FALSE, ...) {
 #'
 #' @param sides an integer vector specifying which side of the plot the axes are to be drawn on. The axes are placed as follows: \code{1} = x, \code{2} = y, \code{3} = z.
 #' @inheritParams torusAxis
-#' @param ... further parameters passed to \code{\link[rgl]{axis3d}}.
+#' @param ... further parameters passed to \code{\link[rgl:axes3d]{axis3d}}.
 #' @return This function is usually invoked for its side effect, which is to add axes to an already existing plot.
-#' @details The function calls \code{\link[rgl]{box3d}}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
+#' @details The function calls \code{\link[rgl:axes3d]{box3d}}.
 #' @examples
 #' library(rgl)
 #' x <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))

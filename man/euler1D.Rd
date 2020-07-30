@@ -43,6 +43,3 @@ tt <- seq(0, 1, l = N + 1)
 plot(rep(0, nx0), x0, pch = 16, col = rainbow(nx0), xlim = c(0, 1))
 for (i in 1:nx0) linesCirc(tt, samp[i, ], col = rainbow(nx0)[i])
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

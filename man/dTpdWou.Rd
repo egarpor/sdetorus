@@ -29,10 +29,10 @@ dTpdWou(x, t, A, mu, Sigma, x0, maxK = 2, eigA, invASigma)
 A vector of length \code{n} with the density evaluated at \code{x}.
 }
 \description{
-Conditional probability density of the Wrapped Ornstein-Uhlenbeck (WOU) process.
+Conditional probability density of the Wrapped Ornstein--Uhlenbeck (WOU) process.
 }
 \details{
-See Section 3.3 in García-Portugués et al. (2017) for details. \code{\link{dTpdWou1D}} and \code{\link{dTpdWou2D}} are more efficient implementations for the 1D and 2D cases, respectively.
+See Section 3.3 in García-Portugués et al. (2019) for details. \code{\link{dTpdWou1D}} and \code{\link{dTpdWou2D}} are more efficient implementations for the 1D and 2D cases, respectively.
 }
 \examples{
 # 1D
@@ -63,8 +63,5 @@ dTpdWou2D(x = x, x0 = rbind(x0), t = t, alpha = alpha, mu = mu,
           sigma = sigma, rho = rho)
 }
 \references{
-García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 }

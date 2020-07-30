@@ -28,7 +28,7 @@ Particular interesting choices for the shape parameter are:
 \item \code{psi = 0}: is the sinusoidal drift of the vM diffusion.
 \item \code{psi = 1}: gives the Cardioid as stationary density.
 }
-See Section 2.2.3 in García-Portugués et al. (2017) for details.
+See Section 2.2.3 in García-Portugués et al. (2019) for details.
 }
 \examples{
 x <- seq(-pi, pi, l = 200)
@@ -39,12 +39,9 @@ for (i in 0:20) {
 }
 }
 \references{
-García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 
 Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific Publishing, River Edge.
 
 Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on the circle. \emph{J. Amer. Statist. Assoc.}, 100(472):1422-1428.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

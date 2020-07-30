@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{crankNicolson2D}
 \alias{crankNicolson2D}
-\title{Crank-Nicolson finite difference scheme for the 2D Fokker-Planck equation with periodic boundaries}
+\title{Crank--Nicolson finite difference scheme for the 2D Fokker--Planck equation with periodic boundaries}
 \usage{
 crankNicolson2D(u0, bx, by, sigma2x, sigma2y, sigmaxy, N, deltat, Mx, deltax,
   My, deltay, imposePositive = 0L)
@@ -12,7 +12,7 @@ crankNicolson2D(u0, bx, by, sigma2x, sigma2y, sigmaxy, N, deltat, Mx, deltax,
 
 \item{bx, by}{matrices of size \code{c(Mx, My)} containing the evaluation of the drift in the first and second space coordinates, respectively.}
 
-\item{sigma2x, sigma2y, sigmaxy}{matrices of size \code{c(Mx, My)} containing the evaluation of the entries of the diffusion matrix (it has to be positive definite)
+\item{sigma2x, sigma2y, sigmaxy}{matrices of size \code{c(Mx, My)} containing the evaluation of the entries of the diffusion matrix (it has to be positive definite)\cr
 \code{rbind(c(sigma2x, sigmaxy),
             c(sigmaxy, sigma2y))}.}
 
@@ -33,8 +33,9 @@ crankNicolson2D(u0, bx, by, sigma2x, sigma2y, sigmaxy, N, deltat, Mx, deltax,
 }
 }
 \description{
-Implementation of the Crank-Nicolson scheme for solving the Fokker-Planck equation
-\deqn{p(x, y, t)_t = -(p(x, y, t) b_1(x, y))_x -(p(x, y, t) b_2(x, y))_y + \frac{1}{2}(\sigma_1^2(x, y) p(x, y, t))_{xx} + \frac{1}{2}(\sigma_2^2(x, y) p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}{p(x, y, t)_t = -(p(x, y, t) * b_1(x, y))_x -(p(x, y, t) * b_2(x, y))_y + 1/2 * (\sigma_1^2(x, y) *p(x, y, t))_{xx} + 1/2 * (\sigma_2^2(x, y) p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}
+Implementation of the Crank--Nicolson scheme for solving the Fokker--Planck equation
+\deqn{p(x, y, t)_t = -(p(x, y, t) b_1(x, y))_x -(p(x, y, t) b_2(x, y))_y+}
+\deqn{+ \frac{1}{2}(\sigma_1^2(x, y) p(x, y, t))_{xx} + \frac{1}{2}(\sigma_2^2(x, y) p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}{p(x, y, t)_t = -(p(x, y, t) * b_1(x, y))_x -(p(x, y, t) * b_2(x, y))_y + 1/2 * (\sigma_1^2(x, y) *p(x, y, t))_{xx} + 1/2 * (\sigma_2^2(x, y) p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}
 where \eqn{p(x, y, t)} is the transition probability density of the toroidal diffusion
 \deqn{dX_t=b_1(X_t,Y_t)dt+\sigma_1(X_t,Y_t)dW^1_t+\sigma_{12}(X_t,Y_t)dW^2_t,}{dX_t=b_1(X_t,Y_t)dt+\sigma_1(X_t,Y_t)dW^1_t+\sigma_{12}(X_t,Y_t)dW^2_t,}
 \deqn{dY_t=b_2(X_t,Y_t)dt+\sigma_{12}(X_t,Y_t)dW^1_t+\sigma_2(X_t,Y_t)dW^2_t.}{dY_t=b_2(X_t,Y_t)dt+\sigma_{12}(X_t,Y_t)dW^1_t+\sigma_2(X_t,Y_t)dW^2_t.}
@@ -89,7 +90,4 @@ manipulate({
 }
 \references{
 Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

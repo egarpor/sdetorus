@@ -55,6 +55,3 @@ y <- seq(0, 1 - 1e-4, l = 1e3)
 summary(a1Inv(x = y, splineApprox = TRUE) -
         a1Inv(x = y, splineApprox = FALSE))
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

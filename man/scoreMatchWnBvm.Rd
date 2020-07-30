@@ -66,6 +66,3 @@ scoreMatchWnBvm(invSigma = invSigma)
 \references{
 Mardia, K. V., Kent, J. T., Laha, A. K. (2016). Score matching estimators for directional distributions. \emph{arXiv:1604.0847}.
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

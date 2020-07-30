@@ -27,14 +27,13 @@
 #'   \item \code{localMinimumGuaranteed}: tests if the Hessian is positive definite (all eigenvalues larger than the tolerance \code{eigTol} and condition number smaller than \code{condTol}).
 #'   \item \code{solutionsOutput}: a list containing the complete output of the selected method for the different starting values. It includes the extra objects \code{convergence} and \code{localMinimumGuaranteed}.
 #' }
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details If \code{checkCircular = TRUE}, then the corresponding \code{lower} and \code{upper} entries of the circular parameters are set to \code{-Inf} and \code{Inf}, respectively, and \code{minusLogLik} is called with the \emph{principal value} of the circular argument.
 #'
 #' If no solution is found satisfying the criterion in \code{selectSolution}, NAs are returned in the elements of the main solution.
-#' 
+#'
 #' The Hessian is only computed if \code{selectSolution = "lowestLocMin"}.
 #'
-#' Region feasibility can be imposed by a function with the same arguments as \code{minusLogLik} that resets \code{pars} in to the boundary of the feasibility region and adds a penalty proportional to the violation of the feasibility region. Note that this is \emph{not the best procedure} to solve the constrained optimization problem, but just a relatively flexible and quick approach (for a more advanced treatment of restrictions, see optimization-focused packages such as \code{\link[nloptr]{nloptr}}). The value must be a list with objects \code{pars} and \code{penalty}. By default no region is imposed, i.e., \code{region = function(pars) list("pars" = pars, "penalty" = 0)}. Note that the Hessian is computed from the unconstrained problem, hence \code{localMinimumGuaranteed} might be \code{FALSE} even if a local minimum to the constrained problem was found.
+#' Region feasibility can be imposed by a function with the same arguments as \code{minusLogLik} that resets \code{pars} in to the boundary of the feasibility region and adds a penalty proportional to the violation of the feasibility region. Note that this is \emph{not the best procedure at all} to solve the constrained optimization problem, but just a relatively flexible and quick approach (for a more advanced treatment of restrictions, see \href{https://CRAN.R-project.org/view=Optimization}{optimization-focused packages}). The value must be a list with objects \code{pars} and \code{penalty}. By default no region is imposed, i.e., \code{region = function(pars) list("pars" = pars, "penalty" = 0)}. Note that the Hessian is computed from the unconstrained problem, hence \code{localMinimumGuaranteed} might be \code{FALSE} even if a local minimum to the constrained problem was found.
 #' @examples
 #' # No local minimum
 #' head(mleOptimWrapper(minusLogLik = function(x) -sum((x - 1:4)^2),
@@ -165,7 +164,7 @@ mleOptimWrapper <- function(minusLogLik, region = function(pars)
 
   # Compute Hessian? Takes a significant ammount of time
   hessian <- selectSolution == "lowestLocMin"
-  
+
   # List with solutions
   solutions <- vector(mode = "list", length = nStart)
 
@@ -187,38 +186,38 @@ mleOptimWrapper <- function(minusLogLik, region = function(pars)
 
       # Add Hessian slot if hessian = FALSE
       if (!hessian) {
-        
+
         solutions[[i]]$hessian <- NA
-        
+
       }
-      
+
       # Convergence message
       solutions[[i]]$message <-
-        switch(solutions[[i]]$code, 
+        switch(solutions[[i]]$code,
                paste("Relative gradient is close to zero,",
-                     "current iterate is probably solution"), 
+                     "current iterate is probably solution"),
                paste("Successive iterates within tolerance,",
-                     "current iterate is probably solution"), 
+                     "current iterate is probably solution"),
                paste("Last global step failed to locate a point",
                      "lower than estimate. Either estimate is an",
-                     "approximate local minimum of the function or", 
-                     "steptol is too small"), 
-               "Iteration limit exceeded", 
+                     "approximate local minimum of the function or",
+                     "steptol is too small"),
+               "Iteration limit exceeded",
                paste("Maximum step size stepmax exceeded five consecutive",
                      "times. Either the function is unbounded below, becomes",
-                     "asymptotic to a finite value from above in some", 
-                     "direction or stepmax is too small"), 
+                     "asymptotic to a finite value from above in some",
+                     "direction or stepmax is too small"),
                paste("Error in", solutions[[i]]$message))
-      
+
       # Check if convergence happened
       solutions[[i]]$convergence <- solutions[[i]]$code %in% 1:3
 
       # Wrap circular parameters
       if (checkCircular) {
-        
+
         solutions[[i]]$estimate[circularPars] <-
           toPiInt(solutions[[i]]$estimate[circularPars])
-        
+
       }
 
     } else {
@@ -261,14 +260,14 @@ mleOptimWrapper <- function(minusLogLik, region = function(pars)
                                      })
 
       }
-      
+
       # Add Hessian slot if hessian = FALSE
       if (!hessian) {
-        
+
         solutions[[i]]$hessian <- NA
-        
+
       }
-      
+
       # Convergence message
       solutions[[i]]$message <-
         paste(switch(as.character(solutions[[i]]$convergence),
@@ -287,12 +286,12 @@ mleOptimWrapper <- function(minusLogLik, region = function(pars)
 
       # Wrap circular parameters
       if (checkCircular) {
-        
+
         solutions[[i]]$par[circularPars] <-
           toPiInt(solutions[[i]]$par[circularPars])
-        
+
       }
-      
+
     }
 
     # Add eigendecomposition of Hessian and flag indicating if the solution
@@ -349,9 +348,9 @@ mleOptimWrapper <- function(minusLogLik, region = function(pars)
   ind <- (1:nStart)[which(indSelect)[ind]]
 
   # Add complete output of the solutions
-  msgHessian <- ifelse(hessian, paste0(", eigTol = ", eigTol, 
+  msgHessian <- ifelse(hessian, paste0(", eigTol = ", eigTol,
                                        " and condTol = ", condTol), "")
-  msg <- paste0(paste0("No solution was found with selectSolution = '", 
+  msg <- paste0(paste0("No solution was found with selectSolution = '",
                        selectSolution, "'"), msgHessian)
   bestSolution <- list("par" = NA, "value" = NA, "convergence" = FALSE,
                        "message" = msg, "eigHessian" = NA,

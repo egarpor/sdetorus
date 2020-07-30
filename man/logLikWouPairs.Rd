@@ -52,6 +52,3 @@ sum(
 # Different times
 logLikWouPairs(x = x, t = (1:50) / 50, alpha = alpha, mu = mu, sigma = sigma)
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

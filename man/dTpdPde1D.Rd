@@ -4,8 +4,8 @@
 \alias{dTpdPde1D}
 \title{Transition probability density in 1D by PDE solving}
 \usage{
-dTpdPde1D(Mx = 500, x0, t, alpha, mu, sigma, type = "WN", Mt = ceiling(100
-  * t), sdInitial = 0.1, ...)
+dTpdPde1D(Mx = 500, x0, t, alpha, mu, sigma, type = "WN",
+  Mt = ceiling(100 * t), sdInitial = 0.1, ...)
 }
 \arguments{
 \item{Mx}{size of the equispaced spatial grid in \eqn{[-\pi,\pi)}.}
@@ -32,10 +32,10 @@ dTpdPde1D(Mx = 500, x0, t, alpha, mu, sigma, type = "WN", Mt = ceiling(100
 A vector of length \code{Mx} with the tpd evaluated at \code{seq(-pi, pi, l = Mx + 1)[-(Mx + 1)]}.
 }
 \description{
-Computation of the transition probability density (tpd) of the Wrapped Normal (WN) or von Mises (vM) diffusion, by solving its associated Fokker-Planck Partial Differential Equation (PDE) in 1D.
+Computation of the transition probability density (tpd) of the Wrapped Normal (WN) or von Mises (vM) diffusion, by solving its associated Fokker--Planck Partial Differential Equation (PDE) in 1D.
 }
 \details{
-A combination of small \code{sdInitial} and coarse space-time discretization (small \code{Mx} and \code{Mt}) is prone to create numerical instabilities. See Sections 3.4.1, 2.2.1 and 2.2.2 in García-Portugués et al. (2017) for details.
+A combination of small \code{sdInitial} and coarse space-time discretization (small \code{Mx} and \code{Mt}) is prone to create numerical instabilities. See Sections 3.4.1, 2.2.1 and 2.2.2 in García-Portugués et al. (2019) for details.
 }
 \examples{
 Mx <- 100
@@ -60,8 +60,5 @@ t = slider(0.01, 5, step = 0.01, initial = 1))
 }
 }
 \references{
-García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 }

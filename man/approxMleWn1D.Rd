@@ -21,7 +21,7 @@ approxMleWn1D(data, delta, start, alpha = NA, mu = NA, sigma = NA,
 
 \item{upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
 
-\item{vmApprox}{flag to indicate von Mises approximation to wrapped normal. See \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
+\item{vmApprox}{flag to indicate von Mises approximation to wrapped normal. See\cr \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
 
 \item{maxK}{maximum absolute winding number used if \code{circular = TRUE}.}
 
@@ -31,10 +31,10 @@ approxMleWn1D(data, delta, start, alpha = NA, mu = NA, sigma = NA,
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 1D using the wrapped Ornstein-Uhlenbeck diffusion.
+Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 1D using the wrapped Ornstein--Uhlenbeck diffusion.
 }
 \details{
-See Section 3.3 in García-Portugués et al. (2017) for details.
+See Section 3.3 in García-Portugués et al. (2019) for details.
 }
 \examples{
 alpha <- 0.5
@@ -49,8 +49,5 @@ approxMleWn1D(data = samp, delta = 0.1, mu = mu, start = c(alpha, sigma),
                 lower = c(0.01, 0.01), upper = c(25, 25))
 }
 \references{
-García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 }

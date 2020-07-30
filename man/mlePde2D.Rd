@@ -38,10 +38,10 @@ mlePde2D(data, delta, b, sigma2, Mx = 50, My = 50, Mt = ceiling(100 *
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker-Planck Partial Differential Equation (PDE) in 2D.
+Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker--Planck Partial Differential Equation (PDE) in 2D.
 }
 \details{
-See Sections 3.4.2 and 3.4.4 in García-Portugués et al. (2017) for details. The function currently includes the \code{region} function for imposing a feasibility region on the parameters of the bivariate WN diffusion.
+See Sections 3.4.2 and 3.4.4 in García-Portugués et al. (2019) for details. The function currently includes the \code{region} function for imposing a feasibility region on the parameters of the bivariate WN diffusion.
 }
 \examples{
 \dontrun{
@@ -105,8 +105,5 @@ head(pdeOuLin)
 }
 }
 \references{
-García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 }

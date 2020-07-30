@@ -48,6 +48,3 @@ plot(x0[, 1], x0[, 2], xlim = c(-pi, pi), ylim = c(-pi, pi), pch = 16,
 for (i in 1:nx0) linesTorus(samp[i, 1, ], samp[i, 2, ],
                            col = rainbow(nx0, alpha = 0.5)[i])
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

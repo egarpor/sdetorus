@@ -41,6 +41,3 @@ toInt(x + 1, 1, 5)
 toInt(x, 1, 6)
 toInt(x + 1, 1, 6)
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}
