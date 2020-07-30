@@ -7,7 +7,7 @@ output:
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE, comment = "#>", fig.path = "README/README-",
-  message = FALSE, warning = FALSE, fig.asp = 1, fig.align = 'center'
+  message = FALSE, warning = TRUE, fig.asp = 1, fig.align = 'center'
 )
 ```
 
@@ -286,7 +286,7 @@ est3$par
 
 ## Reproducibility of García-Portugués et al. (2019)
 
-The directories [`/MD`](https://github.com/egarpor/data-langevintorus/tree/master/MD) and [`/simulation`](https://github.com/egarpor/data-langevintorus/tree/master/simulation) in the [data-langevintorus](https://github.com/egarpor/data-langevintorus) repository contain the scripts used in the empirical analyses of the aforementioned paper, as well as their `.RData` outputs. Those files are not downloaded when installing `sdetorus`.
+The directories [`/MD`](https://github.com/egarpor/data-langevintorus/tree/master/MD) and [`/simulation`](https://github.com/egarpor/data-langevintorus/tree/master/simulation) in the [data-langevintorus](https://github.com/egarpor/data-langevintorus) repository contain the scripts used in the empirical analyses of the aforementioned paper, as well as their `.RData` outputs.
 
 ## References
 

@@ -299,6 +299,14 @@ est2 <- psMle(data = samp, delta = delta, method = "SO", b = b, jac.b = jac.b,
 # Approximate MLE based on the WOU process
 est3 <- approxMleWn2D(data = samp, delta = delta, start = start, lower = low,
                       upper = up)
+#> Warning in specPars[indUnSpecPars] <- pars: number of items to replace is not a
+#> multiple of replacement length
+
+#> Warning in specPars[indUnSpecPars] <- pars: number of items to replace is not a
+#> multiple of replacement length
+
+#> Warning in specPars[indUnSpecPars] <- pars: number of items to replace is not a
+#> multiple of replacement length
 #> <std::runtime_error in dTpdWou2D(x = y, x0 = x, t = delta, alpha = specPars[1:3], mu = specPars[4:5],     sigma = specPars[6:7], rho = specPars[8], maxK = maxK): inv_sympd(): matrix is singular or not positive definite>
 
 # Comparison
@@ -320,8 +328,7 @@ and
 in the
 [data-langevintorus](https://github.com/egarpor/data-langevintorus)
 repository contain the scripts used in the empirical analyses of the
-aforementioned paper, as well as their `.RData` outputs. Those files are
-not downloaded when installing `sdetorus`.
+aforementioned paper, as well as their `.RData` outputs.
 
 ## References
 
