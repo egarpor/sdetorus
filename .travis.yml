@@ -17,3 +17,4 @@ addons:
     packages:
       - libglu1-mesa-dev
       - libgsl0-dev
+      - libmpfr-dev
