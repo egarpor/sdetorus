@@ -1059,9 +1059,9 @@ torusAxis <- function(sides = 1:2, twoPi = FALSE, ...) {
 #'
 #' @param sides an integer vector specifying which side of the plot the axes are to be drawn on. The axes are placed as follows: \code{1} = x, \code{2} = y, \code{3} = z.
 #' @inheritParams torusAxis
-#' @param ... further parameters passed to \code{\link[rgl]{axis3d}}.
+#' @param ... further parameters passed to \code{\link[rgl:axes3d]{axis3d}}.
 #' @return This function is usually invoked for its side effect, which is to add axes to an already existing plot.
-#' @details The function calls \code{\link[rgl]{box3d}}.
+#' @details The function calls \code{\link[rgl:axes3d]{box3d}}.
 #' @examples
 #' library(rgl)
 #' x <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))

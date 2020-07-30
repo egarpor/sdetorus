@@ -2,37 +2,35 @@
 year <- sub("-.*", "", meta$Date)
 note <- paste("R package version", meta$Version)
 
-citHeader("To cite rotasym in publications use:")
+citHeader("To cite sdetorus in publications use:")
 
 citEntry(entry = "Manual",
-  title        = "{rotasym}: Tests for Rotational Symmetry on the Hypersphere",
-  author       = personList(as.person("Eduardo García-Portugués"),
-                   as.person("Davy Paindaveine"),
-                   as.person("Thomas Verdebout")),
-  year = year,
-  note = note,
-  url = "https://CRAN.R-project.org/package=rotasym",
+  title        = "{sdetorus}: Statistical Tools for Toroidal Diffusions",
+  author       = personList(as.person("Eduardo Garc\\'ia-Portugu\\'es")),
+  year         = year,
+  note         = note,
+  url          = "https://CRAN.R-project.org/package=sdetorus",
   textVersion  =
-  paste("García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020).",
-        "rotasym: Tests for Rotational Symmetry on the Hypersphere.",
-        paste0("R package version ", meta$Version, "."),
-        "https://CRAN.R-project.org/package=rotasym")
+  paste(paste0("García-Portugués, E. (", year, ")."),
+        "sdetorus: Statistical Tools for Toroidal Diffusions.",
+        paste0(note, "."), "https://CRAN.R-project.org/package=sdetorus")
 )
 
 citEntry(entry = "Article",
-  title        = "On optimal tests for rotational symmetry against new classes of hyperspherical distributions",
-  author       = personList(as.person("Eduardo García-Portugués"),
-                   as.person("Davy Paindaveine"),
-                   as.person("Thomas Verdebout")),
-  journal      = "Journal of the American Statistical Association",
-  year         = "2020",
-  volume       = "to appear.",
-  number       = "",
-  pages        = "",
+  title        = "Langevin diffusions on the torus: estimation and applications",
+  author       = personList(as.person("Eduardo Garc\\'ia-Portugu\\'es"),
+                   as.person("Michael S\\orensen"),
+                   as.person("Kanti V. Mardia"),
+                   as.person("Thomas Hamelryck")),
+  journal      = "Statistics and Computing",
+  year         = "2019",
+  volume       = "29",
+  number       = "2",
+  pages        = "1--22",
   url          = "https://doi.org/10.1007/s11222-017-9790-2",
   textVersion  =
-  paste("García-Portugués, E., Paindaveine, D., and Verdebout, T. (2020).",
-        "On optimal tests for rotational symmetry against new classes of hyperspherical distributions.",
-        "Journal of the American Statistical Association, to appear.",
+  paste("García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019).",
+        "Langevin diffusions on the torus: estimation and applications.",
+        "Statistics and Computing, 29(2):1-22.",
         "https://doi.org/10.1007/s11222-017-9790-2")
 )

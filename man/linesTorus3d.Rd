@@ -28,9 +28,9 @@ Joins the corresponding points with line segments or arrows that exhibit wrappin
 }
 \examples{
 library(rgl)
-x <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
-y <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
-z <- toPiInt(x + y + rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
+x <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
+y <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
+z <- toPiInt(x + y + rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
 plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi), 
        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
 linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), lwd = 2)

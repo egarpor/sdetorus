@@ -11,7 +11,7 @@ torusAxis3d(sides = 1:3, twoPi = FALSE, ...)
 
 \item{twoPi}{flag indicating that \eqn{[0,2\pi)} is the support, instead of \eqn{[-\pi,\pi)}.}
 
-\item{...}{further parameters passed to \code{\link[rgl]{axis3d}}.}
+\item{...}{further parameters passed to \code{\link[rgl:axes3d]{axis3d}}.}
 }
 \value{
 This function is usually invoked for its side effect, which is to add axes to an already existing plot.
@@ -20,7 +20,7 @@ This function is usually invoked for its side effect, which is to add axes to an
 Wrapper for drawing pretty axis labels for circular variables. To be invoked after \code{plot3d} with \code{axes = FALSE} and \code{box = FALSE} has been called.
 }
 \details{
-The function calls \code{\link[rgl]{box3d}}.
+The function calls \code{\link[rgl:axes3d]{box3d}}.
 }
 \examples{
 library(rgl)

@@ -1,6 +1,8 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
-language: R
+language: r
+r:
+  - 3.4.0
 cache: packages
 warnings_are_errors: false
 env:
@@ -8,13 +10,10 @@ env:
     - PKG_LIBS = "-llapack"
     - PKG_CXXFLAGS = "-std=c++11"
 sudo: required
-script:
-  - sudo unlink /usr/bin/gcc && sudo ln -s /usr/bin/gcc-5 /usr/bin/gcc
-  - gcc --version
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
     packages:
-    - gcc-5
-    - g++-5
+      - libglu1-mesa-dev
+      - libgsl0-dev
