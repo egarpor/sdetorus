@@ -5,3 +5,4 @@
 ^README$
 ^README.*$
 ^TODO$
+^cran-comments\.md$
