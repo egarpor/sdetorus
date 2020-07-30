@@ -172,7 +172,7 @@ plotTpd(t = 3.0)
 
 ### Example 3: approximate maximum likelihood estimation in 1D
 
-```{r, example3"}
+```{r, example3}
 # Load package
 library(sdetorus)
 

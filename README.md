@@ -197,8 +197,7 @@ axis(1)
 torusAxis(2)
 ```
 
-\<img src=“README/README-example3”-1.png" style=“display: block; margin:
-auto;” /\>
+<img src="README/README-example3-1.png" style="display: block; margin: auto;" />
 
 ``` r
 
