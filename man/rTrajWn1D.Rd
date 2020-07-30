@@ -4,8 +4,8 @@
 \alias{rTrajWn1D}
 \title{Simulation of trajectories for the WN diffusion in 1D}
 \usage{
-rTrajWn1D(x0, alpha, mu, sigma, N = 100, delta = 0.01, NFine = ceiling(N *
-  delta/deltaFine), deltaFine = min(delta/100, 0.001))
+rTrajWn1D(x0, alpha, mu, sigma, N = 100, delta = 0.01, NFine = ceiling(N
+  * delta/deltaFine), deltaFine = min(delta/100, 0.001))
 }
 \arguments{
 \item{x0}{initial point.}
@@ -46,7 +46,4 @@ manipulate({
   alpha = slider(0.01, 5, step = 0.1, initial = 1),
   sigma = slider(0.01, 5, step = 0.1, initial = 1))
 }
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

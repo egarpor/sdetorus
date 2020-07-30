@@ -29,6 +29,3 @@ Computes the drift of the WN diffusion in 1D in a vectorized way.
 driftWn1D(x = seq(0, pi, l = 10), alpha = 1, mu = 0, sigma = 1, maxK = 2,
           expTrc = 30)
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

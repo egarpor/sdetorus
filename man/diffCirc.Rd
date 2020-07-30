@@ -34,6 +34,3 @@ x <- t(euler2D(x0 = rbind(c(0, 0)), A = diag(c(1, 1)), sigma = rep(2, 2),
                mu = c(pi, pi), N = N, delta = 1, type = 2)[1, , ])
 diffCirc(x) - diff(x)
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

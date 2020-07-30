@@ -39,6 +39,3 @@ linesCirc(x = x, y = y, col = rainbow(length(x)), ltyCross = 2)
 plot(x, y, ylim = c(-pi, pi))
 linesCirc(x = x, y = y, col = rainbow(length(x)), arrows = TRUE)
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

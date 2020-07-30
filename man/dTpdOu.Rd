@@ -34,7 +34,7 @@ covstOu(s, t, alpha, sigma)
 A vector of the same length as \code{x} containing the evaluation of the density.
 }
 \description{
-Transition probability density of the \emph{univariate} Ornstein-Uhlenbeck (OU) diffusion
+Transition probability density of the \emph{univariate} Ornstein--Uhlenbeck (OU) diffusion
 \deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0.}{dX_t=alpha(mu - X_t)dt+sigma dW_t, X0=x0.}
 }
 \details{
@@ -49,7 +49,4 @@ for (i in 2:20) {
   lines(x, dTpdOu(x = x, x0 = 3, t = i / 10, alpha = 1, mu = -1, sigma = 1),
         col = rainbow(20)[i])
 }
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

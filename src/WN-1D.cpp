@@ -20,7 +20,6 @@ arma::mat safeSoftMax(arma::mat logs, double expTrc = 30);
 //' @param kt concentration for the von Mises, a suitable output from \code{\link{momentMatchWnVm}} (see examples).
 //' @param logConstKt the logarithm of the von Mises normalizing constant associated to the concentration \code{kt} (see examples)
 //' @return A vector of size \code{n} containing the density evaluated at \code{x}.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @examples
 //' mu <- 0
 //' sigma <- 1
@@ -96,10 +95,9 @@ arma::vec dWn1D(arma::vec x, double mu, double sigma, int maxK = 2, double expTr
 //' @param sigma diffusion coefficient.
 //' @inheritParams safeSoftMax
 //' @return A vector of size \code{n} containing the tpd evaluated at \code{x}.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
-//' @details See Section 3.3 in García-Portugués et al. (2017) for details. See \code{\link{dTpdWou}} for the general case (less efficient for 2D).
+//' @details See Section 3.3 in García-Portugués et al. (2019) for details. See \code{\link{dTpdWou}} for the general case (less efficient for 2D).
 //' @references
-//' García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+//' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 //' @examples
 //' t <- 0.5
 //' alpha <- 1

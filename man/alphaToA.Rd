@@ -3,7 +3,7 @@
 \name{alphaToA}
 \alias{alphaToA}
 \alias{aToAlpha}
-\title{Valid drift matrices for the Ornstein-Uhlenbeck diffusion in 2D}
+\title{Valid drift matrices for the Ornstein--Uhlenbeck diffusion in 2D}
 \usage{
 alphaToA(alpha, sigma, rho = 0, Sigma)
 
@@ -42,7 +42,4 @@ det(S)
 # Check
 aToAlpha(A = alphaToA(alpha = alpha, Sigma = Sigma), Sigma = Sigma)
 alphaToA(alpha = aToAlpha(A = A, Sigma = Sigma), Sigma = Sigma)
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

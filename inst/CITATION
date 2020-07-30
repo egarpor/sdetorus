@@ -1,0 +1,36 @@
+
+year <- sub("-.*", "", meta$Date)
+note <- paste("R package version", meta$Version)
+
+citHeader("To cite sdetorus in publications use:")
+
+citEntry(entry = "Manual",
+  title        = "{sdetorus}: Statistical Tools for Toroidal Diffusions",
+  author       = personList(as.person("Eduardo Garc\\'ia-Portugu\\'es")),
+  year         = year,
+  note         = note,
+  url          = "https://CRAN.R-project.org/package=sdetorus",
+  textVersion  =
+  paste(paste0("García-Portugués, E. (", year, ")."),
+        "sdetorus: Statistical Tools for Toroidal Diffusions.",
+        paste0(note, "."), "https://CRAN.R-project.org/package=sdetorus")
+)
+
+citEntry(entry = "Article",
+  title        = "Langevin diffusions on the torus: estimation and applications",
+  author       = personList(as.person("Eduardo Garc\\'ia-Portugu\\'es"),
+                   as.person("Michael S{\\o}rensen"),
+                   as.person("Kanti V. Mardia"),
+                   as.person("Thomas Hamelryck")),
+  journal      = "Statistics and Computing",
+  year         = "2019",
+  volume       = "29",
+  number       = "2",
+  pages        = "1--22",
+  url          = "https://doi.org/10.1007/s11222-017-9790-2",
+  textVersion  =
+  paste("García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019).",
+        "Langevin diffusions on the torus: estimation and applications.",
+        "Statistics and Computing, 29(2):1-22.",
+        "https://doi.org/10.1007/s11222-017-9790-2")
+)

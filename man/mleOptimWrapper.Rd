@@ -4,8 +4,8 @@
 \alias{mleOptimWrapper}
 \title{Optimization wrapper for likelihood-based procedures}
 \usage{
-mleOptimWrapper(minusLogLik, region = function(pars) list(pars = pars, penalty
-  = 0), penalty = 1e+10, optMethod = "Nelder-Mead", start,
+mleOptimWrapper(minusLogLik, region = function(pars) list(pars = pars,
+  penalty = 0), penalty = 1e+10, optMethod = "Nelder-Mead", start,
   lower = rep(-Inf, ncol(start)), upper = rep(Inf, ncol(start)),
   selectSolution = "lowestLocMin", checkCircular = TRUE, maxit = 500,
   tol = 1e-05, verbose = 0, eigTol = 1e-04, condTol = 10000, ...)
@@ -59,7 +59,7 @@ If no solution is found satisfying the criterion in \code{selectSolution}, NAs a
 
 The Hessian is only computed if \code{selectSolution = "lowestLocMin"}.
 
-Region feasibility can be imposed by a function with the same arguments as \code{minusLogLik} that resets \code{pars} in to the boundary of the feasibility region and adds a penalty proportional to the violation of the feasibility region. Note that this is \emph{not the best procedure} to solve the constrained optimization problem, but just a relatively flexible and quick approach (for a more advanced treatment of restrictions, see optimization-focused packages such as \code{\link[nloptr]{nloptr}}). The value must be a list with objects \code{pars} and \code{penalty}. By default no region is imposed, i.e., \code{region = function(pars) list("pars" = pars, "penalty" = 0)}. Note that the Hessian is computed from the unconstrained problem, hence \code{localMinimumGuaranteed} might be \code{FALSE} even if a local minimum to the constrained problem was found.
+Region feasibility can be imposed by a function with the same arguments as \code{minusLogLik} that resets \code{pars} in to the boundary of the feasibility region and adds a penalty proportional to the violation of the feasibility region. Note that this is \emph{not the best procedure at all} to solve the constrained optimization problem, but just a relatively flexible and quick approach (for a more advanced treatment of restrictions, see \href{https://CRAN.R-project.org/view=Optimization}{optimization-focused packages}). The value must be a list with objects \code{pars} and \code{penalty}. By default no region is imposed, i.e., \code{region = function(pars) list("pars" = pars, "penalty" = 0)}. Note that the Hessian is computed from the unconstrained problem, hence \code{localMinimumGuaranteed} might be \code{FALSE} even if a local minimum to the constrained problem was found.
 }
 \examples{
 # No local minimum
@@ -102,7 +102,4 @@ head(mleOptimWrapper(minusLogLik = function(x) sum((x - 1:2)^2), start = rbind(1
                 optMethod = "Nelder-Mead", selectSolution = "lowest"))
 head(mleOptimWrapper(minusLogLik = function(x) sum((x - 1:2)^2), start = rbind(10:11),
                      lower = c(0.5, 1), upper = c(Inf, Inf), optMethod = "Nelder-Mead"))
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

@@ -49,6 +49,3 @@ Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics
 
 Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on the circle. \emph{J. Amer. Statist. Assoc.}, 100(472):1422-1428.
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

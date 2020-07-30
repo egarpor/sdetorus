@@ -44,6 +44,3 @@ contour(xth, xth, matrix(dStatWn2D(x = as.matrix(expand.grid(xth, xth)),
                          nrow = length(xth), ncol = length(xth)), nlevels = 50)
 points(rStatWn2D(n = 1000, mu = mu, alpha = alpha, sigma = sigma), col = 2)
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

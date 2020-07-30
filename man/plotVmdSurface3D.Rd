@@ -24,7 +24,7 @@ The function creates a XPLOR map file in the current working directory. This fil
 Visualization of a real function of three variables by means of the 3D contour feature of VMD. The function creates an XPLOR map file that can be read by VMD and, optionally, establishes a connection for inspection of the surface.
 }
 \details{
-If \code{call = TRUE}, then a call to VMD with \code{outFile} is produced. VMD needs to be installed (\url{http://www.ks.uiuc.edu/Research/vmd/}) and its \code{path} must be properly specified. For example, for Mac OS it should be something similar to \code{path = "/Applications/VMD\\ 1.9.2.app/Contents/MacOs/startup.command"}, with the version number depending on the installed one. The R session will wait until finalization of VMD.
+If \code{call = TRUE}, then a call to VMD with \code{outFile} is produced. VMD needs to be installed (\url{http://www.ks.uiuc.edu/Research/vmd/}) and its \code{path} must be properly specified. For example, for Mac OS it should be something similar to\cr \code{path = "/Applications/VMD\\ 1.9.2.app/Contents/MacOs/startup.command"}, with the version number depending on the installed one. The R session will wait until finalization of VMD.
 
 After launching VMD, a 3D scatterplot is shown. The options for exploration of the 3D contours can be accessed in "VMD Main -> Graphics -> Representations ...". This will open a new window with the available choices. The drawing methods 'Isosurface', 'VolumeSlice' and 'Fieldlines' are the most useful.
 
@@ -49,7 +49,4 @@ plotVmdSurface3D(t = t, nx = length(gridx), ny = length(gridy), nz = length(grid
 }
 \references{
 Humphrey, W., Dalke, A. and Schulten, K. (1996). VMD - Visual Molecular Dynamics, \emph{J. Molec. Graphics}, 14(1):33-38.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

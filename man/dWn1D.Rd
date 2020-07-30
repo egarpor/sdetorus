@@ -40,6 +40,3 @@ kt <- scoreMatchWnVm(sigma2 = sigma^2)
 dWn1D(x = seq(-pi, pi, l = 10), mu = mu, sigma = sigma, vmApprox = 1, kt = kt,
       logConstKt = -log(2 * pi * besselI(x = kt, nu = 0, expon.scaled = TRUE)))
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

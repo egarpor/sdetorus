@@ -33,7 +33,7 @@ covtMou(t, A, Sigma, eigA)
 A matrix of the same size as \code{x} containing the evaluation of the density.
 }
 \description{
-Transition probability density of the \emph{multivariate} Ornstein-Uhlenbeck (OU) diffusion
+Transition probability density of the \emph{multivariate} Ornstein--Uhlenbeck (OU) diffusion
 \deqn{dX_t=A(\mu - X_t)dt+\Sigma^\frac{1}{2}dW_t, X_0=x_0.}{dX_t=A(mu - X_t)dt+Sigma^(1/2) dW_t, X0=x0.}
 }
 \details{
@@ -53,7 +53,4 @@ manipulate(image(x, x, matrix(dTpdMou(x = xx, x0 = c(1, 2), t = t,
                               nrow = length(x), ncol = length(x)),
                  zlim = c(0, 0.25)), t = slider(0.1, 5, step = 0.1))
 }
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

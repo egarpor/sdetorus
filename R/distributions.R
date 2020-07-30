@@ -8,7 +8,6 @@
 #' @param mu circular mean.
 #' @param kappa non-negative concentration parameter.
 #' @return A vector of the same length as \code{x} containing the density.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @references
 #' Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific Publishing, River Edge.
 #' @examples
@@ -35,7 +34,6 @@ dVm <- function(x, mu, kappa) {
 #' @param const normalizing constant, computed with \code{constJp} if not provided.
 #' @param M grid size for computing the normalizing constant by numerical integration.
 #' @return A vector of the same length as \code{x} containing the density.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details Particular interesting choices for the shape parameter are:
 #' \itemize{
 #' \item \code{psi = -1}: gives the Wrapped Cauchy as stationary density.

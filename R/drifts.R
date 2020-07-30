@@ -9,16 +9,15 @@
 #' @param mu unconditional mean of the diffusion.
 #' @param psi shape parameter, see details.
 #' @return A vector of the same length as \code{x} containing the drift.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details Particular interesting choices for the shape parameter are:
 #' \itemize{
 #' \item \code{psi = -1}: gives the Wrapped Cauchy as stationary density.
 #' \item \code{psi = 0}: is the sinusoidal drift of the vM diffusion.
 #' \item \code{psi = 1}: gives the Cardioid as stationary density.
 #' }
-#' See Section 2.2.3 in García-Portugués et al. (2017) for details.
+#' See Section 2.2.3 in García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 #'
 #' Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific Publishing, River Edge.
 #'
@@ -58,10 +57,9 @@ driftJp <- function(x, alpha, mu, psi) {
 #' @param alpha vector of length \code{p} with the strength of the drift in the diagonal (\eqn{\sin}{sin} terms).
 #' @param A matrix of size \code{c(p, p)} with the strength of the drift in cross terms (\eqn{\cos}{cos}-\eqn{\sin}{sin} terms). The diagonal has to be zero.
 #' @return A matrix of the same size as \code{x} containing the drift.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
-#' @details See Section 2.2.1 in García-Portugués et al. (2017) for details.
+#' @details See Section 2.2.1 in García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 #' @examples
 #' # 1D
 #' x <- seq(-pi, pi, l = 200)
@@ -117,10 +115,9 @@ driftMvm <- function(x, alpha, mu, A = 0) {
 #' @param p vector of length \code{m} giving the proportions. Must add to one.
 #' @inheritParams safeSoftMax
 #' @return A matrix of the same size as \code{x} containing the drift.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
-#' @details \code{\link{driftMixVm}} is more efficient for the circular case. The diffusion matrix is \eqn{\sigma\bold{I}}{sigma}. See Section 2.2.4 in García-Portugués et al. (2017) for details.
+#' @details \code{\link{driftMixVm}} is more efficient for the circular case. The diffusion matrix is \eqn{\sigma\bold{I}}{sigma}. See Section 2.2.4 in García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 #' @examples
 #' # 1D
 #' x <- seq(-pi, pi, l = 200)
@@ -183,10 +180,9 @@ driftMixIndVm <- function(x, A, M, sigma, p, expTrc = 30) {
 #' @param mu vector of length \code{m} giving the means.
 #' @inheritParams driftMixIndVm
 #' @inheritParams safeSoftMax
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
-#' @details \code{\link{driftMixIndVm}} is more general, but less efficient for the circular case. See Section 2.2.4 in García-Portugués et al. (2017) for details.
+#' @details \code{\link{driftMixIndVm}} is more general, but less efficient for the circular case. See Section 2.2.4 in García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 #' @return A vector of the same length as \code{x} containing the drift.
 #' @examples
 #' x <- seq(-pi, pi, l = 200)
@@ -229,10 +225,9 @@ driftMixVm <- function(x, alpha, mu, sigma, p, expTrc = 30) {
 #' @param A matrix of size \code{c(p, p)} giving the drift strength.
 #' @param Sigma diffusion matrix, of size \code{c(p, p)}.
 #' @param invSigmaA the matrix \code{solve(Sigma) \%*\% A} (optional).
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
-#' @details See Section 2.2.2 in García-Portugués et al. (2017) for details.
+#' @details See Section 2.2.2 in García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 #' @return A matrix of the same size as \code{x} containing the drift.
 #' @details \code{\link{driftWn1D}} and \code{\link{driftWn2D}} are more efficient for the 1D and 2D cases.
 #' @examples

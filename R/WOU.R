@@ -2,7 +2,7 @@
 
 #' @title Conditional probability density of the WOU process
 #'
-#' @description Conditional probability density of the Wrapped Ornstein-Uhlenbeck (WOU) process.
+#' @description Conditional probability density of the Wrapped Ornstein--Uhlenbeck (WOU) process.
 #'
 #' @param x matrix of size \code{c(n, p)} with the evaluation points in \eqn{[-\pi,\pi)^p}.
 #' @inheritParams dTpdWou1D
@@ -11,10 +11,9 @@
 #' @inheritParams dTpdMou
 #' @param invASigma the matrix \code{solve(Sigma) \%*\% A} (optional).
 #' @return A vector of length \code{n} with the density evaluated at \code{x}.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
-#' @details See Section 3.3 in García-Portugués et al. (2017) for details. \code{\link{dTpdWou1D}} and \code{\link{dTpdWou2D}} are more efficient implementations for the 1D and 2D cases, respectively.
+#' @details See Section 3.3 in García-Portugués et al. (2019) for details. \code{\link{dTpdWou1D}} and \code{\link{dTpdWou2D}} are more efficient implementations for the 1D and 2D cases, respectively.
 #' @references
-#' García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 #' @examples
 #' # 1D
 #' t <- 0.5

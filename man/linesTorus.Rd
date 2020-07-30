@@ -40,6 +40,3 @@ plot(x, y, xlim = c(-pi, pi), ylim = c(-pi, pi), col = rainbow(length(x)),
      pch = 19)
 linesTorus(x = x, y = y, col = rainbow(length(x)), arrows = TRUE)
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

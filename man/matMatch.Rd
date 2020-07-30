@@ -38,6 +38,3 @@ ind <- matMatch(x = A, mat = B, rows = FALSE)
 A
 B[, ind]
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

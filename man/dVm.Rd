@@ -30,6 +30,3 @@ for (i in 0:20) {
 \references{
 Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific Publishing, River Edge.
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

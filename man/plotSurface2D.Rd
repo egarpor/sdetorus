@@ -36,6 +36,3 @@ plotSurface2D(grid, grid, f = function(x) sin(x[, 1]) * cos(x[, 2]),
               levels = seq(-1, 1, l = 10), fVect = TRUE)
 }
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

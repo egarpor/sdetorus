@@ -12,7 +12,6 @@ using namespace Rcpp;
 //' @param logs matrix of logarithms where each row contains a set of \eqn{p_1,\ldots,p_k} to compute the weights from.
 //' @param expTrc truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.
 //' @return A matrix of the size as \code{logs} containing the weights for each row.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @details The \code{logs} argument must be always a matrix.
 //' @examples
 //' # A matrix
@@ -51,24 +50,23 @@ arma::mat safeSoftMax(arma::mat logs, double expTrc = 30) {
 //' \deqn{\vdots \vdots \vdots}{...}
 //' \deqn{a_{n-1} x_{n-2} + b_{n-1} x_{n-1} + c_{n-1}x_{n} = d_{n-1}}{a[n-1] x[n-2] + b[n-1] x[n-1] + c[n-1]x[n] = d[n-1]}
 //' \deqn{c_n x_1 + a_{n} x_{n-1} + b_nx_n = d_n}{c[n] x[1] + a[n] x[n-1] + b[n]x[n] = d[n]}
-//' with \eqn{a_1=c_n=0}{a[1]=c[n]=0} (usual tridiagonal matrix). If \eqn{a_1\neq0}{a[1]/=0} or \eqn{c_n\neq0}{c[n]/=0} (circulant tridiagonal matrix), then the Sherman-Morrison formula is employed.
+//' with \eqn{a_1=c_n=0}{a[1]=c[n]=0} (usual tridiagonal matrix). If \eqn{a_1\neq0}{a[1]/=0} or \eqn{c_n\neq0}{c[n]/=0} (circulant tridiagonal matrix), then the Sherman--Morrison formula is employed.
 //'
 //' @param a,b,c subdiagonal (below main diagonal), diagonal and superdiagonal (above main diagonal), respectively. They all are vectors of length \code{n}.
 //' @param d vector of constant terms, of length \code{n}. For \code{solveTridiagMatConsts}, it can be a matrix with \code{n} rows.
 //' @param LU flag denoting if the forward sweep encoding the LU decomposition is supplied in vectors \code{b} and \code{c}. See details and examples.
 //' @return
 //' \itemize{
-//' \item \code{solve*} functions: the solution, a vector of length \code{n} and a matrix with \code{n} rows for \code{solveTridiagMatConsts}.
+//' \item \code{solve*} functions: the solution, a vector of length \code{n} and a matrix with \code{n} rows for\cr \code{solveTridiagMatConsts}.
 //' \item \code{forward*} functions: the matrix \code{cbind(b, c)} creating the suitable \code{b} and \code{c} arguments for calling \code{solve*} when \code{LU} is \code{TRUE}.
 //' }
 //' @details The Thomas algorithm is stable if the matrix is diagonally dominant.
 //'
-//' For the periodic case, two non-periodic tridiagonal systems with different constant terms (but same coefficients) are solved using \code{solveTridiagMatConsts}. These two solutions are combined by the Sherman-Morrison formula to obtain the solution to the periodic system.
+//' For the periodic case, two non-periodic tridiagonal systems with different constant terms (but same coefficients) are solved using \code{solveTridiagMatConsts}. These two solutions are combined by the Sherman--Morrison formula to obtain the solution to the periodic system.
 //'
 //' Note that the output of \code{solveTridiag} and \code{solveTridiagMatConsts} are independent from the values of \code{a[1]} and \code{c[n]}, but \code{solvePeriodicTridiag} is not.
 //'
-//' If \code{LU} is \code{TRUE}, then \code{b} and \code{c} must be precomputed with \code{forwardSweepTridiag} or \code{forwardSweepPeriodicTridiag} for its use in the call of the appropriate solver, which will be slightly faster.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
+//' If \code{LU} is \code{TRUE}, then \code{b} and \code{c} must be precomputed with \code{forwardSweepTridiag} or\cr \code{forwardSweepPeriodicTridiag} for its use in the call of the appropriate solver, which will be slightly faster.
 //' @references
 //' Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
 //'
@@ -302,7 +300,7 @@ arma::vec solvePeriodicTridiag(arma::vec a, arma::vec b, arma::vec c, arma::vec 
   // Solve two tridiagonal systems
   arma::mat y = solveTridiagMatConsts(a, b, c, join_horiz(d, w), LU);
 
-  // Sherman-Morrison formula
+  // Sherman--Morrison formula
   beta = (y(0, 0) + beta * y(n1, 0)) / (1.0 - y(0, 1) - beta * y(n1, 1));
   d = y.col(0) + beta * y.col(1);
 

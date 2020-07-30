@@ -23,7 +23,7 @@ rTrajOu(x0, alpha, mu, sigma, N = 100, delta = 0.001)
 A vector of length \code{N + 1} containing \code{x0} in the first entry and the exact discretized trajectory on the remaining elements.
 }
 \description{
-Simulation of trajectories of the \emph{univariate} Ornstein-Uhlenbeck (OU) diffusion
+Simulation of trajectories of the \emph{univariate} Ornstein--Uhlenbeck (OU) diffusion
 \deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0} using the exact transition probability density.
 }
 \details{
@@ -42,7 +42,4 @@ manipulate({
  alpha = slider(0.01, 5, step = 0.1, initial = 1),
  sigma = slider(0.01, 5, step = 0.1, initial = 1))
  }
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

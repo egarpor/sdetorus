@@ -22,10 +22,9 @@ arma::mat safeSoftMax(arma::mat logs, double expTrc = 30);
 //' @inheritParams safeSoftMax
 //' @return A vector of size \code{n} containing the tpd evaluated at \code{x}.
 //' @details The function checks for positive definiteness. If violated, it resets \code{A} such that \code{solve(A) \%*\% Sigma} is positive definite.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
-//' @details See Section 3.3 in García-Portugués et al. (2017) for details. See \code{\link{dTpdWou}} for the general case (less efficient for 1D).
+//' @details See Section 3.3 in García-Portugués et al. (2019) for details. See \code{\link{dTpdWou}} for the general case (less efficient for 1D).
 //' @references
-//' García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+//' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 //' @examples
 //' set.seed(3455267)
 //' alpha <- c(2, 1, -1)
@@ -404,7 +403,6 @@ arma::vec dTpdWou2D(arma::mat x, arma::mat x0, arma::vec t, arma::vec alpha, arm
 //' @inheritParams safeSoftMax
 //' @return An array of dimension \code{c(n, 2, nx0)} containing the \code{n} samples of the transition distribution,
 //' conditioned on that the process was at \code{x0} at \code{t} instants ago. The samples are all in \eqn{[\pi,\pi)}.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @examples
 //' alpha <- c(3, 2, -1)
 //' sigma <- c(0.5, 1)
@@ -716,7 +714,6 @@ arma::cube rTpdWn2D(arma::uword n, arma::mat x0, arma::vec t, arma::vec mu, arma
 //' @inheritParams dTpdWou2D
 //' @inheritParams safeSoftMax
 //' @return A vector of size \code{n} containing the stationary density evaluated at \code{x}.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @examples
 //' set.seed(345567)
 //' alpha <- c(2, 1, -1)
@@ -867,7 +864,6 @@ arma::vec dStatWn2D(arma::mat x, arma::vec alpha, arma::vec mu, arma::vec sigma,
 //' @param n sample size.
 //' @inheritParams dTpdWou2D
 //' @return A matrix of dimension \code{c(n, 2)} containing the samples from the stationary distribution.
-//' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 //' @examples
 //' set.seed(345567)
 //' alpha <- c(2, 1, -1)
