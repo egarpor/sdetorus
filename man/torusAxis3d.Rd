@@ -31,6 +31,3 @@ plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
 torusAxis3d()
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

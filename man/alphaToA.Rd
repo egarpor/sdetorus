@@ -43,6 +43,3 @@ det(S)
 aToAlpha(A = alphaToA(alpha = alpha, Sigma = Sigma), Sigma = Sigma)
 alphaToA(alpha = aToAlpha(A = A, Sigma = Sigma), Sigma = Sigma)
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

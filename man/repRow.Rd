@@ -28,6 +28,3 @@ A
 repRow(A, 2)
 repCol(A, 2)
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

@@ -40,6 +40,3 @@ plot(data, pch = 19, col = rainbow(201), cex = 0.25)
 arrows(x0 = data[-201, 1], y0 = data[-201, 2], x1 = data[-1, 1],
        y1 = data[-1, 2], col = rainbow(201), angle = 10, length = 0.1)
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

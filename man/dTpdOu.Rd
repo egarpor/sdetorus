@@ -50,6 +50,3 @@ for (i in 2:20) {
         col = rainbow(20)[i])
 }
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

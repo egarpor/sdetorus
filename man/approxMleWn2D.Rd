@@ -5,8 +5,9 @@
 \title{Approximate MLE of the WN diffusion in 2D}
 \usage{
 approxMleWn2D(data, delta, start, alpha = rep(NA, 3), mu = rep(NA, 2),
-  sigma = rep(NA, 2), rho = NA, lower = c(0.01, 0.01, -25, -pi, -pi, 0.01,
-  0.01, -0.99), upper = c(rep(25, 3), pi, pi, 25, 25, 0.99), maxK = 2, ...)
+  sigma = rep(NA, 2), rho = NA, lower = c(0.01, 0.01, -25, -pi, -pi,
+  0.01, 0.01, -0.99), upper = c(rep(25, 3), pi, pi, 25, 25, 0.99),
+  maxK = 2, ...)
 }
 \arguments{
 \item{data}{a matrix of dimension \code{c(n, p)}.}
@@ -32,7 +33,7 @@ Output from \code{\link{mleOptimWrapper}}.
 Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 2D using the wrapped Ornstein-Uhlenbeck diffusion.
 }
 \details{
-See Section 3.3 in García-Portugués et al. (2017) for details.
+See Section 3.3 in García-Portugués et al. (2019) for details.
 }
 \examples{
 alpha <- c(2, 2, -0.5)
@@ -49,8 +50,5 @@ mleMou(data = samp, delta = 0.1, start = c(alpha, mu, sigma),
        optMethod = "Nelder-Mead")
 }
 \references{
-García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 }

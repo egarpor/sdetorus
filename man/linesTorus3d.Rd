@@ -41,6 +41,3 @@ linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), ltyCross = 2,
              arrows = TRUE, theta = 0.1 * pi / 180, barblen = 0.1)
 torusAxis3d()
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

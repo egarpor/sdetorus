@@ -6,8 +6,8 @@
 \usage{
 approxMleWnPairs(data, delta, start = c(0, 0, 1, 1, 0, 1, 1),
   alpha = rep(NA, 3), mu = rep(NA, 2), sigma = rep(NA, 2), rho = NA,
-  lower = c(-pi, -pi, 0.01, 0.01, -25, 0.01, 0.01, -0.99), upper = c(pi, pi,
-  25, 25, 25, 25, 25, 0.99), maxK = 2, expTrc = 30, ...)
+  lower = c(-pi, -pi, 0.01, 0.01, -25, 0.01, 0.01, -0.99), upper = c(pi,
+  pi, 25, 25, 25, 25, 25, 0.99), maxK = 2, expTrc = 30, ...)
 }
 \arguments{
 \item{data}{a matrix of dimension \code{c(n, p)}.}
@@ -54,7 +54,4 @@ end <- t(apply(begin, 1, function(x) rTrajWn2D(x0 = x, alpha = alpha,
 data <- cbind(begin, end)
 approxMleWnPairs(data = data, delta = 0.1,
                  start = c(2, pi/2, 2, 0.5, 0, 2, 1, 0.5))
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

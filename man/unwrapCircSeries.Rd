@@ -37,6 +37,3 @@ plot(x, xlim = c(-pi, pi), ylim = c(-pi, pi))
 for(k1 in -3:3) for(k2 in -3:3) lines(u[, 1] + 2 * k1 * pi,
                                       u[, 2] + 2 * k2 * pi, col = gray(0.5))
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

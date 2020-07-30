@@ -29,7 +29,7 @@ sdetorus
 
 ## Overview
 
-This library provides statistical tools for Maximum Likelihood Estimation (MLE) of toroidal diffusions. It is the package companion for the paper *Langevin diffusions on the torus: estimation and applications* (García-Portugués *et al.*, 2017).
+This library provides statistical tools for Maximum Likelihood Estimation (MLE) of toroidal diffusions. It is the package companion for the paper *Langevin diffusions on the torus: estimation and applications* (García-Portugués et al., 2019).
 
 ## Disclaimer
 
@@ -271,10 +271,10 @@ est3$par
 ```
 -->
 
-## Reproducibility of García-Portugués *et al.* (2017)
+## Reproducibility of García-Portugués et al. (2017)
 
 The directories [`/MD`](https://github.com/egarpor/data-langevintorus/tree/master/MD) and [`/simulation`](https://github.com/egarpor/data-langevintorus/tree/master/simulation) in the [data-langevintorus](https://github.com/egarpor/data-langevintorus) repository contain the scripts used in the empirical analyses of the aforementioned paper, as well as their `.RData` outputs. Those files are not downloaded when installing `sdetorus`.
 
 ## References
 
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2017). Langevin diffusions on the torus: estimation and applications. *Statistics and Computing*,  <https://doi.org/10.1007/s11222-017-9790-2>.
+García-Portugués, E., Sørensen, M., Mardia, K. V., and Hamelryck, T. (2019). Langevin diffusions on the torus: estimation and applications. *Statistics and Computing*, 29(2):1--22. <https://doi.org/10.1007/s11222-017-9790-2>

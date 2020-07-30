@@ -4,8 +4,8 @@
 \alias{mleOptimWrapper}
 \title{Optimization wrapper for likelihood-based procedures}
 \usage{
-mleOptimWrapper(minusLogLik, region = function(pars) list(pars = pars, penalty
-  = 0), penalty = 1e+10, optMethod = "Nelder-Mead", start,
+mleOptimWrapper(minusLogLik, region = function(pars) list(pars = pars,
+  penalty = 0), penalty = 1e+10, optMethod = "Nelder-Mead", start,
   lower = rep(-Inf, ncol(start)), upper = rep(Inf, ncol(start)),
   selectSolution = "lowestLocMin", checkCircular = TRUE, maxit = 500,
   tol = 1e-05, verbose = 0, eigTol = 1e-04, condTol = 10000, ...)
@@ -102,7 +102,4 @@ head(mleOptimWrapper(minusLogLik = function(x) sum((x - 1:2)^2), start = rbind(1
                 optMethod = "Nelder-Mead", selectSolution = "lowest"))
 head(mleOptimWrapper(minusLogLik = function(x) sum((x - 1:2)^2), start = rbind(10:11),
                      lower = c(0.5, 1), upper = c(Inf, Inf), optMethod = "Nelder-Mead"))
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

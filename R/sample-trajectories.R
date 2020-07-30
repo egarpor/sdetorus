@@ -11,7 +11,6 @@
 #' @param NFine number of discretization steps for the fine trajectory. Must be larger than \code{N}.
 #' @param deltaFine discretization step for the fine trajectory. Must be smaller than \code{delta}.
 #' @return A vector of length \code{N + 1} containing \code{x0} in the first entry and the discretized trajectory.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details The fine trajectory is subsampled using the indexes \code{seq(1, NFine + 1, by = NFine / N)}.
 #' @examples
 #' \dontrun{
@@ -51,7 +50,6 @@ rTrajWn1D <- function(x0, alpha, mu, sigma, N = 100, delta = 0.01,
 #' @inheritParams dTpdWou2D
 #' @inheritParams rTrajWn1D
 #' @return A matrix of size \code{c(N + 1, 2)} containing \code{x0} in the first entry and the discretized trajectory.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details The fine trajectory is subsampled using the indexes \code{seq(1, NFine + 1, by = NFine / N)}.
 #' @examples
 #' samp <- rTrajWn2D(x0 = c(0, 0), alpha = c(1, 1, -0.5), mu = c(pi, pi),
@@ -89,7 +87,6 @@ rTrajWn2D <- function(x0, alpha, mu, sigma, rho = 0, N = 100, delta = 0.01,
 #' @param ... parameters to be passed to \code{drift}.
 #' @param circular whether to wrap the resulting trajectory to \eqn{[-\pi,\pi)^p}.
 #' @return A vector of length \code{N + 1} containing \code{x0} in the first entry and the discretized trajectory.
-#' @author Eduardo García-Portugués (\email{edgarcia@@est-econ.uc3m.es}).
 #' @details The fine trajectory is subsampled using the indexes \code{seq(1, NFine + 1, by = NFine / N)}.
 #' @examples
 #' \dontrun{

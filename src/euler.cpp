@@ -78,7 +78,7 @@ arma::mat euler1D(arma::vec x0, double alpha, double mu, double sigma, arma::uwo
     x.col(i) = x.col(i - 1) + drift * delta + Z.subvec(inx0, inx0 + nx0 - 1);
 
     // Convert result to [-PI,PI)
-    x.col(i) -= floor((x.col(i) + PI) / (2 * PI)) * (2 * PI) ;
+    x.col(i) -= floor((x.col(i) + PI) / (2 * PI)) * (2 * PI);
 
   }
 

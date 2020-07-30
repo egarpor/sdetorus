@@ -54,6 +54,3 @@ manipulate(image(x, x, matrix(dTpdMou(x = xx, x0 = c(1, 2), t = t,
                  zlim = c(0, 0.25)), t = slider(0.1, 5, step = 0.1))
 }
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

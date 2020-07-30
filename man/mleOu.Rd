@@ -42,6 +42,3 @@ mleOu(data = data, delta = 0.1, start = c(2, 1, 2), lower = c(0.1, -10, 0.1),
 mleOu(data = data, delta = 0.1, mu = 0, sigma = 1, start = 2, lower = 0.1,
       upper = 25, optMethod = "nlm")
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

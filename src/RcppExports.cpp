@@ -6,6 +6,115 @@
 
 using namespace Rcpp;
 
+// dWn1D
+arma::vec dWn1D(arma::vec x, double mu, double sigma, int maxK, double expTrc, int vmApprox, double kt, double logConstKt);
+RcppExport SEXP _sdetorus_dWn1D(SEXP xSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP maxKSEXP, SEXP expTrcSEXP, SEXP vmApproxSEXP, SEXP ktSEXP, SEXP logConstKtSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< int >::type maxK(maxKSEXP);
+    Rcpp::traits::input_parameter< double >::type expTrc(expTrcSEXP);
+    Rcpp::traits::input_parameter< int >::type vmApprox(vmApproxSEXP);
+    Rcpp::traits::input_parameter< double >::type kt(ktSEXP);
+    Rcpp::traits::input_parameter< double >::type logConstKt(logConstKtSEXP);
+    rcpp_result_gen = Rcpp::wrap(dWn1D(x, mu, sigma, maxK, expTrc, vmApprox, kt, logConstKt));
+    return rcpp_result_gen;
+END_RCPP
+}
+// dTpdWou1D
+arma::vec dTpdWou1D(arma::vec x, arma::vec x0, double t, double alpha, double mu, double sigma, int maxK, double expTrc, int vmApprox, double kt, double logConstKt);
+RcppExport SEXP _sdetorus_dTpdWou1D(SEXP xSEXP, SEXP x0SEXP, SEXP tSEXP, SEXP alphaSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP maxKSEXP, SEXP expTrcSEXP, SEXP vmApproxSEXP, SEXP ktSEXP, SEXP logConstKtSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type x0(x0SEXP);
+    Rcpp::traits::input_parameter< double >::type t(tSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< int >::type maxK(maxKSEXP);
+    Rcpp::traits::input_parameter< double >::type expTrc(expTrcSEXP);
+    Rcpp::traits::input_parameter< int >::type vmApprox(vmApproxSEXP);
+    Rcpp::traits::input_parameter< double >::type kt(ktSEXP);
+    Rcpp::traits::input_parameter< double >::type logConstKt(logConstKtSEXP);
+    rcpp_result_gen = Rcpp::wrap(dTpdWou1D(x, x0, t, alpha, mu, sigma, maxK, expTrc, vmApprox, kt, logConstKt));
+    return rcpp_result_gen;
+END_RCPP
+}
+// dTpdWou2D
+arma::vec dTpdWou2D(arma::mat x, arma::mat x0, arma::vec t, arma::vec alpha, arma::vec mu, arma::vec sigma, double rho, int maxK, double expTrc);
+RcppExport SEXP _sdetorus_dTpdWou2D(SEXP xSEXP, SEXP x0SEXP, SEXP tSEXP, SEXP alphaSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP rhoSEXP, SEXP maxKSEXP, SEXP expTrcSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type x0(x0SEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type t(tSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
+    Rcpp::traits::input_parameter< int >::type maxK(maxKSEXP);
+    Rcpp::traits::input_parameter< double >::type expTrc(expTrcSEXP);
+    rcpp_result_gen = Rcpp::wrap(dTpdWou2D(x, x0, t, alpha, mu, sigma, rho, maxK, expTrc));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rTpdWn2D
+arma::cube rTpdWn2D(arma::uword n, arma::mat x0, arma::vec t, arma::vec mu, arma::vec alpha, arma::vec sigma, double rho, int maxK, double expTrc);
+RcppExport SEXP _sdetorus_rTpdWn2D(SEXP nSEXP, SEXP x0SEXP, SEXP tSEXP, SEXP muSEXP, SEXP alphaSEXP, SEXP sigmaSEXP, SEXP rhoSEXP, SEXP maxKSEXP, SEXP expTrcSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::uword >::type n(nSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type x0(x0SEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type t(tSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
+    Rcpp::traits::input_parameter< int >::type maxK(maxKSEXP);
+    Rcpp::traits::input_parameter< double >::type expTrc(expTrcSEXP);
+    rcpp_result_gen = Rcpp::wrap(rTpdWn2D(n, x0, t, mu, alpha, sigma, rho, maxK, expTrc));
+    return rcpp_result_gen;
+END_RCPP
+}
+// dStatWn2D
+arma::vec dStatWn2D(arma::mat x, arma::vec alpha, arma::vec mu, arma::vec sigma, double rho, int maxK, double expTrc);
+RcppExport SEXP _sdetorus_dStatWn2D(SEXP xSEXP, SEXP alphaSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP rhoSEXP, SEXP maxKSEXP, SEXP expTrcSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
+    Rcpp::traits::input_parameter< int >::type maxK(maxKSEXP);
+    Rcpp::traits::input_parameter< double >::type expTrc(expTrcSEXP);
+    rcpp_result_gen = Rcpp::wrap(dStatWn2D(x, alpha, mu, sigma, rho, maxK, expTrc));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rStatWn2D
+arma::mat rStatWn2D(arma::uword n, arma::vec mu, arma::vec alpha, arma::vec sigma, double rho);
+RcppExport SEXP _sdetorus_rStatWn2D(SEXP nSEXP, SEXP muSEXP, SEXP alphaSEXP, SEXP sigmaSEXP, SEXP rhoSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::uword >::type n(nSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
+    rcpp_result_gen = Rcpp::wrap(rStatWn2D(n, mu, alpha, sigma, rho));
+    return rcpp_result_gen;
+END_RCPP
+}
 // safeSoftMax
 arma::mat safeSoftMax(arma::mat logs, double expTrc);
 RcppExport SEXP _sdetorus_safeSoftMax(SEXP logsSEXP, SEXP expTrcSEXP) {
@@ -337,117 +446,14 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// dWn1D
-arma::vec dWn1D(arma::vec x, double mu, double sigma, int maxK, double expTrc, int vmApprox, double kt, double logConstKt);
-RcppExport SEXP _sdetorus_dWn1D(SEXP xSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP maxKSEXP, SEXP expTrcSEXP, SEXP vmApproxSEXP, SEXP ktSEXP, SEXP logConstKtSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
-    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
-    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
-    Rcpp::traits::input_parameter< int >::type maxK(maxKSEXP);
-    Rcpp::traits::input_parameter< double >::type expTrc(expTrcSEXP);
-    Rcpp::traits::input_parameter< int >::type vmApprox(vmApproxSEXP);
-    Rcpp::traits::input_parameter< double >::type kt(ktSEXP);
-    Rcpp::traits::input_parameter< double >::type logConstKt(logConstKtSEXP);
-    rcpp_result_gen = Rcpp::wrap(dWn1D(x, mu, sigma, maxK, expTrc, vmApprox, kt, logConstKt));
-    return rcpp_result_gen;
-END_RCPP
-}
-// dTpdWou1D
-arma::vec dTpdWou1D(arma::vec x, arma::vec x0, double t, double alpha, double mu, double sigma, int maxK, double expTrc, int vmApprox, double kt, double logConstKt);
-RcppExport SEXP _sdetorus_dTpdWou1D(SEXP xSEXP, SEXP x0SEXP, SEXP tSEXP, SEXP alphaSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP maxKSEXP, SEXP expTrcSEXP, SEXP vmApproxSEXP, SEXP ktSEXP, SEXP logConstKtSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type x0(x0SEXP);
-    Rcpp::traits::input_parameter< double >::type t(tSEXP);
-    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
-    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
-    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
-    Rcpp::traits::input_parameter< int >::type maxK(maxKSEXP);
-    Rcpp::traits::input_parameter< double >::type expTrc(expTrcSEXP);
-    Rcpp::traits::input_parameter< int >::type vmApprox(vmApproxSEXP);
-    Rcpp::traits::input_parameter< double >::type kt(ktSEXP);
-    Rcpp::traits::input_parameter< double >::type logConstKt(logConstKtSEXP);
-    rcpp_result_gen = Rcpp::wrap(dTpdWou1D(x, x0, t, alpha, mu, sigma, maxK, expTrc, vmApprox, kt, logConstKt));
-    return rcpp_result_gen;
-END_RCPP
-}
-// dTpdWou2D
-arma::vec dTpdWou2D(arma::mat x, arma::mat x0, arma::vec t, arma::vec alpha, arma::vec mu, arma::vec sigma, double rho, int maxK, double expTrc);
-RcppExport SEXP _sdetorus_dTpdWou2D(SEXP xSEXP, SEXP x0SEXP, SEXP tSEXP, SEXP alphaSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP rhoSEXP, SEXP maxKSEXP, SEXP expTrcSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type x0(x0SEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type t(tSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type alpha(alphaSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type mu(muSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type sigma(sigmaSEXP);
-    Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
-    Rcpp::traits::input_parameter< int >::type maxK(maxKSEXP);
-    Rcpp::traits::input_parameter< double >::type expTrc(expTrcSEXP);
-    rcpp_result_gen = Rcpp::wrap(dTpdWou2D(x, x0, t, alpha, mu, sigma, rho, maxK, expTrc));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rTpdWn2D
-arma::cube rTpdWn2D(arma::uword n, arma::mat x0, arma::vec t, arma::vec mu, arma::vec alpha, arma::vec sigma, double rho, int maxK, double expTrc);
-RcppExport SEXP _sdetorus_rTpdWn2D(SEXP nSEXP, SEXP x0SEXP, SEXP tSEXP, SEXP muSEXP, SEXP alphaSEXP, SEXP sigmaSEXP, SEXP rhoSEXP, SEXP maxKSEXP, SEXP expTrcSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::uword >::type n(nSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type x0(x0SEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type t(tSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type mu(muSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type alpha(alphaSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type sigma(sigmaSEXP);
-    Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
-    Rcpp::traits::input_parameter< int >::type maxK(maxKSEXP);
-    Rcpp::traits::input_parameter< double >::type expTrc(expTrcSEXP);
-    rcpp_result_gen = Rcpp::wrap(rTpdWn2D(n, x0, t, mu, alpha, sigma, rho, maxK, expTrc));
-    return rcpp_result_gen;
-END_RCPP
-}
-// dStatWn2D
-arma::vec dStatWn2D(arma::mat x, arma::vec alpha, arma::vec mu, arma::vec sigma, double rho, int maxK, double expTrc);
-RcppExport SEXP _sdetorus_dStatWn2D(SEXP xSEXP, SEXP alphaSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP rhoSEXP, SEXP maxKSEXP, SEXP expTrcSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type alpha(alphaSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type mu(muSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type sigma(sigmaSEXP);
-    Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
-    Rcpp::traits::input_parameter< int >::type maxK(maxKSEXP);
-    Rcpp::traits::input_parameter< double >::type expTrc(expTrcSEXP);
-    rcpp_result_gen = Rcpp::wrap(dStatWn2D(x, alpha, mu, sigma, rho, maxK, expTrc));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rStatWn2D
-arma::mat rStatWn2D(arma::uword n, arma::vec mu, arma::vec alpha, arma::vec sigma, double rho);
-RcppExport SEXP _sdetorus_rStatWn2D(SEXP nSEXP, SEXP muSEXP, SEXP alphaSEXP, SEXP sigmaSEXP, SEXP rhoSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::uword >::type n(nSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type mu(muSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type alpha(alphaSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type sigma(sigmaSEXP);
-    Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
-    rcpp_result_gen = Rcpp::wrap(rStatWn2D(n, mu, alpha, sigma, rho));
-    return rcpp_result_gen;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_sdetorus_dWn1D", (DL_FUNC) &_sdetorus_dWn1D, 8},
+    {"_sdetorus_dTpdWou1D", (DL_FUNC) &_sdetorus_dTpdWou1D, 11},
+    {"_sdetorus_dTpdWou2D", (DL_FUNC) &_sdetorus_dTpdWou2D, 9},
+    {"_sdetorus_rTpdWn2D", (DL_FUNC) &_sdetorus_rTpdWn2D, 9},
+    {"_sdetorus_dStatWn2D", (DL_FUNC) &_sdetorus_dStatWn2D, 7},
+    {"_sdetorus_rStatWn2D", (DL_FUNC) &_sdetorus_rStatWn2D, 5},
     {"_sdetorus_safeSoftMax", (DL_FUNC) &_sdetorus_safeSoftMax, 2},
     {"_sdetorus_solveTridiag", (DL_FUNC) &_sdetorus_solveTridiag, 5},
     {"_sdetorus_solveTridiagMatConsts", (DL_FUNC) &_sdetorus_solveTridiagMatConsts, 5},
@@ -468,12 +474,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_sdetorus_clusterProbsVmf", (DL_FUNC) &_sdetorus_clusterProbsVmf, 7},
     {"_sdetorus_weightedMuKappa", (DL_FUNC) &_sdetorus_weightedMuKappa, 5},
     {"_sdetorus_logLikWouPairs", (DL_FUNC) &_sdetorus_logLikWouPairs, 8},
-    {"_sdetorus_dWn1D", (DL_FUNC) &_sdetorus_dWn1D, 8},
-    {"_sdetorus_dTpdWou1D", (DL_FUNC) &_sdetorus_dTpdWou1D, 11},
-    {"_sdetorus_dTpdWou2D", (DL_FUNC) &_sdetorus_dTpdWou2D, 9},
-    {"_sdetorus_rTpdWn2D", (DL_FUNC) &_sdetorus_rTpdWn2D, 9},
-    {"_sdetorus_dStatWn2D", (DL_FUNC) &_sdetorus_dStatWn2D, 7},
-    {"_sdetorus_rStatWn2D", (DL_FUNC) &_sdetorus_rStatWn2D, 5},
     {NULL, NULL, 0}
 };
 

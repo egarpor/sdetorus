@@ -5,8 +5,8 @@
 \title{Maximum likelihood estimation of the multivariate OU diffusion}
 \usage{
 mleMou(data, delta, alpha = rep(NA, 3), mu = rep(NA, 2), sigma = rep(NA,
-  2), start, lower = c(0.01, 0.01, -25, -pi, -pi, 0.01, 0.01), upper = c(25,
-  25, 25, pi, pi, 25, 25), ...)
+  2), start, lower = c(0.01, 0.01, -25, -pi, -pi, 0.01, 0.01),
+  upper = c(25, 25, 25, pi, pi, 25, 25), ...)
 }
 \arguments{
 \item{data}{a matrix of size \code{c(N, p)} with the discretized trajectory of the diffusion.}
@@ -47,7 +47,4 @@ mleMou(data = data, delta = 0.5, start = c(1, 1, 0, 1, 1, 1, 2),
 # Fixed sigma and mu
 mleMou(data = data, delta = 0.5, mu = c(1, 1), sigma = 1:2, start = c(1, 1, 0),
        lower = c(0.1, 0.1, -25), upper = c(25, 25, 25))
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }

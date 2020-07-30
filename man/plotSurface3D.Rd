@@ -41,6 +41,3 @@ plotSurface3D(grid, grid, grid, t = t, size = 15, alpha = 0.1,
               levels = quantile(t, probs = seq(0, 0.1, l = 20)))
 }
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

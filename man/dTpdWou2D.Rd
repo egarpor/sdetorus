@@ -34,7 +34,7 @@ Computation of the transition probability density (tpd) for a WN diffusion (with
 \details{
 The function checks for positive definiteness. If violated, it resets \code{A} such that \code{solve(A) \%*\% Sigma} is positive definite.
 
-See Section 3.3 in García-Portugués et al. (2017) for details. See \code{\link{dTpdWou}} for the general case (less efficient for 1D).
+See Section 3.3 in García-Portugués et al. (2019) for details. See \code{\link{dTpdWou}} for the general case (less efficient for 1D).
 }
 \examples{
 set.seed(3455267)
@@ -87,7 +87,7 @@ points(stepAheadWn2D(x0 = rbind(c(0, 0)), delta = t / 500,
 }
 }
 \references{
-García-Portugués, E., Sorensen, M., Mardia, K. V. and Hamelryck, T. (2017) Langevin diffusions on the torus: estimation and applications. \emph{Stat. Comput.}, \url{https://doi.org/10.1007/s11222-017-9790-2}.
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 }
 \author{
 Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).

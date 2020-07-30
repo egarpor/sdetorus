@@ -50,6 +50,3 @@ plotVmdSurface3D(t = t, nx = length(gridx), ny = length(gridy), nz = length(grid
 \references{
 Humphrey, W., Dalke, A. and Schulten, K. (1996). VMD - Visual Molecular Dynamics, \emph{J. Molec. Graphics}, 14(1):33-38.
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

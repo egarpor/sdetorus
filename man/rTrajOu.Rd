@@ -43,6 +43,3 @@ manipulate({
  sigma = slider(0.01, 5, step = 0.1, initial = 1))
  }
 }
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
-}

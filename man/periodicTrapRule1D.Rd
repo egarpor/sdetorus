@@ -9,8 +9,8 @@
 \alias{integrateSimp3D}
 \title{Quadrature rules in 1D, 2D and 3D}
 \usage{
-periodicTrapRule1D(fx, endsMatch = FALSE, na.rm = TRUE, lengthInterval = 2
-  * pi)
+periodicTrapRule1D(fx, endsMatch = FALSE, na.rm = TRUE,
+  lengthInterval = 2 * pi)
 
 periodicTrapRule2D(fxy, endsMatch = FALSE, na.rm = TRUE,
   lengthInterval = rep(2 * pi, 2))
@@ -74,7 +74,4 @@ integrateSimp3D(fxyz = fxyz)
 }
 \references{
 Press, W. H., Teukolsky, S. A., Vetterling, W. T., Flannery, B. P. (1996). \emph{Numerical Recipes in Fortran 77: The Art of Scientific Computing (Vol. 1 of Fortran Numerical Recipes)}. Cambridge University Press, Cambridge.
-}
-\author{
-Eduardo García-Portugués (\email{edgarcia@est-econ.uc3m.es}).
 }
