@@ -97,6 +97,7 @@ linesTorus <- function(x, y, col = 1, lty = 1, ltyCross = lty, arrows = FALSE,
 #' @return Nothing. The functions are called for drawing wrapped lines.
 #' @details \code{x}, \code{y}, and \code{z} are wrapped to \eqn{[-\pi,\pi)} before plotting. \code{arrows = TRUE} makes sequential calls to \code{\link[rgl]{arrow3d}}, and is substantially slower than \code{arrows = FALSE}.
 #' @examples
+#' \dontrun{
 #' library(rgl)
 #' x <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
 #' y <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
@@ -110,6 +111,7 @@ linesTorus <- function(x, y, col = 1, lty = 1, ltyCross = lty, arrows = FALSE,
 #' linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), ltyCross = 2,
 #'              arrows = TRUE, theta = 0.1 * pi / 180, barblen = 0.1)
 #' torusAxis3d()
+#' }
 #' @export
 linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
   

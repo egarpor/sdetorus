@@ -19,7 +19,7 @@ Description: This package implements statistical methods for estimation of
      results in García-Portugués et al. (2019) <doi:10.1007/s11222-017-9790-2>.
 License: GPL-3
 Depends:
-    R (>= 3.1.0),
+    R (>= 3.6.0),
     Rcpp,
     mvtnorm,
     colorRamps
