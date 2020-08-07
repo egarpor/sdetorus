@@ -91,7 +91,7 @@ dTpdWou1D <- function(x, x0, t, alpha, mu, sigma, maxK = 2L, expTrc = 30, vmAppr
 #' mu <- c(pi, 0)
 #' x <- t(euler2D(x0 = matrix(c(0, 0), nrow = 1), A = A, mu = mu,
 #'                sigma = sigma, N = 500, delta = 0.1)[1, , ])
-#' \dontrun{
+#' \donttest{
 #' sum(sapply(1:49, function(i) log(dTpdWou(x = matrix(x[i + 1, ], ncol = 2),
 #'                                          x0 = x[i, ], t = 1.5, A = A,
 #'                                          Sigma = Sigma, mu = mu))))
@@ -99,7 +99,7 @@ dTpdWou1D <- function(x, x0, t, alpha, mu, sigma, maxK = 2L, expTrc = 30, vmAppr
 #' sum(log(dTpdWou2D(x = matrix(x[2:50, ], ncol = 2),
 #'                   x0 = matrix(x[1:49, ], ncol = 2), t = 1.5, alpha = alpha,
 #'                   mu = mu, sigma = sigma, rho = rho)))
-#' \dontrun{
+#' \donttest{
 #' lgrid <- 56
 #' grid <- seq(-pi, pi, l = lgrid + 1)[-(lgrid + 1)]
 #' image(grid, grid, matrix(dTpdWou(x = as.matrix(expand.grid(grid, grid)),
@@ -266,9 +266,9 @@ safeSoftMax <- function(logs, expTrc = 30) {
 #'
 #' If \code{LU} is \code{TRUE}, then \code{b} and \code{c} must be precomputed with \code{forwardSweepTridiag} or\cr \code{forwardSweepPeriodicTridiag} for its use in the call of the appropriate solver, which will be slightly faster.
 #' @references
-#' Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
+#' Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \url{https://doi.org/10.1007/978-1-4899-7278-1}
 #'
-#' Conte, S.D. and de Boor, C. (1980). \emph{Elementary Numerical Analysis: An Algorithmic Approach}. Third edition. McGraw-Hill, New York.
+#' Conte, S. D. and de Boor, C. (1980). \emph{Elementary Numerical Analysis: An Algorithmic Approach}. Third edition. McGraw-Hill, New York. \url{https://doi.org/10.1137/1.9781611975208}
 #' @examples
 #' # Tridiagonal matrix
 #' n <- 10
@@ -363,7 +363,7 @@ forwardSweepPeriodicTridiag <- function(a, b, c) {
 #'
 #' If \code{imposePositive = TRUE}, the code implicitly assumes that the solution integrates to one at any step. This might b unrealistic if the initial condition is not properly represented in the grid (for example, highly concentrated density in a sparse grid).
 #' @references
-#' Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
+#' Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \url{https://doi.org/10.1007/978-1-4899-7278-1}
 #' @examples
 #' # Parameters
 #' Mx <- 200
@@ -420,7 +420,7 @@ crankNicolson1D <- function(u0, b, sigma2, N, deltat, Mx, deltax, imposePositive
 #'
 #' If \code{imposePositive = TRUE}, the code implicitly assumes that the solution integrates to one at any step. This might b unrealistic if the initial condition is not properly represented in the grid (for example, highly concentrated density in a sparse grid).
 #' @references
-#' Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
+#' Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \url{https://doi.org/10.1007/978-1-4899-7278-1}
 #' @examples
 #' # Parameters
 #' Mx <- 100
@@ -454,7 +454,7 @@ crankNicolson1D <- function(u0, b, sigma2, N, deltat, Mx, deltax, imposePositive
 #'
 #' \dontrun{
 #' # Visualization of tpd
-#' require(manipulate)
+#' library(manipulate)
 #' manipulate({
 #'   plotSurface2D(x, y, z = matrix(u[, j + 1], Mx, My),
 #'                 main = round(mean(u[, j + 1]) * 4 * pi^2, 4),
@@ -624,26 +624,6 @@ stepAheadWn2D <- function(x0, mu, A, sigma, rho = 0, M = 100L, N = 100L, delta =
     .Call('_sdetorus_stepAheadWn2D', PACKAGE = 'sdetorus', x0, mu, A, sigma, rho, M, N, delta, type, maxK, expTrc)
 }
 
-.linInterp <- function(x, xGrid, yGrid, equalSpaces = FALSE) {
-    .Call('_sdetorus_linInterp', PACKAGE = 'sdetorus', x, xGrid, yGrid, equalSpaces)
-}
-
-.besselIExponScaled <- function(x, nu = 0L, maxK = 10L, equalSpaces = FALSE) {
-    .Call('_sdetorus_besselIExponScaled', PACKAGE = 'sdetorus', x, nu, maxK, equalSpaces)
-}
-
-.dVmfCpp <- function(x, K, M, alpha, besselInterp = FALSE, l2pi = 0) {
-    .Call('_sdetorus_dVmfCpp', PACKAGE = 'sdetorus', x, K, M, alpha, besselInterp, l2pi)
-}
-
-.clusterProbsVmf <- function(cosData, sinData, M, K, alpha, l2pi, besselInterp = TRUE) {
-    .Call('_sdetorus_clusterProbsVmf', PACKAGE = 'sdetorus', cosData, sinData, M, K, alpha, l2pi, besselInterp)
-}
-
-.weightedMuKappa <- function(cosData, sinData, weights, kappaMax = 250, isotropic = FALSE) {
-    .Call('_sdetorus_weightedMuKappa', PACKAGE = 'sdetorus', cosData, sinData, weights, kappaMax, isotropic)
-}
-
 #' @title Loglikelihood of WN in 2D when only the initial and final points are observed
 #'
 #' @description Computation of the loglikelihood for a WN diffusion (with diagonal diffusion matrix) from a sample of initial and final pairs of angles.
@@ -677,5 +657,25 @@ stepAheadWn2D <- function(x0, mu, A, sigma, rho = 0, M = 100L, N = 100L, delta =
 #' @export
 logLikWouPairs <- function(x, t, alpha, mu, sigma, rho = 0, maxK = 2L, expTrc = 30) {
     .Call('_sdetorus_logLikWouPairs', PACKAGE = 'sdetorus', x, t, alpha, mu, sigma, rho, maxK, expTrc)
+}
+
+.linInterp <- function(x, xGrid, yGrid, equalSpaces = FALSE) {
+    .Call('_sdetorus_linInterp', PACKAGE = 'sdetorus', x, xGrid, yGrid, equalSpaces)
+}
+
+.besselIExponScaled <- function(x, nu = 0L, maxK = 10L, equalSpaces = FALSE) {
+    .Call('_sdetorus_besselIExponScaled', PACKAGE = 'sdetorus', x, nu, maxK, equalSpaces)
+}
+
+.dTvmCpp <- function(x, K, M, alpha, besselInterp = FALSE, l2pi = 0) {
+    .Call('_sdetorus_dTvmCpp', PACKAGE = 'sdetorus', x, K, M, alpha, besselInterp, l2pi)
+}
+
+.clusterProbsTvm <- function(cosData, sinData, M, K, alpha, l2pi, besselInterp = TRUE) {
+    .Call('_sdetorus_clusterProbsTvm', PACKAGE = 'sdetorus', cosData, sinData, M, K, alpha, l2pi, besselInterp)
+}
+
+.weightedMuKappa <- function(cosData, sinData, weights, kappaMax = 250, isotropic = FALSE) {
+    .Call('_sdetorus_weightedMuKappa', PACKAGE = 'sdetorus', cosData, sinData, weights, kappaMax, isotropic)
 }
 

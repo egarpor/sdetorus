@@ -78,7 +78,7 @@ sum(abs(u[, N + 1] - v))
 
 \dontrun{
 # Visualization of tpd
-require(manipulate)
+library(manipulate)
 manipulate({
   plotSurface2D(x, y, z = matrix(u[, j + 1], Mx, My),
                 main = round(mean(u[, j + 1]) * 4 * pi^2, 4),
@@ -89,5 +89,5 @@ manipulate({
 }
 }
 \references{
-Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
+Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \url{https://doi.org/10.1007/978-1-4899-7278-1}
 }

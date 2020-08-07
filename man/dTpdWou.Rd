@@ -4,7 +4,7 @@
 \alias{dTpdWou}
 \title{Conditional probability density of the WOU process}
 \usage{
-dTpdWou(x, t, A, mu, Sigma, x0, maxK = 2, eigA, invASigma)
+dTpdWou(x, t, A, mu, Sigma, x0, maxK = 2, eigA = NULL, invASigma = NULL)
 }
 \arguments{
 \item{x}{matrix of size \code{c(n, p)} with the evaluation points in \eqn{[-\pi,\pi)^p}.}

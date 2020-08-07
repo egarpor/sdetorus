@@ -46,7 +46,7 @@ alpha <- 1
 mu <- 0
 sigma <- 1
 \dontrun{
-require(manipulate)
+library(manipulate)
 manipulate({
 plot(x, dTpdPde1D(Mx = Mx, x0 = x0, t = t, alpha = alpha, mu = 0,
                   sigma = sigma), type = "l", ylab = "Density",

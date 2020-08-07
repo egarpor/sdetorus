@@ -6,11 +6,11 @@
 \alias{covtMou}
 \title{Transition probability density of the multivariate OU diffusion}
 \usage{
-dTpdMou(x, x0, t, A, mu, Sigma, eigA, log = FALSE)
+dTpdMou(x, x0, t, A, mu, Sigma, eigA = NULL, log = FALSE)
 
-meantMou(t, x0, A, mu, eigA)
+meantMou(t, x0, A, mu, eigA = NULL)
 
-covtMou(t, A, Sigma, eigA)
+covtMou(t, A, Sigma, eigA = NULL)
 }
 \arguments{
 \item{x}{matrix of with \code{p} columns containing the evaluation points.}
@@ -45,7 +45,7 @@ The transition probability density is a multivariate normal with mean \code{\lin
 x <- seq(-4, 4, by = 0.1)
 xx <- as.matrix(expand.grid(x, x))
 \dontrun{
-require(manipulate)
+library(manipulate)
 manipulate(image(x, x, matrix(dTpdMou(x = xx, x0 = c(1, 2), t = t,
                                       A = alphaToA(alpha = c(1, 2, 0.5),
                                                    sigma = 1:2),

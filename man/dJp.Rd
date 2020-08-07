@@ -5,7 +5,7 @@
 \alias{constJp}
 \title{Jones and Pewsey (2005)'s circular distribution}
 \usage{
-dJp(x, mu, kappa, psi, const)
+dJp(x, mu, kappa, psi, const = NULL)
 
 constJp(mu, kappa, psi, M = 200)
 }
@@ -45,7 +45,7 @@ for (i in 0:20) {
 }
 }
 \references{
-Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific Publishing, River Edge.
+Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific, Singapore. \url{https://doi.org/10.1142/4031}
 
-Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on the circle. \emph{J. Amer. Statist. Assoc.}, 100(472):1422-1428.
+Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on the circle. \emph{Journal of the American Statistical Association}, 100(472):1422--1428. \url{https://doi.org/10.1198/016214505000000286}
 }

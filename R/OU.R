@@ -15,7 +15,7 @@
 #' @details The law of the discretized trajectory is a multivariate normal with mean \code{\link{meantOu}} and covariance matrix \code{\link{covstOu}}. See \code{\link{rTrajMou}} for the multivariate case (less efficient for dimension one).
 #' @examples
 #' \dontrun{
-#' require(manipulate)
+#' library(manipulate)
 #' manipulate({
 #'  set.seed(345678);
 #'  plot(seq(0, N * delta, by = delta), rTrajOu(x0 = 0, alpha = alpha, mu = 0,
@@ -25,7 +25,7 @@
 #'  N = slider(10, 500, step = 10, initial = 200),
 #'  alpha = slider(0.01, 5, step = 0.1, initial = 1),
 #'  sigma = slider(0.01, 5, step = 0.1, initial = 1))
-#'  }
+#' }
 #' @export
 rTrajOu <- function(x0, alpha, mu, sigma, N = 100, delta = 1e-3) {
 
@@ -218,7 +218,7 @@ rTrajMou <- function(x0, A, mu, Sigma, N = 100, delta = 1e-3) {
 #' x <- seq(-4, 4, by = 0.1)
 #' xx <- as.matrix(expand.grid(x, x))
 #' \dontrun{
-#' require(manipulate)
+#' library(manipulate)
 #' manipulate(image(x, x, matrix(dTpdMou(x = xx, x0 = c(1, 2), t = t,
 #'                                       A = alphaToA(alpha = c(1, 2, 0.5),
 #'                                                    sigma = 1:2),
@@ -227,10 +227,10 @@ rTrajMou <- function(x0, A, mu, Sigma, N = 100, delta = 1e-3) {
 #'                  zlim = c(0, 0.25)), t = slider(0.1, 5, step = 0.1))
 #' }
 #' @export
-dTpdMou <- function(x, x0, t, A, mu, Sigma, eigA, log = FALSE) {
+dTpdMou <- function(x, x0, t, A, mu, Sigma, eigA = NULL, log = FALSE) {
 
   # Eigendecomposition
-  if (missing(eigA)) {
+  if (is.null(eigA)) {
 
     eigA <- eigen(A)
 
@@ -246,13 +246,13 @@ dTpdMou <- function(x, x0, t, A, mu, Sigma, eigA, log = FALSE) {
 
 #' @rdname dTpdMou
 #' @export
-meantMou <- function(t, x0, A, mu, eigA) {
+meantMou <- function(t, x0, A, mu, eigA = NULL) {
 
   # Dimension
   p <- length(mu)
 
   # Eigendecompositon
-  if (missing(eigA)) {
+  if (is.null(eigA)) {
 
     eigA <- eigen(A)
 
@@ -267,10 +267,10 @@ meantMou <- function(t, x0, A, mu, eigA) {
 
 #' @rdname dTpdMou
 #' @export
-covtMou <- function(t, A, Sigma, eigA) {
+covtMou <- function(t, A, Sigma, eigA = NULL) {
 
   # Eigendecomposition
-  if (missing(eigA)) {
+  if (is.null(eigA)) {
 
     eigA <- eigen(A)
 
@@ -413,12 +413,12 @@ mleMou <- function(data, delta, alpha = rep(NA, 3), mu = rep(NA, 2),
 #' aToAlpha(A = alphaToA(alpha = alpha, Sigma = Sigma), Sigma = Sigma)
 #' alphaToA(alpha = aToAlpha(A = A, Sigma = Sigma), Sigma = Sigma)
 #' @export
-alphaToA <- function(alpha, sigma, rho = 0, Sigma) {
+alphaToA <- function(alpha, sigma = NULL, rho = 0, Sigma = NULL) {
 
   # Compute sigma and rho if not provided
-  if (missing(sigma)) {
+  if (is.null(sigma)) {
 
-    if (missing(Sigma)) {
+    if (is.null(Sigma)) {
 
       stop("Must provide either sigma and rho, or Sigma")
 
@@ -445,12 +445,12 @@ alphaToA <- function(alpha, sigma, rho = 0, Sigma) {
 
 #' @rdname alphaToA
 #' @export
-aToAlpha <- function(A, sigma, rho = 0, Sigma) {
+aToAlpha <- function(A, sigma = NULL, rho = 0, Sigma = NULL) {
 
   # Compute sigma and rho if not provided
-  if (missing(sigma)) {
+  if (is.null(sigma)) {
 
-    if (missing(Sigma)) {
+    if (is.null(Sigma)) {
 
       stop("Must provide either sigma and rho, or Sigma")
 
