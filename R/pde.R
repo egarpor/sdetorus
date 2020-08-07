@@ -25,7 +25,7 @@
 #' mu <- 0
 #' sigma <- 1
 #' \dontrun{
-#' require(manipulate)
+#' library(manipulate)
 #' manipulate({
 #' plot(x, dTpdPde1D(Mx = Mx, x0 = x0, t = t, alpha = alpha, mu = 0,
 #'                   sigma = sigma), type = "l", ylab = "Density",
@@ -155,7 +155,7 @@ dTpdPde2D <- function(Mx = 50, My = 50, x0, t, alpha, mu, sigma, rho = 0,
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Test in OU
 #' alpha <- 2
 #' mu <- 0
@@ -343,7 +343,7 @@ mlePde1D <- function(data, delta, b, sigma2, Mx = 500,
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Test in OU process
 #' alpha <- c(1, 2, -0.5)
 #' mu <- c(0, 0)

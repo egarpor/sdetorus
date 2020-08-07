@@ -42,7 +42,7 @@ Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the trans
 See Sections 3.4.1 and 3.4.4 in García-Portugués et al. (2019) for details.
 }
 \examples{
-\dontrun{
+\donttest{
 # Test in OU
 alpha <- 2
 mu <- 0

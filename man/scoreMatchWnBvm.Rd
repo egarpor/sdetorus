@@ -6,11 +6,11 @@
 \alias{momentMatchWnVm}
 \title{Score and moment matching of a univariate or bivariate wrapped normal by a von Mises}
 \usage{
-scoreMatchWnBvm(Sigma, invSigma)
+scoreMatchWnBvm(Sigma = NULL, invSigma)
 
-scoreMatchWnVm(sigma, sigma2)
+scoreMatchWnVm(sigma, sigma2 = NULL)
 
-momentMatchWnVm(sigma, sigma2)
+momentMatchWnVm(sigma, sigma2 = NULL)
 }
 \arguments{
 \item{Sigma, invSigma}{covariance or precision matrix of the bivariate wrapped normal.}
@@ -52,10 +52,9 @@ S <- 0.5 * solve(A) \%*\% diag(sigma)
 kappa <- scoreMatchWnBvm(Sigma = S)
 
 # dBvm uses lambda / 2 in the exponent
-plotSurface2D(x, x, f = function(x)
-              sdetorus:::dBvm(x = x, mu = mu,
-                              kappa = c(kappa[1:2], 2 * kappa[3])),
-              fVect = TRUE)
+plotSurface2D(x, x, f = function(x) dBvm(x = x, mu = mu,
+                                        kappa = c(kappa[1:2], 2 * kappa[3])),
+             fVect = TRUE)
 
 # With singular Sigma
 invSigma <- matrix(c(1, sqrt(0.999), sqrt(0.999), 1), nrow = 2, ncol = 2)
@@ -64,5 +63,5 @@ invSigma <- matrix(1, nrow = 2, ncol = 2)
 scoreMatchWnBvm(invSigma = invSigma)
 }
 \references{
-Mardia, K. V., Kent, J. T., Laha, A. K. (2016). Score matching estimators for directional distributions. \emph{arXiv:1604.0847}.
+Mardia, K. V., Kent, J. T., and Laha, A. K. (2016). Score matching estimators for directional distributions. \emph{arXiv:1604.0847}. \url{https://arxiv.org/abs/1604.08470}
 }

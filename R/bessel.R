@@ -11,7 +11,7 @@
 #'
 #' For \code{x} larger than \code{5e4}, the asymptotic expansion of \code{\link[Bessel]{besselIasym}} is employed.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Save grid for log besselI0 scaled
 #' x1 <- c(seq(0, 1, by = 1e-4), seq(1 + 1e-2, 10, by = 1e-3),
 #'         seq(10 + 1e-1, 100, by = 1e-2), seq(100 + 1e0, 1e3, by = 1e0),
@@ -20,7 +20,7 @@
 #' save(list = "logBesselI0ScaledEvalGrid", file = "logBesselI0ScaledEvalGrid.rda",
 #'      compress = TRUE)
 #' }
-#' \dontrun{
+#' \donttest{
 #' # Save grid for A1 inverse
 #' x2 <- rev(c(seq(1e-04, 0.9 - 1e-4, by = 1e-4), seq(0.9, 1 - 1e-05, by = 1e-5)))
 #' a1InvEvalGrid <- sapply(x2, function(k) {
@@ -51,7 +51,7 @@ logBesselI0Scaled <- function(x, splineApprox = TRUE) {
 
     if (any(indAsymp)) {
 
-      res[indAsymp] <- Bessel::besselIasym(x = x[indAsymp], nu = 0, 
+      res[indAsymp] <- Bessel::besselIasym(x = x[indAsymp], nu = 0,
                                            expon.scaled = TRUE, log = TRUE)
 
     }
@@ -103,7 +103,7 @@ a1Inv <- function(x, splineApprox = TRUE) {
 #' @return Vector of parameters \eqn{(\kappa_1,\kappa_2,\lambda)}, where \eqn{(\kappa_1,\kappa_2,2\lambda)} is a suitable input for \code{kappa} in \code{dBvm}.
 #' @details If the precision matrix is singular or if there are no solutions for the score matching estimator, \code{c(0, 0, 0)} is returned.
 #' @references
-#' Mardia, K. V., Kent, J. T., Laha, A. K. (2016). Score matching estimators for directional distributions. \emph{arXiv:1604.0847}.
+#' Mardia, K. V., Kent, J. T., and Laha, A. K. (2016). Score matching estimators for directional distributions. \emph{arXiv:1604.0847}. \url{https://arxiv.org/abs/1604.08470}
 #' @examples
 #' # Univariate WN approximation
 #' sigma <- 0.5
@@ -130,10 +130,9 @@ a1Inv <- function(x, splineApprox = TRUE) {
 #' kappa <- scoreMatchWnBvm(Sigma = S)
 #'
 #' # dBvm uses lambda / 2 in the exponent
-#' plotSurface2D(x, x, f = function(x)
-#'               sdetorus:::dBvm(x = x, mu = mu,
-#'                               kappa = c(kappa[1:2], 2 * kappa[3])),
-#'               fVect = TRUE)
+#'plotSurface2D(x, x, f = function(x) dBvm(x = x, mu = mu,
+#'                                         kappa = c(kappa[1:2], 2 * kappa[3])),
+#'              fVect = TRUE)
 #'
 #' # With singular Sigma
 #' invSigma <- matrix(c(1, sqrt(0.999), sqrt(0.999), 1), nrow = 2, ncol = 2)
@@ -141,10 +140,10 @@ a1Inv <- function(x, splineApprox = TRUE) {
 #' invSigma <- matrix(1, nrow = 2, ncol = 2)
 #' scoreMatchWnBvm(invSigma = invSigma)
 #' @export
-scoreMatchWnBvm <- function(Sigma, invSigma) {
+scoreMatchWnBvm <- function(Sigma = NULL, invSigma) {
 
   # Compute Sigma
-  if (missing(Sigma)) {
+  if (is.null(Sigma)) {
 
     Sigma <- tryCatch(solve(invSigma), error = function(e) NA)
 
@@ -203,9 +202,9 @@ scoreMatchWnBvm <- function(Sigma, invSigma) {
 
 #' @rdname scoreMatchWnBvm
 #' @export
-scoreMatchWnVm <- function(sigma, sigma2) {
+scoreMatchWnVm <- function(sigma, sigma2 = NULL) {
 
-  if (missing(sigma2)) {
+  if (is.null(sigma2)) {
 
     sigma2 <- sigma^2
 
@@ -218,9 +217,9 @@ scoreMatchWnVm <- function(sigma, sigma2) {
 
 #' @rdname scoreMatchWnBvm
 #' @export
-momentMatchWnVm <- function(sigma, sigma2) {
+momentMatchWnVm <- function(sigma, sigma2 = NULL) {
 
-  if (missing(sigma2)) {
+  if (is.null(sigma2)) {
 
     sigma2 <- sigma^2
 

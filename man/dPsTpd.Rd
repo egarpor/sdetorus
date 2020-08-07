@@ -5,7 +5,7 @@
 \title{Wrapped Euler and Shoji--Ozaki pseudo-transition probability densities}
 \usage{
 dPsTpd(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
-  circular = TRUE, maxK = 2, vmApprox = FALSE, twokpi, ...)
+  circular = TRUE, maxK = 2, vmApprox = FALSE, twokpi = NULL, ...)
 }
 \arguments{
 \item{x}{a matrix of dimension \code{c(n, p)}. If a vector is provided, is assumed that \code{p = 1}.}
@@ -54,7 +54,7 @@ alpha <- 1
 sigma <- 1
 t <- 0.5
 x0 <- pi/2
-# require(manipulate)
+# library(manipulate)
 # manipulate({
 
   # Drifts
@@ -114,7 +114,7 @@ sig2 <- 2
 t <- 0.5
 x01 <- pi/2
 x02 <- -pi/2
-# require(manipulate)
+# library(manipulate)
 # manipulate({
 
   alpha <- c(alpha1, alpha2, alpha3)
@@ -184,5 +184,5 @@ x02 <- -pi/2
 \references{
 García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 
-Shoji, I. and Ozaki, T. (1998) A statistical method of estimation and simulation for systems of stochastic differential equations. \emph{Biometrika}, 85(1):240-243.
+Shoji, I. and Ozaki, T. (1998) A statistical method of estimation and simulation for systems of stochastic differential equations. \emph{Biometrika}, 85(1):240--243. \url{https://doi.org/10.1093/biomet/85.1.240}
 }

@@ -4,7 +4,7 @@
 \alias{driftWn}
 \title{Drift for the WN diffusion}
 \usage{
-driftWn(x, A, mu, Sigma, invSigmaA, maxK = 2, expTrc = 30)
+driftWn(x, A, mu, Sigma, invSigmaA = NULL, maxK = 2, expTrc = 30)
 }
 \arguments{
 \item{x}{matrix of size \code{c(n, p)} with the evaluation points for the drift.}

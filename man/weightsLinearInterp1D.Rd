@@ -74,3 +74,4 @@ f <- function(x, y) 2 * sin(x) + 3 * cos(y) + 1
 rowSums(w * cbind(f(gx1, gy1), f(gx2, gy1), f(gx1, gy2), f(gx2, gy2)))
 f(x, y)
 }
+\keyword{internal}
