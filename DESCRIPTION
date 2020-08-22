@@ -2,7 +2,7 @@ Package: sdetorus
 Type: Package
 Title: Statistical Tools for Toroidal Diffusions
 Version: 0.1.6
-Date: 2020-07-30
+Date: 2020-08-22
 Authors@R: c(person("Eduardo", "García-Portugués", role = c("aut", "cre"),
 		     email = "edgarcia@est-econ.uc3m.es"))
 Description: Implementation of statistical methods for the estimation of
@@ -25,7 +25,8 @@ Depends:
     colorRamps
 Suggests:
     rgl,
-    Bessel
+    Bessel,
+    manipulate
 LinkingTo: Rcpp, RcppArmadillo
 URL: https://github.com/egarpor/sdetorus
 BugReports: https://github.com/egarpor/sdetorus

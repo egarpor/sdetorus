@@ -66,5 +66,5 @@ v <- crankNicolson1D(u0 = cbind(u0), b = b, sigma2 = sigma2, N = N,
 sum(abs(u[, N + 1] - v))
 }
 \references{
-Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
+Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \url{https://doi.org/10.1007/978-1-4899-7278-1}
 }

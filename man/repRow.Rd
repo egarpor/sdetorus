@@ -28,3 +28,4 @@ A
 repRow(A, 2)
 repCol(A, 2)
 }
+\keyword{internal}

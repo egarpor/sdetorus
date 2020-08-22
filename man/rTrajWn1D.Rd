@@ -35,7 +35,7 @@ The fine trajectory is subsampled using the indexes \code{seq(1, NFine + 1, by =
 }
 \examples{
 \dontrun{
-require(manipulate)
+library(manipulate)
 manipulate({
   x <- seq(0, N * delta, by = delta)
   plot(x, x, ylim = c(-pi, pi), type = "n", ylab = expression(X[t]), xlab = "t")

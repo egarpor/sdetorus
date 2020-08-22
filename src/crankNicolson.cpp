@@ -32,7 +32,7 @@ arma::vec forwardSweepPeriodicTridiag(arma::vec a, arma::vec b, arma::vec c);
 //'
 //' If \code{imposePositive = TRUE}, the code implicitly assumes that the solution integrates to one at any step. This might b unrealistic if the initial condition is not properly represented in the grid (for example, highly concentrated density in a sparse grid).
 //' @references
-//' Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
+//' Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \url{https://doi.org/10.1007/978-1-4899-7278-1}
 //' @examples
 //' # Parameters
 //' Mx <- 200
@@ -227,7 +227,7 @@ arma::mat crankNicolson1D(arma::mat u0, arma::vec b, arma::vec sigma2, arma::uve
 //'
 //' If \code{imposePositive = TRUE}, the code implicitly assumes that the solution integrates to one at any step. This might b unrealistic if the initial condition is not properly represented in the grid (for example, highly concentrated density in a sparse grid).
 //' @references
-//' Thomas, J.W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York.
+//' Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \url{https://doi.org/10.1007/978-1-4899-7278-1}
 //' @examples
 //' # Parameters
 //' Mx <- 100
@@ -261,7 +261,7 @@ arma::mat crankNicolson1D(arma::mat u0, arma::vec b, arma::vec sigma2, arma::uve
 //'
 //' \dontrun{
 //' # Visualization of tpd
-//' require(manipulate)
+//' library(manipulate)
 //' manipulate({
 //'   plotSurface2D(x, y, z = matrix(u[, j + 1], Mx, My),
 //'                 main = round(mean(u[, j + 1]) * 4 * pi^2, 4),

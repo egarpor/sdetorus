@@ -38,3 +38,4 @@ ind <- matMatch(x = A, mat = B, rows = FALSE)
 A
 B[, ind]
 }
+\keyword{internal}

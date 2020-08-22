@@ -5,9 +5,9 @@
 \alias{aToAlpha}
 \title{Valid drift matrices for the Ornstein--Uhlenbeck diffusion in 2D}
 \usage{
-alphaToA(alpha, sigma, rho = 0, Sigma)
+alphaToA(alpha, sigma = NULL, rho = 0, Sigma = NULL)
 
-aToAlpha(A, sigma, rho = 0, Sigma)
+aToAlpha(A, sigma = NULL, rho = 0, Sigma = NULL)
 }
 \arguments{
 \item{alpha}{vector of length \code{3} containing the \code{A} matrix. The first two elements are the diagonal.}

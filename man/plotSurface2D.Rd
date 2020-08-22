@@ -4,8 +4,8 @@
 \alias{plotSurface2D}
 \title{Contour plot of a 2D surface}
 \usage{
-plotSurface2D(x = 1:nrow(z), y = 1:ncol(z), f, z, nLev = 20, levels,
-  fVect = FALSE, ...)
+plotSurface2D(x = 1:nrow(z), y = 1:ncol(z), f, z = NULL, nLev = 20,
+  levels = NULL, fVect = FALSE, ...)
 }
 \arguments{
 \item{x, y}{numerical grids fore each dimension. They must be in ascending order.}
@@ -29,10 +29,11 @@ The matrix \code{z}, invisible.
 Convenient wrapper for plotting a contour plot of a real function of two variables.
 }
 \examples{
-\dontrun{
+\donttest{
 grid <- seq(-pi, pi, l = 100)
 plotSurface2D(grid, grid, f = function(x) sin(x[1]) * cos(x[2]), nLev = 20)
 plotSurface2D(grid, grid, f = function(x) sin(x[, 1]) * cos(x[, 2]),
               levels = seq(-1, 1, l = 10), fVect = TRUE)
 }
 }
+\keyword{internal}
