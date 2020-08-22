@@ -4,7 +4,7 @@
 \alias{mcTorusIntegrate}
 \title{Monte Carlo integration on the torus}
 \usage{
-mcTorusIntegrate(f, p, M = 1e+05, seed = NULL, fVect = TRUE, ...)
+mcTorusIntegrate(f, p, M = 1e+05, fVect = TRUE, ...)
 }
 \arguments{
 \item{f}{function to be integrated.}
@@ -12,9 +12,6 @@ mcTorusIntegrate(f, p, M = 1e+05, seed = NULL, fVect = TRUE, ...)
 \item{p}{dimension of the torus.}
 
 \item{M}{number of Monte Carlo replicates.}
-
-\item{seed}{if different from \code{NULL}, fixes the seed internally to
-enforce always the same result.}
 
 \item{fVect}{is \code{f} vectorized?}
 

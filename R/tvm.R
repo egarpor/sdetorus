@@ -14,6 +14,9 @@
 #' evaluating the normalizing constant.
 #' @return A vector of length \code{nx} with the evaluated density
 #' (\code{dBvm}) or a scalar with the normaalizing constant (\code{constBvm}).
+#' @details
+#' If \eqn{\kappa_1 = 0} or \eqn{\kappa_2 = 0} and \eqn{\lambda \neq 0},
+#' then \code{constBvm} will perform a Monte Carlo integration of the constant.
 #' @references
 #' Singh, H., Hnizdo, V. and Demchuk, E. (2002) Probabilistic model
 #' for two dependent circular variables, \emph{Biometrika}, 89(3):719--723,
@@ -74,10 +77,12 @@ constBvm <- function(M = 25, kappa) {
 
   } else {
 
-    warning("No series expansion for kappa1 == 0 or kappa2 == 0 and kappa3 != 0. This is a bimodal density!")
+    warning(paste("No series expansion for kappa1 == 0 or kappa2 == 0 and",
+                  "lambda != 0. This is a bimodal density!",
+                  "Using Monte Carlo integration"))
     const <- 1 / mcTorusIntegrate(f = function(x)
-      dBvm(x = x, mu = c(0, 0), kappa = kappa, logConst = 0), 
-      p = 2, M = 1e5, fVect = TRUE, seed = 123456789)
+      dBvm(x = x, mu = c(0, 0), kappa = kappa, logConst = 0),
+      p = 2, M = 1e5, fVect = TRUE)
 
   }
 
@@ -86,7 +91,7 @@ constBvm <- function(M = 25, kappa) {
 }
 
 
-#' @title Mixtures of toroidal von Mises densities 
+#' @title Mixtures of toroidal von Mises densities
 #'
 #' @description Undocumented functions implementing mixtures of independent
 #' von Mises densities on the torus and their estimation by an
@@ -134,7 +139,7 @@ dTvm <- function(x, M, K, alpha = NULL, besselInterp = FALSE) {
 
 #' @rdname dTvm
 #' @keywords internal
-emTvm <- function(data, k, M = NULL, K = NULL, alpha = NULL, 
+emTvm <- function(data, k, M = NULL, K = NULL, alpha = NULL,
                   tol = c(0.001, 0.001, 0.001 / k),
                   kappaMax = 500, maxIter = 100, isotropic = FALSE,
                   besselInterp = FALSE, verbose = 0) {
