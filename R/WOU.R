@@ -64,9 +64,9 @@ dTpdWou <- function(x, t, A, mu, Sigma, x0, maxK = 2, eigA = NULL,
 
   # Eigen decomposition of A
   if (is.null(eigA)) {
-    
+
     eigA <- eigen(A)
-    
+
   }
 
   # Inverse of the product of matrices

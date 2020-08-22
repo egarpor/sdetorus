@@ -1032,8 +1032,6 @@ matMatch <- function(x, mat, rows = TRUE, useMatch = FALSE, ...) {
 #' @param f function to be integrated.
 #' @param p dimension of the torus.
 #' @param M number of Monte Carlo replicates.
-#' @param seed if different from \code{NULL}, fixes the seed internally to
-#' enforce always the same result.
 #' @param fVect is \code{f} vectorized?
 #' @param ... further parameters passed to \code{f}.
 #' @return A scalar with the approximated integral.
@@ -1042,16 +1040,7 @@ matMatch <- function(x, mat, rows = TRUE, useMatch = FALSE, ...) {
 #' mcTorusIntegrate(f = function(x) sin(x[, 1]) * cos(x[, 2]), p = 2)
 #' @keywords internal
 #' @export
-mcTorusIntegrate <- function(f, p, M = 1e5, seed = NULL, fVect = TRUE, ...) {
-
-  # Set seed if present
-  if (!is.null(seed)) {
-
-    old <- .Random.seed
-    set.seed(seed)
-    on.exit({.Random.seed <<- old})
-
-  }
+mcTorusIntegrate <- function(f, p, M = 1e5, fVect = TRUE, ...) {
 
   # Sample uniformly on the torus
   sampleUnifTorus <- matrix(runif(n = M * p, min = -pi, max = pi), nrow = M, ncol = p)

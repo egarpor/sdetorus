@@ -189,13 +189,14 @@ rTrajMou <- function(x0, A, mu, Sigma, N = 100, delta = 1e-3) {
 
   # Sample using the exact transition density
   samp <- matrix(x0, nrow = N + 1, ncol = p, byrow = TRUE)
-  sapply(2:(N + 1), function(i) {
-    samp[i, ] <<-
-      mvtnorm::rmvnorm(n = 1, mean = meantMou(t = delta, x0 = samp[i - 1, ],
-                                              mu = mu, eigA = eigA),
-                       sigma = covt)
-  })
+  for (i in 2:(N + 1)) {
 
+    samp[i, ] <- mvtnorm::rmvnorm(n = 1, mean = meantMou(t = delta,
+                                                         x0 = samp[i - 1, ],
+                                                         mu = mu, eigA = eigA),
+                                  sigma = covt)
+
+  }
   return(samp)
 
 }

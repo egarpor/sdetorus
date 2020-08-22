@@ -31,6 +31,10 @@ A vector of length \code{nx} with the evaluated density
 Evaluation of the bivariate Sine von Mises density and its
 normalizing constant.
 }
+\details{
+If \eqn{\kappa_1 = 0} or \eqn{\kappa_2 = 0} and \eqn{\lambda \neq 0},
+then \code{constBvm} will perform a Monte Carlo integration of the constant.
+}
 \examples{
 x <- seq(-pi, pi, l = 101)[-101]
 plotSurface2D(x, x, f = function(x) dBvm(x = x, mu = c(0, pi / 2),
