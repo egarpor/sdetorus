@@ -37,7 +37,7 @@ arma::mat safeSoftMax(arma::mat logs, double expTrc = 30);
 //' mu <- c(pi, 0)
 //' x <- t(euler2D(x0 = matrix(c(0, 0), nrow = 1), A = A, mu = mu,
 //'                sigma = sigma, N = 500, delta = 0.1)[1, , ])
-//' \dontrun{
+//' \donttest{
 //' sum(sapply(1:49, function(i) log(dTpdWou(x = matrix(x[i + 1, ], ncol = 2),
 //'                                          x0 = x[i, ], t = 1.5, A = A,
 //'                                          Sigma = Sigma, mu = mu))))
@@ -45,7 +45,7 @@ arma::mat safeSoftMax(arma::mat logs, double expTrc = 30);
 //' sum(log(dTpdWou2D(x = matrix(x[2:50, ], ncol = 2),
 //'                   x0 = matrix(x[1:49, ], ncol = 2), t = 1.5, alpha = alpha,
 //'                   mu = mu, sigma = sigma, rho = rho)))
-//' \dontrun{
+//' \donttest{
 //' lgrid <- 56
 //' grid <- seq(-pi, pi, l = lgrid + 1)[-(lgrid + 1)]
 //' image(grid, grid, matrix(dTpdWou(x = as.matrix(expand.grid(grid, grid)),

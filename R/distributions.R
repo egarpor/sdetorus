@@ -9,7 +9,7 @@
 #' @param kappa non-negative concentration parameter.
 #' @return A vector of the same length as \code{x} containing the density.
 #' @references
-#' Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific Publishing, River Edge.
+#' Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific, Singapore. \url{https://doi.org/10.1142/4031}
 #' @examples
 #' x <- seq(-pi, pi, l = 200)
 #' plot(x, x, type = "n", ylab = "Density", ylim = c(0, 1))
@@ -41,9 +41,9 @@ dVm <- function(x, mu, kappa) {
 #' \item \code{psi = 1}: gives the Cardioid as stationary density.
 #' }
 #' @references
-#' Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific Publishing, River Edge.
+#' Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific, Singapore. \url{https://doi.org/10.1142/4031}
 #'
-#' Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on the circle. \emph{J. Amer. Statist. Assoc.}, 100(472):1422-1428.
+#' Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on the circle. \emph{Journal of the American Statistical Association}, 100(472):1422--1428. \url{https://doi.org/10.1198/016214505000000286}
 #' @examples
 #' x <- seq(-pi, pi, l = 200)
 #' plot(x, x, type = "n", ylab = "Density", ylim = c(0, 0.6))
@@ -52,7 +52,7 @@ dVm <- function(x, mu, kappa) {
 #'         col = rainbow(21)[i + 1])
 #' }
 #' @export
-dJp <- function(x, mu, kappa, psi, const) {
+dJp <- function(x, mu, kappa, psi, const = NULL) {
 
   # Particular case von Mises?
   if (psi == 0) {
@@ -68,7 +68,7 @@ dJp <- function(x, mu, kappa, psi, const) {
     sh <- 0.5 * (e - em)
 
     # Constant
-    if (missing(const)) {
+    if (is.null(const)) {
 
       const <- constJp(mu = mu, kappa = kappa, psi = psi)
 

@@ -352,6 +352,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// logLikWouPairs
+double logLikWouPairs(arma::mat x, arma::vec t, arma::vec alpha, arma::vec mu, arma::vec sigma, double rho, int maxK, double expTrc);
+RcppExport SEXP _sdetorus_logLikWouPairs(SEXP xSEXP, SEXP tSEXP, SEXP alphaSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP rhoSEXP, SEXP maxKSEXP, SEXP expTrcSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type t(tSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
+    Rcpp::traits::input_parameter< int >::type maxK(maxKSEXP);
+    Rcpp::traits::input_parameter< double >::type expTrc(expTrcSEXP);
+    rcpp_result_gen = Rcpp::wrap(logLikWouPairs(x, t, alpha, mu, sigma, rho, maxK, expTrc));
+    return rcpp_result_gen;
+END_RCPP
+}
 // linInterp
 arma::vec linInterp(arma::vec x, arma::vec xGrid, arma::vec yGrid, bool equalSpaces);
 RcppExport SEXP _sdetorus_linInterp(SEXP xSEXP, SEXP xGridSEXP, SEXP yGridSEXP, SEXP equalSpacesSEXP) {
@@ -380,9 +398,9 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// dVmfCpp
-arma::vec dVmfCpp(arma::mat x, arma::mat K, arma::mat M, arma::vec alpha, bool besselInterp, double l2pi);
-RcppExport SEXP _sdetorus_dVmfCpp(SEXP xSEXP, SEXP KSEXP, SEXP MSEXP, SEXP alphaSEXP, SEXP besselInterpSEXP, SEXP l2piSEXP) {
+// dTvmCpp
+arma::vec dTvmCpp(arma::mat x, arma::mat K, arma::mat M, arma::vec alpha, bool besselInterp, double l2pi);
+RcppExport SEXP _sdetorus_dTvmCpp(SEXP xSEXP, SEXP KSEXP, SEXP MSEXP, SEXP alphaSEXP, SEXP besselInterpSEXP, SEXP l2piSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -392,13 +410,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::vec >::type alpha(alphaSEXP);
     Rcpp::traits::input_parameter< bool >::type besselInterp(besselInterpSEXP);
     Rcpp::traits::input_parameter< double >::type l2pi(l2piSEXP);
-    rcpp_result_gen = Rcpp::wrap(dVmfCpp(x, K, M, alpha, besselInterp, l2pi));
+    rcpp_result_gen = Rcpp::wrap(dTvmCpp(x, K, M, alpha, besselInterp, l2pi));
     return rcpp_result_gen;
 END_RCPP
 }
-// clusterProbsVmf
-arma::mat clusterProbsVmf(arma::mat cosData, arma::mat sinData, const arma::mat M, const arma::mat K, arma::rowvec alpha, double l2pi, bool besselInterp);
-RcppExport SEXP _sdetorus_clusterProbsVmf(SEXP cosDataSEXP, SEXP sinDataSEXP, SEXP MSEXP, SEXP KSEXP, SEXP alphaSEXP, SEXP l2piSEXP, SEXP besselInterpSEXP) {
+// clusterProbsTvm
+arma::mat clusterProbsTvm(arma::mat cosData, arma::mat sinData, const arma::mat M, const arma::mat K, arma::rowvec alpha, double l2pi, bool besselInterp);
+RcppExport SEXP _sdetorus_clusterProbsTvm(SEXP cosDataSEXP, SEXP sinDataSEXP, SEXP MSEXP, SEXP KSEXP, SEXP alphaSEXP, SEXP l2piSEXP, SEXP besselInterpSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -409,7 +427,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::rowvec >::type alpha(alphaSEXP);
     Rcpp::traits::input_parameter< double >::type l2pi(l2piSEXP);
     Rcpp::traits::input_parameter< bool >::type besselInterp(besselInterpSEXP);
-    rcpp_result_gen = Rcpp::wrap(clusterProbsVmf(cosData, sinData, M, K, alpha, l2pi, besselInterp));
+    rcpp_result_gen = Rcpp::wrap(clusterProbsTvm(cosData, sinData, M, K, alpha, l2pi, besselInterp));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -425,24 +443,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type kappaMax(kappaMaxSEXP);
     Rcpp::traits::input_parameter< bool >::type isotropic(isotropicSEXP);
     rcpp_result_gen = Rcpp::wrap(weightedMuKappa(cosData, sinData, weights, kappaMax, isotropic));
-    return rcpp_result_gen;
-END_RCPP
-}
-// logLikWouPairs
-double logLikWouPairs(arma::mat x, arma::vec t, arma::vec alpha, arma::vec mu, arma::vec sigma, double rho, int maxK, double expTrc);
-RcppExport SEXP _sdetorus_logLikWouPairs(SEXP xSEXP, SEXP tSEXP, SEXP alphaSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP rhoSEXP, SEXP maxKSEXP, SEXP expTrcSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type t(tSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type alpha(alphaSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type mu(muSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type sigma(sigmaSEXP);
-    Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
-    Rcpp::traits::input_parameter< int >::type maxK(maxKSEXP);
-    Rcpp::traits::input_parameter< double >::type expTrc(expTrcSEXP);
-    rcpp_result_gen = Rcpp::wrap(logLikWouPairs(x, t, alpha, mu, sigma, rho, maxK, expTrc));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -468,12 +468,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"_sdetorus_euler2D", (DL_FUNC) &_sdetorus_euler2D, 10},
     {"_sdetorus_stepAheadWn1D", (DL_FUNC) &_sdetorus_stepAheadWn1D, 10},
     {"_sdetorus_stepAheadWn2D", (DL_FUNC) &_sdetorus_stepAheadWn2D, 11},
+    {"_sdetorus_logLikWouPairs", (DL_FUNC) &_sdetorus_logLikWouPairs, 8},
     {"_sdetorus_linInterp", (DL_FUNC) &_sdetorus_linInterp, 4},
     {"_sdetorus_besselIExponScaled", (DL_FUNC) &_sdetorus_besselIExponScaled, 4},
-    {"_sdetorus_dVmfCpp", (DL_FUNC) &_sdetorus_dVmfCpp, 6},
-    {"_sdetorus_clusterProbsVmf", (DL_FUNC) &_sdetorus_clusterProbsVmf, 7},
+    {"_sdetorus_dTvmCpp", (DL_FUNC) &_sdetorus_dTvmCpp, 6},
+    {"_sdetorus_clusterProbsTvm", (DL_FUNC) &_sdetorus_clusterProbsTvm, 7},
     {"_sdetorus_weightedMuKappa", (DL_FUNC) &_sdetorus_weightedMuKappa, 5},
-    {"_sdetorus_logLikWouPairs", (DL_FUNC) &_sdetorus_logLikWouPairs, 8},
     {NULL, NULL, 0}
 };
 

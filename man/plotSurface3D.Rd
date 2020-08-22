@@ -4,8 +4,9 @@
 \alias{plotSurface3D}
 \title{Visualization of a 3D surface}
 \usage{
-plotSurface3D(x = 1:nrow(t), y = 1:ncol(t), z = 1:dim(t)[3], f, t,
-  nLev = 20, levels, fVect = FALSE, size = 15, alpha = 0.05, ...)
+plotSurface3D(x = 1:nrow(t), y = 1:ncol(t), z = 1:dim(t)[3], f,
+  t = NULL, nLev = 20, levels = NULL, fVect = FALSE, size = 15,
+  alpha = 0.05, ...)
 }
 \arguments{
 \item{x, y, z}{numerical grids for each dimension.}
@@ -33,7 +34,7 @@ The vector \code{t}, invisible.
 Convenient wrapper for visualizing a real function of three variables by means of a colour scale and alpha shading.
 }
 \examples{
-\dontrun{
+\donttest{
 grid <- seq(-pi, pi, l = 50)
 t <- plotSurface3D(grid, grid, grid, size = 10, alpha = 0.01, fVect = TRUE,
                    f = function(x) 10 * (sin(x[, 1]) * cos(x[, 2]) - sin(x[, 3]))^2)
@@ -41,3 +42,4 @@ plotSurface3D(grid, grid, grid, t = t, size = 15, alpha = 0.1,
               levels = quantile(t, probs = seq(0, 0.1, l = 20)))
 }
 }
+\keyword{internal}

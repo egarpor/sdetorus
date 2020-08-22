@@ -48,17 +48,16 @@ Maximum pseudo-likelihood using the Euler and Shoji--Ozaki pseudo-likelihoods.
 See Section 3.2 in García-Portugués et al. (2019) for details. \code{"SO2"} implements Shoji and Ozai (1998)'s expansion with for \code{p = 1}. \code{"SO"} is the same expansion, for arbitrary \code{p}, but considering null second derivatives.
 }
 \examples{
-\dontrun{
+\donttest{
 # Example in 1D
 
 delta <- 0.5
 pars <- c(0.25, 0, 2)
-maxK <- 2
-set.seed(345678)
+set.seed(12345678)
 samp <- rTrajWn1D(x0 = 0, alpha = pars[1], mu = pars[2], sigma = pars[3],
-                   N = 200, delta = delta)
+                  N = 100, delta = delta)
 b <- function(x, pars) driftWn1D(x = x, alpha = pars[1], mu = pars[2],
-                                 sigma = pars[3], maxK = maxK, expTrc = 30)
+                                 sigma = pars[3], maxK = 2, expTrc = 30)
 b1 <- function(x, pars, h = 1e-4) {
   l <- length(x)
   res <- b(x = c(x + h, x - h), pars = pars)
@@ -70,34 +69,33 @@ b2 <- function(x, pars, h = 1e-4) {
   drop(res[1:l] - 2 * res[(l + 1):(2 * l)] + res[(2 * l + 1):(3 * l)])/(h^2)
 }
 sigma2 <- function(x, pars) rep(pars[3]^2, length(x))
+lower <- c(0.1, -pi, 0.1)
+upper <- c(10, pi, 10)
 psMle(data = samp, delta = delta, method = "E", b = b, sigma2 = sigma2,
-      start = pars, lower = c(0.1, -pi, 0.1), upper = c(10, pi, 10),
-      maxK = maxK)
+      start = pars, lower = lower, upper = upper)
 psMle(data = samp, delta = delta, method = "E", b = b, sigma2 = sigma2,
-      start = pars, lower = c(0.1, -pi, 0.1), upper = c(10, pi, 10),
-      vmApprox = TRUE)
+      start = pars, lower = lower, upper = upper, vmApprox = TRUE)
 psMle(data = samp, delta = delta, method = "SO2", b = b, b1 = b1,
-      b2 = b2, sigma2 = sigma2, start = pars, lower = c(0.1, -pi, 0.1),
-      upper = c(10, pi, 10), maxK = maxK)
+      b2 = b2, sigma2 = sigma2, start = pars, lower = lower, upper = upper)
 psMle(data = samp, delta = delta, method = "SO2", b = b, b1 = b1,
-      b2 = b2, sigma2 = sigma2, start = pars, lower = c(0.1, -pi, 0.1),
-      upper = c(10, pi, 10), vmApprox = TRUE)
-psMle(data = samp, delta = delta, method = "SO", b = b, jac.b = b1,
-      lower = c(0.1, -pi, 0.1), upper = c(10, pi, 10), sigma2 = sigma2,
-      start = pars, maxK = maxK)
-approxMleWn1D(data = samp, delta = delta, start = pars, maxK = maxK)
-mlePde1D(data = samp, delta = delta, b = b, start = pars)
+      b2 = b2, sigma2 = sigma2, start = pars, lower = lower,
+      upper = upper, vmApprox = TRUE)
+psMle(data = samp, delta = delta, method = "SO", b = b, b1 = b1,
+      lower = lower, upper = upper, sigma2 = sigma2, start = pars)
+approxMleWn1D(data = samp, delta = delta, start = pars)
+mlePde1D(data = samp, delta = delta, b = b, sigma2 = sigma2, 
+         start = pars, lower = lower, upper = upper)
 
 # Example in 2D
 
 delta <- 0.5
 pars <- c(1, 0.5, 0, 0, 0, 1, 2)
-maxK <- 2
+set.seed(12345678)
 samp <- rTrajWn2D(x0 = c(0, 0), alpha = pars[1:3], mu = pars[4:5],
-                  sigma = pars[6:7], N = 200, delta = delta)
+                  sigma = pars[6:7], N = 100, delta = delta)
 b <- function(x, pars) driftWn2D(x = x, A = alphaToA(alpha = pars[1:3],
                                                      sigma = pars[6:7]),
-                                 mu = pars[4:5], sigma = pars[6:7], maxK = maxK,
+                                 mu = pars[4:5], sigma = pars[6:7], maxK = 2,
                                  expTrc = 30)
 jac.b <- function(x, pars, h = 1e-4) {
   l <- nrow(x)
@@ -109,22 +107,22 @@ jac.b <- function(x, pars, h = 1e-4) {
         res[2 * l + 1:l, ] - res[2 * l + (l + 1):(2 * l), ]) / (2 * h)
 }
 sigma2 <- function(x, pars) matrix(pars[6:7]^2, nrow = length(x) / 2L, ncol = 2)
+lower <- c(0.01, 0.01, -25, -pi, -pi, 0.01, 0.01)
+upper <- c(25, 25, 25, pi, pi, 25, 25)
 psMle(data = samp, delta = delta, method = "E", b = b, sigma2 = sigma2,
-      start = pars, lower = c(0.01, 0.01, -25, -pi, -pi, 0.01, 0.01),
-      upper = c(25, 25, 25, pi, pi, 25, 25), maxK = maxK)
+      start = pars, lower = lower, upper = upper)
 psMle(data = samp, delta = delta, method = "E", b = b, sigma2 = sigma2,
-      start = pars, lower = c(0.01, 0.01, -25, -pi, -pi, 0.01, 0.01),
-      upper = c(25, 25, 25, pi, pi, 25, 25), maxK = maxK, vmApprox = TRUE)
+      start = pars, lower = lower, upper = upper, vmApprox = TRUE)
 psMle(data = samp, delta = delta, method = "SO", b = b, jac.b = jac.b,
-      sigma2 = sigma2, start = pars,
-      lower = c(0.01, 0.01, -25, -pi, -pi, 0.01, 0.01),
-      upper = c(25, 25, 25, pi, pi, 25, 25))
-approxMleWn2D(data = samp, delta = delta, start = pars)
-mlePde2D(data = samp, delta = delta, b = b, start = pars)
+      sigma2 = sigma2, start = pars, lower = lower, upper = upper)
+approxMleWn2D(data = samp, delta = delta, start = c(pars, 0))
+# Set maxit = 5 to test and avoid a very long evaluation
+mlePde2D(data = samp, delta = delta, b = b, sigma2 = sigma2, start = pars,
+         lower = lower, upper = upper, maxit = 5)
 }
 }
 \references{
 García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 
-Shoji, I. and Ozaki, T. (1998) A statistical method of estimation and simulation for systems of stochastic differential equations. \emph{Biometrika}, 85(1):240-243.
+Shoji, I. and Ozaki, T. (1998) A statistical method of estimation and simulation for systems of stochastic differential equations. \emph{Biometrika}, 85(1):240--243. \url{https://doi.org/10.1093/biomet/85.1.240}
 }

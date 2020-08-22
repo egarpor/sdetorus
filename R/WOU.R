@@ -42,7 +42,8 @@
 #' dTpdWou2D(x = x, x0 = rbind(x0), t = t, alpha = alpha, mu = mu,
 #'           sigma = sigma, rho = rho)
 #' @export
-dTpdWou <- function(x, t, A, mu, Sigma, x0, maxK = 2, eigA, invASigma) {
+dTpdWou <- function(x, t, A, mu, Sigma, x0, maxK = 2, eigA = NULL,
+                    invASigma = NULL) {
 
   # Read dimension and number of evaluation points
   p <- ncol(x)
@@ -62,10 +63,14 @@ dTpdWou <- function(x, t, A, mu, Sigma, x0, maxK = 2, eigA, invASigma) {
   length.grid.K <- nrow(grid.K)
 
   # Eigen decomposition of A
-  if (missing(eigA)) eigA <- eigen(A)
+  if (is.null(eigA)) {
+
+    eigA <- eigen(A)
+
+  }
 
   # Inverse of the product of matrices
-  if (missing(invASigma)) {
+  if (is.null(invASigma)) {
 
     invASigma <- solve(Sigma) %*% A
 

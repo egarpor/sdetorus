@@ -31,7 +31,7 @@ The law of the discretized trajectory is a multivariate normal with mean \code{\
 }
 \examples{
 \dontrun{
-require(manipulate)
+library(manipulate)
 manipulate({
  set.seed(345678);
  plot(seq(0, N * delta, by = delta), rTrajOu(x0 = 0, alpha = alpha, mu = 0,
@@ -41,5 +41,5 @@ manipulate({
  N = slider(10, 500, step = 10, initial = 200),
  alpha = slider(0.01, 5, step = 0.1, initial = 1),
  sigma = slider(0.01, 5, step = 0.1, initial = 1))
- }
+}
 }

@@ -44,7 +44,7 @@ Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the trans
 See Sections 3.4.2 and 3.4.4 in García-Portugués et al. (2019) for details. The function currently includes the \code{region} function for imposing a feasibility region on the parameters of the bivariate WN diffusion.
 }
 \examples{
-\dontrun{
+\donttest{
 # Test in OU process
 alpha <- c(1, 2, -0.5)
 mu <- c(0, 0)

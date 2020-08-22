@@ -102,11 +102,11 @@ linesTorus <- function(x, y, col = 1, lty = 1, ltyCross = lty, arrows = FALSE,
 #' x <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
 #' y <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
 #' z <- toPiInt(x + y + rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
-#' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi), 
+#' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
 #'        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
 #' linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), lwd = 2)
 #' torusAxis3d()
-#' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi), 
+#' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
 #'        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
 #' linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), ltyCross = 2,
 #'              arrows = TRUE, theta = 0.1 * pi / 180, barblen = 0.1)
@@ -114,7 +114,7 @@ linesTorus <- function(x, y, col = 1, lty = 1, ltyCross = lty, arrows = FALSE,
 #' }
 #' @export
 linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
-  
+
   # For determining crossings
   twoPi <- 2 * pi
   x <- toPiInt(x)
@@ -126,17 +126,17 @@ linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
   kx <- -(dx < -pi) + (dx > pi)
   ky <- -(dy < -pi) + (dy > pi)
   kz <- -(dz < -pi) + (dz > pi)
-  
+
   # Draw segments
   l <- length(x)
   if (length(y) != l | length(z) != l) stop("'x', 'y' or 'z' lengths differ")
   if (length(col) == 1) {
-    
+
     col <- rep(col, l - 1)
-    
+
   }
   if (arrows) {
-    
+
     xyz1 <- cbind(x, y, z)
     k <- cbind(kx, ky, kz) * twoPi
     xyz2 <- xyz1[-1, , drop = FALSE]
@@ -144,15 +144,15 @@ linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
     xyzk2 <- xyz2 - k
     xyzk1 <- xyz1 + k
     sapply(1:(l - 1), function(i) {
-      rgl::arrow3d(p0 = xyz1[i, ], p1 = xyzk2[i, ], type = "lines", 
+      rgl::arrow3d(p0 = xyz1[i, ], p1 = xyzk2[i, ], type = "lines",
                    col = col[i], ...)
-      rgl::arrow3d(p0 = xyzk1[i, ], p1 = xyz2[i, ], type = "lines", 
+      rgl::arrow3d(p0 = xyzk1[i, ], p1 = xyz2[i, ], type = "lines",
                    col = col[i], ...)
     })
     invisible()
-    
+
   } else {
-    
+
     rgl::segments3d(x = c(rbind(x[-l], x[-1] - kx * twoPi)),
                     y = c(rbind(y[-l], y[-1] - ky * twoPi)),
                     z = c(rbind(z[-l], z[-1] - kz * twoPi)),
@@ -161,9 +161,9 @@ linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
                     y = c(rbind(y[-l] + ky * twoPi, y[-1])),
                     z = c(rbind(z[-l] + kz * twoPi, z[-1])),
                     col = col, ...)
-    
+
   }
-  
+
 }
 
 
@@ -537,6 +537,7 @@ unwrapCircSeries <- function(x) {
 #' f <- function(x, y) 2 * sin(x) + 3 * cos(y) + 1
 #' rowSums(w * cbind(f(gx1, gy1), f(gx2, gy1), f(gx1, gy2), f(gx2, gy2)))
 #' f(x, y)
+#' @keywords internal
 #' @export
 weightsLinearInterp1D <- function(x, g1, g2, circular = FALSE) {
 
@@ -570,6 +571,7 @@ weightsLinearInterp1D <- function(x, g1, g2, circular = FALSE) {
 
 
 #' @rdname weightsLinearInterp1D
+#' @keywords internal
 #' @export
 weightsLinearInterp2D <- function(x, y, gx1, gx2, gy1, gy2, circular = FALSE) {
 
@@ -621,21 +623,22 @@ weightsLinearInterp2D <- function(x, y, gx1, gx2, gy1, gy2, circular = FALSE) {
 #' @param ... further arguments passed to \code{\link[graphics]{image}}
 #' @return The matrix \code{z}, invisible.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' grid <- seq(-pi, pi, l = 100)
 #' plotSurface2D(grid, grid, f = function(x) sin(x[1]) * cos(x[2]), nLev = 20)
 #' plotSurface2D(grid, grid, f = function(x) sin(x[, 1]) * cos(x[, 2]),
 #'               levels = seq(-1, 1, l = 10), fVect = TRUE)
 #' }
+#' @keywords internal
 #' @export
-plotSurface2D <- function(x = 1:nrow(z), y = 1:ncol(z), f, z, nLev = 20, levels,
-                          fVect = FALSE, ...) {
+plotSurface2D <- function(x = 1:nrow(z), y = 1:ncol(z), f, z = NULL, nLev = 20,
+                          levels = NULL, fVect = FALSE, ...) {
 
   # Grid xy
   xy <- as.matrix(expand.grid(x = x, y = y))
 
   # z = f(xy)
-  if (missing(z)) {
+  if (is.null(z)) {
 
     if (fVect) {
 
@@ -652,7 +655,7 @@ plotSurface2D <- function(x = 1:nrow(z), y = 1:ncol(z), f, z, nLev = 20, levels,
   }
 
   # Levels as quantiles
-  if (missing(levels)) {
+  if (is.null(levels)) {
 
     levels <- quantile(c(z), prob = seq(0, 1, length.out = nLev), na.rm = TRUE)
 
@@ -686,23 +689,24 @@ plotSurface2D <- function(x = 1:nrow(z), y = 1:ncol(z), f, z, nLev = 20, levels,
 #' @param ... further arguments passed to \code{\link[rgl]{plot3d}}
 #' @return The vector \code{t}, invisible.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' grid <- seq(-pi, pi, l = 50)
 #' t <- plotSurface3D(grid, grid, grid, size = 10, alpha = 0.01, fVect = TRUE,
 #'                    f = function(x) 10 * (sin(x[, 1]) * cos(x[, 2]) - sin(x[, 3]))^2)
 #' plotSurface3D(grid, grid, grid, t = t, size = 15, alpha = 0.1,
 #'               levels = quantile(t, probs = seq(0, 0.1, l = 20)))
 #' }
+#' @keywords internal
 #' @export
-plotSurface3D <- function(x = 1:nrow(t), y = 1:ncol(t), z = 1:dim(t)[3], f, t,
-                          nLev = 20, levels, fVect = FALSE, size = 15,
+plotSurface3D <- function(x = 1:nrow(t), y = 1:ncol(t), z = 1:dim(t)[3], f, t = NULL,
+                          nLev = 20, levels = NULL, fVect = FALSE, size = 15,
                           alpha = 0.05, ...) {
 
   # Grids xy and xyz
   xyz <- as.matrix(expand.grid(x, y, z))
 
   # t = f(xyz)
-  if (missing(t)) {
+  if (is.null(t)) {
 
     if (fVect) {
 
@@ -717,7 +721,7 @@ plotSurface3D <- function(x = 1:nrow(t), y = 1:ncol(t), z = 1:dim(t)[3], f, t,
   }
 
   # Levels as quantiles
-  if (missing(levels)) {
+  if (is.null(levels)) {
 
     levels <- quantile(t, prob = seq(0, 1, length.out = nLev), na.rm = TRUE)
 
@@ -742,69 +746,69 @@ plotSurface3D <- function(x = 1:nrow(t), y = 1:ncol(t), z = 1:dim(t)[3], f, t,
 }
 
 
-#' @title Visualization of a 3D surface using VMD
-#'
-#' @description Visualization of a real function of three variables by means of the 3D contour feature of VMD. The function creates an XPLOR map file that can be read by VMD and, optionally, establishes a connection for inspection of the surface.
-#'
-#' @param t a vector of length \code{nx * ny * nz} containing the evaluation of the function to be represented, i.e. \code{t = f(expand.grid(x, y, z))}.
-#' @param nx,ny,nz length of the grid along each dimension.
-#' @param outFile file in XPLOR format to be read by VMD.
-#' @param call whether to invoke VMD for immediate visualization or not.
-#' @param path path to VMD in the system. See details.
-#' @return The function creates a XPLOR map file in the current working directory. This file contains \code{t} and other data that allows its readily interpretation by VMD. An optional call to VMD can also be done for immediate visualization.
-#' @details If \code{call = TRUE}, then a call to VMD with \code{outFile} is produced. VMD needs to be installed (\url{http://www.ks.uiuc.edu/Research/vmd/}) and its \code{path} must be properly specified. For example, for Mac OS it should be something similar to\cr \code{path = "/Applications/VMD\\ 1.9.2.app/Contents/MacOs/startup.command"}, with the version number depending on the installed one. The R session will wait until finalization of VMD.
-#'
-#' After launching VMD, a 3D scatterplot is shown. The options for exploration of the 3D contours can be accessed in "VMD Main -> Graphics -> Representations ...". This will open a new window with the available choices. The drawing methods 'Isosurface', 'VolumeSlice' and 'Fieldlines' are the most useful.
-#'
-#' Recall that the spacing is assumed to be the same in each of the grids.
-#'
-#' See \url{http://www.ks.uiuc.edu/Research/vmd/} for help on using VMD.
-#' @examples
-#' \dontrun{
-#' gridx <- seq(-pi, pi, l = 50)
-#' gridy <- seq(0, pi, l = 50)
-#' gridz <- seq(0, pi, l = 20)
-#' t <- plotSurface3D(gridx, gridy, gridz, size = 10, alpha = 0.01, fVect = TRUE,
-#'                    f = function(x) 10 * (sin(x[, 1]) * cos(x[, 2]) - sin(x[, 3]))^2)
-#'
-#' # VMD has to be installed in the system (http://www.ks.uiuc.edu/Research/vmd/)
-#' # Also, the path must be properly specified
-#' plotVmdSurface3D(t = t, nx = length(gridx), ny = length(gridy), nz = length(gridz),
-#'                  outFile = "test.map", call = TRUE, path =
-#'                  "/Applications/VMD\\ 1.9.2.app/Contents/MacOs/startup.command")
-#' }
-#' @references
-#' Humphrey, W., Dalke, A. and Schulten, K. (1996). VMD - Visual Molecular Dynamics, \emph{J. Molec. Graphics}, 14(1):33-38.
-#' @export
-plotVmdSurface3D <- function(t, nx, ny, nz, outFile = "test.map", call = FALSE,
-                             path) {
-
-  # Variables of little use since there is no scale on the axis
-  spacing <- 1
-  center <- c(0, 0, 0)
-
-  # Preface
-  utils::write.table(x = rbind("GRID_PARAMETER_FILE NONE",
-                               "GRID_DATA_FILE NONE",
-                               "MACROMOLECULE NONE",
-                               paste("SPACING", spacing),
-                               paste("NELEMENTS", nx - 1, ny - 1, nz - 1),
-                               paste("CENTER", paste(center, collapse = " "))),
-                     file = outFile, row.names = FALSE, col.names = FALSE,
-                     quote = FALSE)
-
-  # Data
-  utils::write.table(x = t, file = outFile, append = TRUE, row.names = FALSE,
-                     col.names = FALSE)
-
-  # Call
-  if (call) {
-
-    system(paste(path, paste(getwd(), outFile, sep = "/")))
-
-  }
-
-}
+# #' @title Visualization of a 3D surface using VMD
+# #'
+# #' @description Visualization of a real function of three variables by means of the 3D contour feature of VMD. The function creates an XPLOR map file that can be read by VMD and, optionally, establishes a connection for inspection of the surface.
+# #'
+# #' @param t a vector of length \code{nx * ny * nz} containing the evaluation of the function to be represented, i.e. \code{t = f(expand.grid(x, y, z))}.
+# #' @param nx,ny,nz length of the grid along each dimension.
+# #' @param call whether to invoke VMD for immediate visualization or not.
+# #' @param path path to VMD in the system. See details.
+# #' @return The function creates a XPLOR map file in the current working directory. This file contains \code{t} and other data that allows its readily interpretation by VMD. An optional call to VMD can also be done for immediate visualization.
+# #' @details If \code{call = TRUE}, then a call to VMD with \code{outFile} is produced. VMD needs to be installed (\url{http://www.ks.uiuc.edu/Research/vmd/}) and its \code{path} must be properly specified. For example, for Mac OS it should be something similar to\cr \code{path = "/Applications/VMD\\ 1.9.4.app/Contents/MacOs/startup.command"}, with the version number depending on the installed one. The R session will wait until finalization of VMD.
+# #'
+# #' After launching VMD, a 3D scatterplot is shown. The options for exploration of the 3D contours can be accessed in "VMD Main -> Graphics -> Representations ...". This will open a new window with the available choices. The drawing methods 'Isosurface', 'VolumeSlice' and 'Fieldlines' are the most useful.
+# #'
+# #' Recall that the spacing is assumed to be the same in each of the grids.
+# #'
+# #' See \url{http://www.ks.uiuc.edu/Research/vmd/} for help on using VMD.
+# #' @examples
+# #' \dontrun{
+# #' gridx <- seq(-pi, pi, l = 50)
+# #' gridy <- seq(0, pi, l = 50)
+# #' gridz <- seq(0, pi, l = 20)
+# #' t <- plotSurface3D(gridx, gridy, gridz, size = 10, alpha = 0.01, fVect = TRUE,
+# #'                    f = function(x) 10 * (sin(x[, 1]) * cos(x[, 2]) - sin(x[, 3]))^2)
+# #'
+# #' # VMD has to be installed in the system (http://www.ks.uiuc.edu/Research/vmd/)
+# #' # Also, the path must be properly specified
+# #' plotVmdSurface3D(t = t, nx = length(gridx), ny = length(gridy), nz = length(gridz),
+# #'                  call = TRUE, path =
+# #'                  "/Applications/VMD\\ 1.9.4a43-Catalina-Rev6.app/Contents/MacOs/startup.command")
+# #' }
+# #' @references
+# #' Humphrey, W., Dalke, A. and Schulten, K. (1996). VMD - Visual Molecular Dynamics, \emph{Journal of Molecular Graphics}, 14(1):33--38. \url{https://doi.org/10.1016/0263-7855(96)00018-5}
+# #' @keywords internal
+# #' @export
+# plotVmdSurface3D <- function(t, nx, ny, nz, call = FALSE, path) {
+#
+#   # Variables of little use since there is no scale on the axis
+#   spacing <- 1
+#   center <- c(0, 0, 0)
+#
+#   # Preface
+#   outFile <- paste0(tempfile(), ".map")
+#   utils::write.table(x = rbind("GRID_PARAMETER_FILE NONE",
+#                                "GRID_DATA_FILE NONE",
+#                                "MACROMOLECULE NONE",
+#                                paste("SPACING", spacing),
+#                                paste("NELEMENTS", nx - 1, ny - 1, nz - 1),
+#                                paste("CENTER", paste(center, collapse = " "))),
+#                      file = outFile, row.names = FALSE, col.names = FALSE,
+#                      quote = FALSE)
+#
+#   # Data
+#   utils::write.table(x = t, file = outFile, append = TRUE, row.names = FALSE,
+#                      col.names = FALSE)
+#
+#   # Call
+#   if (call) {
+#
+#     system(paste(path, outFile))
+#
+#   }
+#
+# }
 
 
 #' @title Replication of rows and columns
@@ -821,6 +825,7 @@ plotVmdSurface3D <- function(t, nx, ny, nz, outFile = "test.map", call = FALSE,
 #' A
 #' repRow(A, 2)
 #' repCol(A, 2)
+#' @keywords internal
 #' @export
 repRow <- function(x, n) {
 
@@ -843,6 +848,7 @@ repRow <- function(x, n) {
 
 
 #' @rdname repRow
+#' @keywords internal
 #' @export
 repCol <- function(x, n) {
 
@@ -896,6 +902,7 @@ repCol <- function(x, n) {
 #' matrix(1:10, nr = 2, nc = 5)
 #' kColToRow(1:10, nr = 2, nc = 5)
 #' kRowToCol(kColToRow(1:10, nr = 2, nc = 5), nr = 2, nc = 5)
+#' @keywords internal
 #' @export
 kIndex <- function(i, j, nr, nc, byRows = FALSE) {
 
@@ -915,6 +922,7 @@ kIndex <- function(i, j, nr, nc, byRows = FALSE) {
 
 
 #' @rdname kIndex
+#' @keywords internal
 #' @export
 ijIndex <- function(k, nr, nc, byRows = FALSE) {
 
@@ -936,6 +944,7 @@ ijIndex <- function(k, nr, nc, byRows = FALSE) {
 
 
 #' @rdname kIndex
+#' @keywords internal
 #' @export
 kColToRow <- function(k, nr, nc) {
 
@@ -946,6 +955,7 @@ kColToRow <- function(k, nr, nc) {
 
 
 #' @rdname kIndex
+#' @keywords internal
 #' @export
 kRowToCol <- function(k, nr, nc) {
 
@@ -979,6 +989,7 @@ kRowToCol <- function(k, nr, nc) {
 #' ind <- matMatch(x = A, mat = B, rows = FALSE)
 #' A
 #' B[, ind]
+#' @keywords internal
 #' @export
 matMatch <- function(x, mat, rows = TRUE, useMatch = FALSE, ...) {
 
@@ -1010,6 +1021,45 @@ matMatch <- function(x, mat, rows = TRUE, useMatch = FALSE, ...) {
                                               function(y) all(y == x[i, ])))[1])
 
   }
+
+}
+
+
+#' @title Monte Carlo integration on the torus
+#'
+#' @description Convenience function for Monte Carlo integration on \eqn{[-\pi, \pi)^p}.
+#'
+#' @param f function to be integrated.
+#' @param p dimension of the torus.
+#' @param M number of Monte Carlo replicates.
+#' @param fVect is \code{f} vectorized?
+#' @param ... further parameters passed to \code{f}.
+#' @return A scalar with the approximated integral.
+#' @examples
+#' # Integral of sin(x1) * cos(x2), must be close to 0
+#' mcTorusIntegrate(f = function(x) sin(x[, 1]) * cos(x[, 2]), p = 2)
+#' @keywords internal
+#' @export
+mcTorusIntegrate <- function(f, p, M = 1e5, fVect = TRUE, ...) {
+
+  # Sample uniformly on the torus
+  sampleUnifTorus <- matrix(runif(n = M * p, min = -pi, max = pi), nrow = M, ncol = p)
+
+  # Evaluations
+  if (fVect) {
+
+    fEvals <- f(sampleUnifTorus, ...)
+
+  } else {
+
+    fEvals <- apply(sampleUnifTorus, 1, f, ...)
+
+  }
+
+  # Torus area
+  area <- (2 * pi)^p
+
+  return(mean(fEvals) * area)
 
 }
 
@@ -1069,32 +1119,32 @@ torusAxis <- function(sides = 1:2, twoPi = FALSE, ...) {
 #' x <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
 #' y <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
 #' z <- toPiInt(x + y + rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
-#' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi), 
+#' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
 #'        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
 #' torusAxis3d()
 #' @export
 torusAxis3d <- function(sides = 1:3, twoPi = FALSE, ...) {
-  
+
   # Choose (-pi, pi) or (0, 2*pi)
   if (twoPi) {
-    
+
     at <- seq(0, 2 * pi, l = 5)
     labels <- expression(0, pi/2, pi, 3*pi/2, 2*pi)
-    
+
   } else {
-    
+
     at <- seq(-pi, pi, l = 5)
     labels <- expression(-pi, -pi/2, 0, pi/2, pi)
-    
+
   }
-  
+
   # Draw box + axis
   rgl::box3d()
   for (i in sides) {
-    
+
     suppressWarnings(rgl::axis3d(c("x", "y", "z")[i], at = at,
                                  labels = labels, ...))
-    
+
   }
-  
+
 }

@@ -19,9 +19,9 @@
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
 #'
-#' Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific Publishing, River Edge.
+#' Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific, Singapore. \url{https://doi.org/10.1142/4031}
 #'
-#' Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on the circle. \emph{J. Amer. Statist. Assoc.}, 100(472):1422-1428.
+#' Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on the circle. \emph{Journal of the American Statistical Association}, 100(472):1422--1428. \url{https://doi.org/10.1198/016214505000000286}
 #' @examples
 #' x <- seq(-pi, pi, l = 200)
 #' plot(x, x, type = "n", ylab = "drift")
@@ -246,13 +246,13 @@ driftMixVm <- function(x, alpha, mu, sigma, p, expTrc = 30) {
 #'                                           sigma = c(1.5, 1.5)), mu = c(0, 0),
 #'               Sigma = diag(c(1.5^2, 1.5^2)))^2)), fVect = TRUE)
 #' @export
-driftWn <- function(x, A, mu, Sigma, invSigmaA, maxK = 2, expTrc = 30) {
+driftWn <- function(x, A, mu, Sigma, invSigmaA = NULL, maxK = 2, expTrc = 30) {
 
   # Winding numbers
   sK <- seq(-maxK, maxK, by = 1)
 
   # Inverse of the Gaussian exponent
-  if (missing(invSigmaA)) {
+  if (is.null(invSigmaA)) {
 
     invSigmaA <- solve(Sigma) %*% A
 
