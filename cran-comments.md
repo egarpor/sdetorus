@@ -19,10 +19,12 @@ NOTEs double-checked and correctly spelled:
 
 * This is a new release.
 
-## CRAN changes
+## Resubmission
+
+This is a resubmission. In this version I have:
 
 * Exported and documented the dBvM function to avoid :::.
 * Replaced \dontrun{} with \donttest{} as much as possible in examples.
 * Removed instances of "<<-"".
-* Drop the plotVmdSurface3D() function.
+* Removed the plotVmdSurface3D() function.
 
