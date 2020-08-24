@@ -23,11 +23,12 @@ Wrapper for drawing pretty axis labels for circular variables. To be invoked aft
 The function calls \code{\link[rgl:axes3d]{box3d}}.
 }
 \examples{
-library(rgl)
+\donttest{
 x <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
 y <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
 z <- toPiInt(x + y + rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
-plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
-       col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
+rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
+            col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
 torusAxis3d()
+}
 }

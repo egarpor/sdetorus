@@ -27,17 +27,16 @@ Joins the corresponding points with line segments or arrows that exhibit wrappin
 \code{x}, \code{y}, and \code{z} are wrapped to \eqn{[-\pi,\pi)} before plotting. \code{arrows = TRUE} makes sequential calls to \code{\link[rgl]{arrow3d}}, and is substantially slower than \code{arrows = FALSE}.
 }
 \examples{
-\dontrun{
-library(rgl)
+\donttest{
 x <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
 y <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
 z <- toPiInt(x + y + rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
-plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
-       col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
+rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
+            col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
 linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), lwd = 2)
 torusAxis3d()
-plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
-       col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
+rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
+            col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
 linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), ltyCross = 2,
              arrows = TRUE, theta = 0.1 * pi / 180, barblen = 0.1)
 torusAxis3d()

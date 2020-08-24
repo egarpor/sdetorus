@@ -83,7 +83,7 @@ psMle(data = samp, delta = delta, method = "SO2", b = b, b1 = b1,
 psMle(data = samp, delta = delta, method = "SO", b = b, b1 = b1,
       lower = lower, upper = upper, sigma2 = sigma2, start = pars)
 approxMleWn1D(data = samp, delta = delta, start = pars)
-mlePde1D(data = samp, delta = delta, b = b, sigma2 = sigma2, 
+mlePde1D(data = samp, delta = delta, b = b, sigma2 = sigma2,
          start = pars, lower = lower, upper = upper)
 
 # Example in 2D
