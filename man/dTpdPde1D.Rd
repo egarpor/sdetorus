@@ -45,18 +45,18 @@ t <- 0.5
 alpha <- 1
 mu <- 0
 sigma <- 1
-\dontrun{
-library(manipulate)
-manipulate({
-plot(x, dTpdPde1D(Mx = Mx, x0 = x0, t = t, alpha = alpha, mu = 0,
-                  sigma = sigma), type = "l", ylab = "Density",
-     xlab = "", ylim = c(0, 0.75))
-lines(x, dTpdWou1D(x = x, x0 = rep(x0, Mx), t = t, alpha = alpha, mu = 0,
-                    sigma = sigma), col = 2)
-}, x0 = slider(-pi, pi, step = 0.01, initial = 0),
-alpha = slider(0.01, 5, step = 0.01, initial = 1),
-sigma = slider(0.01, 5, step = 0.01, initial = 1),
-t = slider(0.01, 5, step = 0.01, initial = 1))
+isRStudio <- identical(.Platform$GUI, "RStudio")
+if (isRStudio) {
+  manipulate::manipulate({
+  plot(x, dTpdPde1D(Mx = Mx, x0 = x0, t = t, alpha = alpha, mu = 0,
+                    sigma = sigma), type = "l", ylab = "Density",
+       xlab = "", ylim = c(0, 0.75))
+  lines(x, dTpdWou1D(x = x, x0 = rep(x0, Mx), t = t, alpha = alpha, mu = 0,
+                      sigma = sigma), col = 2)
+  }, x0 = manipulate::slider(-pi, pi, step = 0.01, initial = 0),
+  alpha = manipulate::slider(0.01, 5, step = 0.01, initial = 1),
+  sigma = manipulate::slider(0.01, 5, step = 0.01, initial = 1),
+  t = manipulate::slider(0.01, 5, step = 0.01, initial = 1))
 }
 }
 \references{
