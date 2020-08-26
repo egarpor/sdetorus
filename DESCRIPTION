@@ -2,9 +2,10 @@ Package: sdetorus
 Type: Package
 Title: Statistical Tools for Toroidal Diffusions
 Version: 0.1.6
-Date: 2020-08-24
-Authors@R: c(person("Eduardo", "García-Portugués", role = c("aut", "cre"),
-		     email = "edgarcia@est-econ.uc3m.es"))
+Date: 2020-08-26
+Authors@R: person("Eduardo", "García-Portugués", role = c("aut", "cre"),
+        	  email = "edgarcia@est-econ.uc3m.es",
+                  comment = c(ORCID = "0000-0002-9224-4111"))
 Description: Implementation of statistical methods for the estimation of
      toroidal diffusions. Several diffusive models are provided, most of them
      belonging to the Langevin family of diffusions on the torus. Specifically,

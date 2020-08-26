@@ -21,29 +21,28 @@ A vector of the same length as \code{x}.
 Computation of \eqn{\log(I_0(x))-x}{log(I0(x))-x} and the inverse of \eqn{A_1(k)=\frac{I_0(k)}{I_1(k)}}{A1(k)=I0(k)/I1(k)}.
 }
 \details{
-Both functions may rely on pre-computed spline interpolations (\code{logBesselI0ScaledSpline} and \code{a1InvSpline}) that are created in \code{\link{.GlobalEnv}} the first time the functions are used. Otherwise, a call to \code{besselI} is done for \eqn{\log(I_0(x))-x}{log(I0(x))-x} and \eqn{A_1(k)=x}{A1(k)=x} is solved numerically. The data in which the interpolation is based is given in the examples.
+Both functions may rely on pre-computed spline interpolations (\code{logBesselI0ScaledSpline} and \code{a1InvSpline}). Otherwise, a call to \code{besselI} is done for \eqn{\log(I_0(x))-x}{log(I0(x))-x} and \eqn{A_1(k)=x}{A1(k)=x} is solved numerically. The data in which the interpolation is based is given in the examples.
 
 For \code{x} larger than \code{5e4}, the asymptotic expansion of \code{\link[Bessel]{besselIasym}} is employed.
 }
 \examples{
 \donttest{
-# Save grid for log besselI0 scaled
+# Data employed for log besselI0 scaled
 x1 <- c(seq(0, 1, by = 1e-4), seq(1 + 1e-2, 10, by = 1e-3),
         seq(10 + 1e-1, 100, by = 1e-2), seq(100 + 1e0, 1e3, by = 1e0),
         seq(1000 + 1e1, 5e4, by = 2e1))
 logBesselI0ScaledEvalGrid <- log(besselI(x = x1, nu = 0, expon.scaled = TRUE))
-save(list = "logBesselI0ScaledEvalGrid", file = "logBesselI0ScaledEvalGrid.rda",
-     compress = TRUE)
-}
-\donttest{
-# Save grid for A1 inverse
+# save(list = "logBesselI0ScaledEvalGrid", file = "logBesselI0ScaledEvalGrid.rda",
+#      compress = TRUE)
+
+# Data employed for A1 inverse
 x2 <- rev(c(seq(1e-04, 0.9 - 1e-4, by = 1e-4), seq(0.9, 1 - 1e-05, by = 1e-5)))
 a1InvEvalGrid <- sapply(x2, function(k) {
   uniroot(f = function(x) k - besselI(x, nu = 1, expon.scaled = TRUE) /
           besselI(x, nu = 0, expon.scaled = TRUE),
           lower = 1e-06, upper = 1e+05, tol = 1e-15)$root
 })
-save(list = "a1InvEvalGrid", file = "a1InvEvalGrid.rda", compress = TRUE)
+# save(list = "a1InvEvalGrid", file = "a1InvEvalGrid.rda", compress = TRUE)
 }
 # Accuracy logBesselI0Scaled
 x <- seq(0, 1e3, l = 1e3)
