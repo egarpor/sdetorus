@@ -13,17 +13,17 @@
 #' @return A vector of length \code{N + 1} containing \code{x0} in the first entry and the discretized trajectory.
 #' @details The fine trajectory is subsampled using the indexes \code{seq(1, NFine + 1, by = NFine / N)}.
 #' @examples
-#' \dontrun{
-#' library(manipulate)
-#' manipulate({
-#'   x <- seq(0, N * delta, by = delta)
-#'   plot(x, x, ylim = c(-pi, pi), type = "n", ylab = expression(X[t]), xlab = "t")
-#'   linesCirc(x, rTrajWn1D(x0 = 0, alpha = alpha, mu = 0, sigma = sigma, N = N,
-#'                            delta = 0.01))
-#'   }, delta = slider(0.01, 5.01, step = 0.1),
-#'   N = slider(10, 500, step = 10, initial = 200),
-#'   alpha = slider(0.01, 5, step = 0.1, initial = 1),
-#'   sigma = slider(0.01, 5, step = 0.1, initial = 1))
+#' isRStudio <- identical(.Platform$GUI, "RStudio")
+#' if (isRStudio) {
+#'   manipulate::manipulate({
+#'     x <- seq(0, N * delta, by = delta)
+#'     plot(x, x, ylim = c(-pi, pi), type = "n", ylab = expression(X[t]), xlab = "t")
+#'     linesCirc(x, rTrajWn1D(x0 = 0, alpha = alpha, mu = 0, sigma = sigma, N = N,
+#'                              delta = 0.01))
+#'     }, delta = slider(0.01, 5.01, step = 0.1),
+#'     N = manipulate::slider(10, 500, step = 10, initial = 200),
+#'     alpha = manipulate::slider(0.01, 5, step = 0.1, initial = 1),
+#'     sigma = manipulate::slider(0.01, 5, step = 0.1, initial = 1))
 #' }
 #' @export
 rTrajWn1D <- function(x0, alpha, mu, sigma, N = 100, delta = 0.01,
@@ -89,28 +89,28 @@ rTrajWn2D <- function(x0, alpha, mu, sigma, rho = 0, N = 100, delta = 0.01,
 #' @return A vector of length \code{N + 1} containing \code{x0} in the first entry and the discretized trajectory.
 #' @details The fine trajectory is subsampled using the indexes \code{seq(1, NFine + 1, by = NFine / N)}.
 #' @examples
-#' \dontrun{
-#' # 1D
-#' library(manipulate)
-#' manipulate({
-#'   x <- seq(0, N * delta, by = delta)
-#'   plot(x, x, ylim = c(-pi, pi), type = "n", ylab = expression(X[t]), xlab = "t")
-#'   linesCirc(x, rTrajLangevin(x0 = 0, drift = driftJp, SigDif = sigma,
-#'                              alpha = alpha, mu = 0, psi = psi, N = N,
-#'                              delta = 0.01))
-#'   }, delta = slider(0.01, 5.01, step = 0.1),
-#'   N = slider(10, 500, step = 10, initial = 200),
-#'   alpha = slider(0.01, 5, step = 0.1, initial = 1),
-#'   psi = slider(-2, 2, step = 0.1, initial = 1),
-#'   sigma = slider(0.01, 5, step = 0.1, initial = 1))
-#'
-#' # 2D
-#' samp <- rTrajLangevin(x0 = c(0, 0), drift = driftMvm, alpha = c(1, 1),
-#'                       mu = c(2, -1), A = diag(rep(0, 2)),
-#'                       SigDif = diag(rep(1, 2)), N = 1000, delta = 0.1)
-#' plot(samp, xlim = c(-pi, pi), ylim = c(-pi, pi), pch = 19, cex = 0.25,
-#'      xlab = expression(X[t]), ylab = expression(Y[t]), col = rainbow(1000))
-#' linesTorus(samp[, 1], samp[, 2], col = rainbow(1000))
+#' isRStudio <- identical(.Platform$GUI, "RStudio")
+#' if (isRStudio) {
+#'   # 1D
+#'   manipulate::manipulate({
+#'     x <- seq(0, N * delta, by = delta)
+#'     plot(x, x, ylim = c(-pi, pi), type = "n", ylab = expression(X[t]), xlab = "t")
+#'     linesCirc(x, rTrajLangevin(x0 = 0, drift = driftJp, SigDif = sigma,
+#'                                alpha = alpha, mu = 0, psi = psi, N = N,
+#'                                delta = 0.01))
+#'     }, delta = manipulate::slider(0.01, 5.01, step = 0.1),
+#'     N = manipulate::slider(10, 500, step = 10, initial = 200),
+#'     alpha = manipulate::slider(0.01, 5, step = 0.1, initial = 1),
+#'     psi = manipulate::slider(-2, 2, step = 0.1, initial = 1),
+#'     sigma = manipulate::slider(0.01, 5, step = 0.1, initial = 1))
+#'  
+#'   # 2D
+#'   samp <- rTrajLangevin(x0 = c(0, 0), drift = driftMvm, alpha = c(1, 1),
+#'                         mu = c(2, -1), A = diag(rep(0, 2)),
+#'                         SigDif = diag(rep(1, 2)), N = 1000, delta = 0.1)
+#'   plot(samp, xlim = c(-pi, pi), ylim = c(-pi, pi), pch = 19, cex = 0.25,
+#'        xlab = expression(X[t]), ylab = expression(Y[t]), col = rainbow(1000))
+#'   linesTorus(samp[, 1], samp[, 2], col = rainbow(1000))
 #' }
 #' @export
 rTrajLangevin <- function(x0, drift, SigDif, N = 100, delta = 0.01,

@@ -33,8 +33,7 @@
 #' sigma <- 1
 #' t <- 0.5
 #' x0 <- pi/2
-#' # library(manipulate)
-#' # manipulate({
+#' # manipulate::manipulate({
 #'
 #'   # Drifts
 #'   b <- function(x) driftWn1D(x = x, alpha = alpha, mu = 0, sigma = sigma)
@@ -78,10 +77,10 @@
 #'   legend("topright", legend = c("PDE", "WOU", "E", "SO1", "SO2", "EvM",
 #'                                 "SO1vM", "SO2vM"), lwd = 2, col = 1:8)
 #'
-#' # }, x0 = slider(-pi, pi, step = 0.1, initial = -pi),
-#' # alpha = slider(0.1, 5, step = 0.1, initial = 1),
-#' # sigma = slider(0.1, 5, step = 0.1, initial = 1),
-#' # t = slider(0.1, 5, step = 0.1, initial = 1))
+#' # }, x0 = manipulate::slider(-pi, pi, step = 0.1, initial = -pi),
+#' # alpha = manipulate::slider(0.1, 5, step = 0.1, initial = 1),
+#' # sigma = manipulate::slider(0.1, 5, step = 0.1, initial = 1),
+#' # t = manipulate::slider(0.1, 5, step = 0.1, initial = 1))
 #'
 #' # 2D
 #' grid <- seq(-pi, pi, l = 76)[-76]
@@ -93,8 +92,7 @@
 #' t <- 0.5
 #' x01 <- pi/2
 #' x02 <- -pi/2
-#' # library(manipulate)
-#' # manipulate({
+#' # manipulate::manipulate({
 #'
 #'   alpha <- c(alpha1, alpha2, alpha3)
 #'   sigma <- c(sig1, sig2)
@@ -151,14 +149,14 @@
 #'                 levels = seq(0, 1, l = 20), fVect = TRUE, main = "SOvM")
 #'   par(old_par)
 #'
-#' # }, x01 = slider(-pi, pi, step = 0.1, initial = -pi),
-#' # x02 = slider(-pi, pi, step = 0.1, initial = -pi),
-#' # alpha1 = slider(0.1, 5, step = 0.1, initial = 1),
-#' # alpha2 = slider(0.1, 5, step = 0.1, initial = 1),
-#' # alpha3 = slider(-5, 5, step = 0.1, initial = 0),
-#' # sig1 = slider(0.1, 5, step = 0.1, initial = 1),
-#' # sig2 = slider(0.1, 5, step = 0.1, initial = 1),
-#' # t = slider(0.01, 5, step = 0.01, initial = 1))
+#' # }, x01 = manipulate::slider(-pi, pi, step = 0.1, initial = -pi),
+#' # x02 = manipulate::slider(-pi, pi, step = 0.1, initial = -pi),
+#' # alpha1 = manipulate::slider(0.1, 5, step = 0.1, initial = 1),
+#' # alpha2 = manipulate::slider(0.1, 5, step = 0.1, initial = 1),
+#' # alpha3 = manipulate::slider(-5, 5, step = 0.1, initial = 0),
+#' # sig1 = manipulate::slider(0.1, 5, step = 0.1, initial = 1),
+#' # sig2 = manipulate::slider(0.1, 5, step = 0.1, initial = 1),
+#' # t = manipulate::slider(0.01, 5, step = 0.01, initial = 1))
 #' @export
 dPsTpd <- function(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1,
                    b2, circular = TRUE, maxK = 2, vmApprox = FALSE, twokpi = NULL,

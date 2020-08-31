@@ -30,16 +30,16 @@ Simulation of trajectories of the \emph{univariate} Ornstein--Uhlenbeck (OU) dif
 The law of the discretized trajectory is a multivariate normal with mean \code{\link{meantOu}} and covariance matrix \code{\link{covstOu}}. See \code{\link{rTrajMou}} for the multivariate case (less efficient for dimension one).
 }
 \examples{
-\dontrun{
-library(manipulate)
-manipulate({
- set.seed(345678);
- plot(seq(0, N * delta, by = delta), rTrajOu(x0 = 0, alpha = alpha, mu = 0,
-      sigma = sigma, N = N, delta = delta), ylim = c(-4, 4), type = "l",
-      ylab = expression(X[t]), xlab = "t")
- }, delta = slider(0.01, 5.01, step = 0.1),
- N = slider(10, 500, step = 10, initial = 200),
- alpha = slider(0.01, 5, step = 0.1, initial = 1),
- sigma = slider(0.01, 5, step = 0.1, initial = 1))
+isRStudio <- identical(.Platform$GUI, "RStudio")
+if (isRStudio) {
+  manipulate::manipulate({
+   set.seed(345678);
+   plot(seq(0, N * delta, by = delta), rTrajOu(x0 = 0, alpha = alpha, mu = 0,
+        sigma = sigma, N = N, delta = delta), ylim = c(-4, 4), type = "l",
+        ylab = expression(X[t]), xlab = "t")
+   }, delta = manipulate::slider(0.01, 5.01, step = 0.1),
+   N = manipulate::slider(10, 500, step = 10, initial = 200),
+   alpha = manipulate::slider(0.01, 5, step = 0.1, initial = 1),
+   sigma = manipulate::slider(0.01, 5, step = 0.1, initial = 1))
 }
 }

@@ -97,17 +97,16 @@ linesTorus <- function(x, y, col = 1, lty = 1, ltyCross = lty, arrows = FALSE,
 #' @return Nothing. The functions are called for drawing wrapped lines.
 #' @details \code{x}, \code{y}, and \code{z} are wrapped to \eqn{[-\pi,\pi)} before plotting. \code{arrows = TRUE} makes sequential calls to \code{\link[rgl]{arrow3d}}, and is substantially slower than \code{arrows = FALSE}.
 #' @examples
-#' \dontrun{
-#' library(rgl)
+#' \donttest{
 #' x <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
 #' y <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
 #' z <- toPiInt(x + y + rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
-#' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
-#'        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
+#' rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
+#'             col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
 #' linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), lwd = 2)
 #' torusAxis3d()
-#' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
-#'        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
+#' rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
+#'             col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
 #' linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), ltyCross = 2,
 #'              arrows = TRUE, theta = 0.1 * pi / 180, barblen = 0.1)
 #' torusAxis3d()
@@ -746,71 +745,6 @@ plotSurface3D <- function(x = 1:nrow(t), y = 1:ncol(t), z = 1:dim(t)[3], f, t = 
 }
 
 
-# #' @title Visualization of a 3D surface using VMD
-# #'
-# #' @description Visualization of a real function of three variables by means of the 3D contour feature of VMD. The function creates an XPLOR map file that can be read by VMD and, optionally, establishes a connection for inspection of the surface.
-# #'
-# #' @param t a vector of length \code{nx * ny * nz} containing the evaluation of the function to be represented, i.e. \code{t = f(expand.grid(x, y, z))}.
-# #' @param nx,ny,nz length of the grid along each dimension.
-# #' @param call whether to invoke VMD for immediate visualization or not.
-# #' @param path path to VMD in the system. See details.
-# #' @return The function creates a XPLOR map file in the current working directory. This file contains \code{t} and other data that allows its readily interpretation by VMD. An optional call to VMD can also be done for immediate visualization.
-# #' @details If \code{call = TRUE}, then a call to VMD with \code{outFile} is produced. VMD needs to be installed (\url{http://www.ks.uiuc.edu/Research/vmd/}) and its \code{path} must be properly specified. For example, for Mac OS it should be something similar to\cr \code{path = "/Applications/VMD\\ 1.9.4.app/Contents/MacOs/startup.command"}, with the version number depending on the installed one. The R session will wait until finalization of VMD.
-# #'
-# #' After launching VMD, a 3D scatterplot is shown. The options for exploration of the 3D contours can be accessed in "VMD Main -> Graphics -> Representations ...". This will open a new window with the available choices. The drawing methods 'Isosurface', 'VolumeSlice' and 'Fieldlines' are the most useful.
-# #'
-# #' Recall that the spacing is assumed to be the same in each of the grids.
-# #'
-# #' See \url{http://www.ks.uiuc.edu/Research/vmd/} for help on using VMD.
-# #' @examples
-# #' \dontrun{
-# #' gridx <- seq(-pi, pi, l = 50)
-# #' gridy <- seq(0, pi, l = 50)
-# #' gridz <- seq(0, pi, l = 20)
-# #' t <- plotSurface3D(gridx, gridy, gridz, size = 10, alpha = 0.01, fVect = TRUE,
-# #'                    f = function(x) 10 * (sin(x[, 1]) * cos(x[, 2]) - sin(x[, 3]))^2)
-# #'
-# #' # VMD has to be installed in the system (http://www.ks.uiuc.edu/Research/vmd/)
-# #' # Also, the path must be properly specified
-# #' plotVmdSurface3D(t = t, nx = length(gridx), ny = length(gridy), nz = length(gridz),
-# #'                  call = TRUE, path =
-# #'                  "/Applications/VMD\\ 1.9.4a43-Catalina-Rev6.app/Contents/MacOs/startup.command")
-# #' }
-# #' @references
-# #' Humphrey, W., Dalke, A. and Schulten, K. (1996). VMD - Visual Molecular Dynamics, \emph{Journal of Molecular Graphics}, 14(1):33--38. \url{https://doi.org/10.1016/0263-7855(96)00018-5}
-# #' @keywords internal
-# #' @export
-# plotVmdSurface3D <- function(t, nx, ny, nz, call = FALSE, path) {
-#
-#   # Variables of little use since there is no scale on the axis
-#   spacing <- 1
-#   center <- c(0, 0, 0)
-#
-#   # Preface
-#   outFile <- paste0(tempfile(), ".map")
-#   utils::write.table(x = rbind("GRID_PARAMETER_FILE NONE",
-#                                "GRID_DATA_FILE NONE",
-#                                "MACROMOLECULE NONE",
-#                                paste("SPACING", spacing),
-#                                paste("NELEMENTS", nx - 1, ny - 1, nz - 1),
-#                                paste("CENTER", paste(center, collapse = " "))),
-#                      file = outFile, row.names = FALSE, col.names = FALSE,
-#                      quote = FALSE)
-#
-#   # Data
-#   utils::write.table(x = t, file = outFile, append = TRUE, row.names = FALSE,
-#                      col.names = FALSE)
-#
-#   # Call
-#   if (call) {
-#
-#     system(paste(path, outFile))
-#
-#   }
-#
-# }
-
-
 #' @title Replication of rows and columns
 #'
 #' @description Wrapper for replicating a matrix/vector by rows or columns.
@@ -1115,13 +1049,14 @@ torusAxis <- function(sides = 1:2, twoPi = FALSE, ...) {
 #' @return This function is usually invoked for its side effect, which is to add axes to an already existing plot.
 #' @details The function calls \code{\link[rgl:axes3d]{box3d}}.
 #' @examples
-#' library(rgl)
+#' \donttest{
 #' x <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
 #' y <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
 #' z <- toPiInt(x + y + rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
-#' plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
-#'        col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
+#' rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
+#'             col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
 #' torusAxis3d()
+#' }
 #' @export
 torusAxis3d <- function(sides = 1:3, twoPi = FALSE, ...) {
 
