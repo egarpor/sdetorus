@@ -6,3 +6,4 @@
 ^README.*$
 ^TODO$
 ^cran-comments\.md$
+^CRAN-RELEASE$

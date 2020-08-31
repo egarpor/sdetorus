@@ -44,13 +44,14 @@ The transition probability density is a multivariate normal with mean \code{\lin
 \examples{
 x <- seq(-4, 4, by = 0.1)
 xx <- as.matrix(expand.grid(x, x))
-\dontrun{
-library(manipulate)
-manipulate(image(x, x, matrix(dTpdMou(x = xx, x0 = c(1, 2), t = t,
-                                      A = alphaToA(alpha = c(1, 2, 0.5),
-                                                   sigma = 1:2),
-                                      mu = c(0, 0), Sigma = diag((1:2)^2)),
-                              nrow = length(x), ncol = length(x)),
-                 zlim = c(0, 0.25)), t = slider(0.1, 5, step = 0.1))
+isRStudio <- identical(.Platform$GUI, "RStudio")
+if (isRStudio) {
+  manipulate::manipulate(
+    image(x, x, matrix(dTpdMou(x = xx, x0 = c(1, 2), t = t,
+                               A = alphaToA(alpha = c(1, 2, 0.5),
+                                            sigma = 1:2),
+                               mu = c(0, 0), Sigma = diag((1:2)^2)),
+                       nrow = length(x), ncol = length(x)),
+          zlim = c(0, 0.25)), t = manipulate::slider(0.1, 5, step = 0.1))
 }
 }

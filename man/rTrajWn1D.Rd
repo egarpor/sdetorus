@@ -34,16 +34,16 @@ Simulation of the Wrapped Normal (WN) diffusion in 1D by subsampling a fine traj
 The fine trajectory is subsampled using the indexes \code{seq(1, NFine + 1, by = NFine / N)}.
 }
 \examples{
-\dontrun{
-library(manipulate)
-manipulate({
-  x <- seq(0, N * delta, by = delta)
-  plot(x, x, ylim = c(-pi, pi), type = "n", ylab = expression(X[t]), xlab = "t")
-  linesCirc(x, rTrajWn1D(x0 = 0, alpha = alpha, mu = 0, sigma = sigma, N = N,
-                           delta = 0.01))
-  }, delta = slider(0.01, 5.01, step = 0.1),
-  N = slider(10, 500, step = 10, initial = 200),
-  alpha = slider(0.01, 5, step = 0.1, initial = 1),
-  sigma = slider(0.01, 5, step = 0.1, initial = 1))
+isRStudio <- identical(.Platform$GUI, "RStudio")
+if (isRStudio) {
+  manipulate::manipulate({
+    x <- seq(0, N * delta, by = delta)
+    plot(x, x, ylim = c(-pi, pi), type = "n", ylab = expression(X[t]), xlab = "t")
+    linesCirc(x, rTrajWn1D(x0 = 0, alpha = alpha, mu = 0, sigma = sigma, N = N,
+                             delta = 0.01))
+    }, delta = slider(0.01, 5.01, step = 0.1),
+    N = manipulate::slider(10, 500, step = 10, initial = 200),
+    alpha = manipulate::slider(0.01, 5, step = 0.1, initial = 1),
+    sigma = manipulate::slider(0.01, 5, step = 0.1, initial = 1))
 }
 }

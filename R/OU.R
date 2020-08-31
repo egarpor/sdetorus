@@ -14,17 +14,17 @@
 #' @return A vector of length \code{N + 1} containing \code{x0} in the first entry and the exact discretized trajectory on the remaining elements.
 #' @details The law of the discretized trajectory is a multivariate normal with mean \code{\link{meantOu}} and covariance matrix \code{\link{covstOu}}. See \code{\link{rTrajMou}} for the multivariate case (less efficient for dimension one).
 #' @examples
-#' \dontrun{
-#' library(manipulate)
-#' manipulate({
-#'  set.seed(345678);
-#'  plot(seq(0, N * delta, by = delta), rTrajOu(x0 = 0, alpha = alpha, mu = 0,
-#'       sigma = sigma, N = N, delta = delta), ylim = c(-4, 4), type = "l",
-#'       ylab = expression(X[t]), xlab = "t")
-#'  }, delta = slider(0.01, 5.01, step = 0.1),
-#'  N = slider(10, 500, step = 10, initial = 200),
-#'  alpha = slider(0.01, 5, step = 0.1, initial = 1),
-#'  sigma = slider(0.01, 5, step = 0.1, initial = 1))
+#' isRStudio <- identical(.Platform$GUI, "RStudio")
+#' if (isRStudio) {
+#'   manipulate::manipulate({
+#'    set.seed(345678);
+#'    plot(seq(0, N * delta, by = delta), rTrajOu(x0 = 0, alpha = alpha, mu = 0,
+#'         sigma = sigma, N = N, delta = delta), ylim = c(-4, 4), type = "l",
+#'         ylab = expression(X[t]), xlab = "t")
+#'    }, delta = manipulate::slider(0.01, 5.01, step = 0.1),
+#'    N = manipulate::slider(10, 500, step = 10, initial = 200),
+#'    alpha = manipulate::slider(0.01, 5, step = 0.1, initial = 1),
+#'    sigma = manipulate::slider(0.01, 5, step = 0.1, initial = 1))
 #' }
 #' @export
 rTrajOu <- function(x0, alpha, mu, sigma, N = 100, delta = 1e-3) {
@@ -218,14 +218,15 @@ rTrajMou <- function(x0, A, mu, Sigma, N = 100, delta = 1e-3) {
 #' @examples
 #' x <- seq(-4, 4, by = 0.1)
 #' xx <- as.matrix(expand.grid(x, x))
-#' \dontrun{
-#' library(manipulate)
-#' manipulate(image(x, x, matrix(dTpdMou(x = xx, x0 = c(1, 2), t = t,
-#'                                       A = alphaToA(alpha = c(1, 2, 0.5),
-#'                                                    sigma = 1:2),
-#'                                       mu = c(0, 0), Sigma = diag((1:2)^2)),
-#'                               nrow = length(x), ncol = length(x)),
-#'                  zlim = c(0, 0.25)), t = slider(0.1, 5, step = 0.1))
+#' isRStudio <- identical(.Platform$GUI, "RStudio")
+#' if (isRStudio) {
+#'   manipulate::manipulate(
+#'     image(x, x, matrix(dTpdMou(x = xx, x0 = c(1, 2), t = t,
+#'                                A = alphaToA(alpha = c(1, 2, 0.5),
+#'                                             sigma = 1:2),
+#'                                mu = c(0, 0), Sigma = diag((1:2)^2)),
+#'                        nrow = length(x), ncol = length(x)),
+#'           zlim = c(0, 0.25)), t = manipulate::slider(0.1, 5, step = 0.1))
 #' }
 #' @export
 dTpdMou <- function(x, x0, t, A, mu, Sigma, eigA = NULL, log = FALSE) {
