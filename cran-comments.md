@@ -16,7 +16,7 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 notes
 
 * "Days since last update: 3" I am resubmitting to fix the additional issues (1 warning and 4 notes) appearing in https://www.stats.ox.ac.uk/pub/bdr/LTO/sdetorus.out
 
