@@ -18,10 +18,10 @@
 
 0 errors | 0 warnings | 1 note
 
-* "Days since last update: 1" I am resubmitting to fix the additional issues in https://www.stats.ox.ac.uk/pub/bdr/LTO/sdetorus.out
+* "Days since last update: 3" I am resubmitting to fix the additional issues (1 warning and 4 notes) appearing in https://www.stats.ox.ac.uk/pub/bdr/LTO/sdetorus.out
 
 ## Resubmission
 
 This is a resubmission. In this version I have:
 
-* Fix the redefinition of arma::mat forwardSweepPeriodicTridiag() as arma::vec.
+* Fix the redefinition of arma::mat forwardSweepPeriodicTridiag() as arma::vec to avoid 1 warning and 4 notes in https://www.stats.ox.ac.uk/pub/bdr/LTO/sdetorus.out.
