@@ -16,13 +16,12 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 note
 
-* This is a new release.
+* "Days since last update: 1" I am resubmitting to fix the additional issues in https://www.stats.ox.ac.uk/pub/bdr/LTO/sdetorus.out
 
 ## Resubmission
 
 This is a resubmission. In this version I have:
 
-* Removed all instances of \dontrun{} in examples. Used if(identical(.Platform$GUI, "RStudio")) {} to avoid running 'manipulate' examples, as it requires to be run in RStudio, instead of relying in \dontrun.
-* Commented save() statements in examples of logBesselI0Scaled.Rd.
+* Fix the redefinition of arma::mat forwardSweepPeriodicTridiag() as arma::vec.
