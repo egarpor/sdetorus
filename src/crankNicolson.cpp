@@ -6,7 +6,7 @@ using namespace Rcpp;
 
 // Declarations for solvePeriodicTridiag and forwardSweepPeriodicTridiag
 arma::vec solvePeriodicTridiag(arma::vec a, arma::vec b, arma::vec c, arma::vec d, int LU);
-arma::vec forwardSweepPeriodicTridiag(arma::vec a, arma::vec b, arma::vec c);
+arma::mat forwardSweepPeriodicTridiag(arma::vec a, arma::vec b, arma::vec c);
 
 //' @title Crank--Nicolson finite difference scheme for the 1D Fokker--Planck equation with periodic boundaries
 //'
