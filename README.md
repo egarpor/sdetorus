@@ -1,32 +1,32 @@
-# sdetorus
+sdetorus
+========
 
-<!-- badges: start -->
+[![License:
+GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![](https://travis-ci.org/egarpor/sdetorus.svg?branch=master)](https://travis-ci.org/egarpor/sdetorus)
+[![](https://www.r-pkg.org/badges/version/sdetorus?color=green)](https://cran.r-project.org/package=sdetorus)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/sdetorus?color=green)](https://cran.r-project.org/package=sdetorus)
+[![](http://cranlogs.r-pkg.org/badges/last-month/sdetorus?color=green)](https://cran.r-project.org/package=sdetorus)
 
-[![License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Travis build
-status](https://travis-ci.org/egarpor/sdetorus.svg?branch=master)](https://travis-ci.org/egarpor/sdetorus)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/sdetorus)](https://cran.r-project.org/package=sdetorus)
-<!-- badges: end -->
-
+<!-- <img src="" alt="sdetorus  hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/> -->
 <p align="center">
-
 <img style="width:90%;" id="sdetorus" src="https://raw.githubusercontent.com/egarpor/sdetorus/master/logo/sdetorus-small.gif">
 <br> <i>Transition probability density of the Langevin diffusion guided
 by the “sdetorus” density</i>
-
 </p>
 
  
 
-## Overview
+Overview
+--------
 
 This library provides statistical tools for estimation of toroidal
 diffusions. It is the package companion for the paper *Langevin
 diffusions on the torus: estimation and applications* (García-Portugués
 et al., 2019).
 
-## Install
+Install
+-------
 
 Get the released version from CRAN:
 
@@ -51,7 +51,8 @@ install_github("egarpor/sdetorus")
 library(sdetorus)
 ```
 
-## Usage
+Usage
+-----
 
 ### Example 1: simulation of diffusion trajectories
 
@@ -298,14 +299,6 @@ est2 <- psMle(data = samp, delta = delta, method = "SO", b = b, jac.b = jac.b,
 # Approximate MLE based on the WOU process
 est3 <- approxMleWn2D(data = samp, delta = delta, start = start, lower = low,
                       upper = up)
-#> Warning in specPars[indUnSpecPars] <- pars: number of items to replace is not a
-#> multiple of replacement length
-
-#> Warning in specPars[indUnSpecPars] <- pars: number of items to replace is not a
-#> multiple of replacement length
-
-#> Warning in specPars[indUnSpecPars] <- pars: number of items to replace is not a
-#> multiple of replacement length
 #> <std::runtime_error in dTpdWou2D(x = y, x0 = x, t = delta, alpha = specPars[1:3], mu = specPars[4:5],     sigma = specPars[6:7], rho = specPars[8], maxK = maxK): inv_sympd(): matrix is singular or not positive definite>
 
 # Comparison
@@ -318,7 +311,8 @@ est3$par
 ```
 -->
 
-## Reproducibility of García-Portugués et al. (2019)
+Reproducibility of García-Portugués et al. (2019)
+-------------------------------------------------
 
 The directories
 [`/MD`](https://github.com/egarpor/data-langevintorus/tree/master/MD)
@@ -329,9 +323,10 @@ in the
 repository contain the scripts used in the empirical analyses of the
 aforementioned paper, as well as their `.RData` outputs.
 
-## References
+References
+----------
 
 García-Portugués, E., Sørensen, M., Mardia, K. V., and Hamelryck, T.
 (2019). Langevin diffusions on the torus: estimation and applications.
 *Statistics and Computing*, 29(2):1–22.
-<https://doi.org/10.1007/s11222-017-9790-2>
+<a href="https://doi.org/10.1007/s11222-017-9790-2" class="uri">https://doi.org/10.1007/s11222-017-9790-2</a>
