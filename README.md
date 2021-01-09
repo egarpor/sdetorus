@@ -329,4 +329,4 @@ References
 García-Portugués, E., Sørensen, M., Mardia, K. V., and Hamelryck, T.
 (2019). Langevin diffusions on the torus: estimation and applications.
 *Statistics and Computing*, 29(2):1–22.
-<a href="https://doi.org/10.1007/s11222-017-9790-2" class="uri">https://doi.org/10.1007/s11222-017-9790-2</a>
+[doi:10.1007/s11222-017-9790-2](https://doi.org/10.1007/s11222-017-9790-2).
