@@ -97,7 +97,7 @@ arma::vec dWn1D(arma::vec x, double mu, double sigma, int maxK = 2, double expTr
 //' @return A vector of size \code{n} containing the tpd evaluated at \code{x}.
 //' @details See Section 3.3 in García-Portugués et al. (2019) for details. See \code{\link{dTpdWou}} for the general case (less efficient for 2D).
 //' @references
-//' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
+//' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 //' @examples
 //' t <- 0.5
 //' alpha <- 1
