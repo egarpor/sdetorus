@@ -41,7 +41,7 @@ dWn1D <- function(x, mu, sigma, maxK = 2L, expTrc = 30, vmApprox = 0L, kt = 0, l
 #' @return A vector of size \code{n} containing the tpd evaluated at \code{x}.
 #' @details See Section 3.3 in García-Portugués et al. (2019) for details. See \code{\link{dTpdWou}} for the general case (less efficient for 2D).
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @examples
 #' t <- 0.5
 #' alpha <- 1
@@ -78,7 +78,7 @@ dTpdWou1D <- function(x, x0, t, alpha, mu, sigma, maxK = 2L, expTrc = 30, vmAppr
 #' @details The function checks for positive definiteness. If violated, it resets \code{A} such that \code{solve(A) \%*\% Sigma} is positive definite.
 #' @details See Section 3.3 in García-Portugués et al. (2019) for details. See \code{\link{dTpdWou}} for the general case (less efficient for 1D).
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @examples
 #' set.seed(3455267)
 #' alpha <- c(2, 1, -1)
@@ -266,9 +266,9 @@ safeSoftMax <- function(logs, expTrc = 30) {
 #'
 #' If \code{LU} is \code{TRUE}, then \code{b} and \code{c} must be precomputed with \code{forwardSweepTridiag} or\cr \code{forwardSweepPeriodicTridiag} for its use in the call of the appropriate solver, which will be slightly faster.
 #' @references
-#' Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \url{https://doi.org/10.1007/978-1-4899-7278-1}
+#' Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \doi{10.1007/978-1-4899-7278-1}
 #'
-#' Conte, S. D. and de Boor, C. (1980). \emph{Elementary Numerical Analysis: An Algorithmic Approach}. Third edition. McGraw-Hill, New York. \url{https://doi.org/10.1137/1.9781611975208}
+#' Conte, S. D. and de Boor, C. (1980). \emph{Elementary Numerical Analysis: An Algorithmic Approach}. Third edition. McGraw-Hill, New York. \doi{10.1137/1.9781611975208}
 #' @examples
 #' # Tridiagonal matrix
 #' n <- 10
@@ -363,7 +363,7 @@ forwardSweepPeriodicTridiag <- function(a, b, c) {
 #'
 #' If \code{imposePositive = TRUE}, the code implicitly assumes that the solution integrates to one at any step. This might b unrealistic if the initial condition is not properly represented in the grid (for example, highly concentrated density in a sparse grid).
 #' @references
-#' Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \url{https://doi.org/10.1007/978-1-4899-7278-1}
+#' Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \doi{10.1007/978-1-4899-7278-1}
 #' @examples
 #' # Parameters
 #' Mx <- 200
@@ -420,7 +420,7 @@ crankNicolson1D <- function(u0, b, sigma2, N, deltat, Mx, deltax, imposePositive
 #'
 #' If \code{imposePositive = TRUE}, the code implicitly assumes that the solution integrates to one at any step. This might b unrealistic if the initial condition is not properly represented in the grid (for example, highly concentrated density in a sparse grid).
 #' @references
-#' Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \url{https://doi.org/10.1007/978-1-4899-7278-1}
+#' Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \doi{10.1007/978-1-4899-7278-1}
 #' @examples
 #' # Parameters
 #' Mx <- 100
