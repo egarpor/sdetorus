@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 ```
 
 sdetorus
-=======
+========
 
 ```{r, echo = FALSE, results = 'asis'}
 cat(
@@ -297,4 +297,4 @@ The directories [`/MD`](https://github.com/egarpor/data-langevintorus/tree/maste
 
 ## References
 
-García-Portugués, E., Sørensen, M., Mardia, K. V., and Hamelryck, T. (2019). Langevin diffusions on the torus: estimation and applications. *Statistics and Computing*, 29(2):1--22. <https://doi.org/10.1007/s11222-017-9790-2>
+García-Portugués, E., Sørensen, M., Mardia, K. V., and Hamelryck, T. (2019). Langevin diffusions on the torus: estimation and applications. *Statistics and Computing*, 29(2):1--22. [doi:10.1007/s11222-017-9790-2](https://doi.org/10.1007/s11222-017-9790-2).
