@@ -24,7 +24,7 @@ arma::vec driftWn1D(arma::vec x, double alpha, double mu, double sigma, int maxK
 
   // Winding numbers
   int lk = 2 * maxK + 1;
-  arma::mat twokpi = arma::linspace<arma::rowvec>(-maxK * 2 * PI, maxK * 2 * PI, lk);
+  arma::mat twokpi = arma::linspace<arma::rowvec>(-maxK * 2 * M_PI, maxK * 2 * M_PI, lk);
 
   // mux
   arma::mat xtwokpi = repmat(x - mu, 1, lk);
@@ -71,7 +71,7 @@ arma::mat driftWn2D(arma::mat x, arma::mat A, arma::vec mu, arma::vec sigma, dou
 
   // Sequence of winding numbers
   int lk = 2 * maxK + 1;
-  arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * PI, maxK * 2 * PI, lk);
+  arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * M_PI, maxK * 2 * M_PI, lk);
 
   // Bivariate vector (2 * K1 * PI, 2 * K2 * PI) for weighting
   arma::vec twokepivec(2);
@@ -90,7 +90,7 @@ arma::mat driftWn2D(arma::mat x, arma::mat A, arma::vec mu, arma::vec sigma, dou
   arma::mat invSigmaA = 2 * inv_sympd(Sigma) * A;
 
   // Log-normalizing constant for the Gaussian with covariance SigmaA
-  double lognormconstSigmaA = -log(2 * PI) + 0.5 * log(det(invSigmaA));
+  double lognormconstSigmaA = -log(2 * M_PI) + 0.5 * log(det(invSigmaA));
 
   /*
    * Weights of the winding numbers for each data point
