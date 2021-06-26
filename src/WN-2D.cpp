@@ -103,7 +103,7 @@ arma::vec dTpdWou2D(arma::mat x, arma::mat x0, arma::vec t, arma::vec alpha, arm
 
   // Sequence of winding numbers
   int lk = 2 * maxK + 1;
-  arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * PI, maxK * 2 * PI, lk);
+  arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * M_PI, maxK * 2 * M_PI, lk);
 
   // Bivariate vector (2 * K1 * PI, 2 * K2 * PI) for weighting
   arma::vec twokepivec(2);
@@ -169,7 +169,7 @@ arma::vec dTpdWou2D(arma::mat x, arma::mat x0, arma::vec t, arma::vec alpha, arm
   invSigmaA *= 2 * detInvSigmaA;
 
   // For normalizing constants
-  double l2pi = log(2 * PI);
+  double l2pi = log(2 * M_PI);
 
   // Log-normalizing constant for the Gaussian with covariance SigmaA
   double lognormconstSigmaA = -l2pi + 0.5 * log(4 * detInvSigmaA);
@@ -447,7 +447,7 @@ arma::cube rTpdWn2D(arma::uword n, arma::mat x0, arma::vec t, arma::vec mu, arma
 
   // Sequence of winding numbers
   int lk = 2 * maxK + 1;
-  arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * PI, maxK * 2 * PI, lk);
+  arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * M_PI, maxK * 2 * M_PI, lk);
 
   // Bivariate vector (2 * K1 * PI, 2 * K2 * PI) for weighting
   arma::vec twokepivec(2);
@@ -513,7 +513,7 @@ arma::cube rTpdWn2D(arma::uword n, arma::mat x0, arma::vec t, arma::vec mu, arma
   invSigmaA *= 2 * detInvSigmaA;
 
   // For normalizing constants
-  double l2pi = log(2 * PI);
+  double l2pi = log(2 * M_PI);
 
   // Log-normalizing constant for the Gaussian with covariance SigmaA
   double lognormconstSigmaA = -l2pi + 0.5 * log(4 * detInvSigmaA);
@@ -700,7 +700,7 @@ arma::cube rTpdWn2D(arma::uword n, arma::mat x0, arma::vec t, arma::vec mu, arma
   }
 
   // Wrap (convert to [-PI,PI) x [-PI,PI))
-  x -= floor((x + PI) / (2 * PI)) * (2 * PI);
+  x -= floor((x + M_PI) / (2 * M_PI)) * (2 * M_PI);
 
   return x;
 
@@ -756,7 +756,7 @@ arma::vec dStatWn2D(arma::mat x, arma::vec alpha, arma::vec mu, arma::vec sigma,
 
   // Sequence of winding numbers
   int lk = 2 * maxK + 1;
-  arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * PI, maxK * 2 * PI, lk);
+  arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * M_PI, maxK * 2 * M_PI, lk);
 
   // Bivariate vector (2 * K1 * PI, 2 * K2 * PI) for weighting
   arma::vec twokepivec(2);
@@ -788,7 +788,7 @@ arma::vec dStatWn2D(arma::mat x, arma::vec alpha, arma::vec mu, arma::vec sigma,
   arma::mat invSigmaA = 2 * inv_sympd(Sigma) * A;
 
   // For normalizing constants
-  double l2pi = log(2 * PI);
+  double l2pi = log(2 * M_PI);
 
   // Log-determinant of invSigmaA (assumed to be positive)
   double logDetInvSigmaA, sign;
@@ -939,7 +939,7 @@ arma::mat rStatWn2D(arma::uword n, arma::vec mu, arma::vec alpha, arma::vec sigm
   x.each_row() += mu.t();
 
   // Wrap (convert to [-PI,PI) x [-PI,PI))
-  x -= floor((x + PI) / (2 * PI)) * (2 * PI);
+  x -= floor((x + M_PI) / (2 * M_PI)) * (2 * M_PI);
 
   return x;
 

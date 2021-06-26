@@ -144,7 +144,7 @@ arma::mat crankNicolson1D(arma::mat u0, arma::vec b, arma::vec sigma2, arma::uve
         arma::uword j = ind(i);
         double m = minU(j);
         u.col(j) -= m;
-        u.col(j) /= (1 - m * 2 * PI);
+        u.col(j) /= (1 - m * 2 * M_PI);
 
       }
 
@@ -187,7 +187,7 @@ arma::mat crankNicolson1D(arma::mat u0, arma::vec b, arma::vec sigma2, arma::uve
         arma::uword j = ind(i);
         double m = minU(j);
         u0.col(j) -= m;
-        u0.col(j) /= (1 - m * 2 * PI);
+        u0.col(j) /= (1 - m * 2 * M_PI);
 
       }
 
@@ -441,7 +441,7 @@ arma::mat crankNicolson2D(arma::mat u0, arma::mat bx, arma::mat by, arma::mat si
         arma::uword j = ind(i);
         double m = minU(j);
         u.col(j) -= m;
-        u.col(j) /= (1 - m * 4 * PI * PI);
+        u.col(j) /= (1 - m * 4 * M_PI * M_PI);
 
       }
 
@@ -517,7 +517,7 @@ arma::mat crankNicolson2D(arma::mat u0, arma::mat bx, arma::mat by, arma::mat si
         arma::uword j = ind(i);
         double m = minU(j);
         u0.col(j) -= m;
-        u0.col(j) /= (1 - m * 4 * PI * PI);
+        u0.col(j) /= (1 - m * 4 * M_PI * M_PI);
 
       }
 

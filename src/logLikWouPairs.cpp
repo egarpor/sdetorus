@@ -68,7 +68,7 @@ double logLikWouPairs(arma::mat x, arma::vec t, arma::vec alpha, arma::vec mu, a
 
   // Sequence of winding numbers
   int lk = 2 * maxK + 1;
-  arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * PI, maxK * 2 * PI, lk);
+  arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * M_PI, maxK * 2 * M_PI, lk);
 
   // Bivariate vector (2 * K1 * PI, 2 * K2 * PI) for weighting
   arma::vec twokepivec(2);
@@ -140,7 +140,7 @@ double logLikWouPairs(arma::mat x, arma::vec t, arma::vec alpha, arma::vec mu, a
   invSigmaA *= 2 * detInvSigmaA;
 
   // For normalizing constants
-  double l2pi = log(2 * PI);
+  double l2pi = log(2 * M_PI);
 
   // Log-normalizing constant for the Gaussian with covariance SigmaA
   double lognormconstSigmaA = -l2pi + 0.5 * log(4 * detInvSigmaA);
