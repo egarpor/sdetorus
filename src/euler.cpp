@@ -77,7 +77,7 @@ arma::mat euler1D(arma::vec x0, double alpha, double mu, double sigma, arma::uwo
     x.col(i) = x.col(i - 1) + drift * delta + Z.subvec(inx0, inx0 + nx0 - 1);
 
     // Convert result to [-PI,PI)
-    x.col(i) -= floor((x.col(i) + PI) / (2 * PI)) * (2 * PI);
+    x.col(i) -= floor((x.col(i) + M_PI) / (2 * M_PI)) * (2 * M_PI);
 
   }
 
@@ -175,7 +175,7 @@ arma::cube euler2D(arma::mat x0, arma::mat A, arma::vec mu, arma::vec sigma, dou
     x.slice(i) = x.slice(i - 1) + drift * delta + Z.rows(inx0, inx0 + nx0 - 1);
 
     // Convert result to [-PI,PI)
-    x.slice(i) -= floor((x.slice(i) + PI) / (2 * PI)) * (2 * PI);
+    x.slice(i) -= floor((x.slice(i) + M_PI) / (2 * M_PI)) * (2 * M_PI);
 
   }
 
@@ -253,7 +253,7 @@ arma::mat stepAheadWn1D(arma::vec x0, double alpha, double mu, double sigma, arm
     x += drift * delta + Z.subvec(iM, iM + Mnx0 - 1);
 
     // Convert result to [-PI, PI)
-    x -= floor((x + PI) / (2 * PI)) * (2 * PI);
+    x -= floor((x + M_PI) / (2 * M_PI)) * (2 * M_PI);
 
   }
 
@@ -357,7 +357,7 @@ arma::cube stepAheadWn2D(arma::mat x0, arma::vec mu, arma::mat A, arma::vec sigm
     x += drift * delta + Z.rows(iM, iM + Mnx0 - 1);
 
     // Convert result to [-PI,PI)
-    x -= floor((x + PI) / (2 * PI)) * (2 * PI) ;
+    x -= floor((x + M_PI) / (2 * M_PI)) * (2 * M_PI) ;
 
   }
 
