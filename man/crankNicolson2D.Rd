@@ -89,5 +89,5 @@ manipulate({
 }
 }
 \references{
-Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \url{https://doi.org/10.1007/978-1-4899-7278-1}
+Thomas, J. W. (1995). \emph{Numerical Partial Differential Equations: Finite Difference Methods}. Springer, New York. \doi{10.1007/978-1-4899-7278-1}
 }

@@ -35,11 +35,13 @@ Convenient wrapper for visualizing a real function of three variables by means o
 }
 \examples{
 \donttest{
-grid <- seq(-pi, pi, l = 50)
-t <- plotSurface3D(grid, grid, grid, size = 10, alpha = 0.01, fVect = TRUE,
-                   f = function(x) 10 * (sin(x[, 1]) * cos(x[, 2]) - sin(x[, 3]))^2)
-plotSurface3D(grid, grid, grid, t = t, size = 15, alpha = 0.1,
-              levels = quantile(t, probs = seq(0, 0.1, l = 20)))
+if (requireNamespace("rgl")) {
+  x <- seq(-pi, pi, l = 50)
+  f <- function(x) 10 * (sin(x[, 1]) * cos(x[, 2]) - sin(x[, 3]))^2
+  t <- plotSurface3D(x, x, x, size = 10, alpha = 0.01, fVect = TRUE, f = f)
+  plotSurface3D(x, x, x, t = t, size = 15, alpha = 0.1,
+                levels = quantile(t, probs = seq(0, 0.1, l = 20)))
+}
 }
 }
 \keyword{internal}

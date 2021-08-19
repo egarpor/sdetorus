@@ -15,7 +15,7 @@
 #' @return A vector of length \code{Mx} with the tpd evaluated at \code{seq(-pi, pi, l = Mx + 1)[-(Mx + 1)]}.
 #' @details A combination of small \code{sdInitial} and coarse space-time discretization (small \code{Mx} and \code{Mt}) is prone to create numerical instabilities. See Sections 3.4.1, 2.2.1 and 2.2.2 in García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @examples
 #' Mx <- 100
 #' x <- seq(-pi, pi, l = Mx + 1)[-c(Mx + 1)]
@@ -83,7 +83,7 @@ dTpdPde1D <- function(Mx = 500, x0, t, alpha, mu, sigma, type = "WN",
 #' @return A matrix of size \code{c(Mx, My)} with the tpd evaluated at the combinations of \code{seq(-pi, pi, l = Mx + 1)[-(Mx + 1)]} and \code{seq(-pi, pi, l = My + 1)[-(My + 1)]}.
 #' @details A combination of small \code{sdInitial} and coarse space-time discretization (small \code{Mx} and \code{Mt}) is prone to create numerical instabilities. See Sections 3.4.2, 2.2.1 and 2.2.2 in García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @examples
 #' M <- 100
 #' x <- seq(-pi, pi, l = M + 1)[-c(M + 1)]
@@ -153,7 +153,7 @@ dTpdPde2D <- function(Mx = 50, My = 50, x0, t, alpha, mu, sigma, rho = 0,
 #' @return Output from \code{\link{mleOptimWrapper}}.
 #' @details See Sections 3.4.1 and 3.4.4 in García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @examples
 #' \donttest{
 #' # Test in OU
@@ -341,7 +341,7 @@ mlePde1D <- function(data, delta, b, sigma2, Mx = 500,
 #' @return Output from \code{\link{mleOptimWrapper}}.
 #' @details See Sections 3.4.2 and 3.4.4 in García-Portugués et al. (2019) for details. The function currently includes the \code{region} function for imposing a feasibility region on the parameters of the bivariate WN diffusion.
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @examples
 #' \donttest{
 #' # Test in OU process

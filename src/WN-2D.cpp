@@ -24,7 +24,7 @@ arma::mat safeSoftMax(arma::mat logs, double expTrc = 30);
 //' @details The function checks for positive definiteness. If violated, it resets \code{A} such that \code{solve(A) \%*\% Sigma} is positive definite.
 //' @details See Section 3.3 in García-Portugués et al. (2019) for details. See \code{\link{dTpdWou}} for the general case (less efficient for 1D).
 //' @references
-//' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \url{https://doi.org/10.1007/s11222-017-9790-2}
+//' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 //' @examples
 //' set.seed(3455267)
 //' alpha <- c(2, 1, -1)

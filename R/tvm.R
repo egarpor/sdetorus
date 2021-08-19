@@ -20,7 +20,7 @@
 #' @references
 #' Singh, H., Hnizdo, V. and Demchuk, E. (2002) Probabilistic model
 #' for two dependent circular variables, \emph{Biometrika}, 89(3):719--723,
-#' \url{https://doi.org/10.1093/biomet/89.3.719}
+#' \doi{10.1093/biomet/89.3.719}
 #' @examples
 #' x <- seq(-pi, pi, l = 101)[-101]
 #' plotSurface2D(x, x, f = function(x) dBvm(x = x, mu = c(0, pi / 2),
