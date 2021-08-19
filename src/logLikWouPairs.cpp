@@ -70,10 +70,10 @@ double logLikWouPairs(arma::mat x, arma::vec t, arma::vec alpha, arma::vec mu, a
   int lk = 2 * maxK + 1;
   arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * M_PI, maxK * 2 * M_PI, lk);
 
-  // Bivariate vector (2 * K1 * PI, 2 * K2 * PI) for weighting
+  // Bivariate vector (2 * K1 * M_PI, 2 * K2 * M_PI) for weighting
   arma::vec twokepivec(2);
 
-  // Bivariate vector (2 * K1 * PI, 2 * K2 * PI) for wrapping
+  // Bivariate vector (2 * K1 * M_PI, 2 * K2 * M_PI) for wrapping
   arma::vec twokapivec(2);
 
   /*
@@ -200,7 +200,7 @@ double logLikWouPairs(arma::mat x, arma::vec t, arma::vec alpha, arma::vec mu, a
     // Loop in the winding weight K1
     for (int wek1 = 0; wek1 < lk; wek1++) {
 
-      // 2 * K1 * PI
+      // 2 * K1 * M_PI
       twokepivec(0) = twokpi(wek1);
 
       // Compute once the index
@@ -209,7 +209,7 @@ double logLikWouPairs(arma::mat x, arma::vec t, arma::vec alpha, arma::vec mu, a
       // Loop in the winding weight K2
       for (int wek2 = 0; wek2 < lk; wek2++) {
 
-        // 2 * K2 * PI
+        // 2 * K2 * M_PI
         twokepivec(1) = twokpi(wek2);
 
         // Negative exponent
@@ -289,7 +289,7 @@ double logLikWouPairs(arma::mat x, arma::vec t, arma::vec alpha, arma::vec mu, a
     // Loop on the winding weight K1
     for (int wek1 = 0; wek1 < lk; wek1++) {
 
-      // 2 * K1 * PI
+      // 2 * K1 * M_PI
       twokepivec(0) = twokpi(wek1);
 
       // Compute once the index
@@ -301,7 +301,7 @@ double logLikWouPairs(arma::mat x, arma::vec t, arma::vec alpha, arma::vec mu, a
         // Skip zero weights
         if (weightswindsinitial(i, wekl1 + wek2) > 0) {
 
-          // 2 * K1 * PI
+          // 2 * K1 * M_PI
           twokepivec(1) = twokpi(wek2);
 
           // Compute the factors in the exponent that do not depend on the windings
@@ -312,13 +312,13 @@ double logLikWouPairs(arma::mat x, arma::vec t, arma::vec alpha, arma::vec mu, a
           // Loop in the winding wrapping K1
           for (int wak1 = 0; wak1 < lk; wak1++) {
 
-            // 2 * K1 * PI
+            // 2 * K1 * M_PI
             twokapivec(0) = twokpi(wak1);
 
             // Loop in the winding wrapping K2
             for (int wak2 = 0; wak2 < lk; wak2++) {
 
-              // 2 * K2 * PI
+              // 2 * K2 * M_PI
               twokapivec(1) = twokpi(wak2);
 
               // Decomposition of the negative exponent

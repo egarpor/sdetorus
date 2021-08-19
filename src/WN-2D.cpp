@@ -105,10 +105,10 @@ arma::vec dTpdWou2D(arma::mat x, arma::mat x0, arma::vec t, arma::vec alpha, arm
   int lk = 2 * maxK + 1;
   arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * M_PI, maxK * 2 * M_PI, lk);
 
-  // Bivariate vector (2 * K1 * PI, 2 * K2 * PI) for weighting
+  // Bivariate vector (2 * K1 * M_PI, 2 * K2 * M_PI) for weighting
   arma::vec twokepivec(2);
 
-  // Bivariate vector (2 * K1 * PI, 2 * K2 * PI) for wrapping
+  // Bivariate vector (2 * K1 * M_PI, 2 * K2 * M_PI) for wrapping
   arma::vec twokapivec(2);
 
   /*
@@ -229,7 +229,7 @@ arma::vec dTpdWou2D(arma::mat x, arma::mat x0, arma::vec t, arma::vec alpha, arm
     // Loop in the winding weight K1
     for (int wek1 = 0; wek1 < lk; wek1++) {
 
-      // 2 * K1 * PI
+      // 2 * K1 * M_PI
       twokepivec(0) = twokpi(wek1);
 
       // Compute once the index
@@ -238,7 +238,7 @@ arma::vec dTpdWou2D(arma::mat x, arma::mat x0, arma::vec t, arma::vec alpha, arm
       // Loop in the winding weight K2
       for (int wek2 = 0; wek2 < lk; wek2++) {
 
-        // 2 * K2 * PI
+        // 2 * K2 * M_PI
         twokepivec(1) = twokpi(wek2);
 
         // Negative exponent
@@ -337,7 +337,7 @@ arma::vec dTpdWou2D(arma::mat x, arma::mat x0, arma::vec t, arma::vec alpha, arm
     // Loop on the winding weight K1
     for (int wek1 = 0; wek1 < lk; wek1++) {
 
-      // 2 * K1 * PI
+      // 2 * K1 * M_PI
       twokepivec(0) = twokpi(wek1);
 
       // Compute once the index
@@ -349,7 +349,7 @@ arma::vec dTpdWou2D(arma::mat x, arma::mat x0, arma::vec t, arma::vec alpha, arm
         // Skip zero weights
         if (weightswindsinitial(i, wekl1 + wek2) > 0) {
 
-          // 2 * K1 * PI
+          // 2 * K1 * M_PI
           twokepivec(1) = twokpi(wek2);
 
           // Compute the factors in the exponent that do not depend on the windings
@@ -360,13 +360,13 @@ arma::vec dTpdWou2D(arma::mat x, arma::mat x0, arma::vec t, arma::vec alpha, arm
           // Loop in the winding wrapping K1
           for (int wak1 = 0; wak1 < lk; wak1++) {
 
-            // 2 * K1 * PI
+            // 2 * K1 * M_PI
             twokapivec(0) = twokpi(wak1);
 
             // Loop in the winding wrapping K2
             for (int wak2 = 0; wak2 < lk; wak2++) {
 
-              // 2 * K2 * PI
+              // 2 * K2 * M_PI
               twokapivec(1) = twokpi(wak2);
 
               // Decomposition of the negative exponent
@@ -449,10 +449,10 @@ arma::cube rTpdWn2D(arma::uword n, arma::mat x0, arma::vec t, arma::vec mu, arma
   int lk = 2 * maxK + 1;
   arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * M_PI, maxK * 2 * M_PI, lk);
 
-  // Bivariate vector (2 * K1 * PI, 2 * K2 * PI) for weighting
+  // Bivariate vector (2 * K1 * M_PI, 2 * K2 * M_PI) for weighting
   arma::vec twokepivec(2);
 
-  // Bivariate vector (2 * K1 * PI, 2 * K2 * PI) for wrapping
+  // Bivariate vector (2 * K1 * M_PI, 2 * K2 * M_PI) for wrapping
   arma::vec twokapivec(2);
 
   /*
@@ -570,7 +570,7 @@ arma::cube rTpdWn2D(arma::uword n, arma::mat x0, arma::vec t, arma::vec mu, arma
     // Loop in the winding weight K1
     for (int wek1 = 0; wek1 < lk; wek1++) {
 
-      // 2 * K1 * PI
+      // 2 * K1 * M_PI
       twokepivec(0) = twokpi(wek1);
 
       // Compute once the index
@@ -579,7 +579,7 @@ arma::cube rTpdWn2D(arma::uword n, arma::mat x0, arma::vec t, arma::vec mu, arma
       // Loop in the winding weight K2
       for (int wek2 = 0; wek2 < lk; wek2++) {
 
-        // 2 * K2 * PI
+        // 2 * K2 * M_PI
         twokepivec(1) = twokpi(wek2);
 
         // Negative exponent
@@ -668,10 +668,10 @@ arma::cube rTpdWn2D(arma::uword n, arma::mat x0, arma::vec t, arma::vec mu, arma
           // Weighted sampling
           if (runif(li + m) <= probs(i, wekl1 + wek2)) {
 
-            // 2 * K1 * PI
+            // 2 * K1 * M_PI
             twokepivec(0) = twokpi(wek1);
 
-            // 2 * K2 * PI
+            // 2 * K2 * M_PI
             twokepivec(1) = twokpi(wek2);
 
             // Set mut for x
@@ -699,7 +699,7 @@ arma::cube rTpdWn2D(arma::uword n, arma::mat x0, arma::vec t, arma::vec mu, arma
 
   }
 
-  // Wrap (convert to [-PI,PI) x [-PI,PI))
+  // Wrap (convert to [-M_PI, M_PI) x [-M_PI, M_PI))
   x -= floor((x + M_PI) / (2 * M_PI)) * (2 * M_PI);
 
   return x;
@@ -758,7 +758,7 @@ arma::vec dStatWn2D(arma::mat x, arma::vec alpha, arma::vec mu, arma::vec sigma,
   int lk = 2 * maxK + 1;
   arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * M_PI, maxK * 2 * M_PI, lk);
 
-  // Bivariate vector (2 * K1 * PI, 2 * K2 * PI) for weighting
+  // Bivariate vector (2 * K1 * M_PI, 2 * K2 * M_PI) for weighting
   arma::vec twokepivec(2);
 
   /*
@@ -817,7 +817,7 @@ arma::vec dStatWn2D(arma::mat x, arma::vec alpha, arma::vec mu, arma::vec sigma,
     // Loop in the winding weight K1
     for (int wek1 = 0; wek1 < lk; wek1++) {
 
-      // 2 * K1 * PI
+      // 2 * K1 * M_PI
       twokepivec(0) = twokpi(wek1);
 
       // Compute once the index
@@ -826,7 +826,7 @@ arma::vec dStatWn2D(arma::mat x, arma::vec alpha, arma::vec mu, arma::vec sigma,
       // Loop in the winding weight K2
       for (int wek2 = 0; wek2 < lk; wek2++) {
 
-        // 2 * K2 * PI
+        // 2 * K2 * M_PI
         twokepivec(1) = twokpi(wek2);
 
         // Decomposition of the exponent
@@ -938,7 +938,7 @@ arma::mat rStatWn2D(arma::uword n, arma::vec mu, arma::vec alpha, arma::vec sigm
   // Recenter
   x.each_row() += mu.t();
 
-  // Wrap (convert to [-PI,PI) x [-PI,PI))
+  // Wrap (convert to [-M_PI, M_PI) x [-M_PI, M_PI))
   x -= floor((x + M_PI) / (2 * M_PI)) * (2 * M_PI);
 
   return x;
