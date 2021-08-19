@@ -98,18 +98,23 @@ linesTorus <- function(x, y, col = 1, lty = 1, ltyCross = lty, arrows = FALSE,
 #' @details \code{x}, \code{y}, and \code{z} are wrapped to \eqn{[-\pi,\pi)} before plotting. \code{arrows = TRUE} makes sequential calls to \code{\link[rgl]{arrow3d}}, and is substantially slower than \code{arrows = FALSE}.
 #' @examples
 #' \donttest{
-#' x <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
-#' y <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
-#' z <- toPiInt(x + y + rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
-#' rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
-#'             col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
-#' linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), lwd = 2)
-#' torusAxis3d()
-#' rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
-#'             col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
-#' linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), ltyCross = 2,
-#'              arrows = TRUE, theta = 0.1 * pi / 180, barblen = 0.1)
-#' torusAxis3d()
+#' if (requireNamespace("rgl")) {
+#'   n <- 20
+#'   x <- toPiInt(rnorm(n, mean = seq(-pi, pi, l = n), sd = 0.5))
+#'   y <- toPiInt(rnorm(n, mean = seq(-pi, pi, l = n), sd = 0.5))
+#'   z <- toPiInt(x + y + rnorm(n, mean = seq(-pi, pi, l = n), sd = 0.5))
+#'   rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi),
+#'               zlim = c(-pi, pi), col = rainbow(n), size = 2,
+#'               box = FALSE, axes = FALSE)
+#'   linesTorus3d(x = x, y = y, z = z, col = rainbow(n), lwd = 2)
+#'   torusAxis3d()
+#'   rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi),
+#'               zlim = c(-pi, pi), col = rainbow(n), size = 2,
+#'               box = FALSE, axes = FALSE)
+#'   linesTorus3d(x = x, y = y, z = z, col = rainbow(n), ltyCross = 2,
+#'                arrows = TRUE, theta = 0.1 * pi / 180, barblen = 0.1)
+#'   torusAxis3d()
+#' }
 #' }
 #' @export
 linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
@@ -689,11 +694,13 @@ plotSurface2D <- function(x = 1:nrow(z), y = 1:ncol(z), f, z = NULL, nLev = 20,
 #' @return The vector \code{t}, invisible.
 #' @examples
 #' \donttest{
-#' grid <- seq(-pi, pi, l = 50)
-#' t <- plotSurface3D(grid, grid, grid, size = 10, alpha = 0.01, fVect = TRUE,
-#'                    f = function(x) 10 * (sin(x[, 1]) * cos(x[, 2]) - sin(x[, 3]))^2)
-#' plotSurface3D(grid, grid, grid, t = t, size = 15, alpha = 0.1,
-#'               levels = quantile(t, probs = seq(0, 0.1, l = 20)))
+#' if (requireNamespace("rgl")) {
+#'   x <- seq(-pi, pi, l = 50)
+#'   f <- function(x) 10 * (sin(x[, 1]) * cos(x[, 2]) - sin(x[, 3]))^2
+#'   t <- plotSurface3D(x, x, x, size = 10, alpha = 0.01, fVect = TRUE, f = f)
+#'   plotSurface3D(x, x, x, t = t, size = 15, alpha = 0.1,
+#'                 levels = quantile(t, probs = seq(0, 0.1, l = 20)))
+#' }
 #' }
 #' @keywords internal
 #' @export
@@ -1050,12 +1057,16 @@ torusAxis <- function(sides = 1:2, twoPi = FALSE, ...) {
 #' @details The function calls \code{\link[rgl:axes3d]{box3d}}.
 #' @examples
 #' \donttest{
-#' x <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
-#' y <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
-#' z <- toPiInt(x + y + rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
-#' rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
-#'             col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
-#' torusAxis3d()
+#' if (requireNamespace("rgl")) {
+#'   n <- 50
+#'   x <- toPiInt(rnorm(n, mean = seq(-pi, pi, l = n), sd = 0.5))
+#'   y <- toPiInt(rnorm(n, mean = seq(-pi, pi, l = n), sd = 0.5))
+#'   z <- toPiInt(x + y + rnorm(n, mean = seq(-pi, pi, l = n), sd = 0.5))
+#'   rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi),
+#'               zlim = c(-pi, pi), col = rainbow(n), size = 2,
+#'               box = FALSE, axes = FALSE)
+#'   torusAxis3d()
+#' }
 #' }
 #' @export
 torusAxis3d <- function(sides = 1:3, twoPi = FALSE, ...) {
