@@ -73,10 +73,10 @@ arma::mat driftWn2D(arma::mat x, arma::mat A, arma::vec mu, arma::vec sigma, dou
   int lk = 2 * maxK + 1;
   arma::vec twokpi = arma::linspace<arma::vec>(-maxK * 2 * M_PI, maxK * 2 * M_PI, lk);
 
-  // Bivariate vector (2 * K1 * PI, 2 * K2 * PI) for weighting
+  // Bivariate vector (2 * K1 * M_PI, 2 * K2 * M_PI) for weighting
   arma::vec twokepivec(2);
 
-  // Bivariate vector (2 * K1 * PI, 2 * K2 * PI) for wrapping
+  // Bivariate vector (2 * K1 * M_PI, 2 * K2 * M_PI) for wrapping
   arma::vec twokapivec(2);
 
   // Matrix of winding numbers combinations
@@ -111,7 +111,7 @@ arma::mat driftWn2D(arma::mat x, arma::mat A, arma::vec mu, arma::vec sigma, dou
     // Loop in the winding weight K1
     for (int wek1 = 0; wek1 < lk; wek1++) {
 
-      // 2 * K1 * PI
+      // 2 * K1 * M_PI
       twokepivec(0) = twokpi(wek1);
 
       // Compute once the index
@@ -120,7 +120,7 @@ arma::mat driftWn2D(arma::mat x, arma::mat A, arma::vec mu, arma::vec sigma, dou
       // Loop in the winding weight K2
       for (int wek2 = 0; wek2 < lk; wek2++) {
 
-        // 2 * K2 * PI
+        // 2 * K2 * M_PI
         twokepivec(1) = twokpi(wek2);
 
         // Decomposition of the exponent
