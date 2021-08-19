@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // dWn1D
 arma::vec dWn1D(arma::vec x, double mu, double sigma, int maxK, double expTrc, int vmApprox, double kt, double logConstKt);
 RcppExport SEXP _sdetorus_dWn1D(SEXP xSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP maxKSEXP, SEXP expTrcSEXP, SEXP vmApproxSEXP, SEXP ktSEXP, SEXP logConstKtSEXP) {

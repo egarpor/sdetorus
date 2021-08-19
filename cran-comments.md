@@ -1,7 +1,7 @@
 ## Test environments
 
-* local R installation, R 3.6.3
-* ubuntu 16.04 (on travis-ci), R 3.6.3
+* local R installation, R 4.1.0
+* ubuntu 16.04 (on travis-ci), R 3.6.0
 * win-builder (release, devel)
 * Windows Server 2008 R2 SP1, R-devel, 32/64 bit (on R-hub)
 * Windows Server 2008 R2 SP1, R-release, 32/64 bit (on R-hub)
@@ -14,14 +14,11 @@
 * Oracle Solaris 10, x86, 32 bit, R-release (on R-hub)
 * Oracle Solaris 10, x86, 32 bit, R-release, Oracle Developer Studio 12.6 (on R-hub)
 
+On some platforms:
+
+* "Found the following (possibly) invalid URLs" -- double-checked and correctly spelled
+
 ## R CMD check results
 
 0 errors | 0 warnings | 0 notes
 
-* "Days since last update: 3" I am resubmitting to fix the additional issues (1 warning and 4 notes) appearing in https://www.stats.ox.ac.uk/pub/bdr/LTO/sdetorus.out
-
-## Resubmission
-
-This is a resubmission. In this version I have:
-
-* Fix the redefinition of arma::mat forwardSweepPeriodicTridiag() as arma::vec to avoid 1 warning and 4 notes in https://www.stats.ox.ac.uk/pub/bdr/LTO/sdetorus.out.
