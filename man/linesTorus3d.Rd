@@ -28,17 +28,22 @@ Joins the corresponding points with line segments or arrows that exhibit wrappin
 }
 \examples{
 \donttest{
-x <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
-y <- toPiInt(rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
-z <- toPiInt(x + y + rnorm(20, mean = seq(-pi, pi, l = 20), sd = 0.5))
-rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
-            col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
-linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), lwd = 2)
-torusAxis3d()
-rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi), zlim = c(-pi, pi),
-            col = rainbow(length(x)), size = 2, box = FALSE, axes = FALSE)
-linesTorus3d(x = x, y = y, z = z, col = rainbow(length(x)), ltyCross = 2,
-             arrows = TRUE, theta = 0.1 * pi / 180, barblen = 0.1)
-torusAxis3d()
+if (requireNamespace("rgl")) {
+  n <- 20
+  x <- toPiInt(rnorm(n, mean = seq(-pi, pi, l = n), sd = 0.5))
+  y <- toPiInt(rnorm(n, mean = seq(-pi, pi, l = n), sd = 0.5))
+  z <- toPiInt(x + y + rnorm(n, mean = seq(-pi, pi, l = n), sd = 0.5))
+  rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi),
+              zlim = c(-pi, pi), col = rainbow(n), size = 2,
+              box = FALSE, axes = FALSE)
+  linesTorus3d(x = x, y = y, z = z, col = rainbow(n), lwd = 2)
+  torusAxis3d()
+  rgl::plot3d(x, y, z, xlim = c(-pi, pi), ylim = c(-pi, pi),
+              zlim = c(-pi, pi), col = rainbow(n), size = 2,
+              box = FALSE, axes = FALSE)
+  linesTorus3d(x = x, y = y, z = z, col = rainbow(n), ltyCross = 2,
+               arrows = TRUE, theta = 0.1 * pi / 180, barblen = 0.1)
+  torusAxis3d()
+}
 }
 }

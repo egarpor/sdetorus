@@ -44,7 +44,7 @@ logBesselI0Scaled <- function(x, splineApprox = TRUE) {
   if (splineApprox) {
 
     res <- numeric(length(x))
-    indAsymp <- x >= 5e4
+    indAsymp <- x >= 1e4
     indNoAsymp <- !indAsymp
     res[indNoAsymp] <- logBesselI0ScaledSpline(x[indNoAsymp])
 

@@ -45,7 +45,7 @@ for (i in 0:20) {
 }
 }
 \references{
-Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific, Singapore. \url{https://doi.org/10.1142/4031}
+Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific, Singapore. \doi{10.1142/4031}
 
-Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on the circle. \emph{Journal of the American Statistical Association}, 100(472):1422--1428. \url{https://doi.org/10.1198/016214505000000286}
+Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on the circle. \emph{Journal of the American Statistical Association}, 100(472):1422--1428. \doi{10.1198/016214505000000286}
 }
