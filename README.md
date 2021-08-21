@@ -1,9 +1,8 @@
-sdetorus
-========
+# sdetorus
 
 [![License:
 GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![](https://travis-ci.org/egarpor/sdetorus.svg?branch=master)](https://travis-ci.org/egarpor/sdetorus)
+[![](https://app.travis-ci.com/egarpor/sdetorus.svg?branch=master)](https://app.travis-ci.com/egarpor/sdetorus)
 [![](https://www.r-pkg.org/badges/version/sdetorus?color=green)](https://cran.r-project.org/package=sdetorus)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/sdetorus?color=green)](https://cran.r-project.org/package=sdetorus)
 [![](http://cranlogs.r-pkg.org/badges/last-month/sdetorus?color=green)](https://cran.r-project.org/package=sdetorus)
@@ -17,16 +16,14 @@ by the “sdetorus” density</i>
 
  
 
-Overview
---------
+## Overview
 
 This library provides statistical tools for estimation of toroidal
 diffusions. It is the package companion for the paper *Langevin
 diffusions on the torus: estimation and applications* (García-Portugués
 et al., 2019).
 
-Install
--------
+## Install
 
 Get the released version from CRAN:
 
@@ -51,8 +48,7 @@ install_github("egarpor/sdetorus")
 library(sdetorus)
 ```
 
-Usage
------
+## Usage
 
 ### Example 1: simulation of diffusion trajectories
 
@@ -85,7 +81,6 @@ points(rep(1, nx0), samp[, N + 1], pch = 16, col = rainbow(nx0))
 <img src="README/README-example1-1.png" style="display: block; margin: auto;" />
 
 ``` r
-
 ## WN diffusion in 2D
 
 # Initial points
@@ -148,7 +143,6 @@ axis(2)
 <img src="README/README-example2-1.png" style="display: block; margin: auto;" />
 
 ``` r
-
 ## WN diffusion in 2D
 
 # Function for computing and plotting a tpd
@@ -201,7 +195,6 @@ torusAxis(2)
 <img src="README/README-example3-1.png" style="display: block; margin: auto;" />
 
 ``` r
-
 # Drift and diffusion
 b <- function(x, pars) driftWn1D(x = x, alpha = pars[1], mu = pars[2],
                                  sigma = pars[3])
@@ -311,8 +304,7 @@ est3$par
 ```
 -->
 
-Reproducibility of García-Portugués et al. (2019)
--------------------------------------------------
+## Reproducibility of García-Portugués et al. (2019)
 
 The directories
 [`/MD`](https://github.com/egarpor/data-langevintorus/tree/master/MD)
@@ -323,8 +315,7 @@ in the
 repository contain the scripts used in the empirical analyses of the
 aforementioned paper, as well as their `.RData` outputs.
 
-References
-----------
+## References
 
 García-Portugués, E., Sørensen, M., Mardia, K. V., and Hamelryck, T.
 (2019). Langevin diffusions on the torus: estimation and applications.
