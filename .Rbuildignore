@@ -1,9 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.travis\.yml$
 ^logo$
 ^README$
 ^README.*$
 ^TODO$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
+^LICENSE\.md$
+^\.github$

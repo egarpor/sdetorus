@@ -2,7 +2,8 @@
 
 [![License:
 GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![](https://app.travis-ci.com/egarpor/sdetorus.svg?branch=master)](https://app.travis-ci.com/egarpor/sdetorus)
+[![R build
+status](https://github.com/egarpor/sdetorus/workflows/R-CMD-check/badge.svg)](https://github.com/egarpor/sdetorus/actions)
 [![](https://www.r-pkg.org/badges/version/sdetorus?color=green)](https://cran.r-project.org/package=sdetorus)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/sdetorus?color=green)](https://cran.r-project.org/package=sdetorus)
 [![](http://cranlogs.r-pkg.org/badges/last-month/sdetorus?color=green)](https://cran.r-project.org/package=sdetorus)
