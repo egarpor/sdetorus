@@ -7,19 +7,25 @@
 driftMvm(x, alpha, mu, A = 0)
 }
 \arguments{
-\item{x}{matrix of size \code{c(n, p)} with the evaluation points for the drift.}
+\item{x}{matrix of size \code{c(n, p)} with the evaluation points for the
+drift.}
 
-\item{alpha}{vector of length \code{p} with the strength of the drift in the diagonal (\eqn{\sin}{sin} terms).}
+\item{alpha}{vector of length \code{p} with the strength of the drift in
+the diagonal (\eqn{\sin}{sin} terms).}
 
-\item{mu}{vector of length \code{p} with the unconditional mean of the diffusion.}
+\item{mu}{vector of length \code{p} with the unconditional mean of the
+diffusion.}
 
-\item{A}{matrix of size \code{c(p, p)} with the strength of the drift in cross terms (\eqn{\cos}{cos}-\eqn{\sin}{sin} terms). The diagonal has to be zero.}
+\item{A}{matrix of size \code{c(p, p)} with the strength of the drift in
+cross terms (\eqn{\cos}{cos}-\eqn{\sin}{sin} terms). The diagonal has to
+be zero.}
 }
 \value{
 A matrix of the same size as \code{x} containing the drift.
 }
 \description{
-Drift for the Langevin diffusion associated to the Multivariate von Mises (MvM) in dimension \code{p}.
+Drift for the Langevin diffusion associated to the Multivariate
+von Mises (MvM) in dimension \code{p}.
 }
 \details{
 See Section 2.2.1 in García-Portugués et al. (2019) for details.
@@ -36,9 +42,12 @@ for (i in 0:20) {
 # 2D
 x <- seq(-pi, pi, l = 100)
 plotSurface2D(x, x, f = function(x) sqrt(rowSums(driftMvm(x = x,
-              alpha = c(2, 2), mu = c(-1, -1), A = rbind(c(0, 0), c(0, 0)))^2)),
+              alpha = c(2, 2), mu = c(-1, -1),
+              A = rbind(c(0, 0), c(0, 0)))^2)),
               fVect = TRUE)
 }
 \references{
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+Langevin diffusions on the torus: estimation and applications.
+\emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 }

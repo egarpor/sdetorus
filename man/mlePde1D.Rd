@@ -8,27 +8,33 @@ mlePde1D(data, delta, b, sigma2, Mx = 500, Mt = ceiling(100 * delta),
   sdInitial = 0.1, linearBinning = FALSE, start, lower, upper, ...)
 }
 \arguments{
-\item{data}{a vector of size \code{N} with the discretized trajectory of the diffusion.}
+\item{data}{a vector of size \code{N} with the discretized trajectory of
+the diffusion.}
 
 \item{delta}{time discretization step.}
 
-\item{b}{drift function. Must return a vector of the same size as its argument.}
+\item{b}{drift function. Must return a vector of the same size as its
+argument.}
 
-\item{sigma2}{function giving the squared diffusion coefficient. Must return a vector of the same size as its argument.}
+\item{sigma2}{function giving the squared diffusion coefficient. Must
+return a vector of the same size as its argument.}
 
 \item{Mx}{size of the equispaced spatial grid in \eqn{[-\pi,\pi)}.}
 
 \item{Mt}{size of the time grid in \eqn{[0, t]}.}
 
-\item{sdInitial}{the standard deviation of the concentrated WN giving the initial condition.}
+\item{sdInitial}{the standard deviation of the concentrated WN giving the
+initial condition.}
 
-\item{linearBinning}{flag to indicate whether linear binning should be applied for the initial values of the tpd, instead of usual simple binning (cheaper). Linear binning is always done in the evaluation of the tpd.}
+\item{linearBinning}{flag to indicate whether linear binning should be
+applied for the initial values of the tpd, instead of usual simple binning
+(cheaper). Linear binning is always done in the evaluation of the tpd.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each
+entry representing a different starting value.}
 
-\item{lower}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
-
-\item{upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
+\item{lower, upper}{bound for box constraints as in method \code{"L-BFGS-B"}
+of \code{\link[stats]{optim}}.}
 
 \item{...}{Further parameters passed to \code{\link{crankNicolson1D}}.}
 }
@@ -36,10 +42,13 @@ mlePde1D(data, delta, b, sigma2, Mx = 500, Mt = ceiling(100 * delta),
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker--Planck Partial Differential Equation (PDE) in 1D.
+Maximum Likelihood Estimation (MLE) for arbitrary diffusions,
+based on the transition probability density (tpd) obtained as the numerical
+solution of the Fokker--Planck Partial Differential Equation (PDE) in 1D.
 }
 \details{
-See Sections 3.4.1 and 3.4.4 in García-Portugués et al. (2019) for details.
+See Sections 3.4.1 and 3.4.4 in García-Portugués et al. (2019) for
+details.
 }
 \examples{
 \donttest{
@@ -77,21 +86,28 @@ traj <- rTrajWn1D(x0 = 0, alpha = alpha, mu = mu, sigma = sigma, N = 500,
 
 exactOu <- mleOu(traj, delta = 0.5, start = c(1, 1, 2),
                  lower = c(0.1, -pi, 0.1), upper = c(10, pi, 10))
-pdeWn <- mlePde1D(data = traj, delta = 0.5, Mx = 100, Mt = 100, b = function(x, pars)
-                  driftWn1D(x = x, alpha = pars[1], mu = pars[2], sigma = pars[3]),
+pdeWn <- mlePde1D(data = traj, delta = 0.5, Mx = 100, Mt = 100,
+                  b = function(x, pars)
+                    driftWn1D(x = x, alpha = pars[1], mu = pars[2],
+                              sigma = pars[3]),
                   sigma2 = function(x, pars) rep(pars[3]^2, length(x)),
                   start = c(1, 1, 2), lower = c(0.1, -pi, -10),
                   upper = c(10, pi, 10), verbose = 2)
-pdeWnLin <- mlePde1D(data = traj, delta = 0.5, Mx = 100, Mt = 100, b = function(x, pars)
-                     driftWn1D(x = x, alpha = pars[1], mu = pars[2], sigma = pars[3]),
+pdeWnLin <- mlePde1D(data = traj, delta = 0.5, Mx = 100, Mt = 100,
+                     b = function(x, pars)
+                       driftWn1D(x = x, alpha = pars[1], mu = pars[2],
+                                 sigma = pars[3]),
                      sigma2 = function(x, pars) rep(pars[3]^2, length(x)),
                      start = c(1, 1, 2), lower = c(0.1, -pi, -10),
-                     upper = c(10, pi, 10), linearBinning = TRUE, verbose = 2)
+                     upper = c(10, pi, 10), linearBinning = TRUE,
+                     verbose = 2)
 head(exactOu)
 head(pdeWn)
 head(pdeWnLin)
 }
 }
 \references{
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+Langevin diffusions on the torus: estimation and applications.
+\emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 }

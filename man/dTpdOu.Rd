@@ -31,14 +31,20 @@ covstOu(s, t, alpha, sigma)
 \item{log}{flag to indicate whether to compute the logarithm of the density.}
 }
 \value{
-A vector of the same length as \code{x} containing the evaluation of the density.
+A vector of the same length as \code{x} containing the evaluation of
+the density.
 }
 \description{
-Transition probability density of the \emph{univariate} Ornstein--Uhlenbeck (OU) diffusion
-\deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0.}{dX_t=alpha(mu - X_t)dt+sigma dW_t, X0=x0.}
+Transition probability density of the \emph{univariate}
+Ornstein--Uhlenbeck (OU) diffusion
+\deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0.}{
+dX_t=alpha(mu - X_t)dt+sigma dW_t, X0=x0.}
 }
 \details{
-The transition probability density is a normal density with mean \code{\link{meantOu}} and variance \code{\link{vartOu}}. See \code{\link{dTpdMou}} for the multivariate case (less efficient for dimension one).
+The transition probability density is a normal density with mean
+\code{\link{meantOu}} and variance \code{\link{vartOu}}. See
+\code{\link{dTpdMou}} for the multivariate case (less efficient for
+dimension one).
 }
 \examples{
 x <- seq(-4, 4, by = 0.01)

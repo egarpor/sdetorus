@@ -22,18 +22,23 @@ rTrajWn2D(x0, alpha, mu, sigma, rho = 0, N = 100, delta = 0.01,
 
 \item{delta}{discretization step.}
 
-\item{NFine}{number of discretization steps for the fine trajectory. Must be larger than \code{N}.}
+\item{NFine}{number of discretization steps for the fine trajectory. Must
+be larger than \code{N}.}
 
-\item{deltaFine}{discretization step for the fine trajectory. Must be smaller than \code{delta}.}
+\item{deltaFine}{discretization step for the fine trajectory. Must be
+smaller than \code{delta}.}
 }
 \value{
-A matrix of size \code{c(N + 1, 2)} containing \code{x0} in the first entry and the discretized trajectory.
+A matrix of size \code{c(N + 1, 2)} containing \code{x0} in the
+first entry and the discretized trajectory.
 }
 \description{
-Simulation of the Wrapped Normal (WN) diffusion in 2D by subsampling a fine trajectory obtained by the Euler discretization.
+Simulation of the Wrapped Normal (WN) diffusion in 2D by
+subsampling a fine trajectory obtained by the Euler discretization.
 }
 \details{
-The fine trajectory is subsampled using the indexes \code{seq(1, NFine + 1, by = NFine / N)}.
+The fine trajectory is subsampled using the indexes
+\code{seq(1, NFine + 1, by = NFine / N)}.
 }
 \examples{
 samp <- rTrajWn2D(x0 = c(0, 0), alpha = c(1, 1, -0.5), mu = c(pi, pi),

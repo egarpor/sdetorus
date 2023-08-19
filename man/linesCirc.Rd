@@ -12,7 +12,8 @@ linesCirc(x = seq_along(y), y, col = 1, lty = 1, ltyCross = lty,
 
 \item{y}{vector with vertical coordinates, wrapped in \eqn{[-\pi,\pi)}.}
 
-\item{col}{color vector of length \code{1} or the same length of \code{x} and \code{y}.}
+\item{col}{color vector of length \code{1} or the same length of \code{x} and
+\code{y}.}
 
 \item{lty}{line type as in \code{\link[graphics]{par}}.}
 
@@ -20,13 +21,15 @@ linesCirc(x = seq_along(y), y, col = 1, lty = 1, ltyCross = lty,
 
 \item{arrows}{flag for drawing arrows instead of line segments.}
 
-\item{...}{further graphical parameters passed to \code{\link[graphics]{segments}} or \code{\link[graphics]{arrows}}.}
+\item{...}{further graphical parameters passed to
+\code{\link[graphics]{segments}} or \code{\link[graphics]{arrows}}.}
 }
 \value{
 Nothing. The functions are called for drawing wrapped lines.
 }
 \description{
-Joins the corresponding points with line segments or arrows that exhibit wrapping in \eqn{[-\pi,\pi)} in the vertical axis.
+Joins the corresponding points with line segments or arrows that
+exhibit wrapping in \eqn{[-\pi,\pi)} in the vertical axis.
 }
 \details{
 \code{y} is wrapped to \eqn{[-\pi,\pi)} before plotting.

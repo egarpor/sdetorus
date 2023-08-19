@@ -67,7 +67,7 @@ saveGIF({
 # Video
 saveVideo({
   par(mar = rep(0, 4))
-  for (i in seq(1, N, by = 5)){
+  for (i in seq(1, N, by = 5)) {
     graphics::image(x, x, matrix(u[, i], nrow = Mx, ncol = My),
                     breaks = seq(0, m, l = 31), col = matlab.like2(30),
                     axes = FALSE, xlab = "", ylab = "")

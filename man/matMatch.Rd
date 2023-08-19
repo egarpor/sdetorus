@@ -11,17 +11,22 @@ matMatch(x, mat, rows = TRUE, useMatch = FALSE, ...)
 
 \item{mat}{matrix with the values to be matched against.}
 
-\item{rows}{whether the match should be done by rows (\code{TRUE}) or columns (\code{FALSE}).}
+\item{rows}{whether the match should be done by rows (\code{TRUE}) or
+columns (\code{FALSE}).}
 
-\item{useMatch}{whether to rely on \code{\link[base]{match}} or not. Might give unexpected mismatches due to working with lists.}
+\item{useMatch}{whether to rely on \code{\link[base]{match}} or not. Might
+give unexpected mismatches due to working with lists.}
 
 \item{...}{further parameters passed to \code{\link[base]{match}}.}
 }
 \value{
-An integer vector of length \code{nrow(x)} (or \code{ncol(x)}) giving the row (or col) position in table of the first match, if there is a match.
+An integer vector of length \code{nrow(x)} (or \code{ncol(x)})
+giving the row (or col) position in table of the first match, if there is
+a match.
 }
 \description{
-Wrapper for matching a matrix against another, by rows or columns.
+Wrapper for matching a matrix against another, by rows or
+columns.
 }
 \examples{
 # By rows
