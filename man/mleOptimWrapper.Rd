@@ -103,9 +103,9 @@ see \href{https://CRAN.R-project.org/view=Optimization}{
 optimization-focused packages}). The value must be a list with objects
 \code{pars} and \code{penalty}. By default no region is imposed, i.e.,
 \code{region = function(pars) list("pars" = pars, "penalty" = 0)}. Note that
- the Hessian is computed from the unconstrained problem, hence
- \code{localMinimumGuaranteed} might be \code{FALSE} even if a local minimum
-  to the constrained problem was found.
+the Hessian is computed from the unconstrained problem, hence
+\code{localMinimumGuaranteed} might be \code{FALSE} even if a local minimum
+to the constrained problem was found.
 }
 \examples{
 # No local minimum
