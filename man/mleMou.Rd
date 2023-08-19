@@ -9,15 +9,21 @@ mleMou(data, delta, alpha = rep(NA, 3), mu = rep(NA, 2), sigma = rep(NA,
   upper = c(25, 25, 25, pi, pi, 25, 25), ...)
 }
 \arguments{
-\item{data}{a matrix of size \code{c(N, p)} with the discretized trajectory of the diffusion.}
+\item{data}{a matrix of size \code{c(N, p)} with the discretized trajectory
+of the diffusion.}
 
 \item{delta}{time discretization step.}
 
-\item{alpha, mu, sigma}{arguments to fix a parameter to a given value and perform the estimation on the rest. Defaults to \code{NA}, meaning that the parameter is estimated. Note that \code{start}, \code{lower} and \code{upper} must be changed accordingly if parameters are fixed, see examples.}
+\item{alpha, mu, sigma}{arguments to fix a parameter to a given value and
+perform the estimation on the rest. Defaults to \code{NA}, meaning that the
+parameter is estimated. Note that \code{start}, \code{lower} and \code{upper}
+ must be changed accordingly if parameters are fixed, see examples.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each
+entry representing a different starting value.}
 
-\item{lower, upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
+\item{lower, upper}{bound for box constraints as in method \code{"L-BFGS-B"}
+of \code{\link[stats]{optim}}.}
 
 \item{...}{further arguments to be passed to \code{\link{mleOptimWrapper}}.}
 }
@@ -25,13 +31,21 @@ mleMou(data, delta, alpha = rep(NA, 3), mu = rep(NA, 2), sigma = rep(NA,
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Computation of the maximum likelihood estimator of the parameters of the \emph{multivariate} Ornstein--Uhlenbeck (OU) diffusion from a discretized trajectory \eqn{\{X_{\Delta i}\}_{i=1}^N}{\{X_{Delta * i}\}_{i=1}^N}. The objective function to minimize is
-\deqn{\sum_{i=2}^n\log p_{\Delta}(X_{\Delta i} | X_{\Delta (i - 1)}).}{\sum_{i=2}^N log p_{Delta}(X_{Delta * i} | X_{Delta * (i - 1)}).}
+Computation of the maximum likelihood estimator of the
+parameters of the \emph{multivariate} Ornstein--Uhlenbeck (OU) diffusion
+from a discretized trajectory
+\eqn{\{X_{\Delta i}\}_{i=1}^N}{\{X_{Delta * i}\}_{i=1}^N}. The objective
+function to minimize is
+\deqn{\sum_{i=2}^n\log p_{\Delta}(X_{\Delta i} | X_{\Delta (i - 1)}).}{
+\sum_{i=2}^N log p_{Delta}(X_{Delta * i} | X_{Delta * (i - 1)}).}
 }
 \details{
-The first row in \code{data} is not taken into account for estimation. See \code{\link{mleOu}} for the univariate case (more efficient).
+The first row in \code{data} is not taken into account for
+estimation. See \code{\link{mleOu}} for the univariate case (more efficient).
 
-\code{mleMou} only handles \code{p = 2} currently. It imposes that \code{Sigma} is diagonal and handles the parametrization of \code{A} by \code{\link{alphaToA}}.
+\code{mleMou} only handles \code{p = 2} currently. It imposes that
+\code{Sigma} is diagonal and handles the parametrization of \code{A} by
+\code{\link{alphaToA}}.
 }
 \examples{
 set.seed(345678)
@@ -43,6 +57,6 @@ mleMou(data = data, delta = 0.5, start = c(1, 1, 0, 1, 1, 1, 2),
        upper = c(25, 25, 25, 10, 10, 25, 25), maxit = 500)
 
 # Fixed sigma and mu
-mleMou(data = data, delta = 0.5, mu = c(1, 1), sigma = 1:2, start = c(1, 1, 0),
-       lower = c(0.1, 0.1, -25), upper = c(25, 25, 25))
+mleMou(data = data, delta = 0.5, mu = c(1, 1), sigma = 1:2,
+       start = c(1, 1, 0), lower = c(0.1, 0.1, -25), upper = c(25, 25, 25))
 }

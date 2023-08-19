@@ -11,11 +11,13 @@
 * Debian Linux, R-release, GCC
 * Debian Linux, R-devel, GCC
 
-On some platforms:
-
-* "Found the following (possibly) invalid URLs" -- double-checked and correctly spelled
-
 ## R CMD check results
 
 0 errors | 0 warnings | 0 notes
+
+## Comments
+
+* Possibly misspelled words in DESCRIPTION:
+    replicability (20:54)
+  This has been double checked. The word is in common use.
 

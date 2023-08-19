@@ -30,16 +30,25 @@ covtMou(t, A, Sigma, eigA = NULL)
 \item{log}{flag to indicate whether to compute the logarithm of the density.}
 }
 \value{
-A matrix of the same size as \code{x} containing the evaluation of the density.
+A matrix of the same size as \code{x} containing the evaluation of
+the density.
 }
 \description{
-Transition probability density of the \emph{multivariate} Ornstein--Uhlenbeck (OU) diffusion
-\deqn{dX_t=A(\mu - X_t)dt+\Sigma^\frac{1}{2}dW_t, X_0=x_0.}{dX_t=A(mu - X_t)dt+Sigma^(1/2) dW_t, X0=x0.}
+Transition probability density of the \emph{multivariate}
+Ornstein--Uhlenbeck (OU) diffusion
+\deqn{dX_t=A(\mu - X_t)dt+\Sigma^\frac{1}{2}dW_t, X_0=x_0.}{
+dX_t=A(mu - X_t)dt+Sigma^(1/2) dW_t, X0=x0.}
 }
 \details{
-The transition probability density is a multivariate normal with mean \code{\link{meantMou}} and covariance \code{\link{covtMou}}. See \code{\link{dTpdOu}} for the univariate case (more efficient).
+The transition probability density is a multivariate normal with
+mean \code{\link{meantMou}} and covariance \code{\link{covtMou}}. See
+\code{\link{dTpdOu}} for the univariate case (more efficient).
 
-\code{solve(A) \%*\% Sigma} has to be a covariance matrix (symmetric and positive definite) in order to have a proper transition density. For the bivariate case, this can be ensured with the \code{\link{alphaToA}} function. In the multivariate case, it is ensured if \code{Sigma} is isotropic and \code{A} is a covariance matrix.
+\code{solve(A) \%*\% Sigma} has to be a covariance matrix (symmetric and
+positive definite) in order to have a proper transition density. For the
+bivariate case, this can be ensured with the \code{\link{alphaToA}} function.
+In the multivariate case, it is ensured if \code{Sigma} is isotropic and
+\code{A} is a covariance matrix.
 }
 \examples{
 x <- seq(-4, 4, by = 0.1)

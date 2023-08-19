@@ -5,7 +5,7 @@
 \title{Visualization of a 3D surface}
 \usage{
 plotSurface3D(x = seq_len(nrow(t)), y = seq_len(ncol(t)),
-  z = 1:dim(t)[3], f, t = NULL, nLev = 20, levels = NULL,
+  z = seq_len(dim(t)[3]), f, t = NULL, nLev = 20, levels = NULL,
   fVect = FALSE, size = 15, alpha = 0.05, ...)
 }
 \arguments{
@@ -13,17 +13,22 @@ plotSurface3D(x = seq_len(nrow(t)), y = seq_len(ncol(t)),
 
 \item{f}{function to be plot. Must take a single argument (see examples).}
 
-\item{t}{a vector of length \code{length(x) * length(y) * length(z)} containing the evaluation of \code{f} in the trivariate grid. If not provided, it is computed internally.}
+\item{t}{a vector of length \code{length(x) * length(y) * length(z)}
+containing the evaluation of \code{f} in the trivariate grid. If not
+provided, it is computed internally.}
 
 \item{nLev}{number of levels in the colour scale.}
 
-\item{levels}{vector of breaks in the colour scale. If not provided, it is set to \code{quantile(z, probs = seq(0, 1, l = nLev))}.}
+\item{levels}{vector of breaks in the colour scale. If not provided, it is
+set to \code{quantile(z, probs = seq(0, 1, l = nLev))}.}
 
-\item{fVect}{flag to indicate whether \code{f} is a vectorized function (see examples).}
+\item{fVect}{flag to indicate whether \code{f} is a vectorized function
+(see examples).}
 
 \item{size}{size of points in pixels.}
 
-\item{alpha}{alpha value between \code{0} (fully transparent) and \code{1} (opaque).}
+\item{alpha}{alpha value between \code{0} (fully transparent) and \code{1}
+(opaque).}
 
 \item{...}{further arguments passed to \code{\link[rgl]{plot3d}}}
 }
@@ -31,7 +36,8 @@ plotSurface3D(x = seq_len(nrow(t)), y = seq_len(ncol(t)),
 The vector \code{t}, invisible.
 }
 \description{
-Convenient wrapper for visualizing a real function of three variables by means of a colour scale and alpha shading.
+Convenient wrapper for visualizing a real function of three
+variables by means of a colour scale and alpha shading.
 }
 \examples{
 \donttest{

@@ -12,27 +12,36 @@ psMle(data, delta, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
 
 \item{delta}{discretization step.}
 
-\item{method}{a string for choosing \code{"E"} (Euler), \code{"SO"} (Shoji--Ozaki) or \code{"SO2"} (Shoji--Ozaki with Ito's expansion in the drift) method.}
+\item{method}{a string for choosing \code{"E"} (Euler), \code{"SO"}
+(Shoji--Ozaki) or \code{"SO2"} (Shoji--Ozaki with Ito's expansion in the
+drift) method.}
 
 \item{b}{drift function. Must return a matrix of the same size as \code{x}.}
 
 \item{jac.b}{jacobian of the drift function.}
 
-\item{sigma2}{diagonal of the diffusion matrix (if univariate, this is the square of the diffusion coefficient). Must return an object of the same size as \code{x}.}
+\item{sigma2}{diagonal of the diffusion matrix (if univariate, this is the
+square of the diffusion coefficient). Must return an object of the same
+size as \code{x}.}
 
-\item{b1}{first derivative of the drift function (univariate). Must return a vector of the same length as \code{x}.}
+\item{b1}{first derivative of the drift function (univariate). Must return
+a vector of the same length as \code{x}.}
 
-\item{b2}{second derivative of the drift function (univariate). Must return a vector of the same length as \code{x}.}
+\item{b2}{second derivative of the drift function (univariate). Must return
+a vector of the same length as \code{x}.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each
+entry representing a different starting value.}
 
-\item{lower, upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
+\item{lower, upper}{bound for box constraints as in method \code{"L-BFGS-B"}
+of \code{\link[stats]{optim}}.}
 
 \item{circular}{flag to indicate circular data.}
 
 \item{maxK}{maximum absolute winding number used if \code{circular = TRUE}.}
 
-\item{vmApprox}{flag to indicate von Mises approximation to wrapped normal. See\cr \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
+\item{vmApprox}{flag to indicate von Mises approximation to wrapped normal.
+See\cr \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
 
 \item{...}{further parameters passed to \code{\link{mleOptimWrapper}}.}
 }
@@ -40,10 +49,14 @@ psMle(data, delta, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Maximum pseudo-likelihood using the Euler and Shoji--Ozaki pseudo-likelihoods.
+Maximum pseudo-likelihood using the Euler and Shoji--Ozaki
+pseudo-likelihoods.
 }
 \details{
-See Section 3.2 in García-Portugués et al. (2019) for details. \code{"SO2"} implements Shoji and Ozai (1998)'s expansion with for \code{p = 1}. \code{"SO"} is the same expansion, for arbitrary \code{p}, but considering null second derivatives.
+See Section 3.2 in García-Portugués et al. (2019) for details.
+\code{"SO2"} implements Shoji and Ozai (1998)'s expansion with for
+\code{p = 1}. \code{"SO"} is the same expansion, for arbitrary \code{p},
+but considering null second derivatives.
 }
 \examples{
 \donttest{
@@ -104,7 +117,8 @@ jac.b <- function(x, pars, h = 1e-4) {
   cbind(res[1:l, ] - res[(l + 1):(2 * l), ],
         res[2 * l + 1:l, ] - res[2 * l + (l + 1):(2 * l), ]) / (2 * h)
 }
-sigma2 <- function(x, pars) matrix(pars[6:7]^2, nrow = length(x) / 2L, ncol = 2)
+sigma2 <- function(x, pars) matrix(pars[6:7]^2, nrow = length(x) / 2L,
+                                   ncol = 2)
 lower <- c(0.01, 0.01, -25, -pi, -pi, 0.01, 0.01)
 upper <- c(25, 25, 25, pi, pi, 25, 25)
 psMle(data = samp, delta = delta, method = "E", b = b, sigma2 = sigma2,
@@ -120,7 +134,11 @@ mlePde2D(data = samp, delta = delta, b = b, sigma2 = sigma2, start = pars,
 }
 }
 \references{
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+Langevin diffusions on the torus: estimation and applications.
+\emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 
-Shoji, I. and Ozaki, T. (1998) A statistical method of estimation and simulation for systems of stochastic differential equations. \emph{Biometrika}, 85(1):240--243. \doi{10.1093/biomet/85.1.240}
+Shoji, I. and Ozaki, T. (1998) A statistical method of estimation and
+simulation for systems of stochastic differential equations.
+\emph{Biometrika}, 85(1):240--243. \doi{10.1093/biomet/85.1.240}
 }

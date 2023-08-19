@@ -8,13 +8,15 @@ sigmaDiff(data, delta, circular = TRUE, diagonal = FALSE,
   isotropic = FALSE)
 }
 \arguments{
-\item{data}{vector or matrix of size \code{c(N, p)} containing the discretized process.}
+\item{data}{vector or matrix of size \code{c(N, p)} containing the
+discretized process.}
 
 \item{delta}{discretization step.}
 
 \item{circular}{whether the process is circular or not.}
 
-\item{diagonal, isotropic}{enforce different constraints for the diffusion matrix.}
+\item{diagonal, isotropic}{enforce different constraints for the diffusion
+matrix.}
 }
 \value{
 The estimated diffusion matrix of size \code{c(p, p)}.
@@ -22,8 +24,9 @@ The estimated diffusion matrix of size \code{c(p, p)}.
 \description{
 Estimation of the \eqn{\Sigma} in the multivariate diffusion
 \deqn{dX_t=b(X_t)dt+\Sigma dW_t}{dX_t=b(X_t)dt+\Sigma dW_t}
-by the high-frequency estimate
-\deqn{\hat\Sigma = \frac{1}{N\Delta}\sum_{i=1}^N(X_i-X_{i-1})(X_i-X_{i-1})^T}{\hat\Sigma = \frac{1}{N\Delta}\sum_{i=1}^N(X_i-X_{i-1})(X_i-X_{i-1})^T.}
+by the high-frequency estimate \deqn{
+\hat\Sigma = \frac{1}{N\Delta}\sum_{i=1}^N(X_i-X_{i-1})(X_i-X_{i-1})^T}{
+\hat\Sigma = \frac{1}{N\Delta}\sum_{i=1}^N(X_i-X_{i-1})(X_i-X_{i-1})^T.}
 }
 \details{
 See Section 3.1 in García-Portugués et al. (2019) for details.
@@ -44,5 +47,7 @@ sigmaDiff(x, delta = 0.01, diagonal = TRUE)
 sigmaDiff(x, delta = 0.01, isotropic = TRUE)
 }
 \references{
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+Langevin diffusions on the torus: estimation and applications.
+\emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 }

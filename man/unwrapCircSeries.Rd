@@ -10,13 +10,17 @@ unwrapCircSeries(x)
 \item{x}{wrapped angles. Must be a vector or a matrix, see details.}
 }
 \value{
-A vector or matrix containing a choice of unwrapped angles of \code{x} that maximizes linear continuity.
+A vector or matrix containing a choice of unwrapped angles of
+\code{x} that maximizes linear continuity.
 }
 \description{
-Completes a circular time series to a linear one by computing the closest wind numbers. Useful for plotting circular trajectories with crossing of boundaries.
+Completes a circular time series to a linear one by
+computing the closest wind numbers. Useful for plotting circular
+trajectories with crossing of boundaries.
 }
 \details{
-If \code{x} is a matrix then the unwrapping is carried out row-wise, on each column separately.
+If \code{x} is a matrix then the unwrapping is carried out
+row-wise, on each column separately.
 }
 \examples{
 # Vectors

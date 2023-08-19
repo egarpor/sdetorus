@@ -28,5 +28,6 @@ for (i in 0:20) {
 }
 }
 \references{
-Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific, Singapore. \doi{10.1142/4031}
+Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular
+Statistics}. World Scientific, Singapore. \doi{10.1142/4031}
 }

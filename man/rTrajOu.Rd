@@ -20,14 +20,20 @@ rTrajOu(x0, alpha, mu, sigma, N = 100, delta = 0.001)
 \item{delta}{time discretization step.}
 }
 \value{
-A vector of length \code{N + 1} containing \code{x0} in the first entry and the exact discretized trajectory on the remaining elements.
+A vector of length \code{N + 1} containing \code{x0} in the first
+entry and the exact discretized trajectory on the remaining elements.
 }
 \description{
-Simulation of trajectories of the \emph{univariate} Ornstein--Uhlenbeck (OU) diffusion
-\deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0} using the exact transition probability density.
+Simulation of trajectories of the \emph{univariate}
+Ornstein--Uhlenbeck (OU) diffusion
+\deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0} using the exact
+transition probability density.
 }
 \details{
-The law of the discretized trajectory is a multivariate normal with mean \code{\link{meantOu}} and covariance matrix \code{\link{covstOu}}. See \code{\link{rTrajMou}} for the multivariate case (less efficient for dimension one).
+The law of the discretized trajectory is a multivariate normal
+with mean \code{\link{meantOu}} and covariance matrix \code{\link{covstOu}}.
+See \code{\link{rTrajMou}} for the multivariate case (less efficient for
+dimension one).
 }
 \examples{
 isRStudio <- identical(.Platform$GUI, "RStudio")

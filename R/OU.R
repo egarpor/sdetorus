@@ -2,8 +2,10 @@
 
 #' @title Simulation of trajectories for the univariate OU diffusion
 #'
-#' @description Simulation of trajectories of the \emph{univariate} Ornstein--Uhlenbeck (OU) diffusion
-#' \deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0} using the exact transition probability density.
+#' @description Simulation of trajectories of the \emph{univariate}
+#' Ornstein--Uhlenbeck (OU) diffusion
+#' \deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0} using the exact
+#' transition probability density.
 #'
 #' @param x0 initial point.
 #' @param alpha strength of the drift.
@@ -11,8 +13,12 @@
 #' @param sigma diffusion coefficient.
 #' @param N number of discretization steps in the resulting trajectory.
 #' @param delta time discretization step.
-#' @return A vector of length \code{N + 1} containing \code{x0} in the first entry and the exact discretized trajectory on the remaining elements.
-#' @details The law of the discretized trajectory is a multivariate normal with mean \code{\link{meantOu}} and covariance matrix \code{\link{covstOu}}. See \code{\link{rTrajMou}} for the multivariate case (less efficient for dimension one).
+#' @return A vector of length \code{N + 1} containing \code{x0} in the first
+#' entry and the exact discretized trajectory on the remaining elements.
+#' @details The law of the discretized trajectory is a multivariate normal
+#' with mean \code{\link{meantOu}} and covariance matrix \code{\link{covstOu}}.
+#' See \code{\link{rTrajMou}} for the multivariate case (less efficient for
+#' dimension one).
 #' @examples
 #' isRStudio <- identical(.Platform$GUI, "RStudio")
 #' if (isRStudio) {
@@ -45,15 +51,21 @@ rTrajOu <- function(x0, alpha, mu, sigma, N = 100, delta = 1e-3) {
 
 #' @title Transition probability density of the univariate OU diffusion
 #'
-#' @description Transition probability density of the \emph{univariate} Ornstein--Uhlenbeck (OU) diffusion
-#' \deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0.}{dX_t=alpha(mu - X_t)dt+sigma dW_t, X0=x0.}
+#' @description Transition probability density of the \emph{univariate}
+#'  Ornstein--Uhlenbeck (OU) diffusion
+#' \deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0.}{
+#' dX_t=alpha(mu - X_t)dt+sigma dW_t, X0=x0.}
 #'
 #' @param x vector with the evaluation points.
 #' @param t,s time between observations.
 #' @param log flag to indicate whether to compute the logarithm of the density.
 #' @inheritParams rTrajOu
-#' @return A vector of the same length as \code{x} containing the evaluation of the density.
-#' @details The transition probability density is a normal density with mean \code{\link{meantOu}} and variance \code{\link{vartOu}}. See \code{\link{dTpdMou}} for the multivariate case (less efficient for dimension one).
+#' @return A vector of the same length as \code{x} containing the evaluation of
+#'  the density.
+#' @details The transition probability density is a normal density with mean
+#' \code{\link{meantOu}} and variance \code{\link{vartOu}}. See
+#' \code{\link{dTpdMou}} for the multivariate case (less efficient for
+#' dimension one).
 #' @examples
 #' x <- seq(-4, 4, by = 0.01)
 #' plot(x, dTpdOu(x = x, x0 = 3, t = 0.1, alpha = 1, mu = -1, sigma = 1),
@@ -102,16 +114,27 @@ covstOu <- function(s, t, alpha, sigma) {
 
 #' @title Maximum likelihood estimation of the OU diffusion
 #'
-#' @description Computation of the maximum likelihood estimator of the parameters of the \emph{univariate} Ornstein--Uhlenbeck (OU) diffusion from a discretized trajectory \eqn{\{X_{\Delta i}\}_{i=1}^N}{\{X_{Delta * i}\}_{i=1}^N}. The objective function to minimize is
-#' \deqn{\sum_{i=2}^n\log p_{\Delta}(X_{\Delta i} | X_{\Delta (i - 1)}).}{\sum_{i=2}^N log p_{Delta}(X_{Delta * i} | X_{Delta * (i - 1)}).}
+#' @description Computation of the maximum likelihood estimator of the
+#' parameters of the \emph{univariate} Ornstein--Uhlenbeck (OU) diffusion
+#' from a discretized trajectory
+#' \eqn{\{X_{\Delta i}\}_{i=1}^N}{\{X_{Delta * i}\}_{i=1}^N}. The objective
+#' function to minimize is
+#' \deqn{\sum_{i=2}^n\log p_{\Delta}(X_{\Delta i} | X_{\Delta (i - 1)}).}{
+#' \sum_{i=2}^N log p_{Delta}(X_{Delta * i} | X_{Delta * (i - 1)}).}
 #'
-#' @param data a vector of size \code{N} with the discretized trajectory of the diffusion.
-#' @param alpha,mu,sigma arguments to fix a parameter to a given value and perform the estimation on the rest. Defaults to \code{NA}, meaning that the parameter is estimated. Note that \code{start}, \code{lower} and \code{upper} must be changed accordingly if parameters are fixed, see examples.
+#' @param data a vector of size \code{N} with the discretized trajectory of
+#' the diffusion.
+#' @param alpha,mu,sigma arguments to fix a parameter to a given value and
+#' perform the estimation on the rest. Defaults to \code{NA}, meaning that the
+#' parameter is estimated. Note that \code{start}, \code{lower} and \code{upper}
+#' must be changed accordingly if parameters are fixed, see examples.
 #' @inheritParams rTrajOu
 #' @inheritParams mleOptimWrapper
 #' @param ... further arguments to be passed to \code{\link{mleOptimWrapper}}.
 #' @return Output from \code{\link{mleOptimWrapper}}.
-#' @details The first element in \code{data} is not taken into account for estimation. See \code{\link{mleMou}} for the multivariate case (less efficient for dimension one).
+#' @details The first element in \code{data} is not taken into account for
+#' estimation. See \code{\link{mleMou}} for the multivariate case (less
+#' efficient for dimension one).
 #' @examples
 #' set.seed(345678)
 #' data <- rTrajOu(x0 = 0, alpha = 1, mu = 0, sigma = 1, N = 100, delta = 0.1)
@@ -155,18 +178,29 @@ mleOu <- function(data, delta, alpha = NA, mu = NA, sigma = NA, start,
 
 #' @title Simulation of trajectories for the multivariate OU diffusion
 #'
-#' @description Simulation of trajectories of the \emph{multivariate} Ornstein--Uhlenbeck (OU) diffusion
-#' \deqn{dX_t=A(\mu - X_t)dt+\Sigma^\frac{1}{2}dW_t, X_0=x_0}{dX_t=A(mu - X_t)dt+Sigma^(1/2) dW_t, X0=x0} using the exact transition probability density.
+#' @description Simulation of trajectories of the \emph{multivariate}
+#' Ornstein--Uhlenbeck (OU) diffusion
+#' \deqn{dX_t=A(\mu - X_t)dt+\Sigma^\frac{1}{2}dW_t, X_0=x_0}{
+#' dX_t=A(mu - X_t)dt+Sigma^(1/2) dW_t, X0=x0} using the exact transition
+#' probability density.
 #'
 #' @param x0 a vector of length \code{p} containing initial point.
 #' @param A the drift matrix, of size \code{c(p, p)}.
 #' @param mu unconditional mean of the diffusion, a vector of length \code{p}.
 #' @param Sigma square of the diffusion matrix, a matrix of size \code{c(p, p)}.
 #' @inheritParams rTrajOu
-#' @return A matrix of size \code{c(N + 1, p)} containing \code{x0} in the first row and  the exact discretized trajectory on the remaining rows.
-#' @details The law of the discretized trajectory at \emph{each} time step is a multivariate normal with mean \code{\link{meantMou}} and covariance matrix \code{\link{covtMou}}. See \code{\link{rTrajOu}} for the univariate case (more efficient).
+#' @return A matrix of size \code{c(N + 1, p)} containing \code{x0} in the
+#' first row and  the exact discretized trajectory on the remaining rows.
+#' @details The law of the discretized trajectory at \emph{each} time step is
+#' a multivariate normal with mean \code{\link{meantMou}} and covariance
+#' matrix \code{\link{covtMou}}. See \code{\link{rTrajOu}} for the univariate
+#' case (more efficient).
 #'
-#' \code{solve(A) \%*\% Sigma} has to be a covariance matrix (symmetric and positive definite) in order to have a proper transition density. For the bivariate case, this can be ensured with the \code{\link{alphaToA}} function. In the multivariate case, it is ensured if \code{Sigma} is isotropic and \code{A} is a covariance matrix.
+#' \code{solve(A) \%*\% Sigma} has to be a covariance matrix (symmetric and
+#' positive definite) in order to have a proper transition density. For the
+#' bivariate case, this can be ensured with the \code{\link{alphaToA}} function.
+#' In the multivariate case, it is ensured if \code{Sigma} is isotropic and
+#' \code{A} is a covariance matrix.
 #' @examples
 #' set.seed(987658)
 #' data <- rTrajMou(x0 = c(0, 0), A = alphaToA(alpha = c(1, 2, 0.5),
@@ -204,18 +238,27 @@ rTrajMou <- function(x0, A, mu, Sigma, N = 100, delta = 1e-3) {
 
 #' @title Transition probability density of the multivariate OU diffusion
 #'
-#' @description Transition probability density of the \emph{multivariate} Ornstein--Uhlenbeck (OU) diffusion
-#' \deqn{dX_t=A(\mu - X_t)dt+\Sigma^\frac{1}{2}dW_t, X_0=x_0.}{dX_t=A(mu - X_t)dt+Sigma^(1/2) dW_t, X0=x0.}
+#' @description Transition probability density of the \emph{multivariate}
+#' Ornstein--Uhlenbeck (OU) diffusion
+#' \deqn{dX_t=A(\mu - X_t)dt+\Sigma^\frac{1}{2}dW_t, X_0=x_0.}{
+#' dX_t=A(mu - X_t)dt+Sigma^(1/2) dW_t, X0=x0.}
 #'
 #' @param x matrix of with \code{p} columns containing the evaluation points.
 #' @param t time between observations.
 #' @inheritParams dTpdOu
 #' @inheritParams rTrajMou
 #' @param eigA optional argument containing \code{eigen(A)} for reuse.
-#' @return A matrix of the same size as \code{x} containing the evaluation of the density.
-#' @details The transition probability density is a multivariate normal with mean \code{\link{meantMou}} and covariance \code{\link{covtMou}}. See \code{\link{dTpdOu}} for the univariate case (more efficient).
+#' @return A matrix of the same size as \code{x} containing the evaluation of
+#' the density.
+#' @details The transition probability density is a multivariate normal with
+#' mean \code{\link{meantMou}} and covariance \code{\link{covtMou}}. See
+#' \code{\link{dTpdOu}} for the univariate case (more efficient).
 #'
-#' \code{solve(A) \%*\% Sigma} has to be a covariance matrix (symmetric and positive definite) in order to have a proper transition density. For the bivariate case, this can be ensured with the \code{\link{alphaToA}} function. In the multivariate case, it is ensured if \code{Sigma} is isotropic and \code{A} is a covariance matrix.
+#' \code{solve(A) \%*\% Sigma} has to be a covariance matrix (symmetric and
+#' positive definite) in order to have a proper transition density. For the
+#' bivariate case, this can be ensured with the \code{\link{alphaToA}} function.
+#' In the multivariate case, it is ensured if \code{Sigma} is isotropic and
+#' \code{A} is a covariance matrix.
 #' @examples
 #' x <- seq(-4, 4, by = 0.1)
 #' xx <- as.matrix(expand.grid(x, x))
@@ -288,7 +331,7 @@ covtMou <- function(t, A, Sigma, eigA = NULL) {
   p <- ncol(v)
 
   # Covariance matrix
-  0.5 * v %*% diag((1- exp(-2 * t * lambda)) / lambda, nrow = p, ncol = p) %*%
+  0.5 * v %*% diag((1 - exp(-2 * t * lambda)) / lambda, nrow = p, ncol = p) %*%
     sv %*% Sigma
 
 }
@@ -296,18 +339,30 @@ covtMou <- function(t, A, Sigma, eigA = NULL) {
 
 #' @title Maximum likelihood estimation of the multivariate OU diffusion
 #'
-#' @description Computation of the maximum likelihood estimator of the parameters of the \emph{multivariate} Ornstein--Uhlenbeck (OU) diffusion from a discretized trajectory \eqn{\{X_{\Delta i}\}_{i=1}^N}{\{X_{Delta * i}\}_{i=1}^N}. The objective function to minimize is
-#' \deqn{\sum_{i=2}^n\log p_{\Delta}(X_{\Delta i} | X_{\Delta (i - 1)}).}{\sum_{i=2}^N log p_{Delta}(X_{Delta * i} | X_{Delta * (i - 1)}).}
+#' @description Computation of the maximum likelihood estimator of the
+#' parameters of the \emph{multivariate} Ornstein--Uhlenbeck (OU) diffusion
+#' from a discretized trajectory
+#' \eqn{\{X_{\Delta i}\}_{i=1}^N}{\{X_{Delta * i}\}_{i=1}^N}. The objective
+#' function to minimize is
+#' \deqn{\sum_{i=2}^n\log p_{\Delta}(X_{\Delta i} | X_{\Delta (i - 1)}).}{
+#' \sum_{i=2}^N log p_{Delta}(X_{Delta * i} | X_{Delta * (i - 1)}).}
 #'
-#' @param data a matrix of size \code{c(N, p)} with the discretized trajectory of the diffusion.
-#' @param alpha,mu,sigma arguments to fix a parameter to a given value and perform the estimation on the rest. Defaults to \code{NA}, meaning that the parameter is estimated. Note that \code{start}, \code{lower} and \code{upper} must be changed accordingly if parameters are fixed, see examples.
+#' @param data a matrix of size \code{c(N, p)} with the discretized trajectory
+#' of the diffusion.
+#' @param alpha,mu,sigma arguments to fix a parameter to a given value and
+#' perform the estimation on the rest. Defaults to \code{NA}, meaning that the
+#' parameter is estimated. Note that \code{start}, \code{lower} and \code{upper}
+#'  must be changed accordingly if parameters are fixed, see examples.
 #' @inheritParams rTrajOu
 #' @inheritParams mleOptimWrapper
 #' @param ... further arguments to be passed to \code{\link{mleOptimWrapper}}.
 #' @return Output from \code{\link{mleOptimWrapper}}.
-#' @details The first row in \code{data} is not taken into account for estimation. See \code{\link{mleOu}} for the univariate case (more efficient).
+#' @details The first row in \code{data} is not taken into account for
+#' estimation. See \code{\link{mleOu}} for the univariate case (more efficient).
 #'
-#' \code{mleMou} only handles \code{p = 2} currently. It imposes that \code{Sigma} is diagonal and handles the parametrization of \code{A} by \code{\link{alphaToA}}.
+#' \code{mleMou} only handles \code{p = 2} currently. It imposes that
+#' \code{Sigma} is diagonal and handles the parametrization of \code{A} by
+#' \code{\link{alphaToA}}.
 #' @examples
 #' set.seed(345678)
 #' data <- rTrajMou(x0 = c(0, 0), A = alphaToA(alpha = c(1, 1, 0.5),
@@ -318,8 +373,8 @@ covtMou <- function(t, A, Sigma, eigA = NULL) {
 #'        upper = c(25, 25, 25, 10, 10, 25, 25), maxit = 500)
 #'
 #' # Fixed sigma and mu
-#' mleMou(data = data, delta = 0.5, mu = c(1, 1), sigma = 1:2, start = c(1, 1, 0),
-#'        lower = c(0.1, 0.1, -25), upper = c(25, 25, 25))
+#' mleMou(data = data, delta = 0.5, mu = c(1, 1), sigma = 1:2,
+#'        start = c(1, 1, 0), lower = c(0.1, 0.1, -25), upper = c(25, 25, 25))
 #' @export
 mleMou <- function(data, delta, alpha = rep(NA, 3), mu = rep(NA, 2),
                    sigma = rep(NA, 2), start,
@@ -360,7 +415,8 @@ mleMou <- function(data, delta, alpha = rep(NA, 3), mu = rep(NA, 2),
                     t(exptA), 2, specPars[4:5], "-")
 
     # Loglikelihood
-    -sum(mvtnorm::dmvnorm(x = xMut, mean = rep(0, p), sigma = covt, log = TRUE))
+    - sum(mvtnorm::dmvnorm(x = xMut, mean = rep(0, p), sigma = covt,
+                           log = TRUE))
 
   }
 
@@ -393,15 +449,20 @@ mleMou <- function(data, delta, alpha = rep(NA, 3), mu = rep(NA, 2),
 
 #' @title Valid drift matrices for the Ornstein--Uhlenbeck diffusion in 2D
 #'
-#' @description Constructs drift matrices \eqn{A} such that \code{solve(A) \%*\% Sigma} is symmetric.
+#' @description Constructs drift matrices \eqn{A} such that
+#' \code{solve(A) \%*\% Sigma} is symmetric.
 #'
 #' @param A matrix of size \code{c(2, 2)}.
-#' @param alpha vector of length \code{3} containing the \code{A} matrix. The first two elements are the diagonal.
-#' @param sigma vector of length \code{2} containing the \strong{square root} of the diagonal of \code{Sigma}.
+#' @param alpha vector of length \code{3} containing the \code{A} matrix. The
+#' first two elements are the diagonal.
+#' @param sigma vector of length \code{2} containing the \strong{square root}
+#' of the diagonal of \code{Sigma}.
 #' @param rho correlation of \code{Sigma}.
 #' @param Sigma the diffusion matrix of size \code{c(2, 2)}.
 #' @return The drift matrix \code{A} or the \code{alpha} vector.
-#' @details The parametrization enforces that \code{solve(A) \%*\% Sigma} is symmetric. Positive definiteness is guaranteed if \code{alpha[3]^2 < rho^2 * (alpha[1] - alpha[2])^2 / 4 + alpha[1] * alpha[2]}.
+#' @details The parametrization enforces that \code{solve(A) \%*\% Sigma}
+#' is symmetric. Positive definiteness is guaranteed if \code{alpha[3]^2 <
+#' rho^2 * (alpha[1] - alpha[2])^2 / 4 + alpha[1] * alpha[2]}.
 #' @examples
 #' # Parameters
 #' alpha <- 3:1

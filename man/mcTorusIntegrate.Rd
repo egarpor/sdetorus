@@ -21,7 +21,8 @@ mcTorusIntegrate(f, p, M = 1e+05, fVect = TRUE, ...)
 A scalar with the approximated integral.
 }
 \description{
-Convenience function for Monte Carlo integration on \eqn{[-\pi, \pi)^p}.
+Convenience function for Monte Carlo integration on
+\eqn{[-\pi, \pi)^p}.
 }
 \examples{
 # Integral of sin(x1) * cos(x2), must be close to 0

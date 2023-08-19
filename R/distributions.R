@@ -9,7 +9,8 @@
 #' @param kappa non-negative concentration parameter.
 #' @return A vector of the same length as \code{x} containing the density.
 #' @references
-#' Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific, Singapore. \doi{10.1142/4031}
+#' Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular
+#' Statistics}. World Scientific, Singapore. \doi{10.1142/4031}
 #' @examples
 #' x <- seq(-pi, pi, l = 200)
 #' plot(x, x, type = "n", ylab = "Density", ylim = c(0, 1))
@@ -31,8 +32,10 @@ dVm <- function(x, mu, kappa) {
 #'
 #' @inheritParams dVm
 #' @param psi shape parameter, see details.
-#' @param const normalizing constant, computed with \code{constJp} if not provided.
-#' @param M grid size for computing the normalizing constant by numerical integration.
+#' @param const normalizing constant, computed with \code{constJp} if not
+#' provided.
+#' @param M grid size for computing the normalizing constant by numerical
+#' integration.
 #' @return A vector of the same length as \code{x} containing the density.
 #' @details Particular interesting choices for the shape parameter are:
 #' \itemize{
@@ -41,9 +44,9 @@ dVm <- function(x, mu, kappa) {
 #' \item \code{psi = 1}: gives the Cardioid as stationary density.
 #' }
 #' @references
-#' Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific, Singapore. \doi{10.1142/4031}
-#'
-#' Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on the circle. \emph{Journal of the American Statistical Association}, 100(472):1422--1428. \doi{10.1198/016214505000000286}
+#' Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on
+#' the circle. \emph{Journal of the American Statistical Association},
+#' 100(472):1422--1428. \doi{10.1198/016214505000000286}
 #' @examples
 #' x <- seq(-pi, pi, l = 200)
 #' plot(x, x, type = "n", ylab = "Density", ylim = c(0, 0.6))

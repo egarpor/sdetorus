@@ -23,19 +23,25 @@ driftMixVm(x, alpha, mu, sigma, p, expTrc = 30)
 A vector of the same length as \code{x} containing the drift.
 }
 \description{
-Drift for the Langevin diffusion associated to a mixture of \code{m} independent von Mises (mivM) of dimension one.
+Drift for the Langevin diffusion associated to a mixture of
+\code{m} independent von Mises (mivM) of dimension one.
 }
 \details{
-\code{\link{driftMixIndVm}} is more general, but less efficient for the circular case. See Section 2.2.4 in García-Portugués et al. (2019) for details.
+\code{\link{driftMixIndVm}} is more general, but less efficient for
+the circular case. See Section 2.2.4 in García-Portugués et al. (2019) for
+details.
 }
 \examples{
 x <- seq(-pi, pi, l = 200)
 plot(x, x, type = "n", ylab = "drift")
 for (i in 1:10) {
-  lines(x, driftMixVm(x = x, alpha = c(2, 2), mu = c(0, -pi + 2 * pi * i / 10),
-        sigma = 1, p = c(0.5, 0.5)), col = rainbow(10)[i])
+  lines(x, driftMixVm(x = x, alpha = c(2, 2),
+                      mu = c(0, -pi + 2 * pi * i / 10),
+                      sigma = 1, p = c(0.5, 0.5)), col = rainbow(10)[i])
 }
 }
 \references{
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+Langevin diffusions on the torus: estimation and applications.
+\emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 }

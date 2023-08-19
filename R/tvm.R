@@ -125,14 +125,15 @@ dTvm <- function(x, M, K, alpha = NULL, besselInterp = FALSE) {
   # Check if x, M, K and alpha agree
   dM <- dim(M)
   dK <- dim(K)
-  if (!(all(dM == dK) & (dM[2] == ncol(x)) & (dM[1] == length(alpha)))) {
+  if (!(all(dM == dK) && (dM[2] == ncol(x)) && (dM[1] == length(alpha)))) {
 
     stop("Incompatible sizes of x, M, K and alpha")
 
   }
 
   # Density
-  drop(.dTvmCpp(x = x, K = K, M = M, alpha = alpha, besselInterp = besselInterp))
+  drop(.dTvmCpp(x = x, K = K, M = M, alpha = alpha,
+                besselInterp = besselInterp))
 
 }
 
@@ -154,10 +155,10 @@ emTvm <- function(data, k, M = NULL, K = NULL, alpha = NULL,
   npar <- 2 * k * p + k - 1
   if (npar > n) {
 
-    warning(paste("Trying to fit more parameters than sample size.
-                  EM will overfit and likely break down due to high values of kappa.
-                  Maximum number of mixtures allowed is k =",
-                  ceiling((n + 1) / (2 * p + 1)), sep = ""), immediate. = TRUE)
+    warning(paste("Trying to fit more parameters than sample size. EM will",
+                  "overfit and likely break down due to high values of kappa.",
+                  "Maximum number of mixtures allowed is k =",
+                  ceiling((n + 1) / (2 * p + 1))), immediate. = TRUE)
 
   }
 
@@ -213,7 +214,8 @@ emTvm <- function(data, k, M = NULL, K = NULL, alpha = NULL,
     ## Expectation step
 
     pih <- .clusterProbsTvm(cosData = cosData, sinData = sinData, K = K, M = M,
-                            alpha = alpha, l2pi = l2pi, besselInterp = besselInterp)
+                            alpha = alpha, l2pi = l2pi,
+                            besselInterp = besselInterp)
 
     ## Maximization step
 
@@ -249,7 +251,7 @@ emTvm <- function(data, k, M = NULL, K = NULL, alpha = NULL,
         cat("M:", round(MNew, 3), "\nK:", round(KNew, 3), "\na:",
             round(alphaNew, 3), "\n\n")
 
-        if (verbose > 2 & p < 10 & j %% 5 == 0) {
+        if (verbose > 2 && p < 10 && j %% 5 == 0) {
 
           # Plot assignments
           pairs(data, col = apply(pih, 1, which.max),
@@ -262,7 +264,7 @@ emTvm <- function(data, k, M = NULL, K = NULL, alpha = NULL,
     }
 
     # Check convergence
-    if (deltaM < tol[1] & deltaK < tol[2] & deltaAlpha < tol[3]) {
+    if (deltaM < tol[1] && deltaK < tol[2] && deltaAlpha < tol[3]) {
 
       # Convergence
       if (verbose) {
