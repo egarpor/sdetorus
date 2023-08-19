@@ -103,7 +103,7 @@ rTrajWn2D <- function(x0, alpha, mu, sigma, rho = 0, N = 100, delta = 0.01,
 #'     alpha = manipulate::slider(0.01, 5, step = 0.1, initial = 1),
 #'     psi = manipulate::slider(-2, 2, step = 0.1, initial = 1),
 #'     sigma = manipulate::slider(0.01, 5, step = 0.1, initial = 1))
-#'  
+#'
 #'   # 2D
 #'   samp <- rTrajLangevin(x0 = c(0, 0), drift = driftMvm, alpha = c(1, 1),
 #'                         mu = c(2, -1), A = diag(rep(0, 2)),

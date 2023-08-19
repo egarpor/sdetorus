@@ -16,9 +16,7 @@ mleOu(data, delta, alpha = NA, mu = NA, sigma = NA, start,
 
 \item{start}{starting values, a matrix with \code{p} columns, with each entry representing a different starting value.}
 
-\item{lower}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
-
-\item{upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
+\item{lower, upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
 
 \item{...}{further arguments to be passed to \code{\link{mleOptimWrapper}}.}
 }

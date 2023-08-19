@@ -85,7 +85,7 @@ meantOu <- function(x0, t, alpha, mu) {
 #' @export
 vartOu <- function(t, alpha, sigma) {
 
-  sigma^2/(2 * alpha) * (1 - exp(-2 * alpha * t))
+  sigma^2 / (2 * alpha) * (1 - exp(-2 * alpha * t))
 
 }
 
@@ -94,7 +94,7 @@ vartOu <- function(t, alpha, sigma) {
 #' @export
 covstOu <- function(s, t, alpha, sigma) {
 
-  sigma^2/(2 * alpha) * outer(s, t, function(ss, tt)
+  sigma^2 / (2 * alpha) * outer(s, t, function(ss, tt)
     exp(alpha * (2 * pmin(ss, tt) - (ss + tt))) - exp(-alpha * (ss + tt)))
 
 }
@@ -208,6 +208,7 @@ rTrajMou <- function(x0, A, mu, Sigma, N = 100, delta = 1e-3) {
 #' \deqn{dX_t=A(\mu - X_t)dt+\Sigma^\frac{1}{2}dW_t, X_0=x_0.}{dX_t=A(mu - X_t)dt+Sigma^(1/2) dW_t, X0=x0.}
 #'
 #' @param x matrix of with \code{p} columns containing the evaluation points.
+#' @param t time between observations.
 #' @inheritParams dTpdOu
 #' @inheritParams rTrajMou
 #' @param eigA optional argument containing \code{eigen(A)} for reuse.
@@ -437,7 +438,7 @@ alphaToA <- function(alpha, sigma = NULL, rho = 0, Sigma = NULL) {
   quo <- sigma[1] / sigma[2]
   add <- 0.5 * rho * (alpha[2] - alpha[1])
   A <- matrix(c(alpha[1], (alpha[3] + add) * quo,
-                (alpha[3] - add)/ quo, alpha[2]),
+                (alpha[3] - add) / quo, alpha[2]),
               nrow = 2, ncol = 2, byrow = TRUE)
 
   return(A)

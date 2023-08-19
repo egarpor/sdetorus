@@ -4,9 +4,9 @@
 \alias{plotSurface3D}
 \title{Visualization of a 3D surface}
 \usage{
-plotSurface3D(x = 1:nrow(t), y = 1:ncol(t), z = 1:dim(t)[3], f,
-  t = NULL, nLev = 20, levels = NULL, fVect = FALSE, size = 15,
-  alpha = 0.05, ...)
+plotSurface3D(x = seq_len(nrow(t)), y = seq_len(ncol(t)),
+  z = 1:dim(t)[3], f, t = NULL, nLev = 20, levels = NULL,
+  fVect = FALSE, size = 15, alpha = 0.05, ...)
 }
 \arguments{
 \item{x, y, z}{numerical grids for each dimension.}

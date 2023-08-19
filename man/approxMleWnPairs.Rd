@@ -24,9 +24,7 @@ approxMleWnPairs(data, delta, start = c(0, 0, 1, 1, 0, 1, 1),
 
 \item{rho}{correlation coefficient of \eqn{\Sigma}.}
 
-\item{lower}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
-
-\item{upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
+\item{lower, upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
 
 \item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
 

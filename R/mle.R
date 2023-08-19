@@ -247,7 +247,6 @@ approxMleWn2D <- function(data, delta, start, alpha = rep(NA, 3),
 
   }
   N <- nrow(data)
-  p <- ncol(data)
 
   # Translate data
   y <- data[-1, ]
@@ -274,7 +273,7 @@ approxMleWn2D <- function(data, delta, start, alpha = rep(NA, 3),
     region <- function(pars) {
 
       # Test
-      prodDiagonal = 0.25 * (pars[8] * (pars[2] - pars[1]))^2 +
+      prodDiagonal <- 0.25 * (pars[8] * (pars[2] - pars[1]))^2 +
         alpha[1] * alpha[2] + pars[1] * pars[2]
       testPosDef <- prodDiagonal - pars[3]^2
       if (testPosDef < 0) {

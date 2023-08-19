@@ -302,4 +302,3 @@ emTvm <- function(data, k, M = NULL, K = NULL, alpha = NULL,
               BIC = -2 * logLik + log(n) * npar, convergence = convergence))
 
 }
-

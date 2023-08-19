@@ -26,9 +26,7 @@ mlePde1D(data, delta, b, sigma2, Mx = 500, Mt = ceiling(100 * delta),
 
 \item{start}{starting values, a matrix with \code{p} columns, with each entry representing a different starting value.}
 
-\item{lower}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
-
-\item{upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
+\item{lower, upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
 
 \item{...}{Further parameters passed to \code{\link{crankNicolson1D}}.}
 }

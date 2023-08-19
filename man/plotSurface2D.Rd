@@ -4,8 +4,8 @@
 \alias{plotSurface2D}
 \title{Contour plot of a 2D surface}
 \usage{
-plotSurface2D(x = 1:nrow(z), y = 1:ncol(z), f, z = NULL, nLev = 20,
-  levels = NULL, fVect = FALSE, ...)
+plotSurface2D(x = seq_len(nrow(z)), y = seq_len(ncol(z)), f, z = NULL,
+  nLev = 20, levels = NULL, fVect = FALSE, ...)
 }
 \arguments{
 \item{x, y}{numerical grids fore each dimension. They must be in ascending order.}
