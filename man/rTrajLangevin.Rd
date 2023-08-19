@@ -13,28 +13,36 @@ rTrajLangevin(x0, drift, SigDif, N = 100, delta = 0.01, NFine = ceiling(N
 
 \item{drift}{drift for the diffusion.}
 
-\item{SigDif}{matrix of size \code{c(p, p)} giving the infinitesimal (constant) covariance matrix of the diffusion.}
+\item{SigDif}{matrix of size \code{c(p, p)} giving the infinitesimal
+(constant) covariance matrix of the diffusion.}
 
 \item{N}{number of discretization steps in the resulting trajectory.}
 
 \item{delta}{discretization step.}
 
-\item{NFine}{number of discretization steps for the fine trajectory. Must be larger than \code{N}.}
+\item{NFine}{number of discretization steps for the fine trajectory. Must
+be larger than \code{N}.}
 
-\item{deltaFine}{discretization step for the fine trajectory. Must be smaller than \code{delta}.}
+\item{deltaFine}{discretization step for the fine trajectory. Must be
+smaller than \code{delta}.}
 
-\item{circular}{whether to wrap the resulting trajectory to \eqn{[-\pi,\pi)^p}.}
+\item{circular}{whether to wrap the resulting trajectory to
+\eqn{[-\pi,\pi)^p}.}
 
 \item{...}{parameters to be passed to \code{drift}.}
 }
 \value{
-A vector of length \code{N + 1} containing \code{x0} in the first entry and the discretized trajectory.
+A vector of length \code{N + 1} containing \code{x0} in the first
+entry and the discretized trajectory.
 }
 \description{
-Simulation of an arbitrary Langevin diffusion in dimension \code{p} by subsampling a fine trajectory obtained by the Euler discretization.
+Simulation of an arbitrary Langevin diffusion in dimension
+\code{p} by subsampling a fine trajectory obtained by the Euler
+discretization.
 }
 \details{
-The fine trajectory is subsampled using the indexes \code{seq(1, NFine + 1, by = NFine / N)}.
+The fine trajectory is subsampled using the indexes
+\code{seq(1, NFine + 1, by = NFine / N)}.
 }
 \examples{
 isRStudio <- identical(.Platform$GUI, "RStudio")
@@ -42,7 +50,8 @@ if (isRStudio) {
   # 1D
   manipulate::manipulate({
     x <- seq(0, N * delta, by = delta)
-    plot(x, x, ylim = c(-pi, pi), type = "n", ylab = expression(X[t]), xlab = "t")
+    plot(x, x, ylim = c(-pi, pi), type = "n",
+         ylab = expression(X[t]), xlab = "t")
     linesCirc(x, rTrajLangevin(x0 = 0, drift = driftJp, SigDif = sigma,
                                alpha = alpha, mu = 0, psi = psi, N = N,
                                delta = 0.01))
@@ -51,7 +60,7 @@ if (isRStudio) {
     alpha = manipulate::slider(0.01, 5, step = 0.1, initial = 1),
     psi = manipulate::slider(-2, 2, step = 0.1, initial = 1),
     sigma = manipulate::slider(0.01, 5, step = 0.1, initial = 1))
- 
+
   # 2D
   samp <- rTrajLangevin(x0 = c(0, 0), drift = driftMvm, alpha = c(1, 1),
                         mu = c(2, -1), A = diag(rep(0, 2)),

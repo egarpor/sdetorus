@@ -7,17 +7,23 @@
 torusAxis3d(sides = 1:3, twoPi = FALSE, ...)
 }
 \arguments{
-\item{sides}{an integer vector specifying which side of the plot the axes are to be drawn on. The axes are placed as follows: \code{1} = x, \code{2} = y, \code{3} = z.}
+\item{sides}{an integer vector specifying which side of the plot the axes are
+to be drawn on. The axes are placed as follows: \code{1} = x, \code{2} = y,
+\code{3} = z.}
 
-\item{twoPi}{flag indicating that \eqn{[0,2\pi)} is the support, instead of \eqn{[-\pi,\pi)}.}
+\item{twoPi}{flag indicating that \eqn{[0,2\pi)} is the support, instead of
+\eqn{[-\pi,\pi)}.}
 
 \item{...}{further parameters passed to \code{\link[rgl:axes3d]{axis3d}}.}
 }
 \value{
-This function is usually invoked for its side effect, which is to add axes to an already existing plot.
+This function is usually invoked for its side effect, which is to
+add axes to an already existing plot.
 }
 \description{
-Wrapper for drawing pretty axis labels for circular variables. To be invoked after \code{plot3d} with \code{axes = FALSE} and \code{box = FALSE} has been called.
+Wrapper for drawing pretty axis labels for circular variables.
+To be invoked after \code{plot3d} with \code{axes = FALSE} and
+\code{box = FALSE} has been called.
 }
 \details{
 The function calls \code{\link[rgl:axes3d]{box3d}}.

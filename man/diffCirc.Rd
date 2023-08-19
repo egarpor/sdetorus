@@ -7,20 +7,24 @@
 diffCirc(x, circular = TRUE, ...)
 }
 \arguments{
-\item{x}{wrapped or unwrapped angles to be differenced. Must be a vector or a matrix, see details.}
+\item{x}{wrapped or unwrapped angles to be differenced. Must be a vector
+or a matrix, see details.}
 
-\item{circular}{convenience flag to indicate whether wrapping should be done. If \code{FALSE}, the function is exactly \code{\link{diff}}.}
+\item{circular}{convenience flag to indicate whether wrapping should be
+done. If \code{FALSE}, the function is exactly \code{\link{diff}}.}
 
 \item{...}{parameters to be passed to \code{\link{diff}}.}
 }
 \value{
-The value of \code{diff(x, ...)}, circularly wrapped. Default parameters give an object of the kind of \code{x} with one less entry or row.
+The value of \code{diff(x, ...)}, circularly wrapped. Default
+parameters give an object of the kind of \code{x} with one less entry or row.
 }
 \description{
 Returns suitably lagged and iterated circular differences.
 }
 \details{
-If \code{x} is a matrix then the difference operations are carried out row-wise, on each column separately.
+If \code{x} is a matrix then the difference operations are carried
+out row-wise, on each column separately.
 }
 \examples{
 # Vectors

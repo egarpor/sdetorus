@@ -7,17 +7,22 @@
 torusAxis(sides = 1:2, twoPi = FALSE, ...)
 }
 \arguments{
-\item{sides}{an integer vector specifying which side of the plot the axes are to be drawn on. The axes are placed as follows: \code{1} = below, \code{2} = left, \code{3} = above, and \code{4} = right.}
+\item{sides}{an integer vector specifying which side of the plot the axes are
+to be drawn on. The axes are placed as follows: \code{1} = below,
+\code{2} = left, \code{3} = above, and \code{4} = right.}
 
-\item{twoPi}{flag indicating that \eqn{[0,2\pi)} is the support, instead of \eqn{[-\pi,\pi)}.}
+\item{twoPi}{flag indicating that \eqn{[0,2\pi)} is the support, instead of
+\eqn{[-\pi,\pi)}.}
 
 \item{...}{further parameters passed to \code{\link[graphics]{axis}}.}
 }
 \value{
-This function is usually invoked for its side effect, which is to add axes to an already existing plot.
+This function is usually invoked for its side effect, which is to
+add axes to an already existing plot.
 }
 \description{
-Wrapper for drawing pretty axis labels for circular variables. To be invoked after \code{plot} with \code{axes = FALSE} has been called.
+Wrapper for drawing pretty axis labels for circular variables.
+To be invoked after \code{plot} with \code{axes = FALSE} has been called.
 }
 \details{
 The function calls \code{\link[graphics]{box}}.

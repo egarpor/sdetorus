@@ -4,28 +4,49 @@
 #'
 #' @description Wrapped pseudo-transition probability densities.
 #'
-#' @param x a matrix of dimension \code{c(n, p)}. If a vector is provided, is assumed that \code{p = 1}.
-#' @param x0 a matrix of dimension \code{c(n, p)}. If all \code{x0} are the same, a matrix of dimension \code{c(1, p)} can be passed for better performance. If a vector is provided, is assumed that \code{p = 1}.
+#' @param x a matrix of dimension \code{c(n, p)}. If a vector is provided, is
+#' assumed that \code{p = 1}.
+#' @param x0 a matrix of dimension \code{c(n, p)}. If all \code{x0} are the
+#' same, a matrix of dimension \code{c(1, p)} can be passed for better
+#' performance. If a vector is provided, is assumed that \code{p = 1}.
 #' @param t time step between \code{x} and \code{x0}.
-#' @param method a string for choosing \code{"E"} (Euler), \code{"SO"} (Shoji--Ozaki) or \code{"SO2"} (Shoji--Ozaki with Ito's expansion in the drift) method.
+#' @param method a string for choosing \code{"E"} (Euler), \code{"SO"}
+#' (Shoji--Ozaki) or \code{"SO2"} (Shoji--Ozaki with Ito's expansion in the
+#' drift) method.
 #' @param b drift function. Must return a matrix of the same size as \code{x}.
 #' @param jac.b jacobian of the drift function.
-#' @param b1 first derivative of the drift function (univariate). Must return a vector of the same length as \code{x}.
-#' @param b2 second derivative of the drift function (univariate). Must return a vector of the same length as \code{x}.
-#' @param sigma2 diagonal of the diffusion matrix (if univariate, this is the square of the diffusion coefficient). Must return an object of the same size as \code{x}.
+#' @param b1 first derivative of the drift function (univariate). Must return
+#' a vector of the same length as \code{x}.
+#' @param b2 second derivative of the drift function (univariate). Must return
+#' a vector of the same length as \code{x}.
+#' @param sigma2 diagonal of the diffusion matrix (if univariate, this is the
+#' square of the diffusion coefficient). Must return an object of the same
+#' size as \code{x}.
 #' @param circular flag to indicate circular data.
 #' @param maxK maximum absolute winding number used if \code{circular = TRUE}.
-#' @param vmApprox flag to indicate von Mises approximation to wrapped normal. See\cr \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.
-#' @param twokpi optional matrix of winding numbers to avoid its recomputation. See details.
-#' @param ... additional parameters passed to \code{b}, \code{b1}, \code{b2}, \code{jac.b} and \code{sigma2}.
+#' @param vmApprox flag to indicate von Mises approximation to wrapped normal.
+#' See\cr \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.
+#' @param twokpi optional matrix of winding numbers to avoid its recomputation.
+#' See details.
+#' @param ... additional parameters passed to \code{b}, \code{b1}, \code{b2},
+#' \code{jac.b} and \code{sigma2}.
 #' @return Output from \code{\link{mleOptimWrapper}}.
-#' @details See Section 3.2 in García-Portugués et al. (2019) for details. \code{"SO2"} implements Shoji and Ozai (1998)'s expansion with for \code{p = 1}. \code{"SO"} is the same expansion, for arbitrary \code{p}, but considering null second derivatives.
+#' @details See Section 3.2 in García-Portugués et al. (2019) for details.
+#' \code{"SO2"} implements Shoji and Ozai (1998)'s expansion with for
+#' \code{p = 1}. \code{"SO"} is the same expansion, for arbitrary \code{p}, but
+#' considering null second derivatives.
 #'
-#' \code{twokpi} is \code{repRow(2 * pi * c(-maxK:maxK), n = n)} if \code{p = 1} and\cr \code{as.matrix(do.call(what = expand.grid, args = rep(list(2 * pi * c(-maxK:maxK)), p)))} otherwise.
+#' \code{twokpi} is \code{repRow(2 * pi * c(-maxK:maxK), n = n)} if \code{p = 1}
+#' and\cr \code{as.matrix(do.call(what = expand.grid,
+#' args = rep(list(2 * pi * c(-maxK:maxK)), p)))} otherwise.
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+#' Langevin diffusions on the torus: estimation and applications.
+#' \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #'
-#' Shoji, I. and Ozaki, T. (1998) A statistical method of estimation and simulation for systems of stochastic differential equations. \emph{Biometrika}, 85(1):240--243. \doi{10.1093/biomet/85.1.240}
+#' Shoji, I. and Ozaki, T. (1998) A statistical method of estimation and
+#' simulation for systems of stochastic differential equations.
+#' \emph{Biometrika}, 85(1):240--243. \doi{10.1093/biomet/85.1.240}
 #' @examples
 #' # 1D
 #' grid <- seq(-pi, pi, l = 501)[-501]
@@ -39,14 +60,16 @@
 #'   b <- function(x) driftWn1D(x = x, alpha = alpha, mu = 0, sigma = sigma)
 #'   b1 <- function(x, h = 1e-4) {
 #'     l <- length(x)
-#'     res <- driftWn1D(x = c(x + h, x - h), alpha = alpha, mu = 0, sigma = sigma)
+#'     res <- driftWn1D(x = c(x + h, x - h), alpha = alpha, mu = 0,
+#'                      sigma = sigma)
 #'     drop(res[1:l] - res[(l + 1):(2 * l)])/(2 * h)
 #'   }
 #'   b2 <- function(x, h = 1e-4) {
 #'     l <- length(x)
 #'     res <- driftWn1D(x = c(x + h, x, x - h), alpha = alpha, mu = 0,
 #'                      sigma = sigma)
-#'     drop(res[1:l] - 2 * res[(l + 1):(2 * l)] + res[(2 * l + 1):(3 * l)])/(h^2)
+#'     drop(res[1:l] - 2 * res[(l + 1):(2 * l)] +
+#'           res[(2 * l + 1):(3 * l)]) / (h^2)
 #'   }
 #'
 #'   # Squared diffusion
@@ -99,7 +122,8 @@
 #'   x0 <- c(x01, x02)
 #'
 #'   # Drifts
-#'   b <- function(x) driftWn2D(x = x, A = alphaToA(alpha = alpha, sigma = sigma),
+#'   b <- function(x) driftWn2D(x = x, A = alphaToA(alpha = alpha,
+#'                                                  sigma = sigma),
 #'                              mu = rep(0, 2), sigma = sigma)
 #'   jac.b <- function(x, h = 1e-4) {
 #'     l <- nrow(x)
@@ -107,8 +131,8 @@
 #'                                cbind(x[, 1] - h, x[, 2]),
 #'                                cbind(x[, 1], x[, 2] + h),
 #'                                cbind(x[, 1], x[, 2] - h)),
-#'                      A = alphaToA(alpha = alpha, sigma = sigma), mu = rep(0, 2),
-#'                      sigma = sigma)
+#'                      A = alphaToA(alpha = alpha, sigma = sigma),
+#'                      mu = rep(0, 2), sigma = sigma)
 #'     cbind(res[1:l, ] - res[(l + 1):(2 * l), ],
 #'           res[2 * l + 1:l, ] - res[2 * l + (l + 1):(2 * l), ]) / (2 * h)
 #'   }
@@ -118,14 +142,17 @@
 #'
 #'   # Plot
 #'   old_par <- par(mfrow = c(3, 2))
-#'   plotSurface2D(grid, grid, z = dTpdPde2D(Mx = length(grid), My = length(grid),
-#'                                           x0 = x0, t = t, alpha = alpha,
+#'   plotSurface2D(grid, grid, z = dTpdPde2D(Mx = length(grid),
+#'                                           My = length(grid), x0 = x0,
+#'                                           t = t, alpha = alpha,
 #'                                           mu = rep(0, 2), sigma = sigma),
 #'                 levels = seq(0, 1, l = 20), main = "Exact")
 #'   plotSurface2D(grid, grid,
-#'                 f = function(x) drop(dTpdWou2D(x = x, x0 = repRow(x0, nrow(x)),
-#'                                                 t = t, alpha = alpha,
-#'                                                 mu = rep(0, 2), sigma = sigma)),
+#'                 f = function(x) drop(dTpdWou2D(x = x,
+#'                                                x0 = repRow(x0, nrow(x)),
+#'                                                t = t, alpha = alpha,
+#'                                                mu = rep(0, 2),
+#'                                                sigma = sigma)),
 #'                 levels = seq(0, 1, l = 20), fVect = TRUE, main = "WOU")
 #'   plotSurface2D(grid, grid,
 #'                 f = function(x) dPsTpd(x = x, x0 = rbind(x0), t = t,
@@ -159,11 +186,11 @@
 #' # t = manipulate::slider(0.01, 5, step = 0.01, initial = 1))
 #' @export
 dPsTpd <- function(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1,
-                   b2, circular = TRUE, maxK = 2, vmApprox = FALSE, twokpi = NULL,
-                   ...) {
+                   b2, circular = TRUE, maxK = 2, vmApprox = FALSE,
+                   twokpi = NULL, ...) {
 
   # Get n and p
-  if (is.matrix(x) & is.matrix(x0)) {
+  if (is.matrix(x) && is.matrix(x0)) {
 
     n <- dim(x)[1]
     p <- dim(x)[2]
@@ -180,7 +207,7 @@ dPsTpd <- function(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1,
 
     }
 
-  } else if (!is.matrix(x) & !is.matrix(x0)) {
+  } else if (!is.matrix(x) && !is.matrix(x0)) {
 
     n <- length(x)
     p <- 1
@@ -215,7 +242,7 @@ dPsTpd <- function(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1,
     bx <- b(x = x, ...)
     s2x <- sigma2(x = x, ...)
 
-    if (vmApprox & circular) {
+    if (vmApprox && circular) {
 
       # Get the closest von Mises kappa to the sigma^2 of the WN
       kx <- repRow(matrix(momentMatchWnVm(sigma2 = t * s2x), ncol = p), nx0)
@@ -281,7 +308,7 @@ dPsTpd <- function(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1,
       Ex <- rep(x + bx / b1x * (ebx - 1), nx0)
       Vx <- rep(s2x / (2 * b1x) * (ebx^2 - 1), nx0)
 
-      if (vmApprox & circular) {
+      if (vmApprox && circular) {
 
         # Get the closest von Mises kappa to the sigma^2 of the WN
         kx <- momentMatchWnVm(sigma2 = Vx)
@@ -329,9 +356,6 @@ dPsTpd <- function(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1,
 
       # Drift
       bx <- repRow(b(x = x, ...), nx0)
-
-      # Identity matrix
-      I <- diag(rep(1, p), ncol = p)
 
       if (nx0 == 1) {
 
@@ -412,7 +436,7 @@ dPsTpd <- function(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1,
                nrow = p) %*% eig.jac.bx$svectors
         det.SVx <- det(SVx)
 
-        if (p == 2 & vmApprox & circular) {
+        if (p == 2 && vmApprox && circular) {
 
           # Density
           kx <- scoreMatchWnBvm(invSigma = SVx)
@@ -446,7 +470,7 @@ dPsTpd <- function(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1,
 
     }
 
-  } else if (method[1] == "SO2" & p == 1) {
+  } else if (method[1] == "SO2" && p == 1) {
 
       # Drift, first derivative and second derivative and diffusion
       bx <- b(x = x, ...)
@@ -462,7 +486,7 @@ dPsTpd <- function(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1,
                   (b1x)^2 * (ebx - 1 - b1x * t), nx0)
       Vx <- rep(s2x / (2 * b1x) * (ebx^2 - 1), nx0)
 
-      if (circular & vmApprox) {
+      if (circular && vmApprox) {
 
         # Get the closest von Mises kappa to the sigma^2 of the WN
         kx <- momentMatchWnVm(sigma2 = Vx)

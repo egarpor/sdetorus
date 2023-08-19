@@ -291,7 +291,7 @@ est3$par
 ```
 -->
 
-## Reproducibility of García-Portugués et al. (2019)
+## Replicability of García-Portugués et al. (2019)
 
 The directories [`/MD`](https://github.com/egarpor/data-langevintorus/tree/master/MD) and [`/simulation`](https://github.com/egarpor/data-langevintorus/tree/master/simulation) in the [data-langevintorus](https://github.com/egarpor/data-langevintorus) repository contain the scripts used in the empirical analyses of the aforementioned paper, as well as their `.RData` outputs.
 

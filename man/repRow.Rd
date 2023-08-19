@@ -15,7 +15,8 @@ repCol(x, n)
 \item{n}{the number of replicates of \code{x} by rows or columns.}
 }
 \value{
-A matrix of dimension \code{c(nr * n, nc)} for \code{repRow} or \code{c(nr, nc * n)} for \code{repCol}.
+A matrix of dimension \code{c(nr * n, nc)} for \code{repRow} or
+\code{c(nr, nc * n)} for \code{repCol}.
 }
 \description{
 Wrapper for replicating a matrix/vector by rows or columns.

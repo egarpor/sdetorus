@@ -7,7 +7,8 @@
 driftMixIndVm(x, A, M, sigma, p, expTrc = 30)
 }
 \arguments{
-\item{x}{matrix of size \code{c(n, p)} with the evaluation points for the drift.}
+\item{x}{matrix of size \code{c(n, p)} with the evaluation points for the
+drift.}
 
 \item{A}{matrix of size \code{c(m, p)} giving the strengths of the drifts.}
 
@@ -23,10 +24,13 @@ driftMixIndVm(x, A, M, sigma, p, expTrc = 30)
 A matrix of the same size as \code{x} containing the drift.
 }
 \description{
-Drift for the Langevin diffusion associated to a mixture of \code{m} independent (multivariate) von Mises (mivM) of dimension \code{p}.
+Drift for the Langevin diffusion associated to a mixture of
+\code{m} independent (multivariate) von Mises (mivM) of dimension \code{p}.
 }
 \details{
-\code{\link{driftMixVm}} is more efficient for the circular case. The diffusion matrix is \eqn{\sigma\bold{I}}{sigma}. See Section 2.2.4 in García-Portugués et al. (2019) for details.
+\code{\link{driftMixVm}} is more efficient for the circular case.
+The diffusion matrix is \eqn{\sigma\bold{I}}{sigma}. See Section 2.2.4 in
+García-Portugués et al. (2019) for details.
 }
 \examples{
 # 1D
@@ -45,5 +49,7 @@ plotSurface2D(x, x, f = function(x) sqrt(rowSums(driftMixIndVm(x = x,
               sigma = 1, p = c(0.25, 0.75))^2)), fVect = TRUE)
 }
 \references{
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+Langevin diffusions on the torus: estimation and applications.
+\emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 }

@@ -12,25 +12,28 @@ mlePde2D(data, delta, b, sigma2, Mx = 50, My = 50, Mt = ceiling(100 *
 
 \item{delta}{discretization step.}
 
-\item{b}{drift function. Must return a vector of the same size as its argument.}
+\item{b}{drift function. Must return a vector of the same size as its
+argument.}
 
-\item{sigma2}{function giving the diagonal of the diffusion matrix. Must return a vector of the same size as its argument.}
+\item{sigma2}{function giving the diagonal of the diffusion matrix. Must
+return a vector of the same size as its argument.}
 
-\item{Mx}{sizes of the equispaced spatial grids in \eqn{[-\pi,\pi)} for each component.}
-
-\item{My}{sizes of the equispaced spatial grids in \eqn{[-\pi,\pi)} for each component.}
+\item{Mx, My}{sizes of the equispaced spatial grids in \eqn{[-\pi,\pi)} for each component.}
 
 \item{Mt}{size of the time grid in \eqn{[0, t]}.}
 
-\item{sdInitial}{standard deviations of the concentrated WN giving the initial condition.}
+\item{sdInitial}{standard deviations of the concentrated WN giving the
+initial condition.}
 
-\item{linearBinning}{flag to indicate whether linear binning should be applied for the initial values of the tpd, instead of usual simple binning (cheaper). Linear binning is always done in the evaluation of the tpd.}
+\item{linearBinning}{flag to indicate whether linear binning should be
+applied for the initial values of the tpd, instead of usual simple binning
+(cheaper). Linear binning is always done in the evaluation of the tpd.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each
+entry representing a different starting value.}
 
-\item{lower}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
-
-\item{upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
+\item{lower, upper}{bound for box constraints as in method \code{"L-BFGS-B"}
+of \code{\link[stats]{optim}}.}
 
 \item{...}{further parameters passed to \code{\link{mleOptimWrapper}}.}
 }
@@ -38,10 +41,15 @@ mlePde2D(data, delta, b, sigma2, Mx = 50, My = 50, Mt = ceiling(100 *
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker--Planck Partial Differential Equation (PDE) in 2D.
+Maximum Likelihood Estimation (MLE) for arbitrary diffusions,
+based on the transition probability density (tpd) obtained as the numerical
+solution of the Fokker--Planck Partial Differential Equation (PDE) in 2D.
 }
 \details{
-See Sections 3.4.2 and 3.4.4 in García-Portugués et al. (2019) for details. The function currently includes the \code{region} function for imposing a feasibility region on the parameters of the bivariate WN diffusion.
+See Sections 3.4.2 and 3.4.4 in García-Portugués et al. (2019) for
+details. The function currently includes the \code{region} function for
+imposing a feasibility region on the parameters of the bivariate WN
+diffusion.
 }
 \examples{
 \donttest{
@@ -62,12 +70,14 @@ exactOu <- mleMou(data = data, delta = 0.5, sigma = sigma,
                   upper = c(25, 25, 25, 10, 10))
 head(exactOu, 2)
 pdeOu <- mlePde2D(data = data, delta = 0.5, b = b, sigma2 = sigma2,
-                  Mx = 10, My = 10, Mt = 10, start = rbind(c(1, 1, 0, 2, 2)),
+                  Mx = 10, My = 10, Mt = 10,
+                  start = rbind(c(1, 1, 0, 2, 2)),
                   lower = c(0.1, 0.1, -25, -10, -10),
                   upper = c(25, 25, 25, 10, 10), verbose = 2)
 head(pdeOu, 2)
 pdeOuLin <- mlePde2D(data = data, delta = 0.5, b = b, sigma2 = sigma2,
-                     Mx = 10, My = 10, Mt = 10, start = rbind(c(1, 1, 0, 2, 2)),
+                     Mx = 10, My = 10, Mt = 10,
+                     start = rbind(c(1, 1, 0, 2, 2)),
                      lower = c(0.1, 0.1, -25, -10, -10),
                      upper = c(25, 25, 25, 10, 10), verbose = 2,
                      linearBinning = TRUE)
@@ -92,9 +102,11 @@ exactOu <- mleMou(data = data, delta = 0.5, sigma = sigma,
 pdeWn <- mlePde2D(data = data, delta = 0.5, b = b, sigma2 = sigma2,
                   Mx = 20, My = 20, Mt = 10, start = rbind(c(1, 1, 0, 1, 1)),
                   lower = c(0.1, 0.1, -25, -25, -25),
-                  upper = c(25, 25, 25, 25, 25), verbose = 2, optMethod = "nlm")
+                  upper = c(25, 25, 25, 25, 25), verbose = 2,
+                  optMethod = "nlm")
 pdeWnLin <- mlePde2D(data = data, delta = 0.5, b = b, sigma2 = sigma2,
-                     Mx = 20, My = 20, Mt = 10, start = rbind(c(1, 1, 0, 1, 1)),
+                     Mx = 20, My = 20, Mt = 10,
+                     start = rbind(c(1, 1, 0, 1, 1)),
                      lower = c(0.1, 0.1, -25, -25, -25),
                      upper = c(25, 25, 25, 25, 25), verbose = 2,
                      linearBinning = TRUE)
@@ -105,5 +117,7 @@ head(pdeOuLin)
 }
 }
 \references{
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+Langevin diffusions on the torus: estimation and applications.
+\emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 }

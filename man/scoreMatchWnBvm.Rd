@@ -4,7 +4,8 @@
 \alias{scoreMatchWnBvm}
 \alias{scoreMatchWnVm}
 \alias{momentMatchWnVm}
-\title{Score and moment matching of a univariate or bivariate wrapped normal by a von Mises}
+\title{Score and moment matching of a univariate or bivariate wrapped normal
+by a von Mises}
 \usage{
 scoreMatchWnBvm(Sigma = NULL, invSigma)
 
@@ -13,24 +14,31 @@ scoreMatchWnVm(sigma, sigma2 = NULL)
 momentMatchWnVm(sigma, sigma2 = NULL)
 }
 \arguments{
-\item{Sigma, invSigma}{covariance or precision matrix of the bivariate wrapped normal.}
+\item{Sigma, invSigma}{covariance or precision matrix of the bivariate wrapped
+normal.}
 
 \item{sigma, sigma2}{standard deviation or variance of the wrapped normal.}
 }
 \value{
-Vector of parameters \eqn{(\kappa_1,\kappa_2,\lambda)}, where \eqn{(\kappa_1,\kappa_2,2\lambda)} is a suitable input for \code{kappa} in \code{dBvm}.
+Vector of parameters \eqn{(\kappa_1,\kappa_2,\lambda)}, where
+\eqn{(\kappa_1,\kappa_2,2\lambda)} is a suitable input for \code{kappa} in
+\code{dBvm}.
 }
 \description{
-Given a wrapped normal density, find the parameters of a von Mises that matches it according to two characteristics: moments and scores. Score matching estimators are available for univariate and bivariate cases and moment matching only for the former.
+Given a wrapped normal density, find the parameters of a von
+Mises that matches it according to two characteristics: moments and scores.
+Score matching estimators are available for univariate and bivariate cases
+and moment matching only for the former.
 }
 \details{
-If the precision matrix is singular or if there are no solutions for the score matching estimator, \code{c(0, 0, 0)} is returned.
+If the precision matrix is singular or if there are no solutions for
+the score matching estimator, \code{c(0, 0, 0)} is returned.
 }
 \examples{
 # Univariate WN approximation
 sigma <- 0.5
-curve(dWn1D(x = x, mu = 0, sigma = sigma), from = -pi, to = pi, ylab = "Density",
-      ylim = c(0, 1))
+curve(dWn1D(x = x, mu = 0, sigma = sigma), from = -pi, to = pi,
+      ylab = "Density", ylim = c(0, 1))
 curve(dVm(x = x, mu = 0, kappa = momentMatchWnVm(sigma = sigma)), from = -pi,
       to = pi, col = "red", add = TRUE)
 curve(dVm(x = x, mu = 0, kappa = scoreMatchWnVm(sigma = sigma)), from = -pi,
@@ -63,5 +71,7 @@ invSigma <- matrix(1, nrow = 2, ncol = 2)
 scoreMatchWnBvm(invSigma = invSigma)
 }
 \references{
-Mardia, K. V., Kent, J. T., and Laha, A. K. (2016). Score matching estimators for directional distributions. \emph{arXiv:1604.0847}. \url{https://arxiv.org/abs/1604.08470}
+Mardia, K. V., Kent, J. T., and Laha, A. K. (2016). Score matching estimators
+for directional distributions. \emph{arXiv:1604.0847}.
+\url{https://arxiv.org/abs/1604.08470}
 }

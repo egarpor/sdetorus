@@ -7,7 +7,8 @@
 dTpdWou(x, t, A, mu, Sigma, x0, maxK = 2, eigA = NULL, invASigma = NULL)
 }
 \arguments{
-\item{x}{matrix of size \code{c(n, p)} with the evaluation points in \eqn{[-\pi,\pi)^p}.}
+\item{x}{matrix of size \code{c(n, p)} with the evaluation points in
+\eqn{[-\pi,\pi)^p}.}
 
 \item{t}{a scalar containing the times separating \code{x} and \code{x0}.}
 
@@ -17,7 +18,8 @@ dTpdWou(x, t, A, mu, Sigma, x0, maxK = 2, eigA = NULL, invASigma = NULL)
 
 \item{Sigma}{diffusion matrix, of size \code{c(p, p)}.}
 
-\item{x0}{vector of length \code{p} with the initial point in \eqn{[-\pi,\pi)^p}.}
+\item{x0}{vector of length \code{p} with the initial point in
+\eqn{[-\pi,\pi)^p}.}
 
 \item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
 
@@ -29,10 +31,13 @@ dTpdWou(x, t, A, mu, Sigma, x0, maxK = 2, eigA = NULL, invASigma = NULL)
 A vector of length \code{n} with the density evaluated at \code{x}.
 }
 \description{
-Conditional probability density of the Wrapped Ornstein--Uhlenbeck (WOU) process.
+Conditional probability density of the Wrapped
+Ornstein--Uhlenbeck (WOU) process.
 }
 \details{
-See Section 3.3 in García-Portugués et al. (2019) for details. \code{\link{dTpdWou1D}} and \code{\link{dTpdWou2D}} are more efficient implementations for the 1D and 2D cases, respectively.
+See Section 3.3 in García-Portugués et al. (2019) for details.
+\code{\link{dTpdWou1D}} and \code{\link{dTpdWou2D}} are more efficient
+implementations for the 1D and 2D cases, respectively.
 }
 \examples{
 # 1D
@@ -63,5 +68,7 @@ dTpdWou2D(x = x, x0 = rbind(x0), t = t, alpha = alpha, mu = mu,
           sigma = sigma, rho = rho)
 }
 \references{
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+Langevin diffusions on the torus: estimation and applications.
+\emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 }

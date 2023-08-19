@@ -20,27 +20,33 @@ rTrajWn1D(x0, alpha, mu, sigma, N = 100, delta = 0.01, NFine = ceiling(N
 
 \item{delta}{discretization step.}
 
-\item{NFine}{number of discretization steps for the fine trajectory. Must be larger than \code{N}.}
+\item{NFine}{number of discretization steps for the fine trajectory. Must
+be larger than \code{N}.}
 
-\item{deltaFine}{discretization step for the fine trajectory. Must be smaller than \code{delta}.}
+\item{deltaFine}{discretization step for the fine trajectory. Must be
+smaller than \code{delta}.}
 }
 \value{
-A vector of length \code{N + 1} containing \code{x0} in the first entry and the discretized trajectory.
+A vector of length \code{N + 1} containing \code{x0} in the first
+entry and the discretized trajectory.
 }
 \description{
-Simulation of the Wrapped Normal (WN) diffusion in 1D by subsampling a fine trajectory obtained by the Euler discretization.
+Simulation of the Wrapped Normal (WN) diffusion in 1D by
+subsampling a fine trajectory obtained by the Euler discretization.
 }
 \details{
-The fine trajectory is subsampled using the indexes \code{seq(1, NFine + 1, by = NFine / N)}.
+The fine trajectory is subsampled using the indexes
+\code{seq(1, NFine + 1, by = NFine / N)}.
 }
 \examples{
 isRStudio <- identical(.Platform$GUI, "RStudio")
 if (isRStudio) {
   manipulate::manipulate({
     x <- seq(0, N * delta, by = delta)
-    plot(x, x, ylim = c(-pi, pi), type = "n", ylab = expression(X[t]), xlab = "t")
-    linesCirc(x, rTrajWn1D(x0 = 0, alpha = alpha, mu = 0, sigma = sigma, N = N,
-                             delta = 0.01))
+    plot(x, x, ylim = c(-pi, pi), type = "n",
+         ylab = expression(X[t]), xlab = "t")
+    linesCirc(x, rTrajWn1D(x0 = 0, alpha = alpha, mu = 0, sigma = sigma,
+                           N = N, delta = 0.01))
     }, delta = slider(0.01, 5.01, step = 0.1),
     N = manipulate::slider(10, 500, step = 10, initial = 200),
     alpha = manipulate::slider(0.01, 5, step = 0.1, initial = 1),
