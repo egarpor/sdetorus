@@ -15,8 +15,6 @@ status](https://github.com/egarpor/sdetorus/workflows/R-CMD-check/badge.svg)](ht
 by the “sdetorus” density</i>
 </p>
 
- 
-
 ## Overview
 
 This library provides statistical tools for estimation of toroidal

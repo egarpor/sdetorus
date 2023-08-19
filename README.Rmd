@@ -31,7 +31,7 @@ cat(
 <img style="width:90%;" id="sdetorus" src="https://raw.githubusercontent.com/egarpor/sdetorus/master/logo/sdetorus-small.gif">
 <br>
 <i>Transition probability density of the Langevin diffusion guided by the "sdetorus" density</i>
-</p> 
+</p>
 
 ## Overview
 
