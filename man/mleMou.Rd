@@ -17,7 +17,7 @@ of the diffusion.}
 \item{alpha, mu, sigma}{arguments to fix a parameter to a given value and
 perform the estimation on the rest. Defaults to \code{NA}, meaning that the
 parameter is estimated. Note that \code{start}, \code{lower} and \code{upper}
- must be changed accordingly if parameters are fixed, see examples.}
+must be changed accordingly if parameters are fixed, see examples.}
 
 \item{start}{starting values, a matrix with \code{p} columns, with each
 entry representing a different starting value.}
