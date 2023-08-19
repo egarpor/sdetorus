@@ -52,7 +52,7 @@ rTrajOu <- function(x0, alpha, mu, sigma, N = 100, delta = 1e-3) {
 #' @title Transition probability density of the univariate OU diffusion
 #'
 #' @description Transition probability density of the \emph{univariate}
-#'  Ornstein--Uhlenbeck (OU) diffusion
+#' Ornstein--Uhlenbeck (OU) diffusion
 #' \deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0.}{
 #' dX_t=alpha(mu - X_t)dt+sigma dW_t, X0=x0.}
 #'
@@ -61,7 +61,7 @@ rTrajOu <- function(x0, alpha, mu, sigma, N = 100, delta = 1e-3) {
 #' @param log flag to indicate whether to compute the logarithm of the density.
 #' @inheritParams rTrajOu
 #' @return A vector of the same length as \code{x} containing the evaluation of
-#'  the density.
+#' the density.
 #' @details The transition probability density is a normal density with mean
 #' \code{\link{meantOu}} and variance \code{\link{vartOu}}. See
 #' \code{\link{dTpdMou}} for the multivariate case (less efficient for
@@ -352,7 +352,7 @@ covtMou <- function(t, A, Sigma, eigA = NULL) {
 #' @param alpha,mu,sigma arguments to fix a parameter to a given value and
 #' perform the estimation on the rest. Defaults to \code{NA}, meaning that the
 #' parameter is estimated. Note that \code{start}, \code{lower} and \code{upper}
-#'  must be changed accordingly if parameters are fixed, see examples.
+#' must be changed accordingly if parameters are fixed, see examples.
 #' @inheritParams rTrajOu
 #' @inheritParams mleOptimWrapper
 #' @param ... further arguments to be passed to \code{\link{mleOptimWrapper}}.

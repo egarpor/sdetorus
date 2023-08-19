@@ -28,7 +28,7 @@
 #' logBesselI0ScaledEvalGrid <- log(besselI(x = x1, nu = 0,
 #'                                          expon.scaled = TRUE))
 #' # save(list = "logBesselI0ScaledEvalGrid",
-#'        file = "logBesselI0ScaledEvalGrid.rda", compress = TRUE)
+#' #      file = "logBesselI0ScaledEvalGrid.rda", compress = TRUE)
 #'
 #' # Data employed for A1 inverse
 #' x2 <- rev(c(seq(1e-04, 0.9 - 1e-4, by = 1e-4),
