@@ -635,8 +635,9 @@ weightsLinearInterp2D <- function(x, y, gx1, gx2, gy1, gy2, circular = FALSE) {
 #' }
 #' @keywords internal
 #' @export
-plotSurface2D <- function(x = 1:nrow(z), y = 1:ncol(z), f, z = NULL, nLev = 20,
-                          levels = NULL, fVect = FALSE, ...) {
+plotSurface2D <- function(x = seq_len(nrow(z)), y = seq_len(ncol(z)), f,
+                          z = NULL, nLev = 20, levels = NULL,
+                          fVect = FALSE, ...) {
 
   # Grid xy
   xy <- as.matrix(expand.grid(x = x, y = y))
@@ -704,8 +705,9 @@ plotSurface2D <- function(x = 1:nrow(z), y = 1:ncol(z), f, z = NULL, nLev = 20,
 #' }
 #' @keywords internal
 #' @export
-plotSurface3D <- function(x = 1:nrow(t), y = 1:ncol(t), z = 1:dim(t)[3], f, t = NULL,
-                          nLev = 20, levels = NULL, fVect = FALSE, size = 15,
+plotSurface3D <- function(x = seq_len(nrow(t)), y = seq_len(ncol(t)),
+                          z = 1:dim(t)[3], f, t = NULL, nLev = 20,
+                          levels = NULL, fVect = FALSE, size = 15,
                           alpha = 0.05, ...) {
 
   # Grids xy and xyz
@@ -1075,12 +1077,12 @@ torusAxis3d <- function(sides = 1:3, twoPi = FALSE, ...) {
   if (twoPi) {
 
     at <- seq(0, 2 * pi, l = 5)
-    labels <- expression(0, pi/2, pi, 3*pi/2, 2*pi)
+    labels <- expression(0, pi / 2, pi, 3 * pi / 2, 2 * pi)
 
   } else {
 
     at <- seq(-pi, pi, l = 5)
-    labels <- expression(-pi, -pi/2, 0, pi/2, pi)
+    labels <- expression(-pi, -pi / 2, 0, pi / 2, pi)
 
   }
 

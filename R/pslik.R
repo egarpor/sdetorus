@@ -330,9 +330,6 @@ dPsTpd <- function(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1,
       # Drift
       bx <- repRow(b(x = x, ...), nx0)
 
-      # Identity matrix
-      I <- diag(rep(1, p), ncol = p)
-
       if (nx0 == 1) {
 
         dens <- sapply(1:n, function(i) {

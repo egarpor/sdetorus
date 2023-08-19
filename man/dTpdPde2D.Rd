@@ -8,9 +8,7 @@ dTpdPde2D(Mx = 50, My = 50, x0, t, alpha, mu, sigma, rho = 0,
   type = "WN", Mt = ceiling(100 * t), sdInitial = 0.1, ...)
 }
 \arguments{
-\item{Mx}{sizes of the equispaced spatial grids in \eqn{[-\pi,\pi)} for each component.}
-
-\item{My}{sizes of the equispaced spatial grids in \eqn{[-\pi,\pi)} for each component.}
+\item{Mx, My}{sizes of the equispaced spatial grids in \eqn{[-\pi,\pi)} for each component.}
 
 \item{x0}{point giving the mean of the initial circular density, an isotropic WN with standard deviations equal to \code{sdInitial}.}
 

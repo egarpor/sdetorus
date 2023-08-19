@@ -12,7 +12,7 @@
 #' obtained as the numerical solution to the Fokker-Plank equation;
 #' (ii) based on wrapped pseudo-likelihoods; (iii) based on specific analytic
 #' approximations by wrapped processes; (iv) based on maximum likelihood of
-#' the stationary densities. The package allows the reproducibility of the
+#' the stationary densities. The package allows the replicability of the
 #' results in García-Portugués et al. (2019) <doi:10.1007/s11222-017-9790-2>.
 #'
 #' @author Eduardo García-Portugués.

@@ -212,9 +212,6 @@ mlePde1D <- function(data, delta, b, sigma2, Mx = 500,
   # Size
   N <- length(data)
 
-  # Number of parameters
-  npar <- ifelse(is.matrix(start), ncol(start), length(start))
-
   # Circular grid for solution
   grid <- seq(-pi, pi, l = Mx + 1)[-c(Mx + 1)]
 
@@ -414,9 +411,6 @@ mlePde2D <- function(data, delta, b, sigma2, Mx = 50, My = 50,
 
   }
   N <- nrow(data)
-
-  # Number of parameters
-  npar <- ifelse(is.matrix(start), ncol(start), length(start))
 
   # Circular grids
   gridX <- seq(-pi, pi, l = Mx + 1)[-c(Mx + 1)]

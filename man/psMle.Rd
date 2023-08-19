@@ -26,9 +26,7 @@ psMle(data, delta, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
 
 \item{start}{starting values, a matrix with \code{p} columns, with each entry representing a different starting value.}
 
-\item{lower}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
-
-\item{upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
+\item{lower, upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
 
 \item{circular}{flag to indicate circular data.}
 

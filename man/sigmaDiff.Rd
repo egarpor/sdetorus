@@ -4,7 +4,8 @@
 \alias{sigmaDiff}
 \title{High-frequency estimate of the diffusion matrix}
 \usage{
-sigmaDiff(data, delta, circular = TRUE, diagonal = FALSE, isotropic = FALSE)
+sigmaDiff(data, delta, circular = TRUE, diagonal = FALSE,
+  isotropic = FALSE)
 }
 \arguments{
 \item{data}{vector or matrix of size \code{c(N, p)} containing the discretized process.}

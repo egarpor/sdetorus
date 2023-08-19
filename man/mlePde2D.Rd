@@ -16,9 +16,7 @@ mlePde2D(data, delta, b, sigma2, Mx = 50, My = 50, Mt = ceiling(100 *
 
 \item{sigma2}{function giving the diagonal of the diffusion matrix. Must return a vector of the same size as its argument.}
 
-\item{Mx}{sizes of the equispaced spatial grids in \eqn{[-\pi,\pi)} for each component.}
-
-\item{My}{sizes of the equispaced spatial grids in \eqn{[-\pi,\pi)} for each component.}
+\item{Mx, My}{sizes of the equispaced spatial grids in \eqn{[-\pi,\pi)} for each component.}
 
 \item{Mt}{size of the time grid in \eqn{[0, t]}.}
 
@@ -28,9 +26,7 @@ mlePde2D(data, delta, b, sigma2, Mx = 50, My = 50, Mt = ceiling(100 *
 
 \item{start}{starting values, a matrix with \code{p} columns, with each entry representing a different starting value.}
 
-\item{lower}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
-
-\item{upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
+\item{lower, upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
 
 \item{...}{further parameters passed to \code{\link{mleOptimWrapper}}.}
 }

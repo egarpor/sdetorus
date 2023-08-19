@@ -17,9 +17,7 @@ approxMleWn1D(data, delta, start, alpha = NA, mu = NA, sigma = NA,
 
 \item{alpha, mu, sigma}{if their values are provided, the likelihood function is optimized with respect to the rest of unspecified parameters. The number of elements in \code{start}, \code{lower} and \code{upper} has to be modified accordingly (see examples).}
 
-\item{lower}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
-
-\item{upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
+\item{lower, upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
 
 \item{vmApprox}{flag to indicate von Mises approximation to wrapped normal. See\cr \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
 

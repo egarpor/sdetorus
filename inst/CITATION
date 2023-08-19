@@ -4,9 +4,10 @@ note <- paste("R package version", meta$Version)
 
 citHeader("To cite sdetorus in publications use:")
 
-citEntry(entry = "Manual",
+bibentry(
+  bibtype      = "Manual",
   title        = "{sdetorus}: Statistical Tools for Toroidal Diffusions",
-  author       = personList(as.person("Eduardo Garc\\'ia-Portugu\\'es")),
+  author       = person(given = "Eduardo", family = "García-Portugués"),
   year         = year,
   note         = note,
   url          = "https://CRAN.R-project.org/package=sdetorus",
@@ -16,12 +17,13 @@ citEntry(entry = "Manual",
         paste0(note, "."), "https://CRAN.R-project.org/package=sdetorus")
 )
 
-citEntry(entry = "Article",
+bibentry(
+  bibtype      = "Article",
   title        = "Langevin diffusions on the torus: estimation and applications",
-  author       = personList(as.person("Eduardo Garc\\'ia-Portugu\\'es"),
-                   as.person("Michael S{\\o}rensen"),
-                   as.person("Kanti V. Mardia"),
-                   as.person("Thomas Hamelryck")),
+  author       = c(person(given = "Eduardo", family = "García-Portugués"),
+                   person(given = "Michael", family = "S{\\o}rensen"),
+                   person(given = "Kanti V.", family = "Mardia"),
+                   person(given = "Thomas", family = "Hamelryck")),
   journal      = "Statistics and Computing",
   year         = "2019",
   volume       = "29",

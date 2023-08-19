@@ -5,8 +5,8 @@ GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org
 [![R build
 status](https://github.com/egarpor/sdetorus/workflows/R-CMD-check/badge.svg)](https://github.com/egarpor/sdetorus/actions)
 [![](https://www.r-pkg.org/badges/version/sdetorus?color=green)](https://cran.r-project.org/package=sdetorus)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/sdetorus?color=green)](https://cran.r-project.org/package=sdetorus)
-[![](http://cranlogs.r-pkg.org/badges/last-month/sdetorus?color=green)](https://cran.r-project.org/package=sdetorus)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/sdetorus)](https://cran.r-project.org/package=sdetorus)
+[![](http://cranlogs.r-pkg.org/badges/last-month/sdetorus)](https://cran.r-project.org/package=sdetorus)
 
 <!-- <img src="" alt="sdetorus  hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/> -->
 <p align="center">
@@ -82,6 +82,7 @@ points(rep(1, nx0), samp[, N + 1], pch = 16, col = rainbow(nx0))
 <img src="README/README-example1-1.png" style="display: block; margin: auto;" />
 
 ``` r
+
 ## WN diffusion in 2D
 
 # Initial points
@@ -144,6 +145,7 @@ axis(2)
 <img src="README/README-example2-1.png" style="display: block; margin: auto;" />
 
 ``` r
+
 ## WN diffusion in 2D
 
 # Function for computing and plotting a tpd
@@ -196,6 +198,7 @@ torusAxis(2)
 <img src="README/README-example3-1.png" style="display: block; margin: auto;" />
 
 ``` r
+
 # Drift and diffusion
 b <- function(x, pars) driftWn1D(x = x, alpha = pars[1], mu = pars[2],
                                  sigma = pars[3])
@@ -293,7 +296,7 @@ est2 <- psMle(data = samp, delta = delta, method = "SO", b = b, jac.b = jac.b,
 # Approximate MLE based on the WOU process
 est3 <- approxMleWn2D(data = samp, delta = delta, start = start, lower = low,
                       upper = up)
-#> <std::runtime_error in dTpdWou2D(x = y, x0 = x, t = delta, alpha = specPars[1:3], mu = specPars[4:5],     sigma = specPars[6:7], rho = specPars[8], maxK = maxK): inv_sympd(): matrix is singular or not positive definite>
+#> <std::runtime_error in eval(expr, envir, enclos): inv_sympd(): matrix is singular or not positive definite>
 
 # Comparison
 est1$par
@@ -305,7 +308,7 @@ est3$par
 ```
 -->
 
-## Reproducibility of García-Portugués et al. (2019)
+## Replicability of García-Portugués et al. (2019)
 
 The directories
 [`/MD`](https://github.com/egarpor/data-langevintorus/tree/master/MD)

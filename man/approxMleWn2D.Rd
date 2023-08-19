@@ -18,9 +18,7 @@ approxMleWn2D(data, delta, start, alpha = rep(NA, 3), mu = rep(NA, 2),
 
 \item{alpha, mu, sigma, rho}{if their values are provided, the likelihood function is optimized with respect to the rest of unspecified parameters. The number of elements in \code{start}, \code{lower} and \code{upper} has to be modified accordingly (see examples).}
 
-\item{lower}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
-
-\item{upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
+\item{lower, upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
 
 \item{maxK}{maximum absolute winding number used if \code{circular = TRUE}.}
 
