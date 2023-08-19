@@ -2,15 +2,18 @@
 
 #' @title Lines and arrows with vertical wrapping
 #'
-#' @description Joins the corresponding points with line segments or arrows that exhibit wrapping in \eqn{[-\pi,\pi)} in the vertical axis.
+#' @description Joins the corresponding points with line segments or arrows that
+#' exhibit wrapping in \eqn{[-\pi,\pi)} in the vertical axis.
 #'
 #' @param x vector with horizontal coordinates.
 #' @param y vector with vertical coordinates, wrapped in \eqn{[-\pi,\pi)}.
-#' @param col color vector of length \code{1} or the same length of \code{x} and \code{y}.
+#' @param col color vector of length \code{1} or the same length of \code{x} and
+#' \code{y}.
 #' @param lty line type as in \code{\link[graphics]{par}}.
 #' @param ltyCross specific line type for crossing segments.
 #' @param arrows flag for drawing arrows instead of line segments.
-#' @param ... further graphical parameters passed to \code{\link[graphics]{segments}} or \code{\link[graphics]{arrows}}.
+#' @param ... further graphical parameters passed to
+#' \code{\link[graphics]{segments}} or \code{\link[graphics]{arrows}}.
 #' @return Nothing. The functions are called for drawing wrapped lines.
 #' @details \code{y} is wrapped to \eqn{[-\pi,\pi)} before plotting.
 #' @examples
@@ -45,12 +48,14 @@ linesCirc <- function(x = seq_along(y), y, col = 1, lty = 1, ltyCross = lty,
 
 #' @title Lines and arrows with wrapping in the torus
 #'
-#' @description Joins the corresponding points with line segments or arrows that exhibit wrapping in \eqn{[-\pi,\pi)} in the horizontal and vertical axes.
+#' @description Joins the corresponding points with line segments or arrows that
+#' exhibit wrapping in \eqn{[-\pi,\pi)} in the horizontal and vertical axes.
 #'
 #' @param x vector with horizontal coordinates, wrapped in \eqn{[-\pi,\pi)}.
 #' @inheritParams linesCirc
 #' @return Nothing. The functions are called for drawing wrapped lines.
-#' @details \code{x} and \code{y} are wrapped to \eqn{[-\pi,\pi)} before plotting.
+#' @details \code{x} and \code{y} are wrapped to \eqn{[-\pi,\pi)} before
+#' plotting.
 #' @examples
 #' x <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
 #' y <- toPiInt(x + rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))
@@ -88,14 +93,19 @@ linesTorus <- function(x, y, col = 1, lty = 1, ltyCross = lty, arrows = FALSE,
 
 #' @title Lines and arrows with wrapping in the torus
 #'
-#' @description Joins the corresponding points with line segments or arrows that exhibit wrapping in \eqn{[-\pi,\pi)} in the horizontal and vertical axes.
+#' @description Joins the corresponding points with line segments or arrows that
+#' exhibit wrapping in \eqn{[-\pi,\pi)} in the horizontal and vertical axes.
 #'
 #' @param x,y vectors with horizontal coordinates, wrapped in \eqn{[-\pi,\pi)}.
 #' @param z vector with vertical coordinates, wrapped in \eqn{[-\pi,\pi)}.
-#' @param col color vector of length \code{1} or the same length of \code{x}, \code{y}, and \code{z}.
+#' @param col color vector of length \code{1} or the same length of \code{x},
+#' \code{y}, and \code{z}.
 #' @inheritParams linesTorus
 #' @return Nothing. The functions are called for drawing wrapped lines.
-#' @details \code{x}, \code{y}, and \code{z} are wrapped to \eqn{[-\pi,\pi)} before plotting. \code{arrows = TRUE} makes sequential calls to \code{\link[rgl]{arrow3d}}, and is substantially slower than \code{arrows = FALSE}.
+#' @details \code{x}, \code{y}, and \code{z} are wrapped to \eqn{[-\pi,\pi)}
+#' before plotting. \code{arrows = TRUE} makes sequential calls to
+#' \code{\link[rgl]{arrow3d}}, and is substantially slower than
+#' \code{arrows = FALSE}.
 #' @examples
 #' \donttest{
 #' if (requireNamespace("rgl")) {
@@ -133,7 +143,7 @@ linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
 
   # Draw segments
   l <- length(x)
-  if (length(y) != l | length(z) != l) stop("'x', 'y' or 'z' lengths differ")
+  if (length(y) != l || length(z) != l) stop("'x', 'y' or 'z' lengths differ")
   if (length(col) == 1) {
 
     col <- rep(col, l - 1)
@@ -173,18 +183,35 @@ linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
 
 #' @title Quadrature rules in 1D, 2D and 3D
 #'
-#' @description Quadrature rules for definite integrals over intervals in 1D, \eqn{\int_{x_1}^{x_2} f(x)dx}, rectangles in 2D,\cr \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2} f(x,y)dydx} and cubes in 3D, \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2}\int_{z_1}^{z_2} f(x,y,z)dzdydx}. The trapezoidal rules assume that the function is periodic, whereas the Simpson rules work for arbitrary functions.
+#' @description Quadrature rules for definite integrals over intervals in 1D,
+#' \eqn{\int_{x_1}^{x_2} f(x)dx}, rectangles in 2D,\cr
+#' \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2} f(x,y)dydx} and cubes in 3D,
+#' \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2}\int_{z_1}^{z_2} f(x,y,z)dzdydx}.
+#' The trapezoidal rules assume that the function is periodic, whereas the
+#' Simpson rules work for arbitrary functions.
 #'
-#' @param fx vector containing the evaluation of the function to integrate over a uniform grid in \eqn{[x_1,x_2]}.
-#' @param fxy matrix containing the evaluation of the function to integrate over a uniform grid in \eqn{[x_1,x_2]\times[y_1,y_2]}.
-#' @param fxyz three dimensional array containing the evaluation of the function to integrate over a uniform grid in \eqn{[x_1,x_2]\times[y_1,y_2]\times[z_1,z_2]}.
-#' @param endsMatch flag to indicate whether the values of the last entries of \code{fx}, \code{fxy} or \code{fxyz} are the ones in the first entries (elements, rows, columns, slices). See examples for usage.
+#' @param fx vector containing the evaluation of the function to integrate over
+#' a uniform grid in \eqn{[x_1,x_2]}.
+#' @param fxy matrix containing the evaluation of the function to integrate
+#' over a uniform grid in \eqn{[x_1,x_2]\times[y_1,y_2]}.
+#' @param fxyz three dimensional array containing the evaluation of the
+#' function to integrate over a uniform grid in
+#' \eqn{[x_1,x_2]\times[y_1,y_2]\times[z_1,z_2]}.
+#' @param endsMatch flag to indicate whether the values of the last entries of
+#' \code{fx}, \code{fxy} or \code{fxyz} are the ones in the first entries
+#' (elements, rows, columns, slices). See examples for usage.
 #' @inheritParams base::sum
-#' @param lengthInterval vector containing the lengths of the intervals of integration.
+#' @param lengthInterval vector containing the lengths of the intervals of
+#' integration.
 #' @return The value of the integral.
-#' @details The simple trapezoidal rule has a very good performance for periodic functions in 1D and 2D(order of error ). The higher dimensional extensions are obtained by iterative usage of the 1D rules.
+#' @details The simple trapezoidal rule has a very good performance for
+#' periodic functions in 1D and 2D(order of error ). The higher dimensional
+#' extensions are obtained by iterative usage of the 1D rules.
 #' @references
-#' Press, W. H., Teukolsky, S. A., Vetterling, W. T., Flannery, B. P. (1996). \emph{Numerical Recipes in Fortran 77: The Art of Scientific Computing (Vol. 1 of Fortran Numerical Recipes)}. Cambridge University Press, Cambridge.
+#' Press, W. H., Teukolsky, S. A., Vetterling, W. T., Flannery, B. P. (1996).
+#' \emph{Numerical Recipes in Fortran 77: The Art of Scientific Computing
+#' (Vol. 1 of Fortran Numerical Recipes)}. Cambridge University Press,
+#' Cambridge.
 #' @examples
 #' # In 1D. True value: 3.55099937
 #' N <- 21
@@ -353,9 +380,11 @@ integrateSimp3D <- function(fxyz, lengthInterval = rep(2 * pi, 3),
 
 #' @title Wrapping of radians to its principal values
 #'
-#' @description Utilities for transforming a reals into \eqn{[-\pi, \pi)}, \eqn{[0, 2\pi)} or \eqn{[a, b)}.
+#' @description Utilities for transforming a reals into \eqn{[-\pi, \pi)},
+#' \eqn{[0, 2\pi)} or \eqn{[a, b)}.
 #'
-#' @param x a vector, matrix or object for whom \code{\link[base]{Arithmetic}} is defined.
+#' @param x a vector, matrix or object for whom \code{\link[base]{Arithmetic}}
+#' is defined.
 #' @param a,b the lower and upper limits of \eqn{[a, b)}.
 #' @return The wrapped vector in the chosen interval.
 #' @details Note that \eqn{b} is \bold{excluded} from the result, see examples.
@@ -403,11 +432,15 @@ toInt <- function(x, a, b) {
 #'
 #' @description Returns suitably lagged and iterated circular differences.
 #'
-#' @param x wrapped or unwrapped angles to be differenced. Must be a vector or a matrix, see details.
-#' @param circular convenience flag to indicate whether wrapping should be done. If \code{FALSE}, the function is exactly \code{\link{diff}}.
+#' @param x wrapped or unwrapped angles to be differenced. Must be a vector
+#' or a matrix, see details.
+#' @param circular convenience flag to indicate whether wrapping should be
+#' done. If \code{FALSE}, the function is exactly \code{\link{diff}}.
 #' @param ... parameters to be passed to \code{\link{diff}}.
-#' @return The value of \code{diff(x, ...)}, circularly wrapped. Default parameters give an object of the kind of \code{x} with one less entry or row.
-#' @details If \code{x} is a matrix then the difference operations are carried out row-wise, on each column separately.
+#' @return The value of \code{diff(x, ...)}, circularly wrapped. Default
+#' parameters give an object of the kind of \code{x} with one less entry or row.
+#' @details If \code{x} is a matrix then the difference operations are carried
+#' out row-wise, on each column separately.
 #' @examples
 #' # Vectors
 #' x <- c(-pi, -pi/2, pi - 0.1, -pi + 0.2)
@@ -439,11 +472,15 @@ diffCirc <- function(x, circular = TRUE, ...) {
 
 #' @title Unwrapping of circular time series
 #'
-#' @description Completes a circular time series to a linear one by computing the closest wind numbers. Useful for plotting circular trajectories with crossing of boundaries.
+#' @description Completes a circular time series to a linear one by
+#' computing the closest wind numbers. Useful for plotting circular
+#' trajectories with crossing of boundaries.
 #'
 #' @param x wrapped angles. Must be a vector or a matrix, see details.
-#' @return A vector or matrix containing a choice of unwrapped angles of \code{x} that maximizes linear continuity.
-#' @details If \code{x} is a matrix then the unwrapping is carried out row-wise, on each column separately.
+#' @return A vector or matrix containing a choice of unwrapped angles of
+#' \code{x} that maximizes linear continuity.
+#' @details If \code{x} is a matrix then the unwrapping is carried out
+#' row-wise, on each column separately.
 #' @examples
 #' # Vectors
 #' x <- c(-pi, -pi/2, pi - 0.1, -pi + 0.2)
@@ -488,13 +525,21 @@ unwrapCircSeries <- function(x) {
 #'
 #' @description Computation of weights for linear interpolation in 1D and 2D.
 #'
-#' @param x,y vectors of length \code{n} containing the points where the weights should be computed.
-#' @param g1,g2,gx1,gx2,gy1,gy2 vectors of length \code{n} such that \code{g1 <= x <= g2} for 1D and \code{gx1 <= x <= gx2} and \code{gy1 <= y <= gy2} for 2D.
-#' @param circular flag to indicate whether the differences should be circularly wrapped.
+#' @param x,y vectors of length \code{n} containing the points where the
+#' weights should be computed.
+#' @param g1,g2,gx1,gx2,gy1,gy2 vectors of length \code{n} such that
+#' \code{g1 <= x <= g2} for 1D and \code{gx1 <= x <= gx2} and
+#' \code{gy1 <= y <= gy2} for 2D.
+#' @param circular flag to indicate whether the differences should be
+#' circularly wrapped.
 #' @return \itemize{
-#' \item For 1D, a matrix of size \code{c(n, 2)} containing the weights for lower (\code{g1}) and upper (\code{g1}) bins.
-#' \item For 2D, a matrix of size \code{c(n, 4)} containing the weights for lower-lower (\code{g1x}, \code{g1y}), \emph{upper-lower} (\code{g2x}, \code{g1y}), \emph{lower-upper} (\code{g1x}, \code{g2y}) and upper-upper (\code{g2x}, \code{g2y}) bins.
-#' \code{cbind(g1x, g1y)}, \code{cbind(g1x, g1y)}, \code{cbind(g1x, g1y)} and \code{cbind(g2x, g2y)}.
+#' \item For 1D, a matrix of size \code{c(n, 2)} containing the weights for
+#' lower (\code{g1}) and upper (\code{g1}) bins.
+#' \item For 2D, a matrix of size \code{c(n, 4)} containing the weights for
+#' lower-lower (\code{g1x}, \code{g1y}), \emph{upper-lower} (\code{g2x},
+#' \code{g1y}), \emph{lower-upper} (\code{g1x}, \code{g2y}) and upper-upper
+#' (\code{g2x}, \code{g2y}) bins. \code{cbind(g1x, g1y)},
+#' \code{cbind(g1x, g1y)}, \code{cbind(g1x, g1y)} and \code{cbind(g2x, g2y)}.
 #' }
 #' @details See the examples for how to use the weights for linear binning.
 #' @examples
@@ -616,14 +661,20 @@ weightsLinearInterp2D <- function(x, y, gx1, gx2, gy1, gy2, circular = FALSE) {
 
 #' @title Contour plot of a 2D surface
 #'
-#' @description Convenient wrapper for plotting a contour plot of a real function of two variables.
+#' @description Convenient wrapper for plotting a contour plot of a real
+#' function of two variables.
 #'
-#' @param x,y numerical grids fore each dimension. They must be in ascending order.
+#' @param x,y numerical grids fore each dimension. They must be in ascending
+#' order.
 #' @param f function to be plot. Must take a single argument (see examples).
-#' @param z a vector of length \code{length(x) * length(y)} containing the evaluation of \code{f} in the bivariate grid. If not provided, it is computed internally.
+#' @param z a vector of length \code{length(x) * length(y)} containing the
+#' evaluation of \code{f} in the bivariate grid. If not provided, it is
+#' computed internally.
 #' @param nLev the number of levels the range of \code{z} will be divided into.
-#' @param levels vector of contour levels. If not provided, it is set to \code{quantile(z, probs = seq(0, 1, l = nLev))}.
-#' @param fVect flag to indicate whether \code{f} is a vectorized function (see examples).
+#' @param levels vector of contour levels. If not provided, it is set to
+#' \code{quantile(z, probs = seq(0, 1, l = nLev))}.
+#' @param fVect flag to indicate whether \code{f} is a vectorized function
+#' (see examples).
 #' @param ... further arguments passed to \code{\link[graphics]{image}}
 #' @return The matrix \code{z}, invisible.
 #' @examples
@@ -682,15 +733,20 @@ plotSurface2D <- function(x = seq_len(nrow(z)), y = seq_len(ncol(z)), f,
 
 #' @title Visualization of a 3D surface
 #'
-#' @description Convenient wrapper for visualizing a real function of three variables by means of a colour scale and alpha shading.
+#' @description Convenient wrapper for visualizing a real function of three
+#' variables by means of a colour scale and alpha shading.
 #'
 #' @param x,y,z numerical grids for each dimension.
-#' @param t a vector of length \code{length(x) * length(y) * length(z)} containing the evaluation of \code{f} in the trivariate grid. If not provided, it is computed internally.
+#' @param t a vector of length \code{length(x) * length(y) * length(z)}
+#' containing the evaluation of \code{f} in the trivariate grid. If not
+#' provided, it is computed internally.
 #' @inheritParams plotSurface2D
 #' @param nLev number of levels in the colour scale.
-#' @param levels vector of breaks in the colour scale. If not provided, it is set to \code{quantile(z, probs = seq(0, 1, l = nLev))}.
+#' @param levels vector of breaks in the colour scale. If not provided, it is
+#' set to \code{quantile(z, probs = seq(0, 1, l = nLev))}.
 #' @param size size of points in pixels.
-#' @param alpha alpha value between \code{0} (fully transparent) and \code{1} (opaque).
+#' @param alpha alpha value between \code{0} (fully transparent) and \code{1}
+#' (opaque).
 #' @param ... further arguments passed to \code{\link[rgl]{plot3d}}
 #' @return The vector \code{t}, invisible.
 #' @examples
@@ -706,7 +762,7 @@ plotSurface2D <- function(x = seq_len(nrow(z)), y = seq_len(ncol(z)), f,
 #' @keywords internal
 #' @export
 plotSurface3D <- function(x = seq_len(nrow(t)), y = seq_len(ncol(t)),
-                          z = 1:dim(t)[3], f, t = NULL, nLev = 20,
+                          z = seq_len(dim(t)[3]), f, t = NULL, nLev = 20,
                           levels = NULL, fVect = FALSE, size = 15,
                           alpha = 0.05, ...) {
 
@@ -760,7 +816,8 @@ plotSurface3D <- function(x = seq_len(nrow(t)), y = seq_len(ncol(t)),
 #'
 #' @param x a numerical vector or matrix of dimension \code{c(nr, nc)}.
 #' @param n the number of replicates of \code{x} by rows or columns.
-#' @return A matrix of dimension \code{c(nr * n, nc)} for \code{repRow} or \code{c(nr, nc * n)} for \code{repCol}.
+#' @return A matrix of dimension \code{c(nr * n, nc)} for \code{repRow} or
+#' \code{c(nr, nc * n)} for \code{repCol}.
 #' @examples
 #' repRow(1:5, 2)
 #' repCol(1:5, 2)
@@ -813,21 +870,31 @@ repCol <- function(x, n) {
 }
 
 
-#' @title Utilities for conversion between row-column indexing and linear indexing of matrices
+#' @title Utilities for conversion between row-column indexing and linear
+#' indexing of matrices
 #'
-#' @description Conversions between \code{cbind(i, j)} and \code{k} such that \code{A[i, j] == A[k]} for a matrix \code{A}. Either column or row ordering can be specified for the linear indexing, and also direct conversions between both types.
+#' @description Conversions between \code{cbind(i, j)} and \code{k} such that
+#' \code{A[i, j] == A[k]} for a matrix \code{A}. Either column or row
+#' ordering can be specified for the linear indexing, and also direct
+#' conversions between both types.
 #'
 #' @param i row index.
 #' @param j column index.
-#' @param k linear indexes for column-stacking or row-stacking ordering (if \code{byRows = TRUE}).
+#' @param k linear indexes for column-stacking or row-stacking ordering (if
+#' \code{byRows = TRUE}).
 #' @param nr number of rows.
 #' @param nc number of columns.
-#' @param byRows whether to use row-ordering instead of the default column-ordering.
+#' @param byRows whether to use row-ordering instead of the default
+#' column-ordering.
 #' @return Depending on the function:
 #' \itemize{
-#' \item \code{kIndex}: a vector of length \code{nr * nc} with the linear indexes for \code{A}.
-#' \item \code{ijIndex}: a matrix of dimension \code{c(length(k), 2)} giving \code{cbind(i, j)}.
-#' \item \code{kColToRow} and \code{kRowToCol}: a vector of length \code{nr * nc} giving the permuting indexes to change the ordering of the linear indexes.
+#' \item \code{kIndex}: a vector of length \code{nr * nc} with the linear
+#' indexes for \code{A}.
+#' \item \code{ijIndex}: a matrix of dimension \code{c(length(k), 2)} giving
+#' \code{cbind(i, j)}.
+#' \item \code{kColToRow} and \code{kRowToCol}: a vector of length
+#' \code{nr * nc} giving the permuting indexes to change the ordering of the
+#' linear indexes.
 #' }
 #' @examples
 #' # Indexes of a 3 x 5 matrix
@@ -910,14 +977,19 @@ kRowToCol <- function(k, nr, nc) {
 
 #' @title Matching of matrices
 #'
-#' @description Wrapper for matching a matrix against another, by rows or columns.
+#' @description Wrapper for matching a matrix against another, by rows or
+#' columns.
 #'
 #' @param x matrix with the values to be matched.
 #' @param mat matrix with the values to be matched against.
-#' @param rows whether the match should be done by rows (\code{TRUE}) or columns (\code{FALSE}).
-#' @param useMatch whether to rely on \code{\link[base]{match}} or not. Might give unexpected mismatches due to working with lists.
+#' @param rows whether the match should be done by rows (\code{TRUE}) or
+#' columns (\code{FALSE}).
+#' @param useMatch whether to rely on \code{\link[base]{match}} or not. Might
+#' give unexpected mismatches due to working with lists.
 #' @param ... further parameters passed to \code{\link[base]{match}}.
-#' @return An integer vector of length \code{nrow(x)} (or \code{ncol(x)}) giving the row (or col) position in table of the first match, if there is a match.
+#' @return An integer vector of length \code{nrow(x)} (or \code{ncol(x)})
+#' giving the row (or col) position in table of the first match, if there is
+#' a match.
 #' @examples
 #' # By rows
 #' A <- rbind(5:6, repRow(1:2, 3), 3:4)
@@ -960,8 +1032,8 @@ matMatch <- function(x, mat, rows = TRUE, useMatch = FALSE, ...) {
     }
 
     # Naive approach
-    sapply(1:nrow(x), function(i) which(apply(mat, 1,
-                                              function(y) all(y == x[i, ])))[1])
+    sapply(seq_len(nrow(x)), function(i)
+      which(apply(mat, 1, function(y) all(y == x[i, ])))[1])
 
   }
 
@@ -970,7 +1042,8 @@ matMatch <- function(x, mat, rows = TRUE, useMatch = FALSE, ...) {
 
 #' @title Monte Carlo integration on the torus
 #'
-#' @description Convenience function for Monte Carlo integration on \eqn{[-\pi, \pi)^p}.
+#' @description Convenience function for Monte Carlo integration on
+#' \eqn{[-\pi, \pi)^p}.
 #'
 #' @param f function to be integrated.
 #' @param p dimension of the torus.
@@ -986,7 +1059,8 @@ matMatch <- function(x, mat, rows = TRUE, useMatch = FALSE, ...) {
 mcTorusIntegrate <- function(f, p, M = 1e5, fVect = TRUE, ...) {
 
   # Sample uniformly on the torus
-  sampleUnifTorus <- matrix(runif(n = M * p, min = -pi, max = pi), nrow = M, ncol = p)
+  sampleUnifTorus <- matrix(runif(n = M * p, min = -pi, max = pi),
+                            nrow = M, ncol = p)
 
   # Evaluations
   if (fVect) {
@@ -1009,12 +1083,17 @@ mcTorusIntegrate <- function(f, p, M = 1e5, fVect = TRUE, ...) {
 
 #' @title Draws pretty axis labels for circular variables
 #'
-#' @description Wrapper for drawing pretty axis labels for circular variables. To be invoked after \code{plot} with \code{axes = FALSE} has been called.
+#' @description Wrapper for drawing pretty axis labels for circular variables.
+#' To be invoked after \code{plot} with \code{axes = FALSE} has been called.
 #'
-#' @param sides an integer vector specifying which side of the plot the axes are to be drawn on. The axes are placed as follows: \code{1} = below, \code{2} = left, \code{3} = above, and \code{4} = right.
-#' @param twoPi flag indicating that \eqn{[0,2\pi)} is the support, instead of \eqn{[-\pi,\pi)}.
+#' @param sides an integer vector specifying which side of the plot the axes are
+#' to be drawn on. The axes are placed as follows: \code{1} = below,
+#' \code{2} = left, \code{3} = above, and \code{4} = right.
+#' @param twoPi flag indicating that \eqn{[0,2\pi)} is the support, instead of
+#' \eqn{[-\pi,\pi)}.
 #' @param ... further parameters passed to \code{\link[graphics]{axis}}.
-#' @return This function is usually invoked for its side effect, which is to add axes to an already existing plot.
+#' @return This function is usually invoked for its side effect, which is to
+#' add axes to an already existing plot.
 #' @details The function calls \code{\link[graphics]{box}}.
 #' @examples
 #' grid <- seq(-pi, pi, l = 100)
@@ -1028,12 +1107,12 @@ torusAxis <- function(sides = 1:2, twoPi = FALSE, ...) {
   if (twoPi) {
 
     at <- seq(0, 2 * pi, l = 5)
-    labels <- expression(0, pi/2, pi, 3*pi/2, 2*pi)
+    labels <- expression(0, pi / 2, pi, 3 * pi / 2, 2 * pi)
 
   } else {
 
     at <- seq(-pi, pi, l = 5)
-    labels <- expression(-pi, -pi/2, 0, pi/2, pi)
+    labels <- expression(-pi, -pi / 2, 0, pi / 2, pi)
 
   }
 
@@ -1050,12 +1129,17 @@ torusAxis <- function(sides = 1:2, twoPi = FALSE, ...) {
 
 #' @title Draws pretty axis labels for circular variables
 #'
-#' @description Wrapper for drawing pretty axis labels for circular variables. To be invoked after \code{plot3d} with \code{axes = FALSE} and \code{box = FALSE} has been called.
+#' @description Wrapper for drawing pretty axis labels for circular variables.
+#' To be invoked after \code{plot3d} with \code{axes = FALSE} and
+#' \code{box = FALSE} has been called.
 #'
-#' @param sides an integer vector specifying which side of the plot the axes are to be drawn on. The axes are placed as follows: \code{1} = x, \code{2} = y, \code{3} = z.
+#' @param sides an integer vector specifying which side of the plot the axes are
+#' to be drawn on. The axes are placed as follows: \code{1} = x, \code{2} = y,
+#' \code{3} = z.
 #' @inheritParams torusAxis
 #' @param ... further parameters passed to \code{\link[rgl:axes3d]{axis3d}}.
-#' @return This function is usually invoked for its side effect, which is to add axes to an already existing plot.
+#' @return This function is usually invoked for its side effect, which is to
+#' add axes to an already existing plot.
 #' @details The function calls \code{\link[rgl:axes3d]{box3d}}.
 #' @examples
 #' \donttest{

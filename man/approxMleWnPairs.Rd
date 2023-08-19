@@ -2,7 +2,8 @@
 % Please edit documentation in R/mle.R
 \name{approxMleWnPairs}
 \alias{approxMleWnPairs}
-\title{Approximate MLE of the WN diffusion in 2D from a sample of initial and final pairs of angles.}
+\title{Approximate MLE of the WN diffusion in 2D from a sample of initial
+and final pairs of angles.}
 \usage{
 approxMleWnPairs(data, delta, start = c(0, 0, 1, 1, 0, 1, 1),
   alpha = rep(NA, 3), mu = rep(NA, 2), sigma = rep(NA, 2), rho = NA,
@@ -14,7 +15,8 @@ approxMleWnPairs(data, delta, start = c(0, 0, 1, 1, 0, 1, 1),
 
 \item{delta}{discretization step.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each
+entry representing a different starting value.}
 
 \item{alpha}{vector of length \code{3} parametrizing the \code{A} matrix as in \code{\link{alphaToA}}.}
 
@@ -24,7 +26,8 @@ approxMleWnPairs(data, delta, start = c(0, 0, 1, 1, 0, 1, 1),
 
 \item{rho}{correlation coefficient of \eqn{\Sigma}.}
 
-\item{lower, upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
+\item{lower, upper}{bound for box constraints as in method \code{"L-BFGS-B"}
+of \code{\link[stats]{optim}}.}
 
 \item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
 
@@ -36,7 +39,9 @@ approxMleWnPairs(data, delta, start = c(0, 0, 1, 1, 0, 1, 1),
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) diffusion, using the wrapped Ornstein--Uhlenbeck diffusion and assuming initial stationarity.
+Approximate Maximum Likelihood Estimation (MLE) for the Wrapped
+Normal (WN) diffusion, using the wrapped Ornstein--Uhlenbeck diffusion and
+assuming initial stationarity.
 }
 \examples{
 mu <- c(0, 0)

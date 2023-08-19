@@ -2,7 +2,8 @@
 
 #' @title Drift for the JP diffusion
 #'
-#' @description Drift for the Langevin diffusion associated to the Jones and Pewsey (JP) family of circular distributions.
+#' @description Drift for the Langevin diffusion associated to the Jones and
+#' Pewsey (JP) family of circular distributions.
 #'
 #' @param x vector with the evaluation points for the drift.
 #' @param alpha strength of the drift.
@@ -17,11 +18,13 @@
 #' }
 #' See Section 2.2.3 in García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+#' Langevin diffusions on the torus: estimation and applications.
+#' \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #'
-#' Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific, Singapore. \doi{10.1142/4031}
-#'
-#' Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on the circle. \emph{Journal of the American Statistical Association}, 100(472):1422--1428. \doi{10.1198/016214505000000286}
+#' Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on
+#' the circle. \emph{Journal of the American Statistical Association},
+#' 100(472):1422--1428. \doi{10.1198/016214505000000286}
 #' @examples
 #' x <- seq(-pi, pi, l = 200)
 #' plot(x, x, type = "n", ylab = "drift")
@@ -50,16 +53,24 @@ driftJp <- function(x, alpha, mu, psi) {
 
 #' @title Drift for the MvM diffusion
 #'
-#' @description Drift for the Langevin diffusion associated to the Multivariate von Mises (MvM) in dimension \code{p}.
+#' @description Drift for the Langevin diffusion associated to the Multivariate
+#' von Mises (MvM) in dimension \code{p}.
 #'
-#' @param x matrix of size \code{c(n, p)} with the evaluation points for the drift.
-#' @param mu vector of length \code{p} with the unconditional mean of the diffusion.
-#' @param alpha vector of length \code{p} with the strength of the drift in the diagonal (\eqn{\sin}{sin} terms).
-#' @param A matrix of size \code{c(p, p)} with the strength of the drift in cross terms (\eqn{\cos}{cos}-\eqn{\sin}{sin} terms). The diagonal has to be zero.
+#' @param x matrix of size \code{c(n, p)} with the evaluation points for the
+#' drift.
+#' @param mu vector of length \code{p} with the unconditional mean of the
+#' diffusion.
+#' @param alpha vector of length \code{p} with the strength of the drift in
+#' the diagonal (\eqn{\sin}{sin} terms).
+#' @param A matrix of size \code{c(p, p)} with the strength of the drift in
+#' cross terms (\eqn{\cos}{cos}-\eqn{\sin}{sin} terms). The diagonal has to
+#' be zero.
 #' @return A matrix of the same size as \code{x} containing the drift.
 #' @details See Section 2.2.1 in García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+#' Langevin diffusions on the torus: estimation and applications.
+#' \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @examples
 #' # 1D
 #' x <- seq(-pi, pi, l = 200)
@@ -72,7 +83,8 @@ driftJp <- function(x, alpha, mu, psi) {
 #' # 2D
 #' x <- seq(-pi, pi, l = 100)
 #' plotSurface2D(x, x, f = function(x) sqrt(rowSums(driftMvm(x = x,
-#'               alpha = c(2, 2), mu = c(-1, -1), A = rbind(c(0, 0), c(0, 0)))^2)),
+#'               alpha = c(2, 2), mu = c(-1, -1),
+#'               A = rbind(c(0, 0), c(0, 0)))^2)),
 #'               fVect = TRUE)
 #' @export
 driftMvm <- function(x, alpha, mu, A = 0) {
@@ -106,7 +118,8 @@ driftMvm <- function(x, alpha, mu, A = 0) {
 
 #' @title Drift for the mivM diffusion
 #'
-#' @description Drift for the Langevin diffusion associated to a mixture of \code{m} independent (multivariate) von Mises (mivM) of dimension \code{p}.
+#' @description Drift for the Langevin diffusion associated to a mixture of
+#' \code{m} independent (multivariate) von Mises (mivM) of dimension \code{p}.
 #'
 #' @inheritParams driftMvm
 #' @param A matrix of size \code{c(m, p)} giving the strengths of the drifts.
@@ -115,9 +128,13 @@ driftMvm <- function(x, alpha, mu, A = 0) {
 #' @param p vector of length \code{m} giving the proportions. Must add to one.
 #' @inheritParams safeSoftMax
 #' @return A matrix of the same size as \code{x} containing the drift.
-#' @details \code{\link{driftMixVm}} is more efficient for the circular case. The diffusion matrix is \eqn{\sigma\bold{I}}{sigma}. See Section 2.2.4 in García-Portugués et al. (2019) for details.
+#' @details \code{\link{driftMixVm}} is more efficient for the circular case.
+#' The diffusion matrix is \eqn{\sigma\bold{I}}{sigma}. See Section 2.2.4 in
+#' García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+#' Langevin diffusions on the torus: estimation and applications.
+#' \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @examples
 #' # 1D
 #' x <- seq(-pi, pi, l = 200)
@@ -153,7 +170,8 @@ driftMixIndVm <- function(x, A, M, sigma, p, expTrc = 30) {
   for (j in 1:m) {
 
     # Logs of components (mu - x using recyclying by columns)
-    logs[j, ] <- log(p[j]) + colSums(K[j, ] * (cos(M[j, ] - x) - 1)) - sum(logBesselI0Scaled(K[j, ]))
+    logs[j, ] <- log(p[j]) + colSums(K[j, ] * (cos(M[j, ] - x) - 1)) -
+      sum(logBesselI0Scaled(K[j, ]))
 
   }
   w <- safeSoftMax(logs = t(logs), expTrc = expTrc)
@@ -173,23 +191,29 @@ driftMixIndVm <- function(x, A, M, sigma, p, expTrc = 30) {
 
 #' @title Drift for the mivM diffusion (circular case)
 #'
-#' @description Drift for the Langevin diffusion associated to a mixture of \code{m} independent von Mises (mivM) of dimension one.
+#' @description Drift for the Langevin diffusion associated to a mixture of
+#' \code{m} independent von Mises (mivM) of dimension one.
 #'
 #' @inheritParams driftJp
 #' @param alpha vector of length \code{m} giving the strengths of the drifts.
 #' @param mu vector of length \code{m} giving the means.
 #' @inheritParams driftMixIndVm
 #' @inheritParams safeSoftMax
-#' @details \code{\link{driftMixIndVm}} is more general, but less efficient for the circular case. See Section 2.2.4 in García-Portugués et al. (2019) for details.
+#' @details \code{\link{driftMixIndVm}} is more general, but less efficient for
+#' the circular case. See Section 2.2.4 in García-Portugués et al. (2019) for
+#' details.
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+#' Langevin diffusions on the torus: estimation and applications.
+#' \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @return A vector of the same length as \code{x} containing the drift.
 #' @examples
 #' x <- seq(-pi, pi, l = 200)
 #' plot(x, x, type = "n", ylab = "drift")
 #' for (i in 1:10) {
-#'   lines(x, driftMixVm(x = x, alpha = c(2, 2), mu = c(0, -pi + 2 * pi * i / 10),
-#'         sigma = 1, p = c(0.5, 0.5)), col = rainbow(10)[i])
+#'   lines(x, driftMixVm(x = x, alpha = c(2, 2),
+#'                       mu = c(0, -pi + 2 * pi * i / 10),
+#'                       sigma = 1, p = c(0.5, 0.5)), col = rainbow(10)[i])
 #' }
 #' @export
 driftMixVm <- function(x, alpha, mu, sigma, p, expTrc = 30) {
@@ -217,7 +241,8 @@ driftMixVm <- function(x, alpha, mu, sigma, p, expTrc = 30) {
 
 #' @title Drift for the WN diffusion
 #'
-#' @description Drift for the Langevin diffusion associated to the (multivariate) Wrapped Normal (WN) in dimension \code{p}.
+#' @description Drift for the Langevin diffusion associated to the
+#' (multivariate) Wrapped Normal (WN) in dimension \code{p}.
 #'
 #' @inheritParams driftMixIndVm
 #' @inheritParams driftMvm
@@ -227,9 +252,12 @@ driftMixVm <- function(x, alpha, mu, sigma, p, expTrc = 30) {
 #' @param invSigmaA the matrix \code{solve(Sigma) \%*\% A} (optional).
 #' @details See Section 2.2.2 in García-Portugués et al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+#' Langevin diffusions on the torus: estimation and applications.
+#' \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @return A matrix of the same size as \code{x} containing the drift.
-#' @details \code{\link{driftWn1D}} and \code{\link{driftWn2D}} are more efficient for the 1D and 2D cases.
+#' @details \code{\link{driftWn1D}} and \code{\link{driftWn2D}} are more
+#' efficient for the 1D and 2D cases.
 #' @examples
 #' # 1D
 #' x <- seq(-pi, pi, l = 200)

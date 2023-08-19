@@ -2,20 +2,30 @@
 
 #' @title Transition probability density in 1D by PDE solving
 #'
-#' @description Computation of the transition probability density (tpd) of the Wrapped Normal (WN) or von Mises (vM) diffusion, by solving its associated Fokker--Planck Partial Differential Equation (PDE) in 1D.
+#' @description Computation of the transition probability density (tpd) of the
+#' Wrapped Normal (WN) or von Mises (vM) diffusion, by solving its associated
+#' Fokker--Planck Partial Differential Equation (PDE) in 1D.
 #'
 #' @inheritParams crankNicolson1D
-#' @param x0 point giving the mean of the initial circular density, a WN with standard deviation equal to \code{sdInitial}.
+#' @param x0 point giving the mean of the initial circular density, a WN with
+#' standard deviation equal to \code{sdInitial}.
 #' @param t time separating \code{x0} and the evaluation of the tpd.
 #' @param type either \code{"WN"} or \code{"vM"}.
 #' @inheritParams dTpdWou1D
 #' @param Mt size of the time grid in \eqn{[0, t]}.
-#' @param sdInitial the standard deviation of the concentrated WN giving the initial condition.
+#' @param sdInitial the standard deviation of the concentrated WN giving the
+#' initial condition.
 #' @param ... Further parameters passed to \code{\link{crankNicolson1D}}.
-#' @return A vector of length \code{Mx} with the tpd evaluated at \code{seq(-pi, pi, l = Mx + 1)[-(Mx + 1)]}.
-#' @details A combination of small \code{sdInitial} and coarse space-time discretization (small \code{Mx} and \code{Mt}) is prone to create numerical instabilities. See Sections 3.4.1, 2.2.1 and 2.2.2 in García-Portugués et al. (2019) for details.
+#' @return A vector of length \code{Mx} with the tpd evaluated at
+#' \code{seq(-pi, pi, l = Mx + 1)[-(Mx + 1)]}.
+#' @details A combination of small \code{sdInitial} and coarse space-time
+#' discretization (small \code{Mx} and \code{Mt}) is prone to create numerical
+#' instabilities. See Sections 3.4.1, 2.2.1 and 2.2.2 in García-Portugués et
+#' al. (2019) for details.
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+#' Langevin diffusions on the torus: estimation and applications.
+#' \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @examples
 #' Mx <- 100
 #' x <- seq(-pi, pi, l = Mx + 1)[-c(Mx + 1)]
@@ -69,21 +79,37 @@ dTpdPde1D <- function(Mx = 500, x0, t, alpha, mu, sigma, type = "WN",
 
 #' @title Transition probability density in 2D by PDE solving
 #'
-#' @description Computation of the transition probability density (tpd) of the Wrapped Normal (WN) or Multivariate von Mises (MvM) diffusion, by solving its associated Fokker--Planck Partial Differential Equation (PDE) in 2D.
+#' @description Computation of the transition probability density (tpd) of the
+#' Wrapped Normal (WN) or Multivariate von Mises (MvM) diffusion, by solving
+#' its associated Fokker--Planck Partial Differential Equation (PDE) in 2D.
 #'
 #' @inheritParams crankNicolson2D
 #' @inheritParams dTpdPde1D
-#' @param x0 point giving the mean of the initial circular density, an isotropic WN with standard deviations equal to \code{sdInitial}.
-#' @param alpha for \code{"WN"}, a vector of length \code{3} parametrizing the \code{A} matrix as in \code{\link{alphaToA}}. For \code{"vM"}, a vector of length \code{3} containing \code{c(alpha[1:2], A[1, 2])}, from the arguments \code{alpha} and \code{A} in \code{\link{driftMvm}}.
+#' @param x0 point giving the mean of the initial circular density, an
+#' isotropic WN with standard deviations equal to \code{sdInitial}.
+#' @param alpha for \code{"WN"}, a vector of length \code{3} parametrizing
+#' the \code{A} matrix as in \code{\link{alphaToA}}. For \code{"vM"}, a vector
+#' of length \code{3} containing \code{c(alpha[1:2], A[1, 2])}, from the
+#' arguments \code{alpha} and \code{A} in \code{\link{driftMvm}}.
 #' @param mu vector of length \code{2} giving the mean.
-#' @param sigma for \code{"WN"}, a vector of length \code{2} containing the \strong{square root} of the diagonal of the diffusion matrix. For \code{"vM"}, the standard deviation giving the isotropic diffusion matrix.
+#' @param sigma for \code{"WN"}, a vector of length \code{2} containing the
+#' \strong{square root} of the diagonal of the diffusion matrix. For
+#' \code{"vM"}, the standard deviation giving the isotropic diffusion matrix.
 #' @param rho for \code{"WN"}, the correlation of the diffusion matrix.
-#' @param sdInitial standard deviations of the concentrated WN giving the initial condition.
+#' @param sdInitial standard deviations of the concentrated WN giving the
+#' initial condition.
 #' @param ... Further parameters passed to \code{\link{crankNicolson2D}}.
-#' @return A matrix of size \code{c(Mx, My)} with the tpd evaluated at the combinations of \code{seq(-pi, pi, l = Mx + 1)[-(Mx + 1)]} and \code{seq(-pi, pi, l = My + 1)[-(My + 1)]}.
-#' @details A combination of small \code{sdInitial} and coarse space-time discretization (small \code{Mx} and \code{Mt}) is prone to create numerical instabilities. See Sections 3.4.2, 2.2.1 and 2.2.2 in García-Portugués et al. (2019) for details.
+#' @return A matrix of size \code{c(Mx, My)} with the tpd evaluated at the
+#' combinations of \code{seq(-pi, pi, l = Mx + 1)[-(Mx + 1)]} and
+#' \code{seq(-pi, pi, l = My + 1)[-(My + 1)]}.
+#' @details A combination of small \code{sdInitial} and coarse space-time
+#' discretization (small \code{Mx} and \code{Mt}) is prone to create numerical
+#' instabilities. See Sections 3.4.2, 2.2.1 and 2.2.2 in García-Portugués et al.
+#' (2019) for details.
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+#' Langevin diffusions on the torus: estimation and applications.
+#' \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @examples
 #' M <- 100
 #' x <- seq(-pi, pi, l = M + 1)[-c(M + 1)]
@@ -143,17 +169,26 @@ dTpdPde2D <- function(Mx = 50, My = 50, x0, t, alpha, mu, sigma, rho = 0,
 
 #' @title MLE for toroidal process via PDE solving in 1D
 #'
-#' @description Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker--Planck Partial Differential Equation (PDE) in 1D.
+#' @description Maximum Likelihood Estimation (MLE) for arbitrary diffusions,
+#' based on the transition probability density (tpd) obtained as the numerical
+#' solution of the Fokker--Planck Partial Differential Equation (PDE) in 1D.
 #'
-#' @param b drift function. Must return a vector of the same size as its argument.
-#' @param sigma2 function giving the squared diffusion coefficient. Must return a vector of the same size as its argument.
+#' @param b drift function. Must return a vector of the same size as its
+#' argument.
+#' @param sigma2 function giving the squared diffusion coefficient. Must
+#' return a vector of the same size as its argument.
 #' @inheritParams dTpdPde1D
 #' @inheritParams mleOu
-#' @param linearBinning flag to indicate whether linear binning should be applied for the initial values of the tpd, instead of usual simple binning (cheaper). Linear binning is always done in the evaluation of the tpd.
+#' @param linearBinning flag to indicate whether linear binning should be
+#' applied for the initial values of the tpd, instead of usual simple binning
+#' (cheaper). Linear binning is always done in the evaluation of the tpd.
 #' @return Output from \code{\link{mleOptimWrapper}}.
-#' @details See Sections 3.4.1 and 3.4.4 in García-Portugués et al. (2019) for details.
+#' @details See Sections 3.4.1 and 3.4.4 in García-Portugués et al. (2019) for
+#' details.
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+#' Langevin diffusions on the torus: estimation and applications.
+#' \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @examples
 #' \donttest{
 #' # Test in OU
@@ -190,16 +225,21 @@ dTpdPde2D <- function(Mx = 50, My = 50, x0, t, alpha, mu, sigma, rho = 0,
 #'
 #' exactOu <- mleOu(traj, delta = 0.5, start = c(1, 1, 2),
 #'                  lower = c(0.1, -pi, 0.1), upper = c(10, pi, 10))
-#' pdeWn <- mlePde1D(data = traj, delta = 0.5, Mx = 100, Mt = 100, b = function(x, pars)
-#'                   driftWn1D(x = x, alpha = pars[1], mu = pars[2], sigma = pars[3]),
+#' pdeWn <- mlePde1D(data = traj, delta = 0.5, Mx = 100, Mt = 100,
+#'                   b = function(x, pars)
+#'                     driftWn1D(x = x, alpha = pars[1], mu = pars[2],
+#'                               sigma = pars[3]),
 #'                   sigma2 = function(x, pars) rep(pars[3]^2, length(x)),
 #'                   start = c(1, 1, 2), lower = c(0.1, -pi, -10),
 #'                   upper = c(10, pi, 10), verbose = 2)
-#' pdeWnLin <- mlePde1D(data = traj, delta = 0.5, Mx = 100, Mt = 100, b = function(x, pars)
-#'                      driftWn1D(x = x, alpha = pars[1], mu = pars[2], sigma = pars[3]),
+#' pdeWnLin <- mlePde1D(data = traj, delta = 0.5, Mx = 100, Mt = 100,
+#'                      b = function(x, pars)
+#'                        driftWn1D(x = x, alpha = pars[1], mu = pars[2],
+#'                                  sigma = pars[3]),
 #'                      sigma2 = function(x, pars) rep(pars[3]^2, length(x)),
 #'                      start = c(1, 1, 2), lower = c(0.1, -pi, -10),
-#'                      upper = c(10, pi, 10), linearBinning = TRUE, verbose = 2)
+#'                      upper = c(10, pi, 10), linearBinning = TRUE,
+#'                      verbose = 2)
 #' head(exactOu)
 #' head(pdeWn)
 #' head(pdeWnLin)
@@ -328,17 +368,26 @@ mlePde1D <- function(data, delta, b, sigma2, Mx = 500,
 
 #' @title MLE for toroidal process via PDE solving in 2D
 #'
-#' @description Maximum Likelihood Estimation (MLE) for arbitrary diffusions, based on the transition probability density (tpd) obtained as the numerical solution of the Fokker--Planck Partial Differential Equation (PDE) in 2D.
+#' @description Maximum Likelihood Estimation (MLE) for arbitrary diffusions,
+#' based on the transition probability density (tpd) obtained as the numerical
+#' solution of the Fokker--Planck Partial Differential Equation (PDE) in 2D.
 #'
-#' @param b drift function. Must return a vector of the same size as its argument.
-#' @param sigma2 function giving the diagonal of the diffusion matrix. Must return a vector of the same size as its argument.
+#' @param b drift function. Must return a vector of the same size as its
+#' argument.
+#' @param sigma2 function giving the diagonal of the diffusion matrix. Must
+#' return a vector of the same size as its argument.
 #' @inheritParams psMle
 #' @inheritParams dTpdPde2D
 #' @inheritParams mlePde1D
 #' @return Output from \code{\link{mleOptimWrapper}}.
-#' @details See Sections 3.4.2 and 3.4.4 in García-Portugués et al. (2019) for details. The function currently includes the \code{region} function for imposing a feasibility region on the parameters of the bivariate WN diffusion.
+#' @details See Sections 3.4.2 and 3.4.4 in García-Portugués et al. (2019) for
+#' details. The function currently includes the \code{region} function for
+#' imposing a feasibility region on the parameters of the bivariate WN
+#' diffusion.
 #' @references
-#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+#' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+#' Langevin diffusions on the torus: estimation and applications.
+#' \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @examples
 #' \donttest{
 #' # Test in OU process
@@ -358,12 +407,14 @@ mlePde1D <- function(data, delta, b, sigma2, Mx = 500,
 #'                   upper = c(25, 25, 25, 10, 10))
 #' head(exactOu, 2)
 #' pdeOu <- mlePde2D(data = data, delta = 0.5, b = b, sigma2 = sigma2,
-#'                   Mx = 10, My = 10, Mt = 10, start = rbind(c(1, 1, 0, 2, 2)),
+#'                   Mx = 10, My = 10, Mt = 10,
+#'                   start = rbind(c(1, 1, 0, 2, 2)),
 #'                   lower = c(0.1, 0.1, -25, -10, -10),
 #'                   upper = c(25, 25, 25, 10, 10), verbose = 2)
 #' head(pdeOu, 2)
 #' pdeOuLin <- mlePde2D(data = data, delta = 0.5, b = b, sigma2 = sigma2,
-#'                      Mx = 10, My = 10, Mt = 10, start = rbind(c(1, 1, 0, 2, 2)),
+#'                      Mx = 10, My = 10, Mt = 10,
+#'                      start = rbind(c(1, 1, 0, 2, 2)),
 #'                      lower = c(0.1, 0.1, -25, -10, -10),
 #'                      upper = c(25, 25, 25, 10, 10), verbose = 2,
 #'                      linearBinning = TRUE)
@@ -388,9 +439,11 @@ mlePde1D <- function(data, delta, b, sigma2, Mx = 500,
 #' pdeWn <- mlePde2D(data = data, delta = 0.5, b = b, sigma2 = sigma2,
 #'                   Mx = 20, My = 20, Mt = 10, start = rbind(c(1, 1, 0, 1, 1)),
 #'                   lower = c(0.1, 0.1, -25, -25, -25),
-#'                   upper = c(25, 25, 25, 25, 25), verbose = 2, optMethod = "nlm")
+#'                   upper = c(25, 25, 25, 25, 25), verbose = 2,
+#'                   optMethod = "nlm")
 #' pdeWnLin <- mlePde2D(data = data, delta = 0.5, b = b, sigma2 = sigma2,
-#'                      Mx = 20, My = 20, Mt = 10, start = rbind(c(1, 1, 0, 1, 1)),
+#'                      Mx = 20, My = 20, Mt = 10,
+#'                      start = rbind(c(1, 1, 0, 1, 1)),
 #'                      lower = c(0.1, 0.1, -25, -25, -25),
 #'                      upper = c(25, 25, 25, 25, 25), verbose = 2,
 #'                      linearBinning = TRUE)

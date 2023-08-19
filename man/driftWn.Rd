@@ -7,11 +7,13 @@
 driftWn(x, A, mu, Sigma, invSigmaA = NULL, maxK = 2, expTrc = 30)
 }
 \arguments{
-\item{x}{matrix of size \code{c(n, p)} with the evaluation points for the drift.}
+\item{x}{matrix of size \code{c(n, p)} with the evaluation points for the
+drift.}
 
 \item{A}{matrix of size \code{c(p, p)} giving the drift strength.}
 
-\item{mu}{vector of length \code{p} with the unconditional mean of the diffusion.}
+\item{mu}{vector of length \code{p} with the unconditional mean of the
+diffusion.}
 
 \item{Sigma}{diffusion matrix, of size \code{c(p, p)}.}
 
@@ -25,12 +27,14 @@ driftWn(x, A, mu, Sigma, invSigmaA = NULL, maxK = 2, expTrc = 30)
 A matrix of the same size as \code{x} containing the drift.
 }
 \description{
-Drift for the Langevin diffusion associated to the (multivariate) Wrapped Normal (WN) in dimension \code{p}.
+Drift for the Langevin diffusion associated to the
+(multivariate) Wrapped Normal (WN) in dimension \code{p}.
 }
 \details{
 See Section 2.2.2 in García-Portugués et al. (2019) for details.
 
-\code{\link{driftWn1D}} and \code{\link{driftWn2D}} are more efficient for the 1D and 2D cases.
+\code{\link{driftWn1D}} and \code{\link{driftWn2D}} are more
+efficient for the 1D and 2D cases.
 }
 \examples{
 # 1D
@@ -49,5 +53,7 @@ plotSurface2D(x, x, f = function(x) sqrt(rowSums(
               Sigma = diag(c(1.5^2, 1.5^2)))^2)), fVect = TRUE)
 }
 \references{
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+Langevin diffusions on the torus: estimation and applications.
+\emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 }

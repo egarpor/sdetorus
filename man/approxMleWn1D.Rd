@@ -13,13 +13,19 @@ approxMleWn1D(data, delta, start, alpha = NA, mu = NA, sigma = NA,
 
 \item{delta}{discretization step.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each
+entry representing a different starting value.}
 
-\item{alpha, mu, sigma}{if their values are provided, the likelihood function is optimized with respect to the rest of unspecified parameters. The number of elements in \code{start}, \code{lower} and \code{upper} has to be modified accordingly (see examples).}
+\item{alpha, mu, sigma}{if their values are provided, the likelihood function
+is optimized with respect to the rest of unspecified parameters. The number
+of elements in \code{start}, \code{lower} and \code{upper} has to be modified
+accordingly (see examples).}
 
-\item{lower, upper}{bound for box constraints as in method "L-BFGS-B" of \code{\link[stats]{optim}}.}
+\item{lower, upper}{bound for box constraints as in method \code{"L-BFGS-B"}
+of \code{\link[stats]{optim}}.}
 
-\item{vmApprox}{flag to indicate von Mises approximation to wrapped normal. See\cr \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
+\item{vmApprox}{flag to indicate von Mises approximation to wrapped normal.
+See\cr \code{\link{momentMatchWnVm}} and \code{\link{scoreMatchWnBvm}}.}
 
 \item{maxK}{maximum absolute winding number used if \code{circular = TRUE}.}
 
@@ -29,7 +35,8 @@ approxMleWn1D(data, delta, start, alpha = NA, mu = NA, sigma = NA,
 Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
-Approximate Maximum Likelihood Estimation (MLE) for the Wrapped Normal (WN) in 1D using the wrapped Ornstein--Uhlenbeck diffusion.
+Approximate Maximum Likelihood Estimation (MLE) for the Wrapped
+Normal (WN) in 1D using the wrapped Ornstein--Uhlenbeck diffusion.
 }
 \details{
 See Section 3.3 in García-Portugués et al. (2019) for details.
@@ -47,5 +54,7 @@ approxMleWn1D(data = samp, delta = 0.1, mu = mu, start = c(alpha, sigma),
                 lower = c(0.01, 0.01), upper = c(25, 25))
 }
 \references{
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+Langevin diffusions on the torus: estimation and applications.
+\emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 }

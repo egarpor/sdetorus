@@ -5,7 +5,8 @@
 \alias{ijIndex}
 \alias{kColToRow}
 \alias{kRowToCol}
-\title{Utilities for conversion between row-column indexing and linear indexing of matrices}
+\title{Utilities for conversion between row-column indexing and linear
+indexing of matrices}
 \usage{
 kIndex(i, j, nr, nc, byRows = FALSE)
 
@@ -24,20 +25,29 @@ kRowToCol(k, nr, nc)
 
 \item{nc}{number of columns.}
 
-\item{byRows}{whether to use row-ordering instead of the default column-ordering.}
+\item{byRows}{whether to use row-ordering instead of the default
+column-ordering.}
 
-\item{k}{linear indexes for column-stacking or row-stacking ordering (if \code{byRows = TRUE}).}
+\item{k}{linear indexes for column-stacking or row-stacking ordering (if
+\code{byRows = TRUE}).}
 }
 \value{
 Depending on the function:
 \itemize{
-\item \code{kIndex}: a vector of length \code{nr * nc} with the linear indexes for \code{A}.
-\item \code{ijIndex}: a matrix of dimension \code{c(length(k), 2)} giving \code{cbind(i, j)}.
-\item \code{kColToRow} and \code{kRowToCol}: a vector of length \code{nr * nc} giving the permuting indexes to change the ordering of the linear indexes.
+\item \code{kIndex}: a vector of length \code{nr * nc} with the linear
+indexes for \code{A}.
+\item \code{ijIndex}: a matrix of dimension \code{c(length(k), 2)} giving
+\code{cbind(i, j)}.
+\item \code{kColToRow} and \code{kRowToCol}: a vector of length
+\code{nr * nc} giving the permuting indexes to change the ordering of the
+linear indexes.
 }
 }
 \description{
-Conversions between \code{cbind(i, j)} and \code{k} such that \code{A[i, j] == A[k]} for a matrix \code{A}. Either column or row ordering can be specified for the linear indexing, and also direct conversions between both types.
+Conversions between \code{cbind(i, j)} and \code{k} such that
+\code{A[i, j] == A[k]} for a matrix \code{A}. Either column or row
+ordering can be specified for the linear indexing, and also direct
+conversions between both types.
 }
 \examples{
 # Indexes of a 3 x 5 matrix

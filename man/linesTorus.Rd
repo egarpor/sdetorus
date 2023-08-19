@@ -11,7 +11,8 @@ linesTorus(x, y, col = 1, lty = 1, ltyCross = lty, arrows = FALSE, ...)
 
 \item{y}{vector with vertical coordinates, wrapped in \eqn{[-\pi,\pi)}.}
 
-\item{col}{color vector of length \code{1} or the same length of \code{x} and \code{y}.}
+\item{col}{color vector of length \code{1} or the same length of \code{x} and
+\code{y}.}
 
 \item{lty}{line type as in \code{\link[graphics]{par}}.}
 
@@ -19,16 +20,19 @@ linesTorus(x, y, col = 1, lty = 1, ltyCross = lty, arrows = FALSE, ...)
 
 \item{arrows}{flag for drawing arrows instead of line segments.}
 
-\item{...}{further graphical parameters passed to \code{\link[graphics]{segments}} or \code{\link[graphics]{arrows}}.}
+\item{...}{further graphical parameters passed to
+\code{\link[graphics]{segments}} or \code{\link[graphics]{arrows}}.}
 }
 \value{
 Nothing. The functions are called for drawing wrapped lines.
 }
 \description{
-Joins the corresponding points with line segments or arrows that exhibit wrapping in \eqn{[-\pi,\pi)} in the horizontal and vertical axes.
+Joins the corresponding points with line segments or arrows that
+exhibit wrapping in \eqn{[-\pi,\pi)} in the horizontal and vertical axes.
 }
 \details{
-\code{x} and \code{y} are wrapped to \eqn{[-\pi,\pi)} before plotting.
+\code{x} and \code{y} are wrapped to \eqn{[-\pi,\pi)} before
+plotting.
 }
 \examples{
 x <- toPiInt(rnorm(50, mean = seq(-pi, pi, l = 50), sd = 0.5))

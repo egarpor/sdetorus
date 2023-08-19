@@ -10,7 +10,8 @@ dTpdPde1D(Mx = 500, x0, t, alpha, mu, sigma, type = "WN",
 \arguments{
 \item{Mx}{size of the equispaced spatial grid in \eqn{[-\pi,\pi)}.}
 
-\item{x0}{point giving the mean of the initial circular density, a WN with standard deviation equal to \code{sdInitial}.}
+\item{x0}{point giving the mean of the initial circular density, a WN with
+standard deviation equal to \code{sdInitial}.}
 
 \item{t}{time separating \code{x0} and the evaluation of the tpd.}
 
@@ -24,18 +25,25 @@ dTpdPde1D(Mx = 500, x0, t, alpha, mu, sigma, type = "WN",
 
 \item{Mt}{size of the time grid in \eqn{[0, t]}.}
 
-\item{sdInitial}{the standard deviation of the concentrated WN giving the initial condition.}
+\item{sdInitial}{the standard deviation of the concentrated WN giving the
+initial condition.}
 
 \item{...}{Further parameters passed to \code{\link{crankNicolson1D}}.}
 }
 \value{
-A vector of length \code{Mx} with the tpd evaluated at \code{seq(-pi, pi, l = Mx + 1)[-(Mx + 1)]}.
+A vector of length \code{Mx} with the tpd evaluated at
+\code{seq(-pi, pi, l = Mx + 1)[-(Mx + 1)]}.
 }
 \description{
-Computation of the transition probability density (tpd) of the Wrapped Normal (WN) or von Mises (vM) diffusion, by solving its associated Fokker--Planck Partial Differential Equation (PDE) in 1D.
+Computation of the transition probability density (tpd) of the
+Wrapped Normal (WN) or von Mises (vM) diffusion, by solving its associated
+Fokker--Planck Partial Differential Equation (PDE) in 1D.
 }
 \details{
-A combination of small \code{sdInitial} and coarse space-time discretization (small \code{Mx} and \code{Mt}) is prone to create numerical instabilities. See Sections 3.4.1, 2.2.1 and 2.2.2 in García-Portugués et al. (2019) for details.
+A combination of small \code{sdInitial} and coarse space-time
+discretization (small \code{Mx} and \code{Mt}) is prone to create numerical
+instabilities. See Sections 3.4.1, 2.2.1 and 2.2.2 in García-Portugués et
+al. (2019) for details.
 }
 \examples{
 Mx <- 100
@@ -60,5 +68,7 @@ if (isRStudio) {
 }
 }
 \references{
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+Langevin diffusions on the torus: estimation and applications.
+\emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 }

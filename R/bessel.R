@@ -2,26 +2,37 @@
 
 #' @title Efficient computation of Bessel related functions
 #'
-#' @description Computation of \eqn{\log(I_0(x))-x}{log(I0(x))-x} and the inverse of \eqn{A_1(k)=\frac{I_0(k)}{I_1(k)}}{A1(k)=I0(k)/I1(k)}.
+#' @description Computation of \eqn{\log(I_0(x))-x}{log(I0(x))-x} and the
+#' inverse of \eqn{A_1(k)=\frac{I_0(k)}{I_1(k)}}{A1(k)=I0(k)/I1(k)}.
 #'
-#' @param x evaluation vector. For \code{logBesselI0Scaled}, \code{x} must contain non-negative values. For \code{a1Inv}, \code{x} must be in \eqn{[0,1]}.
-#' @param splineApprox whether to use a pre-computed spline approximation (faster) or not.
+#' @param x evaluation vector. For \code{logBesselI0Scaled}, \code{x} must
+#' contain non-negative values. For \code{a1Inv}, \code{x} must be in
+#' \eqn{[0, 1]}.
+#' @param splineApprox whether to use a pre-computed spline approximation
+#' (faster) or not.
 #' @return A vector of the same length as \code{x}.
-#' @details Both functions may rely on pre-computed spline interpolations (\code{logBesselI0ScaledSpline} and \code{a1InvSpline}). Otherwise, a call to \code{besselI} is done for \eqn{\log(I_0(x))-x}{log(I0(x))-x} and \eqn{A_1(k)=x}{A1(k)=x} is solved numerically. The data in which the interpolation is based is given in the examples.
+#' @details Both functions may rely on pre-computed spline interpolations
+#' (\code{logBesselI0ScaledSpline} and \code{a1InvSpline}). Otherwise, a call
+#' to \code{besselI} is done for \eqn{\log(I_0(x))-x}{log(I0(x))-x} and
+#' \eqn{A_1(k)=x}{A1(k)=x} is solved numerically. The data in which the
+#' interpolation is based is given in the examples.
 #'
-#' For \code{x} larger than \code{5e4}, the asymptotic expansion of \code{\link[Bessel]{besselIasym}} is employed.
+#' For \code{x} larger than \code{5e4}, the asymptotic expansion of
+#' \code{\link[Bessel]{besselIasym}} is employed.
 #' @examples
 #' \donttest{
 #' # Data employed for log besselI0 scaled
 #' x1 <- c(seq(0, 1, by = 1e-4), seq(1 + 1e-2, 10, by = 1e-3),
 #'         seq(10 + 1e-1, 100, by = 1e-2), seq(100 + 1e0, 1e3, by = 1e0),
 #'         seq(1000 + 1e1, 5e4, by = 2e1))
-#' logBesselI0ScaledEvalGrid <- log(besselI(x = x1, nu = 0, expon.scaled = TRUE))
-#' # save(list = "logBesselI0ScaledEvalGrid", file = "logBesselI0ScaledEvalGrid.rda",
-#' #      compress = TRUE)
+#' logBesselI0ScaledEvalGrid <- log(besselI(x = x1, nu = 0,
+#'                                          expon.scaled = TRUE))
+#' # save(list = "logBesselI0ScaledEvalGrid",
+#'        file = "logBesselI0ScaledEvalGrid.rda", compress = TRUE)
 #'
 #' # Data employed for A1 inverse
-#' x2 <- rev(c(seq(1e-04, 0.9 - 1e-4, by = 1e-4), seq(0.9, 1 - 1e-05, by = 1e-5)))
+#' x2 <- rev(c(seq(1e-04, 0.9 - 1e-4, by = 1e-4),
+#'             seq(0.9, 1 - 1e-05, by = 1e-5)))
 #' a1InvEvalGrid <- sapply(x2, function(k) {
 #'   uniroot(f = function(x) k - besselI(x, nu = 1, expon.scaled = TRUE) /
 #'           besselI(x, nu = 0, expon.scaled = TRUE),
@@ -77,14 +88,18 @@ a1Inv <- function(x, splineApprox = TRUE) {
 
     if (any(indOne)) {
 
-      message("a1Inv: x larger or equal to 1, thus not on the image of A1. Setting a1Inv(x) = Inf.")
+      message(paste("a1Inv: x larger or equal to 1, thus not on the image of",
+                    "A1. Setting a1Inv(x) = Inf."))
       res[indOne] <- Inf
 
     }
 
   } else {
 
-    res <- sapply(x, function(y) uniroot(f = function(k) besselI(x = k, nu = 1, expon.scaled = TRUE) / besselI(x = k, nu = 0, expon.scaled = TRUE) - y, interval = c(0, 1e4), tol = 1e-15)$root)
+    res <- sapply(x, function(y) uniroot(f = function(k)
+      besselI(x = k, nu = 1, expon.scaled = TRUE) /
+        besselI(x = k, nu = 0, expon.scaled = TRUE) - y, interval = c(0, 1e4),
+      tol = 1e-15)$root)
 
   }
 
@@ -93,21 +108,31 @@ a1Inv <- function(x, splineApprox = TRUE) {
 }
 
 
-#' @title Score and moment matching of a univariate or bivariate wrapped normal by a von Mises
+#' @title Score and moment matching of a univariate or bivariate wrapped normal
+#' by a von Mises
 #'
-#' @description Given a wrapped normal density, find the parameters of a von Mises that matches it according to two characteristics: moments and scores. Score matching estimators are available for univariate and bivariate cases and moment matching only for the former.
+#' @description Given a wrapped normal density, find the parameters of a von
+#' Mises that matches it according to two characteristics: moments and scores.
+#' Score matching estimators are available for univariate and bivariate cases
+#' and moment matching only for the former.
 #'
 #' @param sigma,sigma2 standard deviation or variance of the wrapped normal.
-#' @param Sigma,invSigma covariance or precision matrix of the bivariate wrapped normal.
-#' @return Vector of parameters \eqn{(\kappa_1,\kappa_2,\lambda)}, where \eqn{(\kappa_1,\kappa_2,2\lambda)} is a suitable input for \code{kappa} in \code{dBvm}.
-#' @details If the precision matrix is singular or if there are no solutions for the score matching estimator, \code{c(0, 0, 0)} is returned.
+#' @param Sigma,invSigma covariance or precision matrix of the bivariate wrapped
+#' normal.
+#' @return Vector of parameters \eqn{(\kappa_1,\kappa_2,\lambda)}, where
+#' \eqn{(\kappa_1,\kappa_2,2\lambda)} is a suitable input for \code{kappa} in
+#' \code{dBvm}.
+#' @details If the precision matrix is singular or if there are no solutions for
+#' the score matching estimator, \code{c(0, 0, 0)} is returned.
 #' @references
-#' Mardia, K. V., Kent, J. T., and Laha, A. K. (2016). Score matching estimators for directional distributions. \emph{arXiv:1604.0847}. \url{https://arxiv.org/abs/1604.08470}
+#' Mardia, K. V., Kent, J. T., and Laha, A. K. (2016). Score matching estimators
+#' for directional distributions. \emph{arXiv:1604.0847}.
+#' \url{https://arxiv.org/abs/1604.08470}
 #' @examples
 #' # Univariate WN approximation
 #' sigma <- 0.5
-#' curve(dWn1D(x = x, mu = 0, sigma = sigma), from = -pi, to = pi, ylab = "Density",
-#'       ylim = c(0, 1))
+#' curve(dWn1D(x = x, mu = 0, sigma = sigma), from = -pi, to = pi,
+#'       ylab = "Density", ylim = c(0, 1))
 #' curve(dVm(x = x, mu = 0, kappa = momentMatchWnVm(sigma = sigma)), from = -pi,
 #'       to = pi, col = "red", add = TRUE)
 #' curve(dVm(x = x, mu = 0, kappa = scoreMatchWnVm(sigma = sigma)), from = -pi,
@@ -151,7 +176,8 @@ scoreMatchWnBvm <- function(Sigma = NULL, invSigma) {
   # Check for regularity
   if (anyNA(Sigma)) {
 
-    message("scoreMatchWnBvm: non-invertible invSigma, setting kappa = c(0, 0, 0)")
+    message(paste("scoreMatchWnBvm: non-invertible invSigma, setting",
+                  "kappa = c(0, 0, 0)"))
     kappa <- c(0, 0, 0)
 
   } else {
@@ -181,7 +207,8 @@ scoreMatchWnBvm <- function(Sigma = NULL, invSigma) {
     # Get (kappa1, kappa2, lambda)
     if (any(!is.finite(W) | !is.finite(d))) {
 
-      message("scoreMatchWnBvm: non-finite values in W and d, setting kappa = c(0, 0, 0)")
+      message(paste("scoreMatchWnBvm: non-finite values in W and d, setting",
+                    "kappa = c(0, 0, 0)"))
       kappa <- c(0, 0, 0)
 
     } else {

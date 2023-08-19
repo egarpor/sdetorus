@@ -19,7 +19,8 @@ driftJp(x, alpha, mu, psi)
 A vector of the same length as \code{x} containing the drift.
 }
 \description{
-Drift for the Langevin diffusion associated to the Jones and Pewsey (JP) family of circular distributions.
+Drift for the Langevin diffusion associated to the Jones and
+Pewsey (JP) family of circular distributions.
 }
 \details{
 Particular interesting choices for the shape parameter are:
@@ -39,9 +40,11 @@ for (i in 0:20) {
 }
 }
 \references{
-García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019) Langevin diffusions on the torus: estimation and applications. \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
+Langevin diffusions on the torus: estimation and applications.
+\emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 
-Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular Statistics}. World Scientific, Singapore. \doi{10.1142/4031}
-
-Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on the circle. \emph{Journal of the American Statistical Association}, 100(472):1422--1428. \doi{10.1198/016214505000000286}
+Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on
+the circle. \emph{Journal of the American Statistical Association},
+100(472):1422--1428. \doi{10.1198/016214505000000286}
 }

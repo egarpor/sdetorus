@@ -10,9 +10,11 @@ alphaToA(alpha, sigma = NULL, rho = 0, Sigma = NULL)
 aToAlpha(A, sigma = NULL, rho = 0, Sigma = NULL)
 }
 \arguments{
-\item{alpha}{vector of length \code{3} containing the \code{A} matrix. The first two elements are the diagonal.}
+\item{alpha}{vector of length \code{3} containing the \code{A} matrix. The
+first two elements are the diagonal.}
 
-\item{sigma}{vector of length \code{2} containing the \strong{square root} of the diagonal of \code{Sigma}.}
+\item{sigma}{vector of length \code{2} containing the \strong{square root}
+of the diagonal of \code{Sigma}.}
 
 \item{rho}{correlation of \code{Sigma}.}
 
@@ -24,10 +26,13 @@ aToAlpha(A, sigma = NULL, rho = 0, Sigma = NULL)
 The drift matrix \code{A} or the \code{alpha} vector.
 }
 \description{
-Constructs drift matrices \eqn{A} such that \code{solve(A) \%*\% Sigma} is symmetric.
+Constructs drift matrices \eqn{A} such that
+\code{solve(A) \%*\% Sigma} is symmetric.
 }
 \details{
-The parametrization enforces that \code{solve(A) \%*\% Sigma} is symmetric. Positive definiteness is guaranteed if \code{alpha[3]^2 < rho^2 * (alpha[1] - alpha[2])^2 / 4 + alpha[1] * alpha[2]}.
+The parametrization enforces that \code{solve(A) \%*\% Sigma}
+is symmetric. Positive definiteness is guaranteed if \code{alpha[3]^2 <
+rho^2 * (alpha[1] - alpha[2])^2 / 4 + alpha[1] * alpha[2]}.
 }
 \examples{
 # Parameters
