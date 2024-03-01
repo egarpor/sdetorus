@@ -1220,7 +1220,8 @@ matlab.like.colorRamps <- function(n, two = FALSE) {
 #' @title Constructs color palettes with sharp breaks
 #' @description See \code{?colorRamps::rgb.tables}.
 #' @keywords internal
-table.ramp.colorRamps <- function (n, mid = 0.5, sill = 0.5, base = 1, height = 1) {
+table.ramp.colorRamps <- function(n, mid = 0.5, sill = 0.5, base = 1,
+                                  height = 1) {
 
   x <- seq(0, 1, length.out = n)
   y <- rep(0, length(x))
