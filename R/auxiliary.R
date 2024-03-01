@@ -722,7 +722,7 @@ plotSurface2D <- function(x = seq_len(nrow(z)), y = seq_len(ncol(z)), f,
   }
 
   # 'Nice' plot
-  image(x, y, z, breaks = levels, col = colorRamps::matlab.like(nLev - 1), ...)
+  image(x, y, z, breaks = levels, col = matlab.like.colorRamps(nLev - 1), ...)
   contour(x, y, z, levels = levels, add = TRUE,
           labels = format(levels, digits = 1))
 
@@ -799,7 +799,7 @@ plotSurface3D <- function(x = seq_len(nrow(t)), y = seq_len(ncol(t)),
   tCut <- cut(x = t, breaks = levels)
   tCutNoNA <- !is.na(tCut)
   xyz <- subset(xyz, subset = tCutNoNA)
-  col <- colorRamps::matlab.like(nLev)[tCut[tCutNoNA]]
+  col <- matlab.like.colorRamps(nLev)[tCut[tCutNoNA]]
 
   # Nice plot
   rgl::plot3d(xyz, col = col, size = size, alpha = alpha, lit = FALSE,
@@ -1178,5 +1178,65 @@ torusAxis3d <- function(sides = 1:3, twoPi = FALSE, ...) {
                                  labels = labels, ...))
 
   }
+
+}
+
+
+#' @title Generate color palettes similar to the Matlab default
+#' @description Generates Matlab-like color palettes. Functions imported from
+#' the colorRamps package.
+#' @param n number of colors in the palette.
+#' @param two flag indicating whether to use \code{colorRamps::matlab.like} or
+#' \code{colorRamps::matlab.like2}.
+#' @return A vector of \code{n} colors.
+#' @examples
+#' image(matrix(1:100, 10), col = matlab.like.colorRamps(100))
+#' image(matrix(1:100, 10), col = matlab.like.colorRamps(100, two = TRUE))
+#' @keywords internal
+#' @export
+matlab.like.colorRamps <- function(n, two = FALSE) {
+
+  if (two) {
+
+    red <- c(0.8, 0.2, 1)
+    green <- c(0.5, 0.4, 0.8)
+    blue <- c(0.2, 0.2, 1)
+
+  } else {
+
+    red <- c(0.75, 0.25, 1)
+    green <- c(0.5, 0.25, 1)
+    blue <- c(0.25, 0.25, 1)
+
+  }
+  rr <- do.call("table.ramp.colorRamps", as.list(c(n, red)))
+  gr <- do.call("table.ramp.colorRamps", as.list(c(n, green)))
+  br <- do.call("table.ramp.colorRamps", as.list(c(n, blue)))
+  grDevices::rgb(rr, gr, br)
+
+}
+
+
+#' @title Constructs color palettes with sharp breaks
+#' @description See \code{?colorRamps::rgb.tables}.
+#' @keywords internal
+table.ramp.colorRamps <- function (n, mid = 0.5, sill = 0.5, base = 1, height = 1) {
+
+  x <- seq(0, 1, length.out = n)
+  y <- rep(0, length(x))
+  sill.min <- max(c(1, round((n - 1) * (mid - sill / 2)) + 1))
+  sill.max <- min(c(n, round((n - 1) * (mid + sill / 2)) + 1))
+  y[sill.min:sill.max] <- 1
+  base.min <- round((n - 1) * (mid - base / 2)) + 1
+  base.max <- round((n - 1) * (mid + base / 2)) + 1
+  xi <- base.min:sill.min
+  yi <- seq(0, 1, length.out = length(xi))
+  i <- which(xi > 0 & xi <= n)
+  y[xi[i]] <- yi[i]
+  xi <- sill.max:base.max
+  yi <- seq(1, 0, length.out = length(xi))
+  i <- which(xi > 0 & xi <= n)
+  y[xi[i]] <- yi[i]
+  height * y
 
 }

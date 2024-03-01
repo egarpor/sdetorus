@@ -22,7 +22,7 @@
 #' \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 #' @docType package
 #' @name sdetorus
-#' @import graphics stats Rcpp mvtnorm colorRamps
+#' @import graphics stats Rcpp mvtnorm
 #' @useDynLib sdetorus
 #' @aliases sdetorus sdetorus-package
 NULL
