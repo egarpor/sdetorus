@@ -1,8 +1,8 @@
 Package: sdetorus
 Type: Package
 Title: Statistical Tools for Toroidal Diffusions
-Version: 0.1.9
-Date: 2023-08-19
+Version: 0.1.10
+Date: 2024-03-01
 Authors@R: person(given = "Eduardo", family = "García-Portugués",
                   role = c("aut", "cre"),
                   email = "edgarcia@est-econ.uc3m.es",
@@ -23,8 +23,7 @@ License: GPL-3
 Depends:
     R (>= 3.6.0),
     Rcpp,
-    mvtnorm,
-    colorRamps
+    mvtnorm
 Suggests:
     rgl,
     Bessel,

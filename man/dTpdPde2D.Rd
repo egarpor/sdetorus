@@ -58,7 +58,7 @@ M <- 100
 x <- seq(-pi, pi, l = M + 1)[-c(M + 1)]
 image(x, x, dTpdPde2D(Mx = M, My = M, x0 = c(0, pi), t = 1,
                       alpha = c(1, 1, 0.5), mu = c(pi / 2, 0), sigma = 1:2),
-      zlim = c(0, 0.25), col = colorRamps::matlab.like(20),
+      zlim = c(0, 0.25), col = matlab.like.colorRamps(20),
       xlab = "x", ylab = "y")
 }
 \references{
