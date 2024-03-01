@@ -133,7 +133,7 @@ N <- 5e3
 n <- seq(0, N, by = 100)
 tpd <- crankNicolson1D(u0 = u0, b = b, sigma2 = sigma2, N = n, deltat = 2 / N,
                        Mx = Mx, deltax = 2 * pi / Mx)
-matplot(x, tpd, type = "l", col = colorRamps::matlab.like2(length(n)),
+matplot(x, tpd, type = "l", col = matlab.like.colorRamps(length(n), two = TRUE),
         lty = 1, ylim = c(0, 2), axes = FALSE)
 abline(v = c(x0, mu), col = c(4, 2), lwd = 2)
 torusAxis(1)

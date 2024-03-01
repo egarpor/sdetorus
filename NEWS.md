@@ -14,3 +14,7 @@
 
 * Drop C++11 requirement to adhere to new CRAN policies.
 * Drop `personList()` and `citEntry()`.
+
+# sdetorus 0.1.10
+
+* Drop dependency on `colorRamps` given its possible archival (BR email 2024-03-01).
