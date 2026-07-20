@@ -13,10 +13,13 @@
 #' @param M number of terms considered in the series expansion used for
 #' evaluating the normalizing constant.
 #' @return A vector of length \code{nx} with the evaluated density
-#' (\code{dBvm}) or a scalar with the normaalizing constant (\code{constBvm}).
+#' (\code{dBvm}) or a scalar with the normalizing constant (\code{constBvm}).
 #' @details
 #' If \eqn{\kappa_1 = 0} or \eqn{\kappa_2 = 0} and \eqn{\lambda \neq 0},
 #' then \code{constBvm} will perform a Monte Carlo integration of the constant.
+#' @seealso \code{\link{dVm}} for the univariate von Mises density and
+#' \code{\link{scoreMatchWnBvm}} for approximating a bivariate wrapped normal
+#' by a bivariate von Mises.
 #' @references
 #' Singh, H., Hnizdo, V. and Demchuk, E. (2002) Probabilistic model
 #' for two dependent circular variables, \emph{Biometrika}, 89(3):719--723,

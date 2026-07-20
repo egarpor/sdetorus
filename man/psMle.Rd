@@ -142,3 +142,9 @@ Shoji, I. and Ozaki, T. (1998) A statistical method of estimation and
 simulation for systems of stochastic differential equations.
 \emph{Biometrika}, 85(1):240--243. \doi{10.1093/biomet/85.1.240}
 }
+\seealso{
+\code{\link{dPsTpd}} for the pseudo-transition densities being
+maximized, and the alternative estimators \code{\link{approxMleWn1D}},
+\code{\link{approxMleWn2D}}, \code{\link{mlePde1D}} and
+\code{\link{mlePde2D}}.
+}

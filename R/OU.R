@@ -135,6 +135,9 @@ covstOu <- function(s, t, alpha, sigma) {
 #' @details The first element in \code{data} is not taken into account for
 #' estimation. See \code{\link{mleMou}} for the multivariate case (less
 #' efficient for dimension one).
+#' @seealso \code{\link{dTpdOu}} for the transition density being maximized,
+#' \code{\link{rTrajOu}} for simulating data, and \code{\link{mleOptimWrapper}}
+#' for the optimization back end.
 #' @examples
 #' set.seed(345678)
 #' data <- rTrajOu(x0 = 0, alpha = 1, mu = 0, sigma = 1, N = 100, delta = 0.1)
@@ -221,14 +224,20 @@ rTrajMou <- function(x0, A, mu, Sigma, N = 100, delta = 1e-3) {
   # Covariance matrix
   covt <- covtMou(t = delta, Sigma = Sigma, eigA = eigA)
 
+  # Symmetric square root of the (constant) conditional covariance, precomputed
+  # once to avoid recomputing an eigendecomposition at each of the N steps. This
+  # mirrors the "eigen" method of mvtnorm::rmvnorm(), so the sampled trajectory
+  # is identical to iterating rmvnorm() for a given RNG state.
+  evCovt <- eigen(covt, symmetric = TRUE)
+  rootCovt <- t(evCovt$vectors %*% (t(evCovt$vectors) *
+                                      sqrt(pmax(evCovt$values, 0))))
+
   # Sample using the exact transition density
   samp <- matrix(x0, nrow = N + 1, ncol = p, byrow = TRUE)
   for (i in 2:(N + 1)) {
 
-    samp[i, ] <- mvtnorm::rmvnorm(n = 1, mean = meantMou(t = delta,
-                                                         x0 = samp[i - 1, ],
-                                                         mu = mu, eigA = eigA),
-                                  sigma = covt)
+    samp[i, ] <- drop(meantMou(t = delta, x0 = samp[i - 1, ], mu = mu,
+                               eigA = eigA)) + drop(rnorm(p) %*% rootCovt)
 
   }
   return(samp)
@@ -363,6 +372,9 @@ covtMou <- function(t, A, Sigma, eigA = NULL) {
 #' \code{mleMou} only handles \code{p = 2} currently. It imposes that
 #' \code{Sigma} is diagonal and handles the parametrization of \code{A} by
 #' \code{\link{alphaToA}}.
+#' @seealso \code{\link{dTpdMou}} for the transition density being maximized,
+#' \code{\link{rTrajMou}} for simulating data, and \code{\link{mleOu}} for the
+#' more efficient univariate case.
 #' @examples
 #' set.seed(345678)
 #' data <- rTrajMou(x0 = c(0, 0), A = alphaToA(alpha = c(1, 1, 0.5),
@@ -463,6 +475,8 @@ mleMou <- function(data, delta, alpha = rep(NA, 3), mu = rep(NA, 2),
 #' @details The parametrization enforces that \code{solve(A) \%*\% Sigma}
 #' is symmetric. Positive definiteness is guaranteed if \code{alpha[3]^2 <
 #' rho^2 * (alpha[1] - alpha[2])^2 / 4 + alpha[1] * alpha[2]}.
+#' @seealso \code{\link{driftWn2D}} and \code{\link{mleMou}}, which rely on this
+#' parametrization of the drift matrix.
 #' @examples
 #' # Parameters
 #' alpha <- 3:1

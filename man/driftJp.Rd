@@ -48,3 +48,7 @@ Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on
 the circle. \emph{Journal of the American Statistical Association},
 100(472):1422--1428. \doi{10.1198/016214505000000286}
 }
+\seealso{
+\code{\link{dJp}} for the associated stationary density and
+\code{\link{rTrajLangevin}} for simulating trajectories.
+}

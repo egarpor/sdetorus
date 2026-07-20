@@ -8,6 +8,10 @@
 #' @param mu circular mean.
 #' @param kappa non-negative concentration parameter.
 #' @return A vector of the same length as \code{x} containing the density.
+#' @seealso \code{\link{dWn1D}} for the wrapped normal density,
+#' \code{\link{dBvm}} for the bivariate extension, \code{\link{driftMvm}} for
+#' the associated Langevin drift, and \code{\link{momentMatchWnVm}} /
+#' \code{\link{scoreMatchWnVm}} for wrapped normal approximations.
 #' @references
 #' Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular
 #' Statistics}. World Scientific, Singapore. \doi{10.1142/4031}
@@ -43,6 +47,8 @@ dVm <- function(x, mu, kappa) {
 #' \item \code{psi = 0}: is the sinusoidal drift of the vM diffusion.
 #' \item \code{psi = 1}: gives the Cardioid as stationary density.
 #' }
+#' @seealso \code{\link{driftJp}} for the associated Langevin drift and
+#' \code{\link{dVm}} for the von Mises particular case (\code{psi = 0}).
 #' @references
 #' Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on
 #' the circle. \emph{Journal of the American Statistical Association},

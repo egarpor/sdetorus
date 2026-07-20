@@ -60,3 +60,8 @@ mleMou(data = data, delta = 0.5, start = c(1, 1, 0, 1, 1, 1, 2),
 mleMou(data = data, delta = 0.5, mu = c(1, 1), sigma = 1:2,
        start = c(1, 1, 0), lower = c(0.1, 0.1, -25), upper = c(25, 25, 25))
 }
+\seealso{
+\code{\link{dTpdMou}} for the transition density being maximized,
+\code{\link{rTrajMou}} for simulating data, and \code{\link{mleOu}} for the
+more efficient univariate case.
+}

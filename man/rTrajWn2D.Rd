@@ -47,3 +47,8 @@ plot(samp, xlim = c(-pi, pi), ylim = c(-pi, pi), pch = 19, cex = 0.25,
      xlab = expression(X[t]), ylab = expression(Y[t]), col = rainbow(1000))
 linesTorus(samp[, 1], samp[, 2], col = rainbow(1000))
 }
+\seealso{
+\code{\link{euler2D}} for the underlying Euler scheme,
+\code{\link{dTpdWou2D}} for the associated transition density, and
+\code{\link{rTrajWn1D}} for the 1D analogue.
+}

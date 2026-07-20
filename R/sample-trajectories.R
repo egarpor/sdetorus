@@ -17,6 +17,9 @@
 #' entry and the discretized trajectory.
 #' @details The fine trajectory is subsampled using the indexes
 #' \code{seq(1, NFine + 1, by = NFine / N)}.
+#' @seealso \code{\link{euler1D}} for the underlying Euler scheme,
+#' \code{\link{dTpdWou1D}} for the associated transition density, and
+#' \code{\link{rTrajWn2D}} for the 2D analogue.
 #' @examples
 #' isRStudio <- identical(.Platform$GUI, "RStudio")
 #' if (isRStudio) {
@@ -60,6 +63,9 @@ rTrajWn1D <- function(x0, alpha, mu, sigma, N = 100, delta = 0.01,
 #' first entry and the discretized trajectory.
 #' @details The fine trajectory is subsampled using the indexes
 #' \code{seq(1, NFine + 1, by = NFine / N)}.
+#' @seealso \code{\link{euler2D}} for the underlying Euler scheme,
+#' \code{\link{dTpdWou2D}} for the associated transition density, and
+#' \code{\link{rTrajWn1D}} for the 1D analogue.
 #' @examples
 #' samp <- rTrajWn2D(x0 = c(0, 0), alpha = c(1, 1, -0.5), mu = c(pi, pi),
 #'                     sigma = c(1, 1), N = 1000, delta = 0.01)
@@ -99,10 +105,16 @@ rTrajWn2D <- function(x0, alpha, mu, sigma, rho = 0, N = 100, delta = 0.01,
 #' @param ... parameters to be passed to \code{drift}.
 #' @param circular whether to wrap the resulting trajectory to
 #' \eqn{[-\pi,\pi)^p}.
-#' @return A vector of length \code{N + 1} containing \code{x0} in the first
-#' entry and the discretized trajectory.
+#' @return For \code{p = 1}, a vector of length \code{N + 1} containing
+#' \code{x0} in the first entry and the discretized trajectory. For
+#' \code{p > 1}, a matrix of size \code{c(N + 1, p)} with \code{x0} in the
+#' first row.
 #' @details The fine trajectory is subsampled using the indexes
 #' \code{seq(1, NFine + 1, by = NFine / N)}.
+#' @seealso \code{\link{rTrajWn1D}}, \code{\link{rTrajWn2D}},
+#' \code{\link{rTrajOu}}, and \code{\link{rTrajMou}} for specific diffusions,
+#' and \code{\link{euler1D}} and \code{\link{euler2D}} for the underlying
+#' Euler discretization.
 #' @examples
 #' isRStudio <- identical(.Platform$GUI, "RStudio")
 #' if (isRStudio) {

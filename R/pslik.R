@@ -47,6 +47,8 @@
 #' Shoji, I. and Ozaki, T. (1998) A statistical method of estimation and
 #' simulation for systems of stochastic differential equations.
 #' \emph{Biometrika}, 85(1):240--243. \doi{10.1093/biomet/85.1.240}
+#' @seealso \code{\link{psMle}}, which maximizes these pseudo-densities, and
+#' \code{\link{dTpdWou1D}} and \code{\link{dTpdPde1D}} for exact alternatives.
 #' @examples
 #' # 1D
 #' grid <- seq(-pi, pi, l = 501)[-501]

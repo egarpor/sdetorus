@@ -111,3 +111,7 @@ García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 Langevin diffusions on the torus: estimation and applications.
 \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 }
+\seealso{
+\code{\link{dTpdPde1D}} for the underlying tpd, \code{\link{mlePde2D}}
+for the 2D case, and \code{\link{psMle}} for pseudo-likelihood alternatives.
+}

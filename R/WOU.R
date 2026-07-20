@@ -17,6 +17,8 @@
 #' @details See Section 3.3 in García-Portugués et al. (2019) for details.
 #' \code{\link{dTpdWou1D}} and \code{\link{dTpdWou2D}} are more efficient
 #' implementations for the 1D and 2D cases, respectively.
+#' @seealso \code{\link{dTpdWou1D}} and \code{\link{dTpdWou2D}} for the efficient
+#' 1D and 2D versions, and \code{\link{driftWn}} for the associated drift.
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 #' Langevin diffusions on the torus: estimation and applications.

@@ -65,3 +65,7 @@ y <- seq(0, 1 - 1e-4, l = 1e3)
 summary(a1Inv(x = y, splineApprox = TRUE) -
         a1Inv(x = y, splineApprox = FALSE))
 }
+\seealso{
+\code{\link{dVm}}, which relies on \code{logBesselI0Scaled}, and
+\code{\link{momentMatchWnVm}}, which relies on \code{a1Inv}.
+}

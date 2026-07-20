@@ -53,3 +53,8 @@ mleOu(data = data, delta = 0.1, start = c(2, 1, 2), lower = c(0.1, -10, 0.1),
 mleOu(data = data, delta = 0.1, mu = 0, sigma = 1, start = 2, lower = 0.1,
       upper = 25, optMethod = "nlm")
 }
+\seealso{
+\code{\link{dTpdOu}} for the transition density being maximized,
+\code{\link{rTrajOu}} for simulating data, and \code{\link{mleOptimWrapper}}
+for the optimization back end.
+}

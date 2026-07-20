@@ -32,8 +32,8 @@ a uniform grid in \eqn{[x_1,x_2]}.}
 \code{fx}, \code{fxy} or \code{fxyz} are the ones in the first entries
 (elements, rows, columns, slices). See examples for usage.}
 
-\item{na.rm}{logical.  Should missing values (including \code{NaN}) be
-    removed?}
+\item{na.rm}{logical (\code{TRUE} or \code{FALSE}).  Should missing
+    values (including \code{NaN}) be removed?}
 
 \item{lengthInterval}{vector containing the lengths of the intervals of
 integration.}
@@ -58,8 +58,10 @@ Simpson rules work for arbitrary functions.
 }
 \details{
 The simple trapezoidal rule has a very good performance for
-periodic functions in 1D and 2D(order of error ). The higher dimensional
-extensions are obtained by iterative usage of the 1D rules.
+periodic functions in 1D and 2D (for smooth periodic integrands the
+quadrature error decreases faster than any power of the grid size). The
+higher dimensional extensions are obtained by iterative usage of the 1D
+rules.
 }
 \examples{
 # In 1D. True value: 3.55099937
@@ -91,4 +93,8 @@ Press, W. H., Teukolsky, S. A., Vetterling, W. T., Flannery, B. P. (1996).
 \emph{Numerical Recipes in Fortran 77: The Art of Scientific Computing
 (Vol. 1 of Fortran Numerical Recipes)}. Cambridge University Press,
 Cambridge.
+}
+\seealso{
+\code{\link{mcTorusIntegrate}} for Monte Carlo integration on the
+torus.
 }

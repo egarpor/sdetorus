@@ -28,4 +28,8 @@ Convenience function for Monte Carlo integration on
 # Integral of sin(x1) * cos(x2), must be close to 0
 mcTorusIntegrate(f = function(x) sin(x[, 1]) * cos(x[, 2]), p = 2)
 }
+\seealso{
+\code{\link{periodicTrapRule1D}} and \code{\link{integrateSimp1D}}
+for deterministic quadrature rules.
+}
 \keyword{internal}

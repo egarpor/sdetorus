@@ -179,7 +179,7 @@ mleOptimWrapper <- function(minusLogLik, region = function(pars)
     aboveUp <- upper < pars
     if (any(aboveUp)) {
 
-      penaltyUp <- sqrt(sum((pars[aboveUp] - lower[aboveUp])^2))
+      penaltyUp <- sqrt(sum((pars[aboveUp] - upper[aboveUp])^2))
       pars[aboveUp] <- upper[aboveUp]
 
     } else {

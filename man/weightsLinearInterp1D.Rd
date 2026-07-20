@@ -22,13 +22,12 @@ circularly wrapped.}
 }
 \value{
 \itemize{
-\item For 1D, a matrix of size \code{c(n, 2)} containing the weights for
-lower (\code{g1}) and upper (\code{g1}) bins.
-\item For 2D, a matrix of size \code{c(n, 4)} containing the weights for
-lower-lower (\code{g1x}, \code{g1y}), \emph{upper-lower} (\code{g2x},
-\code{g1y}), \emph{lower-upper} (\code{g1x}, \code{g2y}) and upper-upper
-(\code{g2x}, \code{g2y}) bins. \code{cbind(g1x, g1y)},
-\code{cbind(g1x, g1y)}, \code{cbind(g1x, g1y)} and \code{cbind(g2x, g2y)}.
+\item For 1D, a matrix of size \code{c(n, 2)} containing the weights for the
+lower (\code{g1}) and upper (\code{g2}) bins.
+\item For 2D, a matrix of size \code{c(n, 4)} containing the weights for the
+lower-lower (\code{gx1}, \code{gy1}), upper-lower (\code{gx2}, \code{gy1}),
+lower-upper (\code{gx1}, \code{gy2}) and upper-upper (\code{gx2}, \code{gy2})
+bins, in that column order.
 }
 }
 \description{

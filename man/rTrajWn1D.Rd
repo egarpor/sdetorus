@@ -53,3 +53,8 @@ if (isRStudio) {
     sigma = manipulate::slider(0.01, 5, step = 0.1, initial = 1))
 }
 }
+\seealso{
+\code{\link{euler1D}} for the underlying Euler scheme,
+\code{\link{dTpdWou1D}} for the associated transition density, and
+\code{\link{rTrajWn2D}} for the 2D analogue.
+}

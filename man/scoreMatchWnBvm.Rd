@@ -72,6 +72,11 @@ scoreMatchWnBvm(invSigma = invSigma)
 }
 \references{
 Mardia, K. V., Kent, J. T., and Laha, A. K. (2016). Score matching estimators
-for directional distributions. \emph{arXiv:1604.0847}.
+for directional distributions. \emph{arXiv:1604.08470}.
 \url{https://arxiv.org/abs/1604.08470}
+}
+\seealso{
+\code{\link{dVm}} and \code{\link{dBvm}} for the von Mises densities
+being matched, and \code{\link{dWn1D}} and \code{\link{dStatWn2D}} for the
+wrapped normal densities.
 }

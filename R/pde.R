@@ -22,6 +22,8 @@
 #' discretization (small \code{Mx} and \code{Mt}) is prone to create numerical
 #' instabilities. See Sections 3.4.1, 2.2.1 and 2.2.2 in García-Portugués et
 #' al. (2019) for details.
+#' @seealso \code{\link{crankNicolson1D}} for the PDE solver, and
+#' \code{\link{dTpdWou1D}} for an analytic approximation to the same density.
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 #' Langevin diffusions on the torus: estimation and applications.
@@ -106,6 +108,8 @@ dTpdPde1D <- function(Mx = 500, x0, t, alpha, mu, sigma, type = "WN",
 #' discretization (small \code{Mx} and \code{Mt}) is prone to create numerical
 #' instabilities. See Sections 3.4.2, 2.2.1 and 2.2.2 in García-Portugués et al.
 #' (2019) for details.
+#' @seealso \code{\link{crankNicolson2D}} for the PDE solver, and
+#' \code{\link{dTpdWou2D}} for an analytic approximation to the same density.
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 #' Langevin diffusions on the torus: estimation and applications.
@@ -185,6 +189,8 @@ dTpdPde2D <- function(Mx = 50, My = 50, x0, t, alpha, mu, sigma, rho = 0,
 #' @return Output from \code{\link{mleOptimWrapper}}.
 #' @details See Sections 3.4.1 and 3.4.4 in García-Portugués et al. (2019) for
 #' details.
+#' @seealso \code{\link{dTpdPde1D}} for the underlying tpd, \code{\link{mlePde2D}}
+#' for the 2D case, and \code{\link{psMle}} for pseudo-likelihood alternatives.
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 #' Langevin diffusions on the torus: estimation and applications.
@@ -384,6 +390,8 @@ mlePde1D <- function(data, delta, b, sigma2, Mx = 500,
 #' details. The function currently includes the \code{region} function for
 #' imposing a feasibility region on the parameters of the bivariate WN
 #' diffusion.
+#' @seealso \code{\link{dTpdPde2D}} for the underlying tpd, \code{\link{mlePde1D}}
+#' for the 1D case, and \code{\link{psMle}} for pseudo-likelihood alternatives.
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 #' Langevin diffusions on the torus: estimation and applications.
@@ -573,8 +581,10 @@ mlePde2D <- function(data, delta, b, sigma2, Mx = 50, My = 50,
     #     which.min(abs(toPiInt(data[i, 1] - gridX)))),
     #   sapply(1:nrow(data), function(i)
     #     which.min(abs(toPiInt(data[i, 2] - gridY)))))
-    closestIndBins <- toInt(round(sweep(data + pi, 2, c(delx, dely), "/")) + 1,
-                            a = 1, b = Mx + 1)
+    # Wrap each coordinate with its own grid size (Mx for x, My for y)
+    closestIndBins <- cbind(
+      toInt(round((data[, 1] + pi) / delx) + 1, a = 1, b = Mx + 1),
+      toInt(round((data[, 2] + pi) / dely) + 1, a = 1, b = My + 1))
 
     # Unique indexes of closests bins
     simpleUniqueInd <- unique(closestIndBins)

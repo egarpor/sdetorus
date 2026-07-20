@@ -31,3 +31,9 @@ for (i in 0:20) {
 Jammalamadaka, S. R. and SenGupta, A. (2001) \emph{Topics in Circular
 Statistics}. World Scientific, Singapore. \doi{10.1142/4031}
 }
+\seealso{
+\code{\link{dWn1D}} for the wrapped normal density,
+\code{\link{dBvm}} for the bivariate extension, \code{\link{driftMvm}} for
+the associated Langevin drift, and \code{\link{momentMatchWnVm}} /
+\code{\link{scoreMatchWnVm}} for wrapped normal approximations.
+}

@@ -23,6 +23,10 @@
 #' Shoji, I. and Ozaki, T. (1998) A statistical method of estimation and
 #' simulation for systems of stochastic differential equations.
 #' \emph{Biometrika}, 85(1):240--243. \doi{10.1093/biomet/85.1.240}
+#' @seealso \code{\link{dPsTpd}} for the pseudo-transition densities being
+#' maximized, and the alternative estimators \code{\link{approxMleWn1D}},
+#' \code{\link{approxMleWn2D}}, \code{\link{mlePde1D}} and
+#' \code{\link{mlePde2D}}.
 #' @examples
 #' \donttest{
 #' # Example in 1D
@@ -175,6 +179,8 @@ psMle <- function(data, delta, method = c("E", "SO", "SO2"), b, jac.b, sigma2,
 #' @inheritParams safeSoftMax
 #' @return Output from \code{\link{mleOptimWrapper}}.
 #' @details See Section 3.3 in García-Portugués et al. (2019) for details.
+#' @seealso \code{\link{dTpdWou1D}} for the transition density being maximized,
+#' and \code{\link{approxMleWn2D}} for the 2D analogue.
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 #' Langevin diffusions on the torus: estimation and applications.
@@ -237,6 +243,9 @@ approxMleWn1D <- function(data, delta, start, alpha = NA, mu = NA, sigma = NA,
 #' @inheritParams safeSoftMax
 #' @return Output from \code{\link{mleOptimWrapper}}.
 #' @details See Section 3.3 in García-Portugués et al. (2019) for details.
+#' @seealso \code{\link{dTpdWou2D}} for the transition density being maximized,
+#' \code{\link{approxMleWn1D}} for the 1D analogue, and
+#' \code{\link{approxMleWnPairs}} for the version based on pairs.
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 #' Langevin diffusions on the torus: estimation and applications.
@@ -294,13 +303,20 @@ approxMleWn2D <- function(data, delta, start, alpha = rep(NA, 3),
 
     region <- function(pars) {
 
-      # Test
-      prodDiagonal <- 0.25 * (pars[8] * (pars[2] - pars[1]))^2 +
-        alpha[1] * alpha[2] + pars[1] * pars[2]
-      testPosDef <- prodDiagonal - pars[3]^2
+      # Reconstruct the full (alpha, mu, sigma, rho) vector so that the check
+      # locates alpha and rho regardless of which parameters are fixed
+      fullPars <- specPars
+      fullPars[indUnSpecPars] <- pars
+
+      # Test (positive-definiteness condition from alphaToA:
+      # alpha[3]^2 < rho^2 * (alpha[1] - alpha[2])^2 / 4 + alpha[1] * alpha[2])
+      prodDiagonal <- 0.25 * (fullPars[8] * (fullPars[2] - fullPars[1]))^2 +
+        fullPars[1] * fullPars[2]
+      testPosDef <- prodDiagonal - fullPars[3]^2
       if (testPosDef < 0) {
 
-        pars[3] <- sign(pars[3]) *  sqrt(prodDiagonal) * 0.999
+        fullPars[3] <- sign(fullPars[3]) * sqrt(prodDiagonal) * 0.999
+        pars <- fullPars[indUnSpecPars]
         penalty <- 1e3 * testPosDef
 
       } else {
@@ -324,8 +340,8 @@ approxMleWn2D <- function(data, delta, start, alpha = rep(NA, 3),
   }
 
   # Optimization
-  mleOptimWrapper(minusLogLik = minusLogLik, start = start, lower = lower,
-                  upper = upper, ...)
+  mleOptimWrapper(minusLogLik = minusLogLik, start = start, region = region,
+                  lower = lower, upper = upper, ...)
 
 }
 

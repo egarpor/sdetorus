@@ -48,3 +48,7 @@ det(S)
 aToAlpha(A = alphaToA(alpha = alpha, Sigma = Sigma), Sigma = Sigma)
 alphaToA(alpha = aToAlpha(A = A, Sigma = Sigma), Sigma = Sigma)
 }
+\seealso{
+\code{\link{driftWn2D}} and \code{\link{mleMou}}, which rely on this
+parametrization of the drift matrix.
+}

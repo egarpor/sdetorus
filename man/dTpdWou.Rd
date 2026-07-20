@@ -72,3 +72,7 @@ García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 Langevin diffusions on the torus: estimation and applications.
 \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 }
+\seealso{
+\code{\link{dTpdWou1D}} and \code{\link{dTpdWou2D}} for the efficient
+1D and 2D versions, and \code{\link{driftWn}} for the associated drift.
+}
