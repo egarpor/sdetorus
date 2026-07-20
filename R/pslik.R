@@ -403,10 +403,11 @@ dPsTpd <- function(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1,
 
             }
 
-            # Density
+            # Density (the p * log(2 * pi) term normalizes the Gaussian, as in
+            # the single-x0 branch below)
             dens <- sum(apply(twokpi, 1, function(wind)
               exp(-((y[i, ] + wind) %*% SVx %*% (y[i, ] + wind) -
-                      log(det.SVx)) / 2)
+                      log(det.SVx) + p * log(2 * pi)) / 2)
               ))
 
           }

@@ -12,6 +12,17 @@
     `NA` when the score-matching matrix is singular.
   * `mlePde2D()` now wraps the second coordinate with `My` instead of `Mx` when
     computing the closest grid bins, fixing incorrect binning when `Mx != My`.
+  * `approxMleWnPairs()` default `start`, `lower` and `upper` are now consistent
+    with the `(alpha, mu, sigma, rho)` parameter order (they were written for a
+    different order, and `start` was missing `rho`), so the defaults yield a
+    valid, correctly parametrized optimization.
+  * `dPsTpd()` now normalizes the Shoji--Ozaki density in the multivariate
+    (`p >= 2`) branch used for per-observation start points (a
+    `p * log(2 * pi)` factor was missing), so it integrates to one as the
+    single-start branch already did. This does not affect `psMle()` estimates
+    (the missing factor was constant in the parameters).
+  * `dTpdWou()` now accepts a single evaluation point supplied as a length-`p`
+    vector instead of erroring.
 * Efficiency:
   * `rTrajMou()` precomputes the square root of the (constant) conditional
     covariance once instead of recomputing an eigendecomposition at every step

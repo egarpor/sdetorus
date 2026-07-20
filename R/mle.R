@@ -442,14 +442,14 @@ sigmaDiff <- function(data, delta, circular = TRUE, diagonal = FALSE,
 #'                                                delta = 0.1)[2, ]))
 #' data <- cbind(begin, end)
 #' approxMleWnPairs(data = data, delta = 0.1,
-#'                  start = c(2, pi/2, 2, 0.5, 0, 2, 1, 0.5))
+#'                  start = c(1, 2, 0.5, 0, 0, 1, 1, 0.5))
 #' @export
-approxMleWnPairs <- function(data, delta, start = c(0, 0, 1, 1, 0, 1, 1),
+approxMleWnPairs <- function(data, delta, start = c(1, 1, 0, 0, 0, 1, 1, 0),
                              alpha = rep(NA, 3), mu = rep(NA, 2),
                              sigma = rep(NA, 2), rho = NA,
-                             lower = c(-pi, -pi, 0.01, 0.01, -25, 0.01, 0.01,
+                             lower = c(0.01, 0.01, -25, -pi, -pi, 0.01, 0.01,
                                        -0.99),
-                             upper = c(pi, pi, 25, 25, 25, 25, 25, 0.99),
+                             upper = c(25, 25, 25, pi, pi, 25, 25, 0.99),
                              maxK = 2, expTrc = 30, ...) {
 
   # Specified parameters

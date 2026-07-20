@@ -68,3 +68,32 @@ test_that("driftJp reduces to the von Mises drift for psi = 0", {
   expect_equal(driftJp(x = x, alpha = 1, mu = 0.3, psi = 0), sin(0.3 - x))
 
 })
+
+test_that("driftJp is finite for psi != 0", {
+
+  x <- seq(-pi, pi, l = 50)
+  for (psi in c(-1, -0.3, 0.5, 1)) {
+    d <- driftJp(x = x, alpha = 1, mu = 0, psi = psi)
+    expect_length(d, length(x))
+    expect_true(all(is.finite(d)))
+    # The drift vanishes at the mean (x = mu = 0)
+    expect_equal(driftJp(x = 0, alpha = 1, mu = 0, psi = psi), 0)
+  }
+
+})
+
+test_that("driftMvm reduces to independent vM drifts", {
+
+  x <- seq(-pi, pi, l = 50)
+  # p = 1
+  expect_equal(driftMvm(x = x, alpha = 2, mu = 0.3, A = 0), 2 * sin(0.3 - x))
+
+  # p = 2 with a zero cross-term matrix: columns are independent vM drifts
+  xx <- as.matrix(expand.grid(seq(-pi, pi, l = 8), seq(-pi, pi, l = 8)))
+  d <- driftMvm(x = xx, alpha = c(2, 3), mu = c(0.5, -0.5),
+                A = matrix(0, 2, 2))
+  expect_equal(dim(d), dim(xx))
+  expect_equal(d[, 1], 2 * sin(0.5 - xx[, 1]))
+  expect_equal(d[, 2], 3 * sin(-0.5 - xx[, 2]))
+
+})

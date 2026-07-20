@@ -44,6 +44,13 @@ test_that("univariate and multivariate OU tpds agree", {
 
   A <- diag(alpha)
   Sigma <- diag(sigma^2)
+  # meantMou / covtMou compute eigen(A) internally when eigA is not supplied
+  eigA <- eigen(A)
+  expect_equal(meantMou(t = t, x0 = x0, A = A, mu = mu),
+               meantMou(t = t, x0 = x0, A = A, mu = mu, eigA = eigA))
+  expect_equal(covtMou(t = t, A = A, Sigma = Sigma),
+               covtMou(t = t, A = A, Sigma = Sigma, eigA = eigA))
+
   dMulti <- dTpdMou(x = x, x0 = x0, t = t, A = A, mu = mu, Sigma = Sigma)
   dUni <- dTpdOu(x = x[, 1], x0 = x0[1], t = t, alpha = alpha[1], mu = mu[1],
                  sigma = sigma[1]) *

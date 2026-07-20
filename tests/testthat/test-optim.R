@@ -62,3 +62,51 @@ test_that("mleOptimWrapper applies a user region as a penalty", {
   expect_true(res$value >= 0)
 
 })
+
+test_that("mleOptimWrapper works with the nlm optimizer", {
+
+  res <- mleOptimWrapper(minusLogLik = function(x) sum((x - 1:4)^2),
+                         start = rbind(10:13), optMethod = "nlm")
+  expect_equal(res$par, as.numeric(1:4), tolerance = 1e-3)
+  expect_true(res$convergence)
+
+})
+
+test_that("mleOptimWrapper honors lowestConv and rejects bad selectSolution", {
+
+  rc <- mleOptimWrapper(minusLogLik = function(x) sum((x - 1:2)^2),
+                        start = rbind(10:11), selectSolution = "lowestConv")
+  expect_equal(rc$par, as.numeric(1:2), tolerance = 0.05)
+  expect_true(rc$convergence)
+
+  expect_error(mleOptimWrapper(minusLogLik = function(x) sum(x^2),
+                               start = rbind(1:2), selectSolution = "bogus"),
+               "selectSolution")
+
+})
+
+test_that("mleOptimWrapper penalizes non-finite objective values", {
+
+  # The simplex explores x[1] < 0 where the objective is Inf, triggering the
+  # finite-penalty fallback.
+  f <- function(x) if (x[1] < 0) Inf else sum((x - 1)^2)
+  r <- mleOptimWrapper(minusLogLik = f, start = rbind(c(-2, 2)),
+                       optMethod = "Nelder-Mead", selectSolution = "lowest",
+                       penalty = 1e6)
+  expect_true(is.finite(r$value))
+
+})
+
+test_that("mleOptimWrapper catches optimizer errors gracefully", {
+
+  boom <- function(x) stop("boom")
+  for (m in c("nlm", "Nelder-Mead", "L-BFGS-B")) {
+    # The optimizers print the caught error; capture it to keep output clean
+    capture.output(
+      r <- mleOptimWrapper(minusLogLik = boom, start = rbind(c(1, 2)),
+                           lower = c(-5, -5), upper = c(5, 5), optMethod = m,
+                           selectSolution = "lowest"))
+    expect_true(all(is.na(r$par)))
+  }
+
+})

@@ -5,6 +5,13 @@ test_that("logBesselI0Scaled agrees with the direct computation", {
                logBesselI0Scaled(x = x, splineApprox = FALSE),
                tolerance = 1e-4)
 
+  # Large x uses the Bessel asymptotic expansion branch
+  skip_if_not_installed("Bessel")
+  xBig <- c(5e3, 5e4, 1e5)
+  expect_equal(logBesselI0Scaled(x = xBig, splineApprox = TRUE),
+               log(besselI(x = xBig, nu = 0, expon.scaled = TRUE)),
+               tolerance = 1e-4)
+
 })
 
 test_that("a1Inv inverts A1 and flags values outside its image", {

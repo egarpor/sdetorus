@@ -58,8 +58,10 @@ dTpdWou <- function(x, t, A, mu, Sigma, x0, maxK = 2, eigA = NULL,
   p <- ncol(x)
   nx <- nrow(x)
   if (is.null(p)) {
+    # A single evaluation point supplied as a length-p vector
     p <- length(x)
     nx <- 1
+    x <- matrix(x, nrow = 1, ncol = p)
   }
 
   # Winding numbers

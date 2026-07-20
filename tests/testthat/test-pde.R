@@ -97,3 +97,41 @@ test_that("mlePde1D recovers OU parameters (consistency with mleOu)", {
   expect_equal(pdeLin$par, pde$par, tolerance = 0.1)
 
 })
+
+test_that("dTpdPde1D and dTpdPde2D support the von Mises drift type", {
+
+  Mx <- 60
+  p1 <- dTpdPde1D(Mx = Mx, x0 = 0, t = 0.5, alpha = 1, mu = 0, sigma = 1,
+                  type = "vM")
+  expect_length(p1, Mx)
+  expect_true(all(p1 >= -1e-8))
+
+  M <- 24
+  p2 <- dTpdPde2D(Mx = M, My = M, x0 = c(0, 0), t = 0.5, alpha = c(1, 1, 0.5),
+                  mu = c(0, 0), sigma = 1, type = "vM")
+  expect_equal(dim(p2), c(M, M))
+  expect_true(all(p2 >= -1e-8))
+
+})
+
+test_that("mlePde2D runs with linear binning", {
+
+  skip_on_cran()
+  set.seed(2334567)
+  data <- rTrajWn2D(x0 = c(0, 0), alpha = c(1, 0.5, 0.25), mu = c(0, 0),
+                    sigma = c(2, 1), N = 30, delta = 0.5)
+  sigma <- c(2, 1)
+  b <- function(x, pars) driftWn2D(x = x, A = alphaToA(alpha = pars[1:3],
+                                                       sigma = sigma),
+                                   mu = pars[4:5], sigma = sigma)
+  sigma2 <- function(x, pars) repRow(sigma^2, nrow(x))
+
+  fit <- mlePde2D(data = data, delta = 0.5, b = b, sigma2 = sigma2,
+                  Mx = 10, My = 10, Mt = 3, start = rbind(c(1, 1, 0, 1, 1)),
+                  lower = c(0.1, 0.1, -25, -25, -25),
+                  upper = c(25, 25, 25, 25, 25), maxit = 2,
+                  linearBinning = TRUE, selectSolution = "lowest")
+  expect_length(fit$par, 5)
+  expect_true(all(is.finite(fit$par)))
+
+})

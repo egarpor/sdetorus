@@ -7,6 +7,17 @@ test_that("dTpdWou agrees with dTpdWou1D and dTpdWou2D", {
                      mu = 0, sigma = 1)
   expect_equal(as.numeric(d1), as.numeric(d1ref), tolerance = 1e-8)
 
+  # A single evaluation point supplied as a length-p vector matches the 1-row
+  # matrix form (regression: the vector branch used to error in sweep())
+  A2 <- alphaToA(c(1, 1, 0.2), c(1, 1))
+  dvec <- dTpdWou(x = c(0.3, -0.2), x0 = c(0, 0), t = 0.5, A = A2,
+                  mu = c(0, 0), Sigma = diag(2))
+  dmat <- dTpdWou(x = rbind(c(0.3, -0.2)), x0 = c(0, 0), t = 0.5, A = A2,
+                  mu = c(0, 0), Sigma = diag(2))
+  expect_length(dvec, 1)
+  expect_true(is.finite(dvec) && dvec >= 0)
+  expect_equal(as.numeric(dvec), as.numeric(dmat))
+
   # 2D
   alpha <- c(2, 1, -1)
   sigma <- c(1.5, 2)
@@ -166,5 +177,28 @@ test_that("approxMleWnPairs recovers reasonable parameters", {
   # sigma1, sigma2 (true (1, 1)) are recovered within a loose tolerance
   expect_equal(fit$par[6], 1, tolerance = 0.5)
   expect_equal(fit$par[7], 1, tolerance = 0.5)
+
+})
+
+test_that("approxMleWnPairs default start/lower/upper are self-consistent", {
+
+  # Regression: the defaults used to be written for a mu-first order with a
+  # length-7 start (missing rho), so an all-defaults call errored and mu = 0 was
+  # unreachable. They are now aligned with the (alpha, mu, sigma, rho) order.
+  alpha <- c(1, 2, 0.5)
+  mu <- c(0, 0)
+  sigma <- c(1, 1)
+  rho <- 0.3
+  t <- 0.2
+  x <- make_wou_pairs(n = 100, alpha = alpha, mu = mu, sigma = sigma, rho = rho,
+                      t = t, seed = 4567345)
+
+  # Relying entirely on the default start/lower/upper must run and return 8 pars
+  fit <- approxMleWnPairs(data = x, delta = t, selectSolution = "lowest",
+                          maxit = 50)
+  expect_length(fit$par, 8)
+  expect_true(all(is.finite(fit$par)))
+  # mu (positions 4:5, true (0, 0)) is now reachable near 0
+  expect_lt(max(abs(fit$par[4:5])), pi / 2)
 
 })
