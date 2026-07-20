@@ -55,3 +55,45 @@ test_that("mlePde2D runs with Mx != My (regression for asymmetric grids)", {
   expect_true(all(is.finite(fit$par)))
 
 })
+
+test_that("mlePde1D returns a finite estimate (smoke)", {
+
+  # b and sigma2 must accept a `pars` argument.
+  set.seed(234567)
+  traj <- rTrajOu(x0 = 0, alpha = 2, mu = 0, sigma = 1, N = 40, delta = 0.5)
+  b <- function(x, pars) pars[1] * (pars[2] - x)
+  sigma2 <- function(x, pars) rep(pars[3]^2, length(x))
+
+  fit <- mlePde1D(data = traj, delta = 0.5, Mx = 40, Mt = 5, b = b,
+                  sigma2 = sigma2, start = c(1, 1, 2),
+                  lower = c(0.1, -pi, -10), upper = c(10, pi, 10),
+                  maxit = 2, selectSolution = "lowest")
+  expect_length(fit$par, 3)
+  expect_true(all(is.finite(fit$par)))
+
+})
+
+test_that("mlePde1D recovers OU parameters (consistency with mleOu)", {
+
+  skip_on_cran()
+  set.seed(234567)
+  traj <- rTrajOu(x0 = 0, alpha = 2, mu = 0, sigma = 1, N = 100, delta = 0.5)
+  b <- function(x, pars) pars[1] * (pars[2] - x)
+  sigma2 <- function(x, pars) rep(pars[3]^2, length(x))
+
+  pde <- mlePde1D(data = traj, delta = 0.5, Mx = 60, Mt = 30, b = b,
+                  sigma2 = sigma2, start = c(1, 1, 2),
+                  lower = c(0.1, -pi, -10), upper = c(10, pi, 10),
+                  selectSolution = "lowest")
+  # mu and sigma are well identified against the true (0, 1)
+  expect_equal(pde$par[2], 0, tolerance = 0.3)
+  expect_equal(pde$par[3], 1, tolerance = 0.2)
+
+  # Linear binning produces a comparable estimate
+  pdeLin <- mlePde1D(data = traj, delta = 0.5, Mx = 60, Mt = 30, b = b,
+                     sigma2 = sigma2, start = c(1, 1, 2),
+                     lower = c(0.1, -pi, -10), upper = c(10, pi, 10),
+                     linearBinning = TRUE, selectSolution = "lowest")
+  expect_equal(pdeLin$par, pde$par, tolerance = 0.1)
+
+})

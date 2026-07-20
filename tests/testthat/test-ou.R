@@ -65,3 +65,51 @@ test_that("mleOu recovers OU parameters on simulated data", {
   expect_equal(fit$par[3], 1, tolerance = 0.2)
 
 })
+
+test_that("mleMou only handles p = 2", {
+
+  set.seed(345678)
+  data3 <- matrix(rnorm(30), ncol = 3)
+  expect_error(mleMou(data = data3, delta = 0.5, start = rep(1, 7)),
+               "p = 2")
+
+})
+
+test_that("mleMou runs for full and fixed-parameter estimation (smoke)", {
+
+  set.seed(345678)
+  data <- rTrajMou(x0 = c(0, 0), A = alphaToA(alpha = c(1, 1, 0.5), sigma = 1:2),
+                   mu = c(1, 1), Sigma = diag((1:2)^2), N = 60, delta = 0.5)
+
+  # Full estimation (7 parameters)
+  full <- mleMou(data = data, delta = 0.5, start = c(1, 1, 0, 1, 1, 1, 2),
+                 selectSolution = "lowest", maxit = 50)
+  expect_length(full$par, 7)
+  expect_true(all(is.finite(full$par)))
+  # The positive-definiteness region keeps the estimate feasible
+  expect_gte(full$par[1] * full$par[2] - full$par[3]^2, -1e-6)
+
+  # Fixed mu and sigma -> only alpha (3 parameters) estimated
+  fixed <- mleMou(data = data, delta = 0.5, mu = c(1, 1), sigma = 1:2,
+                  start = c(1, 1, 0), lower = c(0.1, 0.1, -25),
+                  upper = c(25, 25, 25), selectSolution = "lowest", maxit = 50)
+  expect_length(fixed$par, 3)
+  expect_true(all(is.finite(fixed$par)))
+
+})
+
+test_that("mleMou recovers the diffusion coefficients on simulated data", {
+
+  skip_on_cran()
+  set.seed(345678)
+  data <- rTrajMou(x0 = c(0, 0), A = alphaToA(alpha = c(1, 1, 0.5), sigma = 1:2),
+                   mu = c(1, 1), Sigma = diag((1:2)^2), N = 200, delta = 0.5)
+  fit <- mleMou(data = data, delta = 0.5, start = c(1, 1, 0, 1, 1, 1, 2),
+                lower = c(0.1, 0.1, -25, -10, -10, 0.1, 0.1),
+                upper = c(25, 25, 25, 10, 10, 25, 25),
+                selectSolution = "lowest", maxit = 300)
+  # sigma = (sigma1, sigma2) are the best-identified parameters (true (1, 2))
+  expect_equal(fit$par[6], 1, tolerance = 0.5)
+  expect_equal(fit$par[7], 2, tolerance = 0.5)
+
+})

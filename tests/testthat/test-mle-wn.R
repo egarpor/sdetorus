@@ -76,3 +76,95 @@ test_that("sigmaDiff estimates the diffusion matrix and honors constraints", {
   expect_equal(sdiag[1, 2], 0)
 
 })
+
+# Helper: initial (stationary) + final pair sample for the WOU process
+make_wou_pairs <- function(n, alpha, mu, sigma, rho, t, seed) {
+  set.seed(seed)
+  begin <- rStatWn2D(n = n, mu = mu, alpha = alpha, sigma = sigma)
+  end <- t(apply(begin, 1, function(x)
+    rTrajWn2D(x0 = x, alpha = alpha, mu = mu, sigma = sigma, rho = rho,
+              N = 1, delta = t)[2, ]))
+  cbind(begin, end)
+}
+
+test_that("logLikWouPairs equals stationary + transition log-likelihood", {
+
+  # logLikWouPairs is the objective maximized by approxMleWnPairs. On feasible
+  # parameters where the tpd is well away from 0, it must equal the sum of the
+  # log stationary density of the initial pair and the log transition density.
+  alpha <- c(1, 2, 0.5)
+  mu <- c(0, 0)
+  sigma <- c(1, 1)
+  rho <- 0.3
+  t <- 0.2
+  x <- make_wou_pairs(n = 50, alpha = alpha, mu = mu, sigma = sigma, rho = rho,
+                      t = t, seed = 4567345)
+
+  ll <- logLikWouPairs(x = x, t = t, alpha = alpha, mu = mu, sigma = sigma,
+                       rho = rho)
+  manual <- sum(
+    log(dStatWn2D(x = x[, 1:2], alpha = alpha, mu = mu, sigma = sigma,
+                  rho = rho)) +
+    log(dTpdWou2D(x = x[, 3:4], x0 = x[, 1:2], t = t, alpha = alpha, mu = mu,
+                  sigma = sigma, rho = rho)))
+  expect_equal(ll, manual, tolerance = 1e-8)
+
+})
+
+test_that("approxMleWnPairs runs for full and fixed-parameter estimation", {
+
+  alpha <- c(1, 2, 0.5)
+  mu <- c(0, 0)
+  sigma <- c(1, 1)
+  rho <- 0.3
+  t <- 0.2
+  x <- make_wou_pairs(n = 60, alpha = alpha, mu = mu, sigma = sigma, rho = rho,
+                      t = t, seed = 4567345)
+
+  # Explicit bounds in the (alpha, mu, sigma, rho) parameter order
+  lower <- c(0.01, 0.01, -25, -pi, -pi, 0.01, 0.01, -0.99)
+  upper <- c(25, 25, 25, pi, pi, 25, 25, 0.99)
+
+  # Full estimation (8 parameters)
+  full <- approxMleWnPairs(data = x, delta = t,
+                           start = c(1, 2, 0.5, 0, 0, 1, 1, 0.3),
+                           lower = lower, upper = upper,
+                           selectSolution = "lowest", maxit = 20)
+  expect_length(full$par, 8)
+  expect_true(all(is.finite(full$par)))
+
+  # Fixed mu -> 6 free parameters
+  fixed <- approxMleWnPairs(data = x, delta = t, mu = c(0, 0),
+                            start = c(1, 2, 0.5, 1, 1, 0.3),
+                            lower = c(0.01, 0.01, -25, 0.01, 0.01, -0.99),
+                            upper = c(25, 25, 25, 25, 25, 0.99),
+                            selectSolution = "lowest", maxit = 20)
+  expect_length(fixed$par, 6)
+  expect_true(all(is.finite(fixed$par)))
+
+})
+
+test_that("approxMleWnPairs recovers reasonable parameters", {
+
+  skip_on_cran()
+  alpha <- c(1, 2, 0.5)
+  mu <- c(0, 0)
+  sigma <- c(1, 1)
+  rho <- 0.3
+  t <- 0.2
+  x <- make_wou_pairs(n = 200, alpha = alpha, mu = mu, sigma = sigma,
+                      rho = rho, t = t, seed = 4567345)
+
+  fit <- approxMleWnPairs(data = x, delta = t,
+                          start = c(1, 2, 0.5, 0, 0, 1, 1, 0.3),
+                          lower = c(0.01, 0.01, -25, -pi, -pi, 0.01, 0.01,
+                                    -0.99),
+                          upper = c(25, 25, 25, pi, pi, 25, 25, 0.99),
+                          selectSolution = "lowest")
+  expect_length(fit$par, 8)
+  expect_true(all(is.finite(fit$par)))
+  # sigma1, sigma2 (true (1, 1)) are recovered within a loose tolerance
+  expect_equal(fit$par[6], 1, tolerance = 0.5)
+  expect_equal(fit$par[7], 1, tolerance = 0.5)
+
+})
