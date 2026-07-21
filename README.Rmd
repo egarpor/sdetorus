@@ -25,7 +25,7 @@ cat(
 )
 ```
 
-<img src="https://raw.githubusercontent.com/egarpor/sdetorus/master/logo/sdetorus-hexlogo.png" alt="sdetorus hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/>
+<img src="man/figures/logo.png" alt="sdetorus hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/>
 
 <p align="center">
 <img style="width:90%;" id="sdetorus" src="https://raw.githubusercontent.com/egarpor/sdetorus/master/logo/sdetorus-small.gif">

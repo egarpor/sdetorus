@@ -8,26 +8,40 @@
 # package name is overlaid on top. The torus fundamental domain is a periodic
 # square, which is why the square frame fills the whole hexagon (full-bleed).
 #
-# Run from within this logo/ directory:
+# Run from the package root:
 #
-#   Rscript sdetorus-hexsticker.R
+#   Rscript logo/logo.R
 #
+# Output: logo/logo.png (master) and man/figures/logo.png (shipped mirror).
 # Requires: magick, hexSticker.
 
 library(magick)
 library(hexSticker)
 
+## ---- Shared logo standard (identical across egarpor packages) -------------
+# Aller_Rg is bundled with (and auto-registered by) hexSticker, so no
+# showtext/font_add setup is needed. sdetorus stays intentionally nameless --
+# the diffused wordmark already lives in the frame -- so only the GitHub URL
+# uses these shared constants.
+FONT    <- "Aller_Rg"   # typeface for the GitHub URL
+U_SIZE  <- 9.0          # GitHub URL size (large enough to read)
+U_X     <- 1.00         # GitHub URL position: along the lower-right hex edge
+U_Y     <- 0.08
+U_ANGLE <- 30
+H_SIZE  <- 1.5          # hexagon border thickness
+DPI     <- 600
+
 ## ---- Parameters -------------------------------------------------------------
 
-gif_file  <- "sdetorus.gif"
+gif_file  <- "logo/sdetorus.gif"
 frame_idx <- 84            # intermediate diffusion step (of 200): wordmark is
                            # sharp yet still a density, with a touch of warm jet
                            # accent. Try ~110 for a bolder, cooler variant.
 border    <- "#08519C"     # deep jet-blue (cool end of matlab.like2)
 fill      <- "#08306B"     # dark navy (mostly hidden behind the full-bleed frame)
 ghurl     <- "github.com/egarpor/sdetorus"   # runs along the lower-right edge
-out_logo  <- "sdetorus-hexlogo.png"
-out_man   <- "../man/figures/logo.png"
+out_logo  <- "logo/logo.png"
+out_man   <- "man/figures/logo.png"
 
 ## ---- 1. Intermediate frame from the diffusion gif ---------------------------
 
@@ -47,10 +61,10 @@ render <- function(subplot, s_width, url, file) {
   sticker(subplot = subplot, s_x = 1, s_y = 1,
           s_width = s_width, s_height = s_width,
           package = "",                         # wordmark already lives in the frame
-          h_fill = fill, h_color = border, h_size = 1.8,
-          url = url, u_x = 1.12, u_y = 0.15, u_angle = 30,  # diagonal, along lower-right edge
-          u_size = 3.0, u_color = "#FFFFFF",
-          filename = file, dpi = 600)
+          h_fill = fill, h_color = border, h_size = H_SIZE,
+          url = url, u_x = U_X, u_y = U_Y, u_angle = U_ANGLE,  # diagonal, lower-right edge
+          u_size = U_SIZE, u_color = "#FFFFFF", u_family = FONT,
+          filename = file, dpi = DPI)
   invisible(file)
 }
 
