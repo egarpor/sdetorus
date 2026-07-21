@@ -8,7 +8,7 @@ status](https://github.com/egarpor/sdetorus/workflows/R-CMD-check/badge.svg)](ht
 [![](http://cranlogs.r-pkg.org/badges/grand-total/sdetorus)](https://cran.r-project.org/package=sdetorus)
 [![](http://cranlogs.r-pkg.org/badges/last-month/sdetorus)](https://cran.r-project.org/package=sdetorus)
 
-<!-- <img src="" alt="sdetorus  hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/> -->
+<img src="https://raw.githubusercontent.com/egarpor/sdetorus/master/logo/sdetorus-hexlogo.png" alt="sdetorus hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/>
 <p align="center">
 <img style="width:90%;" id="sdetorus" src="https://raw.githubusercontent.com/egarpor/sdetorus/master/logo/sdetorus-small.gif">
 <br> <i>Transition probability density of the Langevin diffusion guided
