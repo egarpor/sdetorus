@@ -1,3 +1,4 @@
+
 # Hex sticker for the 'sdetorus' package: a toroidal diffusion on the torus
 # [-pi, pi)^2 -- the stationary density of a Wrapped-Normal Ornstein-Uhlenbeck
 # process (jet colormap), its rotational drift field (white arrows), and a few

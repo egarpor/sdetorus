@@ -1,31 +1,30 @@
 ---
 output:
   md_document:
-    variant: markdown_github
+    variant: gfm
 ---
 
-```{r, echo = FALSE}
+```{r, setup, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE, comment = "#>", fig.path = "README/README-",
   message = FALSE, warning = FALSE, fig.asp = 1, fig.align = 'center'
 )
 ```
 
-sdetorus
-========
+# sdetorus <img src="man/figures/logo.png" align="right" height="175" alt="sdetorus hexlogo"/>
 
-```{r, echo = FALSE, results = 'asis'}
+```{r, badges, echo = FALSE, results = 'asis'}
 cat(
   badger::badge_license(license = "GPLv3", color = "blue",
                         url = "https://www.gnu.org/licenses/gpl-3.0"),
   badger::badge_github_actions(action = "R-CMD-check"),
+  badger::badge_github_actions(action = "test-coverage"),
+  badger::badge_codecov(),
   badger::badge_cran_release(color = "green"),
   badger::badge_cran_download(pkg = NULL, type = "grand-total"),
   badger::badge_cran_download(pkg = NULL, type = "last-month")
 )
 ```
-
-<img src="man/figures/logo.png" alt="sdetorus hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/>
 
 <p align="center">
 <img style="width:90%;" id="sdetorus" src="https://raw.githubusercontent.com/egarpor/sdetorus/master/logo/sdetorus-small.gif">
@@ -37,28 +36,18 @@ cat(
 
 This library provides statistical tools for estimation of toroidal diffusions. It is the package companion for the paper *Langevin diffusions on the torus: estimation and applications* (García-Portugués et al., 2019).
 
-## Install
-
-Get the released version from CRAN:
+## Installation
 
 ```{r, install-CRAN, eval = FALSE}
-# Install the package
+# Install it from CRAN
 install.packages("sdetorus")
-
-# Load package
 library(sdetorus)
 ```
 
-Alternatively, get the latest version from GitHub:
-
 ```{r, install-GitHub, eval = FALSE}
-# Install the package
-library(devtools)
-Sys.setenv("PKG_CXXFLAGS" = "-std=c++11")
-Sys.setenv("PKG_LIBS" = "-llapack")
-install_github("egarpor/sdetorus")
-
-# Load package
+# Alternatively, from GitHub
+library(pak)
+pak("egarpor/sdetorus")
 library(sdetorus)
 ```
 
@@ -72,9 +61,6 @@ library(sdetorus)
 ### Example 1: simulation of diffusion trajectories
 
 ```{r, example1}
-# Load package
-library(sdetorus)
-
 ## vM diffusion in 1D
 
 # Initial points
@@ -120,9 +106,6 @@ for (i in 1:nx0) linesTorus(samp[i, 1, ], samp[i, 2, ],
 ### Example 2: computation of transition probability densities
 
 ```{r, example2}
-# Load package
-library(sdetorus)
-
 ## Cauchy diffusion in 1D
 
 # Drift
@@ -180,9 +163,6 @@ plotTpd(t = 3.0)
 ### Example 3: approximate maximum likelihood estimation in 1D
 
 ```{r, example3}
-# Load package
-library(sdetorus)
-
 ## WN diffusion in 1D
 
 # Sample
