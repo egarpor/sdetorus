@@ -36,8 +36,7 @@ the density.
 \description{
 Transition probability density of the \emph{multivariate}
 Ornstein--Uhlenbeck (OU) diffusion
-\deqn{dX_t=A(\mu - X_t)dt+\Sigma^\frac{1}{2}dW_t, X_0=x_0.}{
-dX_t=A(mu - X_t)dt+Sigma^(1/2) dW_t, X0=x0.}
+\deqn{dX_t=A(\mu - X_t)dt+\Sigma^\frac{1}{2}dW_t, X_0=x_0.}
 }
 \details{
 The transition probability density is a multivariate normal with

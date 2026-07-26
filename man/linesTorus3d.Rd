@@ -7,9 +7,11 @@
 linesTorus3d(x, y, z, col = 1, arrows = FALSE, ...)
 }
 \arguments{
-\item{x, y}{vectors with horizontal coordinates, wrapped in \eqn{[-\pi,\pi)}.}
+\item{x, y}{vectors with horizontal coordinates, wrapped in
+\eqn{\mathbb{T}=[-\pi,\pi)}.}
 
-\item{z}{vector with vertical coordinates, wrapped in \eqn{[-\pi,\pi)}.}
+\item{z}{vector with vertical coordinates, wrapped in
+\eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{col}{color vector of length \code{1} or the same length of \code{x},
 \code{y}, and \code{z}.}
@@ -24,10 +26,11 @@ Nothing. The functions are called for drawing wrapped lines.
 }
 \description{
 Joins the corresponding points with line segments or arrows that
-exhibit wrapping in \eqn{[-\pi,\pi)} in the horizontal and vertical axes.
+exhibit wrapping in \eqn{\mathbb{T}=[-\pi,\pi)} in the horizontal and
+vertical axes.
 }
 \details{
-\code{x}, \code{y}, and \code{z} are wrapped to \eqn{[-\pi,\pi)}
+\code{x}, \code{y}, and \code{z} are wrapped to \eqn{\mathbb{T}=[-\pi,\pi)}
 before plotting. \code{arrows = TRUE} makes sequential calls to
 \code{\link[rgl]{arrow3d}}, and is substantially slower than
 \code{arrows = FALSE}.

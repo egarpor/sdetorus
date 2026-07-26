@@ -4,15 +4,24 @@
 \alias{euler1D}
 \title{Simulation of trajectories of the WN or vM diffusion in 1D}
 \usage{
-euler1D(x0, alpha, mu, sigma, N = 100L, delta = 0.01, type = 1L,
-  maxK = 2L, expTrc = 30)
+euler1D(
+  x0,
+  alpha,
+  mu,
+  sigma,
+  N = 100L,
+  delta = 0.01,
+  type = 1L,
+  maxK = 2L,
+  expTrc = 30
+)
 }
 \arguments{
 \item{x0}{vector of length \code{nx0} giving the initial points.}
 
 \item{alpha}{drift parameter.}
 
-\item{mu}{mean parameter. Must be in \eqn{[\pi,\pi)}.}
+\item{mu}{mean parameter. Must be in \eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{sigma}{diffusion coefficient.}
 
@@ -20,17 +29,21 @@ euler1D(x0, alpha, mu, sigma, N = 100L, delta = 0.01, type = 1L,
 
 \item{delta}{discretization step.}
 
-\item{type}{integer giving the type of diffusion. Currently, only \code{1} for WN and \code{2} for vM are supported.}
+\item{type}{integer giving the type of diffusion. Currently, only \code{1}
+for WN and \code{2} for vM are supported.}
 
-\item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
+\item{maxK}{maximum absolute value of the windings considered in the
+computation of the WN.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 }
 \value{
 A matrix of size \code{c(nx0, N + 1)} containing the \code{nx0} discretized trajectories. The first column corresponds to the vector \code{x0}.
 }
 \description{
-Simulation of the Wrapped Normal (WN) diffusion or von Mises (vM) diffusion by the Euler method in 1D, for several starting values.
+Simulation of the Wrapped Normal (WN) diffusion or von Mises
+(vM) diffusion by the Euler method in 1D, for several starting values.
 }
 \examples{
 N <- 100

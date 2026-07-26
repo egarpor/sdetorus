@@ -4,8 +4,21 @@
 \alias{mlePde2D}
 \title{MLE for toroidal process via PDE solving in 2D}
 \usage{
-mlePde2D(data, delta, b, sigma2, Mx = 50, My = 50, Mt = ceiling(100 *
-  delta), sdInitial = 0.1, linearBinning = FALSE, start, lower, upper, ...)
+mlePde2D(
+  data,
+  delta,
+  b,
+  sigma2,
+  Mx = 50,
+  My = 50,
+  Mt = ceiling(100 * delta),
+  sdInitial = 0.1,
+  linearBinning = FALSE,
+  start,
+  lower,
+  upper,
+  ...
+)
 }
 \arguments{
 \item{data}{a matrix of dimension \code{c(n, p)}.}
@@ -18,7 +31,8 @@ argument.}
 \item{sigma2}{function giving the diagonal of the diffusion matrix. Must
 return a vector of the same size as its argument.}
 
-\item{Mx, My}{sizes of the equispaced spatial grids in \eqn{[-\pi,\pi)} for each component.}
+\item{Mx, My}{sizes of the equispaced spatial grids in
+\eqn{\mathbb{T}=[-\pi,\pi)} for each component.}
 
 \item{Mt}{size of the time grid in \eqn{[0, t]}.}
 
@@ -29,8 +43,8 @@ initial condition.}
 applied for the initial values of the tpd, instead of usual simple binning
 (cheaper). Linear binning is always done in the evaluation of the tpd.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each
-entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each entry
+representing a different starting value.}
 
 \item{lower, upper}{bound for box constraints as in method \code{"L-BFGS-B"}
 of \code{\link[stats]{optim}}.}
@@ -122,6 +136,7 @@ Langevin diffusions on the torus: estimation and applications.
 \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 }
 \seealso{
-\code{\link{dTpdPde2D}} for the underlying tpd, \code{\link{mlePde1D}}
-for the 1D case, and \code{\link{psMle}} for pseudo-likelihood alternatives.
+\code{\link{dTpdPde2D}} for the underlying tpd,
+\code{\link{mlePde1D}} for the 1D case, and \code{\link{psMle}} for
+pseudo-likelihood alternatives.
 }

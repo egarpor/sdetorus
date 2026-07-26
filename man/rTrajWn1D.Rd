@@ -4,15 +4,23 @@
 \alias{rTrajWn1D}
 \title{Simulation of trajectories for the WN diffusion in 1D}
 \usage{
-rTrajWn1D(x0, alpha, mu, sigma, N = 100, delta = 0.01, NFine = ceiling(N
-  * delta/deltaFine), deltaFine = min(delta/100, 0.001))
+rTrajWn1D(
+  x0,
+  alpha,
+  mu,
+  sigma,
+  N = 100,
+  delta = 0.01,
+  NFine = ceiling(N * delta/deltaFine),
+  deltaFine = min(delta/100, 0.001)
+)
 }
 \arguments{
 \item{x0}{initial point.}
 
 \item{alpha}{drift parameter.}
 
-\item{mu}{mean parameter. Must be in \eqn{[\pi,\pi)}.}
+\item{mu}{mean parameter. Must be in \eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{sigma}{diffusion coefficient.}
 
@@ -20,11 +28,11 @@ rTrajWn1D(x0, alpha, mu, sigma, N = 100, delta = 0.01, NFine = ceiling(N
 
 \item{delta}{discretization step.}
 
-\item{NFine}{number of discretization steps for the fine trajectory. Must
-be larger than \code{N}.}
+\item{NFine}{number of discretization steps for the fine trajectory. Must be
+larger than \code{N}.}
 
-\item{deltaFine}{discretization step for the fine trajectory. Must be
-smaller than \code{delta}.}
+\item{deltaFine}{discretization step for the fine trajectory. Must be smaller
+than \code{delta}.}
 }
 \value{
 A vector of length \code{N + 1} containing \code{x0} in the first

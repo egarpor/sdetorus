@@ -4,8 +4,23 @@
 \alias{psMle}
 \title{Maximum pseudo-likelihood estimation by wrapped pseudo-likelihoods}
 \usage{
-psMle(data, delta, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
-  start, lower, upper, circular = TRUE, maxK = 2, vmApprox = FALSE, ...)
+psMle(
+  data,
+  delta,
+  method = c("E", "SO", "SO2"),
+  b,
+  jac.b,
+  sigma2,
+  b1,
+  b2,
+  start,
+  lower,
+  upper,
+  circular = TRUE,
+  maxK = 2,
+  vmApprox = FALSE,
+  ...
+)
 }
 \arguments{
 \item{data}{a matrix of dimension \code{c(n, p)}.}
@@ -21,17 +36,17 @@ drift) method.}
 \item{jac.b}{jacobian of the drift function.}
 
 \item{sigma2}{diagonal of the diffusion matrix (if univariate, this is the
-square of the diffusion coefficient). Must return an object of the same
-size as \code{x}.}
+square of the diffusion coefficient). Must return an object of the same size
+as \code{x}.}
 
-\item{b1}{first derivative of the drift function (univariate). Must return
-a vector of the same length as \code{x}.}
+\item{b1}{first derivative of the drift function (univariate). Must return a
+vector of the same length as \code{x}.}
 
-\item{b2}{second derivative of the drift function (univariate). Must return
-a vector of the same length as \code{x}.}
+\item{b2}{second derivative of the drift function (univariate). Must return a
+vector of the same length as \code{x}.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each
-entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each entry
+representing a different starting value.}
 
 \item{lower, upper}{bound for box constraints as in method \code{"L-BFGS-B"}
 of \code{\link[stats]{optim}}.}

@@ -26,9 +26,8 @@ first row and  the exact discretized trajectory on the remaining rows.
 \description{
 Simulation of trajectories of the \emph{multivariate}
 Ornstein--Uhlenbeck (OU) diffusion
-\deqn{dX_t=A(\mu - X_t)dt+\Sigma^\frac{1}{2}dW_t, X_0=x_0}{
-dX_t=A(mu - X_t)dt+Sigma^(1/2) dW_t, X0=x0} using the exact transition
-probability density.
+\deqn{dX_t=A(\mu - X_t)dt+\Sigma^\frac{1}{2}dW_t, X_0=x_0}
+using the exact transition probability density.
 }
 \details{
 The law of the discretized trajectory at \emph{each} time step is

@@ -7,7 +7,7 @@
 dVm(x, mu, kappa)
 }
 \arguments{
-\item{x}{evaluation angles, not necessary in \eqn{[\pi,\pi)}.}
+\item{x}{evaluation angles, not necessary in \eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{mu}{circular mean.}
 

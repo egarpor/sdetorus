@@ -4,8 +4,22 @@
 \alias{dPsTpd}
 \title{Wrapped Euler and Shoji--Ozaki pseudo-transition probability densities}
 \usage{
-dPsTpd(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1, b2,
-  circular = TRUE, maxK = 2, vmApprox = FALSE, twokpi = NULL, ...)
+dPsTpd(
+  x,
+  x0,
+  t,
+  method = c("E", "SO", "SO2"),
+  b,
+  jac.b,
+  sigma2,
+  b1,
+  b2,
+  circular = TRUE,
+  maxK = 2,
+  vmApprox = FALSE,
+  twokpi = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{a matrix of dimension \code{c(n, p)}. If a vector is provided, is
@@ -26,14 +40,14 @@ drift) method.}
 \item{jac.b}{jacobian of the drift function.}
 
 \item{sigma2}{diagonal of the diffusion matrix (if univariate, this is the
-square of the diffusion coefficient). Must return an object of the same
-size as \code{x}.}
+square of the diffusion coefficient). Must return an object of the same size
+as \code{x}.}
 
-\item{b1}{first derivative of the drift function (univariate). Must return
-a vector of the same length as \code{x}.}
+\item{b1}{first derivative of the drift function (univariate). Must return a
+vector of the same length as \code{x}.}
 
-\item{b2}{second derivative of the drift function (univariate). Must return
-a vector of the same length as \code{x}.}
+\item{b2}{second derivative of the drift function (univariate). Must return a
+vector of the same length as \code{x}.}
 
 \item{circular}{flag to indicate circular data.}
 

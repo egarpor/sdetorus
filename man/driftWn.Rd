@@ -19,9 +19,11 @@ diffusion.}
 
 \item{invSigmaA}{the matrix \code{solve(Sigma) \%*\% A} (optional).}
 
-\item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
+\item{maxK}{maximum absolute value of the windings considered in the
+computation of the WN.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 }
 \value{
 A matrix of the same size as \code{x} containing the drift.

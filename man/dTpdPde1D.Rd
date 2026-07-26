@@ -4,11 +4,22 @@
 \alias{dTpdPde1D}
 \title{Transition probability density in 1D by PDE solving}
 \usage{
-dTpdPde1D(Mx = 500, x0, t, alpha, mu, sigma, type = "WN",
-  Mt = ceiling(100 * t), sdInitial = 0.1, ...)
+dTpdPde1D(
+  Mx = 500,
+  x0,
+  t,
+  alpha,
+  mu,
+  sigma,
+  type = "WN",
+  Mt = ceiling(100 * t),
+  sdInitial = 0.1,
+  ...
+)
 }
 \arguments{
-\item{Mx}{size of the equispaced spatial grid in \eqn{[-\pi,\pi)}.}
+\item{Mx}{size of the equispaced spatial grid in
+\eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{x0}{point giving the mean of the initial circular density, a WN with
 standard deviation equal to \code{sdInitial}.}
@@ -17,7 +28,7 @@ standard deviation equal to \code{sdInitial}.}
 
 \item{alpha}{drift parameter.}
 
-\item{mu}{mean parameter. Must be in \eqn{[\pi,\pi)}.}
+\item{mu}{mean parameter. Must be in \eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{sigma}{diffusion coefficient.}
 

@@ -2,17 +2,28 @@
 % Please edit documentation in R/RcppExports.R
 \name{stepAheadWn1D}
 \alias{stepAheadWn1D}
-\title{Multiple simulation of trajectory ends of the WN or vM diffusion in 1D}
+\title{Multiple simulation of trajectory ends of the WN or vM diffusion in
+1D}
 \usage{
-stepAheadWn1D(x0, alpha, mu, sigma, M, N = 100L, delta = 0.01, type = 1L,
-  maxK = 2L, expTrc = 30)
+stepAheadWn1D(
+  x0,
+  alpha,
+  mu,
+  sigma,
+  M,
+  N = 100L,
+  delta = 0.01,
+  type = 1L,
+  maxK = 2L,
+  expTrc = 30
+)
 }
 \arguments{
 \item{x0}{vector of length \code{nx0} giving the initial points.}
 
 \item{alpha}{drift parameter.}
 
-\item{mu}{mean parameter. Must be in \eqn{[\pi,\pi)}.}
+\item{mu}{mean parameter. Must be in \eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{sigma}{diffusion coefficient.}
 
@@ -22,17 +33,22 @@ stepAheadWn1D(x0, alpha, mu, sigma, M, N = 100L, delta = 0.01, type = 1L,
 
 \item{delta}{discretization step.}
 
-\item{type}{integer giving the type of diffusion. Currently, only \code{1} for WN and \code{2} for vM are supported.}
+\item{type}{integer giving the type of diffusion. Currently, only \code{1}
+for WN and \code{2} for vM are supported.}
 
-\item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
+\item{maxK}{maximum absolute value of the windings considered in the
+computation of the WN.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 }
 \value{
 A matrix of size \code{c(nx0, M)} containing the \code{M} trajectory ends for each starting value \code{x0}.
 }
 \description{
-Simulates \code{M} trajectories starting from different initial values \code{x0} of the WN or vM diffusion in 1D, by the Euler method, and returns their ends.
+Simulates \code{M} trajectories starting from different initial
+values \code{x0} of the WN or vM diffusion in 1D, by the Euler method, and
+returns their ends.
 }
 \examples{
 N <- 100

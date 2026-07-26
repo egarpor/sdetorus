@@ -10,7 +10,7 @@ dJp(x, mu, kappa, psi, const = NULL)
 constJp(mu, kappa, psi, M = 200)
 }
 \arguments{
-\item{x}{evaluation angles, not necessary in \eqn{[\pi,\pi)}.}
+\item{x}{evaluation angles, not necessary in \eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{mu}{circular mean.}
 

@@ -48,6 +48,6 @@ for two dependent circular variables, \emph{Biometrika}, 89(3):719--723,
 }
 \seealso{
 \code{\link{dVm}} for the univariate von Mises density and
-\code{\link{scoreMatchWnBvm}} for approximating a bivariate wrapped normal
-by a bivariate von Mises.
+\code{\link{scoreMatchWnBvm}} for approximating a bivariate wrapped normal by
+a bivariate von Mises.
 }

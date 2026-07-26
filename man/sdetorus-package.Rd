@@ -6,6 +6,8 @@
 \alias{sdetorus-package}
 \title{sdetorus: Statistical Tools for Toroidal Diffusions}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Implementation of statistical methods for the estimation of toroidal diffusions. Several diffusive models are provided, most of them belonging to the Langevin family of diffusions on the torus. Specifically, the wrapped normal and von Mises processes are included, which can be seen as toroidal analogues of the Ornstein-Uhlenbeck diffusion. A collection of methods for approximate maximum likelihood estimation, organized in four blocks, is given: (i) based on the exact transition probability density, obtained as the numerical solution to the Fokker-Planck equation; (ii) based on wrapped pseudo-likelihoods; (iii) based on specific analytic approximations by wrapped processes; (iv) based on maximum likelihood of the stationary densities. The package allows the replicability of the results in García-Portugués et al. (2019) \doi{10.1007/s11222-017-9790-2}.
 }
 \references{

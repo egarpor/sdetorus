@@ -11,8 +11,8 @@ matMatch(x, mat, rows = TRUE, useMatch = FALSE, ...)
 
 \item{mat}{matrix with the values to be matched against.}
 
-\item{rows}{whether the match should be done by rows (\code{TRUE}) or
-columns (\code{FALSE}).}
+\item{rows}{whether the match should be done by rows (\code{TRUE}) or columns
+(\code{FALSE}).}
 
 \item{useMatch}{whether to rely on \code{\link[base]{match}} or not. Might
 give unexpected mismatches due to working with lists.}

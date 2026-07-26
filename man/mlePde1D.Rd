@@ -4,22 +4,35 @@
 \alias{mlePde1D}
 \title{MLE for toroidal process via PDE solving in 1D}
 \usage{
-mlePde1D(data, delta, b, sigma2, Mx = 500, Mt = ceiling(100 * delta),
-  sdInitial = 0.1, linearBinning = FALSE, start, lower, upper, ...)
+mlePde1D(
+  data,
+  delta,
+  b,
+  sigma2,
+  Mx = 500,
+  Mt = ceiling(100 * delta),
+  sdInitial = 0.1,
+  linearBinning = FALSE,
+  start,
+  lower,
+  upper,
+  ...
+)
 }
 \arguments{
-\item{data}{a vector of size \code{N} with the discretized trajectory of
-the diffusion.}
+\item{data}{a vector of size \code{N} with the discretized trajectory of the
+diffusion.}
 
 \item{delta}{time discretization step.}
 
 \item{b}{drift function. Must return a vector of the same size as its
 argument.}
 
-\item{sigma2}{function giving the squared diffusion coefficient. Must
-return a vector of the same size as its argument.}
+\item{sigma2}{function giving the squared diffusion coefficient. Must return
+a vector of the same size as its argument.}
 
-\item{Mx}{size of the equispaced spatial grid in \eqn{[-\pi,\pi)}.}
+\item{Mx}{size of the equispaced spatial grid in
+\eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{Mt}{size of the time grid in \eqn{[0, t]}.}
 
@@ -30,8 +43,8 @@ initial condition.}
 applied for the initial values of the tpd, instead of usual simple binning
 (cheaper). Linear binning is always done in the evaluation of the tpd.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each
-entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each entry
+representing a different starting value.}
 
 \item{lower, upper}{bound for box constraints as in method \code{"L-BFGS-B"}
 of \code{\link[stats]{optim}}.}
@@ -112,6 +125,7 @@ Langevin diffusions on the torus: estimation and applications.
 \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
 }
 \seealso{
-\code{\link{dTpdPde1D}} for the underlying tpd, \code{\link{mlePde2D}}
-for the 2D case, and \code{\link{psMle}} for pseudo-likelihood alternatives.
+\code{\link{dTpdPde1D}} for the underlying tpd,
+\code{\link{mlePde2D}} for the 2D case, and \code{\link{psMle}} for
+pseudo-likelihood alternatives.
 }

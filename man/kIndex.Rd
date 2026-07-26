@@ -45,9 +45,9 @@ linear indexes.
 }
 \description{
 Conversions between \code{cbind(i, j)} and \code{k} such that
-\code{A[i, j] == A[k]} for a matrix \code{A}. Either column or row
-ordering can be specified for the linear indexing, and also direct
-conversions between both types.
+\code{A[i, j] == A[k]} for a matrix \code{A}. Either column or row ordering
+can be specified for the linear indexing, and also direct conversions between
+both types.
 }
 \examples{
 # Indexes of a 3 x 5 matrix

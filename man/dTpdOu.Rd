@@ -37,8 +37,7 @@ the density.
 \description{
 Transition probability density of the \emph{univariate}
 Ornstein--Uhlenbeck (OU) diffusion
-\deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0.}{
-dX_t=alpha(mu - X_t)dt+sigma dW_t, X0=x0.}
+\deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0.}
 }
 \details{
 The transition probability density is a normal density with mean

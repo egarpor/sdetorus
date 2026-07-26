@@ -22,7 +22,7 @@ A scalar with the approximated integral.
 }
 \description{
 Convenience function for Monte Carlo integration on
-\eqn{[-\pi, \pi)^p}.
+\eqn{\mathbb{T}^p=[-\pi,\pi)^p}.
 }
 \examples{
 # Integral of sin(x1) * cos(x2), must be close to 0

@@ -22,8 +22,8 @@ is defined.}
 The wrapped vector in the chosen interval.
 }
 \description{
-Utilities for transforming a reals into \eqn{[-\pi, \pi)},
-\eqn{[0, 2\pi)} or \eqn{[a, b)}.
+Utilities for transforming a reals into
+\eqn{\mathbb{T}=[-\pi,\pi)}, \eqn{[0, 2\pi)} or \eqn{[a, b)}.
 }
 \details{
 Note that \eqn{b} is \bold{excluded} from the result, see examples.

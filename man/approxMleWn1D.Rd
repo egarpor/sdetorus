@@ -4,17 +4,27 @@
 \alias{approxMleWn1D}
 \title{Approximate MLE of the WN diffusion in 1D}
 \usage{
-approxMleWn1D(data, delta, start, alpha = NA, mu = NA, sigma = NA,
-  lower = c(0.01, -pi, 0.01), upper = c(25, pi, 25), vmApprox = FALSE,
-  maxK = 2, ...)
+approxMleWn1D(
+  data,
+  delta,
+  start,
+  alpha = NA,
+  mu = NA,
+  sigma = NA,
+  lower = c(0.01, -pi, 0.01),
+  upper = c(25, pi, 25),
+  vmApprox = FALSE,
+  maxK = 2,
+  ...
+)
 }
 \arguments{
 \item{data}{a matrix of dimension \code{c(n, p)}.}
 
 \item{delta}{discretization step.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each
-entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each entry
+representing a different starting value.}
 
 \item{alpha, mu, sigma}{if their values are provided, the likelihood function
 is optimized with respect to the rest of unspecified parameters. The number

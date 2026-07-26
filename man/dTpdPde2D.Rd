@@ -4,21 +4,34 @@
 \alias{dTpdPde2D}
 \title{Transition probability density in 2D by PDE solving}
 \usage{
-dTpdPde2D(Mx = 50, My = 50, x0, t, alpha, mu, sigma, rho = 0,
-  type = "WN", Mt = ceiling(100 * t), sdInitial = 0.1, ...)
+dTpdPde2D(
+  Mx = 50,
+  My = 50,
+  x0,
+  t,
+  alpha,
+  mu,
+  sigma,
+  rho = 0,
+  type = "WN",
+  Mt = ceiling(100 * t),
+  sdInitial = 0.1,
+  ...
+)
 }
 \arguments{
-\item{Mx, My}{sizes of the equispaced spatial grids in \eqn{[-\pi,\pi)} for each component.}
+\item{Mx, My}{sizes of the equispaced spatial grids in
+\eqn{\mathbb{T}=[-\pi,\pi)} for each component.}
 
-\item{x0}{point giving the mean of the initial circular density, an
-isotropic WN with standard deviations equal to \code{sdInitial}.}
+\item{x0}{point giving the mean of the initial circular density, an isotropic
+WN with standard deviations equal to \code{sdInitial}.}
 
 \item{t}{time separating \code{x0} and the evaluation of the tpd.}
 
-\item{alpha}{for \code{"WN"}, a vector of length \code{3} parametrizing
-the \code{A} matrix as in \code{\link{alphaToA}}. For \code{"vM"}, a vector
-of length \code{3} containing \code{c(alpha[1:2], A[1, 2])}, from the
-arguments \code{alpha} and \code{A} in \code{\link{driftMvm}}.}
+\item{alpha}{for \code{"WN"}, a vector of length \code{3} parametrizing the
+\code{A} matrix as in \code{\link{alphaToA}}. For \code{"vM"}, a vector of
+length \code{3} containing \code{c(alpha[1:2], A[1, 2])}, from the arguments
+\code{alpha} and \code{A} in \code{\link{driftMvm}}.}
 
 \item{mu}{vector of length \code{2} giving the mean.}
 
@@ -44,8 +57,8 @@ combinations of \code{seq(-pi, pi, l = Mx + 1)[-(Mx + 1)]} and
 }
 \description{
 Computation of the transition probability density (tpd) of the
-Wrapped Normal (WN) or Multivariate von Mises (MvM) diffusion, by solving
-its associated Fokker--Planck Partial Differential Equation (PDE) in 2D.
+Wrapped Normal (WN) or Multivariate von Mises (MvM) diffusion, by solving its
+associated Fokker--Planck Partial Differential Equation (PDE) in 2D.
 }
 \details{
 A combination of small \code{sdInitial} and coarse space-time

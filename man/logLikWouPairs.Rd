@@ -2,34 +2,46 @@
 % Please edit documentation in R/RcppExports.R
 \name{logLikWouPairs}
 \alias{logLikWouPairs}
-\title{Loglikelihood of WN in 2D when only the initial and final points are observed}
+\title{Loglikelihood of WN in 2D when only the initial and final points are
+observed}
 \usage{
 logLikWouPairs(x, t, alpha, mu, sigma, rho = 0, maxK = 2L, expTrc = 30)
 }
 \arguments{
-\item{x}{a matrix of dimension \code{c(n, 4)} of initial and final pairs of angles. Each row is an observation containing \eqn{(\phi_0, \psi_0, \phi_t, \psi_t)}.
-They all must be in \eqn{[\pi,\pi)} so that the truncated wrapping by \code{maxK} windings is able to capture periodicity.}
+\item{x}{a matrix of dimension \code{c(n, 4)} of initial and final pairs of
+angles. Each row is an observation containing
+\eqn{(\phi_0, \psi_0, \phi_t, \psi_t)}. They all must be in
+\eqn{\mathbb{T}=[-\pi,\pi)} so that the truncated wrapping by \code{maxK}
+windings is able to capture periodicity.}
 
-\item{t}{either a scalar or a vector of length \code{n} containing the times the initial and final dihedrals. If \code{t} is a scalar, a common time is assumed.}
+\item{t}{either a scalar or a vector of length \code{n} containing the times
+the initial and final dihedrals. If \code{t} is a scalar, a common time is
+assumed.}
 
-\item{alpha}{vector of length \code{3} parametrizing the \code{A} matrix as in \code{\link{alphaToA}}.}
+\item{alpha}{vector of length \code{3} parametrizing the \code{A} matrix as
+in \code{\link{alphaToA}}.}
 
 \item{mu}{a vector of length \code{2} giving the mean.}
 
-\item{sigma}{vector of length \code{2} containing the \strong{square root} of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
+\item{sigma}{vector of length \code{2} containing the \strong{square root}
+of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
 
 \item{rho}{correlation coefficient of \eqn{\Sigma}.}
 
-\item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
+\item{maxK}{maximum absolute value of the windings considered in the
+computation of the WN.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 }
 \value{
 A scalar giving the final loglikelihood, defined as the sum of the loglikelihood of the initial angles according to the stationary density
 and the loglikelihood of the transitions from initial to final angles.
 }
 \description{
-Computation of the loglikelihood for a WN diffusion (with diagonal diffusion matrix) from a sample of initial and final pairs of angles.
+Computation of the loglikelihood for a WN diffusion (with
+diagonal diffusion matrix) from a sample of initial and final pairs of
+angles.
 }
 \details{
 A negative penalty is added if positive definiteness is violated. If the output value is Inf, -100 * N is returned instead.

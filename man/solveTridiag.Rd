@@ -6,7 +6,8 @@
 \alias{solvePeriodicTridiag}
 \alias{forwardSweepTridiag}
 \alias{forwardSweepPeriodicTridiag}
-\title{Thomas algorithm for solving tridiagonal matrix systems, with optional presaving of LU decomposition}
+\title{Thomas algorithm for solving tridiagonal matrix systems, with
+optional presaving of LU decomposition}
 \usage{
 solveTridiag(a, b, c, d, LU = 0L)
 
@@ -19,11 +20,15 @@ forwardSweepTridiag(a, b, c)
 forwardSweepPeriodicTridiag(a, b, c)
 }
 \arguments{
-\item{a, b, c}{subdiagonal (below main diagonal), diagonal and superdiagonal (above main diagonal), respectively. They all are vectors of length \code{n}.}
+\item{a, b, c}{subdiagonal (below main diagonal), diagonal and superdiagonal
+(above main diagonal), respectively. They all are vectors of length
+\code{n}.}
 
-\item{d}{vector of constant terms, of length \code{n}. For \code{solveTridiagMatConsts}, it can be a matrix with \code{n} rows.}
+\item{d}{vector of constant terms, of length \code{n}. For
+\code{solveTridiagMatConsts}, it can be a matrix with \code{n} rows.}
 
-\item{LU}{flag denoting if the forward sweep encoding the LU decomposition is supplied in vectors \code{b} and \code{c}. See details and examples.}
+\item{LU}{flag denoting if the forward sweep encoding the LU decomposition
+is supplied in vectors \code{b} and \code{c}. See details and examples.}
 }
 \value{
 \itemize{
@@ -32,13 +37,16 @@ forwardSweepPeriodicTridiag(a, b, c)
 }
 }
 \description{
-Implementation of the Thomas algorithm to solve efficiently the tridiagonal matrix system
-\deqn{b_1 x_1 + c_1 x_2 + a_1x_n = d_1}{b[1] x[1] + c[1] x[2] + a[1]x[n] = d[1]}
-\deqn{a_2 x_1 + b_2 x_2 + c_2x_3 = d_2}{a[2] x[1] + b[2] x[2] + c[2]x[3] = d[2]}
-\deqn{\vdots \vdots \vdots}{...}
-\deqn{a_{n-1} x_{n-2} + b_{n-1} x_{n-1} + c_{n-1}x_{n} = d_{n-1}}{a[n-1] x[n-2] + b[n-1] x[n-1] + c[n-1]x[n] = d[n-1]}
-\deqn{c_n x_1 + a_{n} x_{n-1} + b_nx_n = d_n}{c[n] x[1] + a[n] x[n-1] + b[n]x[n] = d[n]}
-with \eqn{a_1=c_n=0}{a[1]=c[n]=0} (usual tridiagonal matrix). If \eqn{a_1\neq0}{a[1]/=0} or \eqn{c_n\neq0}{c[n]/=0} (circulant tridiagonal matrix), then the Sherman--Morrison formula is employed.
+Implementation of the Thomas algorithm to solve efficiently the
+tridiagonal matrix system
+\deqn{b_1 x_1 + c_1 x_2 + a_1x_n = d_1}
+\deqn{a_2 x_1 + b_2 x_2 + c_2x_3 = d_2}
+\deqn{\vdots \vdots \vdots}
+\deqn{a_{n-1} x_{n-2} + b_{n-1} x_{n-1} + c_{n-1}x_{n} = d_{n-1}}
+\deqn{c_n x_1 + a_{n} x_{n-1} + b_nx_n = d_n}
+with \eqn{a_1=c_n=0} (usual tridiagonal matrix). If \eqn{a_1\neq0} or
+\eqn{c_n\neq0} (circulant tridiagonal matrix), then the Sherman--Morrison
+formula is employed.
 }
 \details{
 The Thomas algorithm is stable if the matrix is diagonally dominant.

@@ -17,7 +17,8 @@ driftMixVm(x, alpha, mu, sigma, p, expTrc = 30)
 
 \item{p}{vector of length \code{m} giving the proportions. Must add to one.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 }
 \value{
 A vector of the same length as \code{x} containing the drift.

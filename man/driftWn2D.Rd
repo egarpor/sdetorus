@@ -7,25 +7,31 @@
 driftWn2D(x, A, mu, sigma, rho = 0, maxK = 2L, expTrc = 30)
 }
 \arguments{
-\item{x}{a matrix of dimension \code{c(n, 2)} containing angles. They all must be in \eqn{[\pi,\pi)} so that the truncated wrapping by \code{maxK} windings is able to capture periodicity.}
+\item{x}{a matrix of dimension \code{c(n, 2)} containing angles. They all
+must be in \eqn{\mathbb{T}=[-\pi,\pi)} so that the truncated wrapping by
+\code{maxK} windings is able to capture periodicity.}
 
 \item{A}{drift matrix of size \code{c(2, 2)}.}
 
 \item{mu}{a vector of length \code{2} giving the mean.}
 
-\item{sigma}{vector of length \code{2} containing the \strong{square root} of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
+\item{sigma}{vector of length \code{2} containing the \strong{square root}
+of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
 
 \item{rho}{correlation coefficient of \eqn{\Sigma}.}
 
-\item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
+\item{maxK}{maximum absolute value of the windings considered in the
+computation of the WN.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 }
 \value{
 A matrix of size \code{c(n, 2)} containing the drift evaluated at \code{x}.
 }
 \description{
-Computes the drift of the WN diffusion in 2D in a vectorized way.
+Computes the drift of the WN diffusion in 2D in a vectorized
+way.
 }
 \examples{
 alpha <- 3:1

@@ -7,13 +7,23 @@
 \usage{
 dTvm(x, M, K, alpha = NULL, besselInterp = FALSE)
 
-emTvm(data, k, M = NULL, K = NULL, alpha = NULL, tol = c(0.001, 0.001,
-  0.001/k), kappaMax = 500, maxIter = 100, isotropic = FALSE,
-  besselInterp = FALSE, verbose = 0)
+emTvm(
+  data,
+  k,
+  M = NULL,
+  K = NULL,
+  alpha = NULL,
+  tol = c(0.001, 0.001, 0.001/k),
+  kappaMax = 500,
+  maxIter = 100,
+  isotropic = FALSE,
+  besselInterp = FALSE,
+  verbose = 0
+)
 }
 \description{
-Undocumented functions implementing mixtures of independent
-von Mises densities on the torus and their estimation by an
+Undocumented functions implementing mixtures of independent von
+Mises densities on the torus and their estimation by an
 Expectation-Maximization algorithm.
 }
 \keyword{internal}

@@ -21,14 +21,14 @@ contain non-negative values. For \code{a1Inv}, \code{x} must be in
 A vector of the same length as \code{x}.
 }
 \description{
-Computation of \eqn{\log(I_0(x))-x}{log(I0(x))-x} and the
-inverse of \eqn{A_1(k)=\frac{I_0(k)}{I_1(k)}}{A1(k)=I0(k)/I1(k)}.
+Computation of \eqn{\log(I_0(x))-x} and the inverse of
+\eqn{A_1(k)=\frac{I_0(k)}{I_1(k)}}.
 }
 \details{
 Both functions may rely on pre-computed spline interpolations
 (\code{logBesselI0ScaledSpline} and \code{a1InvSpline}). Otherwise, a call
-to \code{besselI} is done for \eqn{\log(I_0(x))-x}{log(I0(x))-x} and
-\eqn{A_1(k)=x}{A1(k)=x} is solved numerically. The data in which the
+to \code{besselI} is done for \eqn{\log(I_0(x))-x} and
+\eqn{A_1(k)=x} is solved numerically. The data in which the
 interpolation is based is given in the examples.
 
 For \code{x} larger than \code{5e4}, the asymptotic expansion of

@@ -10,15 +10,15 @@ weightsLinearInterp1D(x, g1, g2, circular = FALSE)
 weightsLinearInterp2D(x, y, gx1, gx2, gy1, gy2, circular = FALSE)
 }
 \arguments{
-\item{x, y}{vectors of length \code{n} containing the points where the
-weights should be computed.}
+\item{x, y}{vectors of length \code{n} containing the points where the weights
+should be computed.}
 
 \item{g1, g2, gx1, gx2, gy1, gy2}{vectors of length \code{n} such that
 \code{g1 <= x <= g2} for 1D and \code{gx1 <= x <= gx2} and
 \code{gy1 <= y <= gy2} for 2D.}
 
-\item{circular}{flag to indicate whether the differences should be
-circularly wrapped.}
+\item{circular}{flag to indicate whether the differences should be circularly
+wrapped.}
 }
 \value{
 \itemize{

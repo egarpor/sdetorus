@@ -4,25 +4,40 @@
 \alias{dWn1D}
 \title{WN density in 1D}
 \usage{
-dWn1D(x, mu, sigma, maxK = 2L, expTrc = 30, vmApprox = 0L, kt = 0,
-  logConstKt = 0)
+dWn1D(
+  x,
+  mu,
+  sigma,
+  maxK = 2L,
+  expTrc = 30,
+  vmApprox = 0L,
+  kt = 0,
+  logConstKt = 0
+)
 }
 \arguments{
-\item{x}{a vector of length \code{n} containing angles. They all must be in \eqn{[\pi,\pi)} so that the truncated wrapping by \code{maxK} windings is able to capture periodicity.}
+\item{x}{a vector of length \code{n} containing angles. They all must be in
+\eqn{\mathbb{T}=[-\pi,\pi)} so that the truncated wrapping by \code{maxK}
+windings is able to capture periodicity.}
 
-\item{mu}{mean parameter. Must be in \eqn{[\pi,\pi)}.}
+\item{mu}{mean parameter. Must be in \eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{sigma}{diffusion coefficient.}
 
-\item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
+\item{maxK}{maximum absolute value of the windings considered in the
+computation of the WN.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 
-\item{vmApprox}{whether to use the von Mises approximation to a wrapped normal (\code{1}) or not (\code{0}, default).}
+\item{vmApprox}{whether to use the von Mises approximation to a wrapped
+normal (\code{1}) or not (\code{0}, default).}
 
-\item{kt}{concentration for the von Mises, a suitable output from \code{\link{momentMatchWnVm}} (see examples).}
+\item{kt}{concentration for the von Mises, a suitable output from
+\code{\link{momentMatchWnVm}} (see examples).}
 
-\item{logConstKt}{the logarithm of the von Mises normalizing constant associated to the concentration \code{kt} (see examples)}
+\item{logConstKt}{the logarithm of the von Mises normalizing constant
+associated to the concentration \code{kt} (see examples)}
 }
 \value{
 A vector of size \code{n} containing the density evaluated at \code{x}.
