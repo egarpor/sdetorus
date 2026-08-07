@@ -2,26 +2,37 @@
 % Please edit documentation in R/RcppExports.R
 \name{crankNicolson1D}
 \alias{crankNicolson1D}
-\title{Crank--Nicolson finite difference scheme for the 1D Fokker--Planck equation with periodic boundaries}
+\title{Crank--Nicolson finite difference scheme for the 1D Fokker--Planck
+equation with periodic boundaries}
 \usage{
 crankNicolson1D(u0, b, sigma2, N, deltat, Mx, deltax, imposePositive = 0L)
 }
 \arguments{
-\item{u0}{matrix of size \code{c(Mx, 1)} giving the initial condition. Typically, the evaluation of a density highly concentrated at a given point. If \code{nt == 1}, then \code{u0} can be a matrix \code{c(Mx, nu0)} containing different starting values in the columns.}
+\item{u0}{matrix of size \code{c(Mx, 1)} giving the initial condition.
+Typically, the evaluation of a density highly concentrated at a given point.
+If \code{nt == 1}, then \code{u0} can be a matrix \code{c(Mx, nu0)}
+containing different starting values in the columns.}
 
 \item{b}{vector of length \code{Mx} containing the evaluation of the drift.}
 
-\item{sigma2}{vector of length \code{Mx} containing the evaluation of the squared diffusion coefficient.}
+\item{sigma2}{vector of length \code{Mx} containing the evaluation of the
+squared diffusion coefficient.}
 
-\item{N}{increasing integer vector of length \code{nt} giving the indexes of the times at which the solution is desired. The times of the solution are \code{delta * c(0:max(N))[N + 1]}.}
+\item{N}{increasing integer vector of length \code{nt} giving the indexes of
+the times at which the solution is desired. The times of the solution are
+\code{delta * c(0:max(N))[N + 1]}.}
 
 \item{deltat}{time step.}
 
-\item{Mx}{size of the equispaced spatial grid in \eqn{[-\pi,\pi)}.}
+\item{Mx}{size of the equispaced spatial grid in
+\eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{deltax}{space grid discretization.}
 
-\item{imposePositive}{flag to indicate whether the solution should be transformed in order to be always larger than a given tolerance. This prevents spurious negative values. The tolerance will be taken as \code{imposePositiveTol} if this is different from \code{FALSE} or \code{0}.}
+\item{imposePositive}{flag to indicate whether the solution should be
+transformed in order to be always larger than a given tolerance. This
+prevents spurious negative values. The tolerance will be taken as
+\code{imposePositiveTol} if this is different from \code{FALSE} or \code{0}.}
 }
 \value{
 \itemize{
@@ -30,10 +41,13 @@ crankNicolson1D(u0, b, sigma2, N, deltat, Mx, deltax, imposePositive = 0L)
 }
 }
 \description{
-Implementation of the Crank--Nicolson scheme for solving the Fokker--Planck equation
-\deqn{p(x, t)_t = -(p(x, t) b(x))_x + \frac{1}{2}(\sigma^2(x) p(x, t))_{xx},}{p(x, t)_t = -(p(x, t) * b(x))_x + 1/2 * (\sigma^2(x) p(x, t))_{xx},}
-where \eqn{p(x, t)} is the transition probability density of the circular diffusion
-\deqn{dX_t=b(X_t)dt+\sigma(X_t)dW_t}{dX_t=b(X_t)dt+\sigma(X_t)dW_t}.
+Implementation of the Crank--Nicolson scheme for solving the
+Fokker--Planck equation
+\deqn{p(x, t)_t = -(p(x, t) b(x))_x + \frac{1}{2}(\sigma^2(x) p(x,
+t))_{xx},}
+where \eqn{p(x, t)} is the transition probability density of the circular
+diffusion
+\deqn{dX_t=b(X_t)dt+\sigma(X_t)dW_t}.
 }
 \details{
 The function makes use of \code{\link{solvePeriodicTridiag}} for obtaining implicitly the next step in time of the solution.

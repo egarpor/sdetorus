@@ -4,9 +4,17 @@
 \alias{rTrajLangevin}
 \title{Simulation of trajectories of a Langevin diffusion}
 \usage{
-rTrajLangevin(x0, drift, SigDif, N = 100, delta = 0.01, NFine = ceiling(N
-  * delta/deltaFine), deltaFine = min(delta/100, 0.001), circular = TRUE,
-  ...)
+rTrajLangevin(
+  x0,
+  drift,
+  SigDif,
+  N = 100,
+  delta = 0.01,
+  NFine = ceiling(N * delta/deltaFine),
+  deltaFine = min(delta/100, 0.001),
+  circular = TRUE,
+  ...
+)
 }
 \arguments{
 \item{x0}{vector of length \code{p} giving the initial point.}
@@ -20,20 +28,22 @@ rTrajLangevin(x0, drift, SigDif, N = 100, delta = 0.01, NFine = ceiling(N
 
 \item{delta}{discretization step.}
 
-\item{NFine}{number of discretization steps for the fine trajectory. Must
-be larger than \code{N}.}
+\item{NFine}{number of discretization steps for the fine trajectory. Must be
+larger than \code{N}.}
 
-\item{deltaFine}{discretization step for the fine trajectory. Must be
-smaller than \code{delta}.}
+\item{deltaFine}{discretization step for the fine trajectory. Must be smaller
+than \code{delta}.}
 
 \item{circular}{whether to wrap the resulting trajectory to
-\eqn{[-\pi,\pi)^p}.}
+\eqn{\mathbb{T}^p=[-\pi,\pi)^p}.}
 
 \item{...}{parameters to be passed to \code{drift}.}
 }
 \value{
-A vector of length \code{N + 1} containing \code{x0} in the first
-entry and the discretized trajectory.
+For \code{p = 1}, a vector of length \code{N + 1} containing
+\code{x0} in the first entry and the discretized trajectory. For
+\code{p > 1}, a matrix of size \code{c(N + 1, p)} with \code{x0} in the
+first row.
 }
 \description{
 Simulation of an arbitrary Langevin diffusion in dimension
@@ -69,4 +79,10 @@ if (isRStudio) {
        xlab = expression(X[t]), ylab = expression(Y[t]), col = rainbow(1000))
   linesTorus(samp[, 1], samp[, 2], col = rainbow(1000))
 }
+}
+\seealso{
+\code{\link{rTrajWn1D}}, \code{\link{rTrajWn2D}},
+\code{\link{rTrajOu}}, and \code{\link{rTrajMou}} for specific diffusions,
+and \code{\link{euler1D}} and \code{\link{euler2D}} for the underlying Euler
+discretization.
 }

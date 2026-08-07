@@ -10,15 +10,14 @@ driftMvm(x, alpha, mu, A = 0)
 \item{x}{matrix of size \code{c(n, p)} with the evaluation points for the
 drift.}
 
-\item{alpha}{vector of length \code{p} with the strength of the drift in
-the diagonal (\eqn{\sin}{sin} terms).}
+\item{alpha}{vector of length \code{p} with the strength of the drift in the
+diagonal (\eqn{\sin} terms).}
 
 \item{mu}{vector of length \code{p} with the unconditional mean of the
 diffusion.}
 
 \item{A}{matrix of size \code{c(p, p)} with the strength of the drift in
-cross terms (\eqn{\cos}{cos}-\eqn{\sin}{sin} terms). The diagonal has to
-be zero.}
+cross terms (\eqn{\cos}-\eqn{\sin} terms). The diagonal has to be zero.}
 }
 \value{
 A matrix of the same size as \code{x} containing the drift.
@@ -50,4 +49,8 @@ plotSurface2D(x, x, f = function(x) sqrt(rowSums(driftMvm(x = x,
 García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 Langevin diffusions on the torus: estimation and applications.
 \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+}
+\seealso{
+\code{\link{dVm}} and \code{\link{dBvm}} for the associated von
+Mises densities and \code{\link{rTrajLangevin}} for simulating trajectories.
 }

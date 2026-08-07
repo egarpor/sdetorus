@@ -11,9 +11,11 @@ rStatWn2D(n, mu, alpha, sigma, rho = 0)
 
 \item{mu}{a vector of length \code{2} giving the mean.}
 
-\item{alpha}{vector of length \code{3} parametrizing the \code{A} matrix as in \code{\link{alphaToA}}.}
+\item{alpha}{vector of length \code{3} parametrizing the \code{A} matrix as
+in \code{\link{alphaToA}}.}
 
-\item{sigma}{vector of length \code{2} containing the \strong{square root} of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
+\item{sigma}{vector of length \code{2} containing the \strong{square root}
+of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
 
 \item{rho}{correlation coefficient of \eqn{\Sigma}.}
 }
@@ -21,7 +23,8 @@ rStatWn2D(n, mu, alpha, sigma, rho = 0)
 A matrix of dimension \code{c(n, 2)} containing the samples from the stationary distribution.
 }
 \description{
-Simulates from the stationary density of the WN diffusion in 2D.
+Simulates from the stationary density of the WN diffusion in
+2D.
 }
 \examples{
 set.seed(345567)

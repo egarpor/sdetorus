@@ -10,7 +10,7 @@ dJp(x, mu, kappa, psi, const = NULL)
 constJp(mu, kappa, psi, M = 200)
 }
 \arguments{
-\item{x}{evaluation angles, not necessary in \eqn{[\pi,\pi)}.}
+\item{x}{evaluation angles, not necessary in \eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{mu}{circular mean.}
 
@@ -50,4 +50,8 @@ for (i in 0:20) {
 Jones, M. C. and Pewsey, A. (2005). A family of symmetric distributions on
 the circle. \emph{Journal of the American Statistical Association},
 100(472):1422--1428. \doi{10.1198/016214505000000286}
+}
+\seealso{
+\code{\link{driftJp}} for the associated Langevin drift and
+\code{\link{dVm}} for the von Mises particular case (\code{psi = 0}).
 }

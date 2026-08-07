@@ -7,11 +7,11 @@
 diffCirc(x, circular = TRUE, ...)
 }
 \arguments{
-\item{x}{wrapped or unwrapped angles to be differenced. Must be a vector
-or a matrix, see details.}
+\item{x}{wrapped or unwrapped angles to be differenced. Must be a vector or a
+matrix, see details.}
 
-\item{circular}{convenience flag to indicate whether wrapping should be
-done. If \code{FALSE}, the function is exactly \code{\link{diff}}.}
+\item{circular}{convenience flag to indicate whether wrapping should be done.
+If \code{FALSE}, the function is exactly \code{\link{diff}}.}
 
 \item{...}{parameters to be passed to \code{\link{diff}}.}
 }

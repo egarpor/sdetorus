@@ -4,12 +4,21 @@
 \alias{mleOu}
 \title{Maximum likelihood estimation of the OU diffusion}
 \usage{
-mleOu(data, delta, alpha = NA, mu = NA, sigma = NA, start,
-  lower = c(0.01, -5, 0.01), upper = c(25, 5, 25), ...)
+mleOu(
+  data,
+  delta,
+  alpha = NA,
+  mu = NA,
+  sigma = NA,
+  start,
+  lower = c(0.01, -5, 0.01),
+  upper = c(25, 5, 25),
+  ...
+)
 }
 \arguments{
-\item{data}{a vector of size \code{N} with the discretized trajectory of
-the diffusion.}
+\item{data}{a vector of size \code{N} with the discretized trajectory of the
+diffusion.}
 
 \item{delta}{time discretization step.}
 
@@ -18,8 +27,8 @@ perform the estimation on the rest. Defaults to \code{NA}, meaning that the
 parameter is estimated. Note that \code{start}, \code{lower} and \code{upper}
 must be changed accordingly if parameters are fixed, see examples.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each
-entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each entry
+representing a different starting value.}
 
 \item{lower, upper}{bound for box constraints as in method \code{"L-BFGS-B"}
 of \code{\link[stats]{optim}}.}
@@ -31,12 +40,10 @@ Output from \code{\link{mleOptimWrapper}}.
 }
 \description{
 Computation of the maximum likelihood estimator of the
-parameters of the \emph{univariate} Ornstein--Uhlenbeck (OU) diffusion
-from a discretized trajectory
-\eqn{\{X_{\Delta i}\}_{i=1}^N}{\{X_{Delta * i}\}_{i=1}^N}. The objective
-function to minimize is
-\deqn{\sum_{i=2}^n\log p_{\Delta}(X_{\Delta i} | X_{\Delta (i - 1)}).}{
-\sum_{i=2}^N log p_{Delta}(X_{Delta * i} | X_{Delta * (i - 1)}).}
+parameters of the \emph{univariate} Ornstein--Uhlenbeck (OU) diffusion from a
+discretized trajectory \eqn{\{X_{\Delta i}\}_{i=1}^N}. The objective function
+to minimize is
+\deqn{\sum_{i=2}^n\log p_{\Delta}(X_{\Delta i} | X_{\Delta (i - 1)}).}
 }
 \details{
 The first element in \code{data} is not taken into account for
@@ -52,4 +59,9 @@ mleOu(data = data, delta = 0.1, start = c(2, 1, 2), lower = c(0.1, -10, 0.1),
 # Fixed sigma and mu
 mleOu(data = data, delta = 0.1, mu = 0, sigma = 1, start = 2, lower = 0.1,
       upper = 25, optMethod = "nlm")
+}
+\seealso{
+\code{\link{dTpdOu}} for the transition density being maximized,
+\code{\link{rTrajOu}} for simulating data, and \code{\link{mleOptimWrapper}}
+for the optimization back end.
 }

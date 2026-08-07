@@ -13,8 +13,8 @@ aToAlpha(A, sigma = NULL, rho = 0, Sigma = NULL)
 \item{alpha}{vector of length \code{3} containing the \code{A} matrix. The
 first two elements are the diagonal.}
 
-\item{sigma}{vector of length \code{2} containing the \strong{square root}
-of the diagonal of \code{Sigma}.}
+\item{sigma}{vector of length \code{2} containing the \strong{square root} of
+the diagonal of \code{Sigma}.}
 
 \item{rho}{correlation of \code{Sigma}.}
 
@@ -47,4 +47,8 @@ det(S)
 # Check
 aToAlpha(A = alphaToA(alpha = alpha, Sigma = Sigma), Sigma = Sigma)
 alphaToA(alpha = aToAlpha(A = A, Sigma = Sigma), Sigma = Sigma)
+}
+\seealso{
+\code{\link{driftWn2D}} and \code{\link{mleMou}}, which rely on this
+parametrization of the drift matrix.
 }

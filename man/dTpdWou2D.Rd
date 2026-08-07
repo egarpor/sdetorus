@@ -2,34 +2,45 @@
 % Please edit documentation in R/RcppExports.R
 \name{dTpdWou2D}
 \alias{dTpdWou2D}
-\title{Approximation of the transition probability density of the WN diffusion in 2D}
+\title{Approximation of the transition probability density of the WN
+diffusion in 2D}
 \usage{
 dTpdWou2D(x, x0, t, alpha, mu, sigma, rho = 0, maxK = 2L, expTrc = 30)
 }
 \arguments{
-\item{x}{a matrix of dimension \code{c(n, 2)} containing angles. They all must be in \eqn{[\pi,\pi)} so that the truncated wrapping by \code{maxK} windings is able to capture periodicity.}
+\item{x}{a matrix of dimension \code{c(n, 2)} containing angles. They all
+must be in \eqn{\mathbb{T}=[-\pi,\pi)} so that the truncated wrapping by
+\code{maxK} windings is able to capture periodicity.}
 
-\item{x0}{a matrix of dimension \code{c(n, 2)} containing the starting angles. They all must be in \eqn{[\pi,\pi)}. If all \code{x0} are the same, a matrix of dimension \code{c(1, 2)} can be passed for better performance.}
+\item{x0}{a matrix of dimension \code{c(n, 2)} containing the starting
+angles. They all must be in \eqn{\mathbb{T}=[-\pi,\pi)}. If all \code{x0}
+are the same, a matrix of dimension \code{c(1, 2)} can be passed for better
+performance.}
 
 \item{t}{a scalar containing the times separating \code{x} and \code{x0}.}
 
-\item{alpha}{vector of length \code{3} parametrizing the \code{A} matrix as in \code{\link{alphaToA}}.}
+\item{alpha}{vector of length \code{3} parametrizing the \code{A} matrix as
+in \code{\link{alphaToA}}.}
 
 \item{mu}{a vector of length \code{2} giving the mean.}
 
-\item{sigma}{vector of length \code{2} containing the \strong{square root} of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
+\item{sigma}{vector of length \code{2} containing the \strong{square root}
+of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
 
 \item{rho}{correlation coefficient of \eqn{\Sigma}.}
 
-\item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
+\item{maxK}{maximum absolute value of the windings considered in the
+computation of the WN.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 }
 \value{
 A vector of size \code{n} containing the tpd evaluated at \code{x}.
 }
 \description{
-Computation of the transition probability density (tpd) for a WN diffusion (with diagonal diffusion matrix)
+Computation of the transition probability density (tpd) for a
+WN diffusion (with diagonal diffusion matrix)
 }
 \details{
 The function checks for positive definiteness. If violated, it resets \code{A} such that \code{solve(A) \%*\% Sigma} is positive definite.

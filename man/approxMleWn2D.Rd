@@ -4,23 +4,32 @@
 \alias{approxMleWn2D}
 \title{Approximate MLE of the WN diffusion in 2D}
 \usage{
-approxMleWn2D(data, delta, start, alpha = rep(NA, 3), mu = rep(NA, 2),
-  sigma = rep(NA, 2), rho = NA, lower = c(0.01, 0.01, -25, -pi, -pi,
-  0.01, 0.01, -0.99), upper = c(rep(25, 3), pi, pi, 25, 25, 0.99),
-  maxK = 2, ...)
+approxMleWn2D(
+  data,
+  delta,
+  start,
+  alpha = rep(NA, 3),
+  mu = rep(NA, 2),
+  sigma = rep(NA, 2),
+  rho = NA,
+  lower = c(0.01, 0.01, -25, -pi, -pi, 0.01, 0.01, -0.99),
+  upper = c(rep(25, 3), pi, pi, 25, 25, 0.99),
+  maxK = 2,
+  ...
+)
 }
 \arguments{
 \item{data}{a matrix of dimension \code{c(n, p)}.}
 
 \item{delta}{discretization step.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each
-entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each entry
+representing a different starting value.}
 
 \item{alpha, mu, sigma, rho}{if their values are provided, the likelihood
-function is optimized with respect to the rest of unspecified parameters.
-The number of elements in \code{start}, \code{lower} and \code{upper} has to
-be modified accordingly (see examples).}
+function is optimized with respect to the rest of unspecified parameters. The
+number of elements in \code{start}, \code{lower} and \code{upper} has to be
+modified accordingly (see examples).}
 
 \item{lower, upper}{bound for box constraints as in method \code{"L-BFGS-B"}
 of \code{\link[stats]{optim}}.}
@@ -57,4 +66,9 @@ mleMou(data = samp, delta = 0.1, start = c(alpha, mu, sigma),
 García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 Langevin diffusions on the torus: estimation and applications.
 \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+}
+\seealso{
+\code{\link{dTpdWou2D}} for the transition density being maximized,
+\code{\link{approxMleWn1D}} for the 1D analogue, and
+\code{\link{approxMleWnPairs}} for the version based on pairs.
 }

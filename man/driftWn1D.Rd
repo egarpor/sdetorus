@@ -7,23 +7,28 @@
 driftWn1D(x, alpha, mu, sigma, maxK = 2L, expTrc = 30)
 }
 \arguments{
-\item{x}{a vector of length \code{n} containing angles. They all must be in \eqn{[\pi,\pi)} so that the truncated wrapping by \code{maxK} windings is able to capture periodicity.}
+\item{x}{a vector of length \code{n} containing angles. They all must be in
+\eqn{\mathbb{T}=[-\pi,\pi)} so that the truncated wrapping by \code{maxK}
+windings is able to capture periodicity.}
 
 \item{alpha}{drift parameter.}
 
-\item{mu}{mean parameter. Must be in \eqn{[\pi,\pi)}.}
+\item{mu}{mean parameter. Must be in \eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{sigma}{diffusion coefficient.}
 
-\item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
+\item{maxK}{maximum absolute value of the windings considered in the
+computation of the WN.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 }
 \value{
 A vector of length \code{n} containing the drift evaluated at \code{x}.
 }
 \description{
-Computes the drift of the WN diffusion in 1D in a vectorized way.
+Computes the drift of the WN diffusion in 1D in a vectorized
+way.
 }
 \examples{
 driftWn1D(x = seq(0, pi, l = 10), alpha = 1, mu = 0, sigma = 1, maxK = 2,

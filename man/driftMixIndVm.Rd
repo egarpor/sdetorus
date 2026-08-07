@@ -18,7 +18,8 @@ drift.}
 
 \item{p}{vector of length \code{m} giving the proportions. Must add to one.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 }
 \value{
 A matrix of the same size as \code{x} containing the drift.
@@ -29,7 +30,7 @@ Drift for the Langevin diffusion associated to a mixture of
 }
 \details{
 \code{\link{driftMixVm}} is more efficient for the circular case.
-The diffusion matrix is \eqn{\sigma\bold{I}}{sigma}. See Section 2.2.4 in
+The diffusion matrix is \eqn{\sigma\boldsymbol{I}}. See Section 2.2.4 in
 García-Portugués et al. (2019) for details.
 }
 \examples{

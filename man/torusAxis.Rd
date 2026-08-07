@@ -8,11 +8,11 @@ torusAxis(sides = 1:2, twoPi = FALSE, ...)
 }
 \arguments{
 \item{sides}{an integer vector specifying which side of the plot the axes are
-to be drawn on. The axes are placed as follows: \code{1} = below,
-\code{2} = left, \code{3} = above, and \code{4} = right.}
+to be drawn on. The axes are placed as follows: \code{1} = below, \code{2} =
+left, \code{3} = above, and \code{4} = right.}
 
 \item{twoPi}{flag indicating that \eqn{[0,2\pi)} is the support, instead of
-\eqn{[-\pi,\pi)}.}
+\eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{...}{further parameters passed to \code{\link[graphics]{axis}}.}
 }

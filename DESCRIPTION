@@ -1,8 +1,8 @@
 Package: sdetorus
 Type: Package
 Title: Statistical Tools for Toroidal Diffusions
-Version: 0.1.10
-Date: 2024-03-01
+Version: 0.2.0
+Date: 2026-07-20
 Authors@R: person(given = "Eduardo", family = "García-Portugués",
                   role = c("aut", "cre"),
                   email = "edgarcia@est-econ.uc3m.es",
@@ -14,7 +14,7 @@ Description: Implementation of statistical methods for the estimation of
     as toroidal analogues of the Ornstein-Uhlenbeck diffusion. A collection of
     methods for approximate maximum likelihood estimation, organized in four
     blocks, is given: (i) based on the exact transition probability density,
-    obtained as the numerical solution to the Fokker-Plank equation; (ii) based
+    obtained as the numerical solution to the Fokker-Planck equation; (ii) based
     on wrapped pseudo-likelihoods; (iii) based on specific analytic
     approximations by wrapped processes; (iv) based on maximum likelihood of
     the stationary densities. The package allows the replicability of the
@@ -27,10 +27,12 @@ Depends:
 Suggests:
     rgl,
     Bessel,
-    manipulate
+    manipulate,
+    testthat (>= 3.0.0)
 LinkingTo: Rcpp, RcppArmadillo
 URL: https://github.com/egarpor/sdetorus
 BugReports: https://github.com/egarpor/sdetorus
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.3
 Roxygen: list(old_usage = TRUE)
+Config/testthat/edition: 3

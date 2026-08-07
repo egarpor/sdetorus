@@ -1,0 +1,122 @@
+test_that("alphaToA and aToAlpha are inverse of each other", {
+
+  alpha <- 3:1
+  Sigma <- rbind(c(1, 0.5), c(0.5, 4))
+  A <- alphaToA(alpha = alpha, Sigma = Sigma)
+
+  expect_equal(aToAlpha(A = A, Sigma = Sigma), as.numeric(alpha))
+  expect_equal(alphaToA(alpha = aToAlpha(A = A, Sigma = Sigma), Sigma = Sigma),
+               A)
+
+  # solve(A) %*% Sigma is symmetric by construction
+  S <- solve(A) %*% Sigma
+  expect_equal(S, t(S))
+
+})
+
+test_that("OU transition moments match their closed forms", {
+
+  alpha <- 1.3
+  mu <- -0.4
+  sigma <- 0.8
+  t <- 0.7
+  x0 <- 2
+
+  expect_equal(meantOu(x0 = x0, t = t, alpha = alpha, mu = mu),
+               mu + (x0 - mu) * exp(-alpha * t))
+  expect_equal(vartOu(t = t, alpha = alpha, sigma = sigma),
+               sigma^2 / (2 * alpha) * (1 - exp(-2 * alpha * t)))
+  # covstOu diagonal equals vartOu
+  cov <- covstOu(s = t, t = t, alpha = alpha, sigma = sigma)
+  expect_equal(as.numeric(cov), vartOu(t = t, alpha = alpha, sigma = sigma))
+
+})
+
+test_that("univariate and multivariate OU tpds agree", {
+
+  # A diagonal bivariate OU factorizes into two independent univariate OUs.
+  alpha <- c(1, 2)
+  mu <- c(0.5, -0.5)
+  sigma <- c(1, 1.5)
+  t <- 0.4
+  x0 <- c(1, -1)
+  x <- rbind(c(0, 0), c(0.5, -0.5), c(1, 1))
+
+  A <- diag(alpha)
+  Sigma <- diag(sigma^2)
+  # meantMou / covtMou compute eigen(A) internally when eigA is not supplied
+  eigA <- eigen(A)
+  expect_equal(meantMou(t = t, x0 = x0, A = A, mu = mu),
+               meantMou(t = t, x0 = x0, A = A, mu = mu, eigA = eigA))
+  expect_equal(covtMou(t = t, A = A, Sigma = Sigma),
+               covtMou(t = t, A = A, Sigma = Sigma, eigA = eigA))
+
+  dMulti <- dTpdMou(x = x, x0 = x0, t = t, A = A, mu = mu, Sigma = Sigma)
+  dUni <- dTpdOu(x = x[, 1], x0 = x0[1], t = t, alpha = alpha[1], mu = mu[1],
+                 sigma = sigma[1]) *
+    dTpdOu(x = x[, 2], x0 = x0[2], t = t, alpha = alpha[2], mu = mu[2],
+           sigma = sigma[2])
+  expect_equal(as.numeric(dMulti), as.numeric(dUni), tolerance = 1e-8)
+
+})
+
+test_that("mleOu recovers OU parameters on simulated data", {
+
+  set.seed(345678)
+  data <- rTrajOu(x0 = 0, alpha = 1, mu = 0, sigma = 1, N = 500, delta = 0.1)
+  fit <- mleOu(data = data, delta = 0.1, start = c(2, 1, 2),
+               lower = c(0.1, -10, 0.1), upper = c(25, 10, 25))
+  expect_length(fit$par, 3)
+  expect_true(all(is.finite(fit$par)))
+  # sigma is the best-identified parameter at this sampling frequency
+  expect_equal(fit$par[3], 1, tolerance = 0.2)
+
+})
+
+test_that("mleMou only handles p = 2", {
+
+  set.seed(345678)
+  data3 <- matrix(rnorm(30), ncol = 3)
+  expect_error(mleMou(data = data3, delta = 0.5, start = rep(1, 7)),
+               "p = 2")
+
+})
+
+test_that("mleMou runs for full and fixed-parameter estimation (smoke)", {
+
+  set.seed(345678)
+  data <- rTrajMou(x0 = c(0, 0), A = alphaToA(alpha = c(1, 1, 0.5), sigma = 1:2),
+                   mu = c(1, 1), Sigma = diag((1:2)^2), N = 60, delta = 0.5)
+
+  # Full estimation (7 parameters)
+  full <- mleMou(data = data, delta = 0.5, start = c(1, 1, 0, 1, 1, 1, 2),
+                 selectSolution = "lowest", maxit = 50)
+  expect_length(full$par, 7)
+  expect_true(all(is.finite(full$par)))
+  # The positive-definiteness region keeps the estimate feasible
+  expect_gte(full$par[1] * full$par[2] - full$par[3]^2, -1e-6)
+
+  # Fixed mu and sigma -> only alpha (3 parameters) estimated
+  fixed <- mleMou(data = data, delta = 0.5, mu = c(1, 1), sigma = 1:2,
+                  start = c(1, 1, 0), lower = c(0.1, 0.1, -25),
+                  upper = c(25, 25, 25), selectSolution = "lowest", maxit = 50)
+  expect_length(fixed$par, 3)
+  expect_true(all(is.finite(fixed$par)))
+
+})
+
+test_that("mleMou recovers the diffusion coefficients on simulated data", {
+
+  skip_on_cran()
+  set.seed(345678)
+  data <- rTrajMou(x0 = c(0, 0), A = alphaToA(alpha = c(1, 1, 0.5), sigma = 1:2),
+                   mu = c(1, 1), Sigma = diag((1:2)^2), N = 200, delta = 0.5)
+  fit <- mleMou(data = data, delta = 0.5, start = c(1, 1, 0, 1, 1, 1, 2),
+                lower = c(0.1, 0.1, -25, -10, -10, 0.1, 0.1),
+                upper = c(25, 25, 25, 10, 10, 25, 25),
+                selectSolution = "lowest", maxit = 300)
+  # sigma = (sigma1, sigma2) are the best-identified parameters (true (1, 2))
+  expect_equal(fit$par[6], 1, tolerance = 0.5)
+  expect_equal(fit$par[7], 2, tolerance = 0.5)
+
+})

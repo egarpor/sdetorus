@@ -2,29 +2,54 @@
 % Please edit documentation in R/RcppExports.R
 \name{crankNicolson2D}
 \alias{crankNicolson2D}
-\title{Crank--Nicolson finite difference scheme for the 2D Fokker--Planck equation with periodic boundaries}
+\title{Crank--Nicolson finite difference scheme for the 2D Fokker--Planck
+equation with periodic boundaries}
 \usage{
-crankNicolson2D(u0, bx, by, sigma2x, sigma2y, sigmaxy, N, deltat, Mx, deltax,
-  My, deltay, imposePositive = 0L)
+crankNicolson2D(
+  u0,
+  bx,
+  by,
+  sigma2x,
+  sigma2y,
+  sigmaxy,
+  N,
+  deltat,
+  Mx,
+  deltax,
+  My,
+  deltay,
+  imposePositive = 0L
+)
 }
 \arguments{
-\item{u0}{matrix of size \code{c(Mx * My, 1)} giving the initial condition matrix column-wise stored. Typically, the evaluation of a density highly concentrated at a given point. If \code{nt == 1}, then \code{u0} can be a matrix \code{c(Mx * My, nu0)} containing different starting values in the columns.}
+\item{u0}{matrix of size \code{c(Mx * My, 1)} giving the initial condition
+matrix column-wise stored. Typically, the evaluation of a density highly
+concentrated at a given point. If \code{nt == 1}, then \code{u0} can be a
+matrix \code{c(Mx * My, nu0)} containing different starting values in the
+columns.}
 
-\item{bx, by}{matrices of size \code{c(Mx, My)} containing the evaluation of the drift in the first and second space coordinates, respectively.}
+\item{bx, by}{matrices of size \code{c(Mx, My)} containing the evaluation of
+the drift in the first and second space coordinates, respectively.}
 
-\item{sigma2x, sigma2y, sigmaxy}{matrices of size \code{c(Mx, My)} containing the evaluation of the entries of the diffusion matrix (it has to be positive definite)\cr
-\code{rbind(c(sigma2x, sigmaxy),
-            c(sigmaxy, sigma2y))}.}
+\item{sigma2x, sigma2y, sigmaxy}{matrices of size \code{c(Mx, My)} containing
+the evaluation of the entries of the diffusion matrix (it has to be positive
+definite)\cr \code{rbind(c(sigma2x, sigmaxy), c(sigmaxy, sigma2y))}.}
 
-\item{N}{increasing integer vector of length \code{nt} giving the indexes of the times at which the solution is desired. The times of the solution are \code{delta * c(0:max(N))[N + 1]}.}
+\item{N}{increasing integer vector of length \code{nt} giving the indexes of
+the times at which the solution is desired. The times of the solution are
+\code{delta * c(0:max(N))[N + 1]}.}
 
 \item{deltat}{time step.}
 
-\item{Mx, My}{sizes of the equispaced spatial grids in \eqn{[-\pi,\pi)} for each component.}
+\item{Mx, My}{sizes of the equispaced spatial grids in
+\eqn{\mathbb{T}=[-\pi,\pi)} for each component.}
 
 \item{deltax, deltay}{space grid discretizations for each component.}
 
-\item{imposePositive}{flag to indicate whether the solution should be transformed in order to be always larger than a given tolerance. This prevents spurious negative values. The tolerance will be taken as \code{imposePositiveTol} if this is different from \code{FALSE} or \code{0}.}
+\item{imposePositive}{flag to indicate whether the solution should be
+transformed in order to be always larger than a given tolerance. This
+prevents spurious negative values. The tolerance will be taken as
+\code{imposePositiveTol} if this is different from \code{FALSE} or \code{0}.}
 }
 \value{
 \itemize{
@@ -33,12 +58,15 @@ crankNicolson2D(u0, bx, by, sigma2x, sigma2y, sigmaxy, N, deltat, Mx, deltax,
 }
 }
 \description{
-Implementation of the Crank--Nicolson scheme for solving the Fokker--Planck equation
-\deqn{p(x, y, t)_t = -(p(x, y, t) b_1(x, y))_x -(p(x, y, t) b_2(x, y))_y+}
-\deqn{+ \frac{1}{2}(\sigma_1^2(x, y) p(x, y, t))_{xx} + \frac{1}{2}(\sigma_2^2(x, y) p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}{p(x, y, t)_t = -(p(x, y, t) * b_1(x, y))_x -(p(x, y, t) * b_2(x, y))_y + 1/2 * (\sigma_1^2(x, y) *p(x, y, t))_{xx} + 1/2 * (\sigma_2^2(x, y) p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}
-where \eqn{p(x, y, t)} is the transition probability density of the toroidal diffusion
-\deqn{dX_t=b_1(X_t,Y_t)dt+\sigma_1(X_t,Y_t)dW^1_t+\sigma_{12}(X_t,Y_t)dW^2_t,}{dX_t=b_1(X_t,Y_t)dt+\sigma_1(X_t,Y_t)dW^1_t+\sigma_{12}(X_t,Y_t)dW^2_t,}
-\deqn{dY_t=b_2(X_t,Y_t)dt+\sigma_{12}(X_t,Y_t)dW^1_t+\sigma_2(X_t,Y_t)dW^2_t.}{dY_t=b_2(X_t,Y_t)dt+\sigma_{12}(X_t,Y_t)dW^1_t+\sigma_2(X_t,Y_t)dW^2_t.}
+Implementation of the Crank--Nicolson scheme for solving the
+Fokker--Planck equation
+\deqn{p(x, y, t)_t = -(p(x, y, t) b_1(x, y))_x -(p(x, y, t) b_2(x, y))_y +
+\frac{1}{2}(\sigma_1^2(x, y) p(x, y, t))_{xx} + \frac{1}{2}(\sigma_2^2(x, y)
+p(x, y, t))_{yy} + (\sigma_{12}(x, y) p(x, y, t))_{xy},}
+where \eqn{p(x, y, t)} is the transition probability density of the toroidal
+diffusion
+\deqn{dX_t=b_1(X_t,Y_t)dt+\sigma_1(X_t,Y_t)dW^1_t+\sigma_{12}(X_t,Y_t)dW^2_t,}
+\deqn{dY_t=b_2(X_t,Y_t)dt+\sigma_{12}(X_t,Y_t)dW^1_t+\sigma_2(X_t,Y_t)dW^2_t.}
 }
 \details{
 The function makes use of \code{\link{solvePeriodicTridiag}} for obtaining implicitly the next step in time of the solution.

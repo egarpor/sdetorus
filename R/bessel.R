@@ -19,6 +19,8 @@
 #'
 #' For \code{x} larger than \code{5e4}, the asymptotic expansion of
 #' \code{\link[Bessel]{besselIasym}} is employed.
+#' @seealso \code{\link{dVm}}, which relies on \code{logBesselI0Scaled}, and
+#' \code{\link{momentMatchWnVm}}, which relies on \code{a1Inv}.
 #' @examples
 #' \donttest{
 #' # Data employed for log besselI0 scaled
@@ -124,9 +126,12 @@ a1Inv <- function(x, splineApprox = TRUE) {
 #' \code{dBvm}.
 #' @details If the precision matrix is singular or if there are no solutions for
 #' the score matching estimator, \code{c(0, 0, 0)} is returned.
+#' @seealso \code{\link{dVm}} and \code{\link{dBvm}} for the von Mises densities
+#' being matched, and \code{\link{dWn1D}} and \code{\link{dStatWn2D}} for the
+#' wrapped normal densities.
 #' @references
 #' Mardia, K. V., Kent, J. T., and Laha, A. K. (2016). Score matching estimators
-#' for directional distributions. \emph{arXiv:1604.0847}.
+#' for directional distributions. \emph{arXiv:1604.08470}.
 #' \url{https://arxiv.org/abs/1604.08470}
 #' @examples
 #' # Univariate WN approximation
@@ -215,7 +220,7 @@ scoreMatchWnBvm <- function(Sigma = NULL, invSigma) {
 
       kappa <- tryCatch(solve(a = W, b = d), error = function(e) {
         message("scoreMatchWnBvm: W singular, setting kappa = c(0, 0, 0)")
-        NA})
+        c(0, 0, 0)})
 
     }
 

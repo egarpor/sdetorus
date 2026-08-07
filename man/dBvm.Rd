@@ -25,7 +25,7 @@ evaluating the normalizing constant.}
 }
 \value{
 A vector of length \code{nx} with the evaluated density
-(\code{dBvm}) or a scalar with the normaalizing constant (\code{constBvm}).
+(\code{dBvm}) or a scalar with the normalizing constant (\code{constBvm}).
 }
 \description{
 Evaluation of the bivariate Sine von Mises density and its
@@ -45,4 +45,9 @@ plotSurface2D(x, x, f = function(x) dBvm(x = x, mu = c(0, pi / 2),
 Singh, H., Hnizdo, V. and Demchuk, E. (2002) Probabilistic model
 for two dependent circular variables, \emph{Biometrika}, 89(3):719--723,
 \doi{10.1093/biomet/89.3.719}
+}
+\seealso{
+\code{\link{dVm}} for the univariate von Mises density and
+\code{\link{scoreMatchWnBvm}} for approximating a bivariate wrapped normal by
+a bivariate von Mises.
 }

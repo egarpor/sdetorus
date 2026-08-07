@@ -19,9 +19,11 @@ diffusion.}
 
 \item{invSigmaA}{the matrix \code{solve(Sigma) \%*\% A} (optional).}
 
-\item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
+\item{maxK}{maximum absolute value of the windings considered in the
+computation of the WN.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 }
 \value{
 A matrix of the same size as \code{x} containing the drift.
@@ -56,4 +58,9 @@ plotSurface2D(x, x, f = function(x) sqrt(rowSums(
 García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 Langevin diffusions on the torus: estimation and applications.
 \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+}
+\seealso{
+\code{\link{driftWn1D}} and \code{\link{driftWn2D}} for the
+efficient 1D and 2D versions, and \code{\link{dTpdWou}} for the associated
+transition density.
 }

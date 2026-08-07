@@ -9,14 +9,26 @@
 \alias{integrateSimp3D}
 \title{Quadrature rules in 1D, 2D and 3D}
 \usage{
-periodicTrapRule1D(fx, endsMatch = FALSE, na.rm = TRUE,
-  lengthInterval = 2 * pi)
+periodicTrapRule1D(
+  fx,
+  endsMatch = FALSE,
+  na.rm = TRUE,
+  lengthInterval = 2 * pi
+)
 
-periodicTrapRule2D(fxy, endsMatch = FALSE, na.rm = TRUE,
-  lengthInterval = rep(2 * pi, 2))
+periodicTrapRule2D(
+  fxy,
+  endsMatch = FALSE,
+  na.rm = TRUE,
+  lengthInterval = rep(2 * pi, 2)
+)
 
-periodicTrapRule3D(fxyz, endsMatch = FALSE, na.rm = TRUE,
-  lengthInterval = rep(2 * pi, 3))
+periodicTrapRule3D(
+  fxyz,
+  endsMatch = FALSE,
+  na.rm = TRUE,
+  lengthInterval = rep(2 * pi, 3)
+)
 
 integrateSimp1D(fx, lengthInterval = 2 * pi, na.rm = TRUE)
 
@@ -32,17 +44,17 @@ a uniform grid in \eqn{[x_1,x_2]}.}
 \code{fx}, \code{fxy} or \code{fxyz} are the ones in the first entries
 (elements, rows, columns, slices). See examples for usage.}
 
-\item{na.rm}{logical.  Should missing values (including \code{NaN}) be
-    removed?}
+\item{na.rm}{logical (\code{TRUE} or \code{FALSE}).  Should missing
+    values (including \code{NaN}) be removed?}
 
 \item{lengthInterval}{vector containing the lengths of the intervals of
 integration.}
 
-\item{fxy}{matrix containing the evaluation of the function to integrate
-over a uniform grid in \eqn{[x_1,x_2]\times[y_1,y_2]}.}
+\item{fxy}{matrix containing the evaluation of the function to integrate over
+a uniform grid in \eqn{[x_1,x_2]\times[y_1,y_2]}.}
 
-\item{fxyz}{three dimensional array containing the evaluation of the
-function to integrate over a uniform grid in
+\item{fxyz}{three dimensional array containing the evaluation of the function
+to integrate over a uniform grid in
 \eqn{[x_1,x_2]\times[y_1,y_2]\times[z_1,z_2]}.}
 }
 \value{
@@ -52,14 +64,16 @@ The value of the integral.
 Quadrature rules for definite integrals over intervals in 1D,
 \eqn{\int_{x_1}^{x_2} f(x)dx}, rectangles in 2D,\cr
 \eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2} f(x,y)dydx} and cubes in 3D,
-\eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2}\int_{z_1}^{z_2} f(x,y,z)dzdydx}.
-The trapezoidal rules assume that the function is periodic, whereas the
-Simpson rules work for arbitrary functions.
+\eqn{\int_{x_1}^{x_2}\int_{y_1}^{y_2}\int_{z_1}^{z_2} f(x,y,z)dzdydx}. The
+trapezoidal rules assume that the function is periodic, whereas the Simpson
+rules work for arbitrary functions.
 }
 \details{
 The simple trapezoidal rule has a very good performance for
-periodic functions in 1D and 2D(order of error ). The higher dimensional
-extensions are obtained by iterative usage of the 1D rules.
+periodic functions in 1D and 2D (for smooth periodic integrands the
+quadrature error decreases faster than any power of the grid size). The
+higher dimensional extensions are obtained by iterative usage of the 1D
+rules.
 }
 \examples{
 # In 1D. True value: 3.55099937
@@ -91,4 +105,8 @@ Press, W. H., Teukolsky, S. A., Vetterling, W. T., Flannery, B. P. (1996).
 \emph{Numerical Recipes in Fortran 77: The Art of Scientific Computing
 (Vol. 1 of Fortran Numerical Recipes)}. Cambridge University Press,
 Cambridge.
+}
+\seealso{
+\code{\link{mcTorusIntegrate}} for Monte Carlo integration on the
+torus.
 }

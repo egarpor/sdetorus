@@ -1,15 +1,18 @@
-# sdetorus
+# sdetorus <img src="man/figures/logo.png" align="right" height="175" alt="sdetorus hexlogo"/>
 
 [![License:
 GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![R build
 status](https://github.com/egarpor/sdetorus/workflows/R-CMD-check/badge.svg)](https://github.com/egarpor/sdetorus/actions)
+[![R build
+status](https://github.com/egarpor/sdetorus/workflows/test-coverage/badge.svg)](https://github.com/egarpor/sdetorus/actions)
+[![](https://codecov.io/gh/egarpor/sdetorus/branch/master/graph/badge.svg)](https://app.codecov.io/gh/egarpor/sdetorus)
 [![](https://www.r-pkg.org/badges/version/sdetorus?color=green)](https://cran.r-project.org/package=sdetorus)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/sdetorus)](https://cran.r-project.org/package=sdetorus)
 [![](http://cranlogs.r-pkg.org/badges/last-month/sdetorus)](https://cran.r-project.org/package=sdetorus)
 
-<!-- <img src="" alt="sdetorus  hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/> -->
 <p align="center">
+
 <img style="width:90%;" id="sdetorus" src="https://raw.githubusercontent.com/egarpor/sdetorus/master/logo/sdetorus-small.gif">
 <br> <i>Transition probability density of the Langevin diffusion guided
 by the “sdetorus” density</i>
@@ -22,28 +25,18 @@ diffusions. It is the package companion for the paper *Langevin
 diffusions on the torus: estimation and applications* (García-Portugués
 et al., 2019).
 
-## Install
-
-Get the released version from CRAN:
+## Installation
 
 ``` r
-# Install the package
+# Install it from CRAN
 install.packages("sdetorus")
-
-# Load package
 library(sdetorus)
 ```
 
-Alternatively, get the latest version from GitHub:
-
 ``` r
-# Install the package
-library(devtools)
-Sys.setenv("PKG_CXXFLAGS" = "-std=c++11")
-Sys.setenv("PKG_LIBS" = "-llapack")
-install_github("egarpor/sdetorus")
-
-# Load package
+# Alternatively, from GitHub
+library(pak)
+pak("egarpor/sdetorus")
 library(sdetorus)
 ```
 
@@ -52,9 +45,6 @@ library(sdetorus)
 ### Example 1: simulation of diffusion trajectories
 
 ``` r
-# Load package
-library(sdetorus)
-
 ## vM diffusion in 1D
 
 # Initial points
@@ -77,7 +67,7 @@ for (i in 1:nx0) linesCirc(tt, samp[i, ], col = rainbow(nx0)[i])
 points(rep(1, nx0), samp[, N + 1], pch = 16, col = rainbow(nx0))
 ```
 
-<img src="README/README-example1-1.png" style="display: block; margin: auto;" />
+<img src="README/README-example1-1.png" alt="" style="display: block; margin: auto;" />
 
 ``` r
 
@@ -102,14 +92,11 @@ for (i in 1:nx0) linesTorus(samp[i, 1, ], samp[i, 2, ],
                             col = rainbow(nx0, alpha = 0.5)[i])
 ```
 
-<img src="README/README-example1-2.png" style="display: block; margin: auto;" />
+<img src="README/README-example1-2.png" alt="" style="display: block; margin: auto;" />
 
 ### Example 2: computation of transition probability densities
 
 ``` r
-# Load package
-library(sdetorus)
-
 ## Cauchy diffusion in 1D
 
 # Drift
@@ -140,7 +127,7 @@ torusAxis(1)
 axis(2)
 ```
 
-<img src="README/README-example2-1.png" style="display: block; margin: auto;" />
+<img src="README/README-example2-1.png" alt="" style="display: block; margin: auto;" />
 
 ``` r
 
@@ -170,14 +157,11 @@ plotTpd(t = 1.0)
 plotTpd(t = 3.0)
 ```
 
-<img src="README/README-example2-2.png" style="display: block; margin: auto;" />
+<img src="README/README-example2-2.png" alt="" style="display: block; margin: auto;" />
 
 ### Example 3: approximate maximum likelihood estimation in 1D
 
 ``` r
-# Load package
-library(sdetorus)
-
 ## WN diffusion in 1D
 
 # Sample
@@ -193,7 +177,7 @@ axis(1)
 torusAxis(2)
 ```
 
-<img src="README/README-example3-1.png" style="display: block; margin: auto;" />
+<img src="README/README-example3-1.png" alt="" style="display: block; margin: auto;" />
 
 ``` r
 
@@ -235,17 +219,15 @@ est1$par
 est2$par
 #> [1]  0.4887261 -3.0923169  1.0340890
 est3$par
-#> [1] 0.3088016 2.7632043 1.0394086
+#> [1] 0.3083303 2.8498531 1.0386472
 est4$par
 #> [1]  0.514412 -2.873781  1.060543
 ```
 
 <!--
-
-```r
+&#10;```r
 ## WN diffusion in 2D
-
-# Sample
+&#10;# Sample
 set.seed(12345678)
 N <- 5e2
 delta <- 0.1
@@ -257,12 +239,9 @@ plot(samp[, 1], samp[, 2], type = "n", ylim = c(-pi, pi),
 linesTorus(x = samp[, 1], y = samp[, 2], col = rainbow(N + 1))
 torusAxis()
 ```
-
-<img src="README/README-example4-1.png" style="display: block; margin: auto;" />
-
-```r
-
-# Drift and diffusion
+&#10;<img src="README/README-example4-1.png" style="display: block; margin: auto;" />
+&#10;```r
+&#10;# Drift and diffusion
 b <- function(x, pars) driftWn2D(x = x, A = alphaToA(alpha = pars[1:3],
                                                      sigma = pars[6:7]),
                                  mu = pars[4:5], sigma = pars[6:7])
@@ -276,27 +255,22 @@ jac.b <- function(x, pars, h = 1e-4) {
         res[2 * l + 1:l, ] - res[2 * l + (l + 1):(2 * l), ]) / (2 * h)
 }
 sigma2 <- function(x, pars) matrix(pars[6:7]^2, nrow = length(x) / 2L, ncol = 2)
-
-# Common optimization parameters
+&#10;# Common optimization parameters
 start <- c(1, 1, 0.5, 0, 0, 1, 1)
 low <- c(0.01, 0.01, -25, -pi, -pi, 0.01, 0.01)
 up <- c(25, 25, 25, pi, pi, 25, 25)
-
-# Euler pseudo-likelihood
+&#10;# Euler pseudo-likelihood
 est1 <- psMle(data = samp, delta = delta, method = "E", b = b, sigma2 = sigma2,
               start = start, lower = low, upper = up)
-
-# Shoji--Ozaki pseudo-likelihood
+&#10;# Shoji--Ozaki pseudo-likelihood
 est2 <- psMle(data = samp, delta = delta, method = "SO", b = b, jac.b = jac.b,
               sigma2 = sigma2, start = start, lower = low, upper = up)
 #> <simpleError in eigen(x = jac.bx, symmetric = FALSE): infinite or missing values in 'x'>
-
-# Approximate MLE based on the WOU process
+&#10;# Approximate MLE based on the WOU process
 est3 <- approxMleWn2D(data = samp, delta = delta, start = start, lower = low,
                       upper = up)
 #> <std::runtime_error in eval(expr, envir, enclos): inv_sympd(): matrix is singular or not positive definite>
-
-# Comparison
+&#10;# Comparison
 est1$par
 #> [1] NA
 est2$par

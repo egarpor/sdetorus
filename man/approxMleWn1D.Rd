@@ -4,17 +4,27 @@
 \alias{approxMleWn1D}
 \title{Approximate MLE of the WN diffusion in 1D}
 \usage{
-approxMleWn1D(data, delta, start, alpha = NA, mu = NA, sigma = NA,
-  lower = c(0.01, -pi, 0.01), upper = c(25, pi, 25), vmApprox = FALSE,
-  maxK = 2, ...)
+approxMleWn1D(
+  data,
+  delta,
+  start,
+  alpha = NA,
+  mu = NA,
+  sigma = NA,
+  lower = c(0.01, -pi, 0.01),
+  upper = c(25, pi, 25),
+  vmApprox = FALSE,
+  maxK = 2,
+  ...
+)
 }
 \arguments{
 \item{data}{a matrix of dimension \code{c(n, p)}.}
 
 \item{delta}{discretization step.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each
-entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each entry
+representing a different starting value.}
 
 \item{alpha, mu, sigma}{if their values are provided, the likelihood function
 is optimized with respect to the rest of unspecified parameters. The number
@@ -57,4 +67,8 @@ approxMleWn1D(data = samp, delta = 0.1, mu = mu, start = c(alpha, sigma),
 García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 Langevin diffusions on the torus: estimation and applications.
 \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+}
+\seealso{
+\code{\link{dTpdWou1D}} for the transition density being maximized,
+and \code{\link{approxMleWn2D}} for the 2D analogue.
 }

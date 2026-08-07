@@ -4,8 +4,18 @@
 \alias{euler2D}
 \title{Simulation of trajectories of the WN or MvM diffusion in 2D}
 \usage{
-euler2D(x0, A, mu, sigma, rho = 0, N = 100L, delta = 0.01, type = 1L,
-  maxK = 2L, expTrc = 30)
+euler2D(
+  x0,
+  A,
+  mu,
+  sigma,
+  rho = 0,
+  N = 100L,
+  delta = 0.01,
+  type = 1L,
+  maxK = 2L,
+  expTrc = 30
+)
 }
 \arguments{
 \item{x0}{matrix of size \code{c(nx0, 2)} giving the initial points.}
@@ -14,7 +24,8 @@ euler2D(x0, A, mu, sigma, rho = 0, N = 100L, delta = 0.01, type = 1L,
 
 \item{mu}{a vector of length \code{2} giving the mean.}
 
-\item{sigma}{vector of length \code{2} containing the \strong{square root} of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
+\item{sigma}{vector of length \code{2} containing the \strong{square root}
+of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
 
 \item{rho}{correlation coefficient of \eqn{\Sigma}.}
 
@@ -22,17 +33,22 @@ euler2D(x0, A, mu, sigma, rho = 0, N = 100L, delta = 0.01, type = 1L,
 
 \item{delta}{discretization step.}
 
-\item{type}{integer giving the type of diffusion. Currently, only \code{1} for WN and \code{2} for vM are supported.}
+\item{type}{integer giving the type of diffusion. Currently, only \code{1}
+for WN and \code{2} for vM are supported.}
 
-\item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
+\item{maxK}{maximum absolute value of the windings considered in the
+computation of the WN.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 }
 \value{
 An array of size \code{c(nx0, 2, N + 1)} containing the \code{nx0} discretized trajectories. The first slice corresponds to the matrix \code{x0}.
 }
 \description{
-Simulation of the Wrapped Normal (WN) diffusion or Multivariate von Mises (MvM) diffusion by the Euler method in 2D, for several starting values.
+Simulation of the Wrapped Normal (WN) diffusion or Multivariate
+von Mises (MvM) diffusion by the Euler method in 2D, for several starting
+values.
 }
 \examples{
 N <- 100

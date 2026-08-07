@@ -26,8 +26,8 @@ entry and the exact discretized trajectory on the remaining elements.
 \description{
 Simulation of trajectories of the \emph{univariate}
 Ornstein--Uhlenbeck (OU) diffusion
-\deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0} using the exact
-transition probability density.
+\deqn{dX_t=\alpha(\mu - X_t)dt+\sigma dW_t, X_0=x_0}
+using the exact transition probability density.
 }
 \details{
 The law of the discretized trajectory is a multivariate normal

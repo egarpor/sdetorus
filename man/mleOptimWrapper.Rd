@@ -4,15 +4,27 @@
 \alias{mleOptimWrapper}
 \title{Optimization wrapper for likelihood-based procedures}
 \usage{
-mleOptimWrapper(minusLogLik, region = function(pars) list(pars = pars,
-  penalty = 0), penalty = 1e+10, optMethod = "Nelder-Mead", start,
-  lower = rep(-Inf, ncol(start)), upper = rep(Inf, ncol(start)),
-  selectSolution = "lowestLocMin", checkCircular = TRUE, maxit = 500,
-  tol = 1e-05, verbose = 0, eigTol = 1e-04, condTol = 10000, ...)
+mleOptimWrapper(
+  minusLogLik,
+  region = function(pars) list(pars = pars, penalty = 0),
+  penalty = 1e+10,
+  optMethod = "Nelder-Mead",
+  start,
+  lower = rep(-Inf, ncol(start)),
+  upper = rep(Inf, ncol(start)),
+  selectSolution = "lowestLocMin",
+  checkCircular = TRUE,
+  maxit = 500,
+  tol = 1e-05,
+  verbose = 0,
+  eigTol = 1e-04,
+  condTol = 10000,
+  ...
+)
 }
 \arguments{
-\item{minusLogLik}{function computing the minus log-likelihood function.
-Must have a single argument containing a vector of length \code{p}.}
+\item{minusLogLik}{function computing the minus log-likelihood function. Must
+have a single argument containing a vector of length \code{p}.}
 
 \item{region}{function to impose a feasibility region via a penalty. See
 details.}
@@ -23,19 +35,19 @@ details.}
 \code{"Nelder-Mead"}, \code{"BFGS"}, \code{"CG"}, \code{"L-BFGS-B"},
 \code{"SANN"}, or \code{"Brent"}.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each
-entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each entry
+representing a different starting value.}
 
 \item{lower, upper}{bound for box constraints as in method \code{"L-BFGS-B"}
 of \code{\link[stats]{optim}}.}
 
-\item{selectSolution}{which criterion is used for selecting a solution
-among possible ones, either \code{"lowest"}, \code{"lowestConv"} or
-\code{"lowestLocMin"}. \code{"lowest"} returns the solution with lowest
-value in the \code{minusLogLik} function. \code{"lowestConv"} restricts
-the search of the best solution among the ones for which the optimizer has
-converged. \code{"lowestLocMin"} in addition imposes that the solution is
-guaranteed to be a local minimum by examining the Hessian matrix.}
+\item{selectSolution}{which criterion is used for selecting a solution among
+possible ones, either \code{"lowest"}, \code{"lowestConv"} or
+\code{"lowestLocMin"}. \code{"lowest"} returns the solution with lowest value
+in the \code{minusLogLik} function. \code{"lowestConv"} restricts the search
+of the best solution among the ones for which the optimizer has converged.
+\code{"lowestLocMin"} in addition imposes that the solution is guaranteed to
+be a local minimum by examining the Hessian matrix.}
 
 \item{checkCircular}{logical indicating whether to automatically treat the
 variables with \code{lower} and \code{upper} entries equal to \code{-pi} and

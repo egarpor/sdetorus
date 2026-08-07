@@ -7,16 +7,20 @@
 safeSoftMax(logs, expTrc = 30)
 }
 \arguments{
-\item{logs}{matrix of logarithms where each row contains a set of \eqn{p_1,\ldots,p_k} to compute the weights from.}
+\item{logs}{matrix of logarithms where each row contains a set of
+\eqn{p_1,\ldots,p_k} to compute the weights from.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 }
 \value{
 A matrix of the size as \code{logs} containing the weights for each row.
 }
 \description{
-Computes the weights \eqn{w_i = \frac{e^{p_i}}{\sum_{j=1}^k e^{p_j}}} from \eqn{p_i}, \eqn{i=1,\ldots,k}
-in a safe way to avoid overflows and to truncate automatically to zero low values of \eqn{w_i}.
+Computes the weights
+\eqn{w_i = \frac{e^{p_i}}{\sum_{j=1}^k e^{p_j}}} from \eqn{p_i},
+\eqn{i=1,\ldots,k} in a safe way to avoid overflows and to truncate
+automatically to zero low values of \eqn{w_i}.
 }
 \details{
 The \code{logs} argument must be always a matrix.

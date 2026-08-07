@@ -4,8 +4,7 @@
 \alias{sigmaDiff}
 \title{High-frequency estimate of the diffusion matrix}
 \usage{
-sigmaDiff(data, delta, circular = TRUE, diagonal = FALSE,
-  isotropic = FALSE)
+sigmaDiff(data, delta, circular = TRUE, diagonal = FALSE, isotropic = FALSE)
 }
 \arguments{
 \item{data}{vector or matrix of size \code{c(N, p)} containing the
@@ -23,10 +22,9 @@ The estimated diffusion matrix of size \code{c(p, p)}.
 }
 \description{
 Estimation of the \eqn{\Sigma} in the multivariate diffusion
-\deqn{dX_t=b(X_t)dt+\Sigma dW_t}{dX_t=b(X_t)dt+\Sigma dW_t}
-by the high-frequency estimate \deqn{
-\hat\Sigma = \frac{1}{N\Delta}\sum_{i=1}^N(X_i-X_{i-1})(X_i-X_{i-1})^T}{
-\hat\Sigma = \frac{1}{N\Delta}\sum_{i=1}^N(X_i-X_{i-1})(X_i-X_{i-1})^T.}
+\deqn{dX_t=b(X_t)dt+\Sigma dW_t}
+by the high-frequency estimate
+\deqn{\hat\Sigma = \frac{1}{N\Delta}\sum_{i=1}^N(X_i-X_{i-1})(X_i-X_{i-1})^T}
 }
 \details{
 See Section 3.1 in García-Portugués et al. (2019) for details.

@@ -8,20 +8,21 @@ dTpdWou(x, t, A, mu, Sigma, x0, maxK = 2, eigA = NULL, invASigma = NULL)
 }
 \arguments{
 \item{x}{matrix of size \code{c(n, p)} with the evaluation points in
-\eqn{[-\pi,\pi)^p}.}
+\eqn{\mathbb{T}^p=[-\pi,\pi)^p}.}
 
 \item{t}{a scalar containing the times separating \code{x} and \code{x0}.}
 
 \item{A}{matrix of size \code{c(p, p)} giving the drift strength.}
 
-\item{mu}{mean parameter. Must be in \eqn{[\pi,\pi)}.}
+\item{mu}{mean parameter. Must be in \eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{Sigma}{diffusion matrix, of size \code{c(p, p)}.}
 
 \item{x0}{vector of length \code{p} with the initial point in
-\eqn{[-\pi,\pi)^p}.}
+\eqn{\mathbb{T}^p=[-\pi,\pi)^p}.}
 
-\item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
+\item{maxK}{maximum absolute value of the windings considered in the
+computation of the WN.}
 
 \item{eigA}{optional argument containing \code{eigen(A)} for reuse.}
 
@@ -71,4 +72,9 @@ dTpdWou2D(x = x, x0 = rbind(x0), t = t, alpha = alpha, mu = mu,
 García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 Langevin diffusions on the torus: estimation and applications.
 \emph{Statistics and Computing}, 29(2):1--22. \doi{10.1007/s11222-017-9790-2}
+}
+\seealso{
+\code{\link{dTpdWou1D}} and \code{\link{dTpdWou2D}} for the
+efficient 1D and 2D versions, and \code{\link{driftWn}} for the associated
+drift.
 }

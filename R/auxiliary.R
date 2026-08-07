@@ -205,8 +205,12 @@ linesTorus3d <- function(x, y, z, col = 1, arrows = FALSE, ...) {
 #' integration.
 #' @return The value of the integral.
 #' @details The simple trapezoidal rule has a very good performance for
-#' periodic functions in 1D and 2D(order of error ). The higher dimensional
-#' extensions are obtained by iterative usage of the 1D rules.
+#' periodic functions in 1D and 2D (for smooth periodic integrands the
+#' quadrature error decreases faster than any power of the grid size). The
+#' higher dimensional extensions are obtained by iterative usage of the 1D
+#' rules.
+#' @seealso \code{\link{mcTorusIntegrate}} for Monte Carlo integration on the
+#' torus.
 #' @references
 #' Press, W. H., Teukolsky, S. A., Vetterling, W. T., Flannery, B. P. (1996).
 #' \emph{Numerical Recipes in Fortran 77: The Art of Scientific Computing
@@ -533,13 +537,12 @@ unwrapCircSeries <- function(x) {
 #' @param circular flag to indicate whether the differences should be
 #' circularly wrapped.
 #' @return \itemize{
-#' \item For 1D, a matrix of size \code{c(n, 2)} containing the weights for
-#' lower (\code{g1}) and upper (\code{g1}) bins.
-#' \item For 2D, a matrix of size \code{c(n, 4)} containing the weights for
-#' lower-lower (\code{g1x}, \code{g1y}), \emph{upper-lower} (\code{g2x},
-#' \code{g1y}), \emph{lower-upper} (\code{g1x}, \code{g2y}) and upper-upper
-#' (\code{g2x}, \code{g2y}) bins. \code{cbind(g1x, g1y)},
-#' \code{cbind(g1x, g1y)}, \code{cbind(g1x, g1y)} and \code{cbind(g2x, g2y)}.
+#' \item For 1D, a matrix of size \code{c(n, 2)} containing the weights for the
+#' lower (\code{g1}) and upper (\code{g2}) bins.
+#' \item For 2D, a matrix of size \code{c(n, 4)} containing the weights for the
+#' lower-lower (\code{gx1}, \code{gy1}), upper-lower (\code{gx2}, \code{gy1}),
+#' lower-upper (\code{gx1}, \code{gy2}) and upper-upper (\code{gx2}, \code{gy2})
+#' bins, in that column order.
 #' }
 #' @details See the examples for how to use the weights for linear binning.
 #' @examples
@@ -1051,6 +1054,8 @@ matMatch <- function(x, mat, rows = TRUE, useMatch = FALSE, ...) {
 #' @param fVect is \code{f} vectorized?
 #' @param ... further parameters passed to \code{f}.
 #' @return A scalar with the approximated integral.
+#' @seealso \code{\link{periodicTrapRule1D}} and \code{\link{integrateSimp1D}}
+#' for deterministic quadrature rules.
 #' @examples
 #' # Integral of sin(x1) * cos(x2), must be close to 0
 #' mcTorusIntegrate(f = function(x) sin(x[, 1]) * cos(x[, 2]), p = 2)

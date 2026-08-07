@@ -47,6 +47,8 @@
 #' Shoji, I. and Ozaki, T. (1998) A statistical method of estimation and
 #' simulation for systems of stochastic differential equations.
 #' \emph{Biometrika}, 85(1):240--243. \doi{10.1093/biomet/85.1.240}
+#' @seealso \code{\link{psMle}}, which maximizes these pseudo-densities, and
+#' \code{\link{dTpdWou1D}} and \code{\link{dTpdPde1D}} for exact alternatives.
 #' @examples
 #' # 1D
 #' grid <- seq(-pi, pi, l = 501)[-501]
@@ -401,10 +403,11 @@ dPsTpd <- function(x, x0, t, method = c("E", "SO", "SO2"), b, jac.b, sigma2, b1,
 
             }
 
-            # Density
+            # Density (the p * log(2 * pi) term normalizes the Gaussian, as in
+            # the single-x0 branch below)
             dens <- sum(apply(twokpi, 1, function(wind)
               exp(-((y[i, ] + wind) %*% SVx %*% (y[i, ] + wind) -
-                      log(det.SVx)) / 2)
+                      log(det.SVx) + p * log(2 * pi)) / 2)
               ))
 
           }

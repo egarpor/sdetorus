@@ -17,6 +17,8 @@
 #' @details See Section 3.3 in García-Portugués et al. (2019) for details.
 #' \code{\link{dTpdWou1D}} and \code{\link{dTpdWou2D}} are more efficient
 #' implementations for the 1D and 2D cases, respectively.
+#' @seealso \code{\link{dTpdWou1D}} and \code{\link{dTpdWou2D}} for the efficient
+#' 1D and 2D versions, and \code{\link{driftWn}} for the associated drift.
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 #' Langevin diffusions on the torus: estimation and applications.
@@ -56,8 +58,10 @@ dTpdWou <- function(x, t, A, mu, Sigma, x0, maxK = 2, eigA = NULL,
   p <- ncol(x)
   nx <- nrow(x)
   if (is.null(p)) {
+    # A single evaluation point supplied as a length-p vector
     p <- length(x)
     nx <- 1
+    x <- matrix(x, nrow = 1, ncol = p)
   }
 
   # Winding numbers

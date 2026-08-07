@@ -4,17 +4,28 @@
 \alias{rTrajWn2D}
 \title{Simulation of trajectories for the WN diffusion in 2D}
 \usage{
-rTrajWn2D(x0, alpha, mu, sigma, rho = 0, N = 100, delta = 0.01,
-  NFine = ceiling(N * delta/deltaFine), deltaFine = min(delta/100, 0.001))
+rTrajWn2D(
+  x0,
+  alpha,
+  mu,
+  sigma,
+  rho = 0,
+  N = 100,
+  delta = 0.01,
+  NFine = ceiling(N * delta/deltaFine),
+  deltaFine = min(delta/100, 0.001)
+)
 }
 \arguments{
 \item{x0}{vector of length \code{2} giving the initial point.}
 
-\item{alpha}{vector of length \code{3} parametrizing the \code{A} matrix as in \code{\link{alphaToA}}.}
+\item{alpha}{vector of length \code{3} parametrizing the \code{A} matrix as
+in \code{\link{alphaToA}}.}
 
 \item{mu}{a vector of length \code{2} giving the mean.}
 
-\item{sigma}{vector of length \code{2} containing the \strong{square root} of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
+\item{sigma}{vector of length \code{2} containing the \strong{square root}
+of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
 
 \item{rho}{correlation coefficient of \eqn{\Sigma}.}
 
@@ -22,11 +33,11 @@ rTrajWn2D(x0, alpha, mu, sigma, rho = 0, N = 100, delta = 0.01,
 
 \item{delta}{discretization step.}
 
-\item{NFine}{number of discretization steps for the fine trajectory. Must
-be larger than \code{N}.}
+\item{NFine}{number of discretization steps for the fine trajectory. Must be
+larger than \code{N}.}
 
-\item{deltaFine}{discretization step for the fine trajectory. Must be
-smaller than \code{delta}.}
+\item{deltaFine}{discretization step for the fine trajectory. Must be smaller
+than \code{delta}.}
 }
 \value{
 A matrix of size \code{c(N + 1, 2)} containing \code{x0} in the
@@ -46,4 +57,9 @@ samp <- rTrajWn2D(x0 = c(0, 0), alpha = c(1, 1, -0.5), mu = c(pi, pi),
 plot(samp, xlim = c(-pi, pi), ylim = c(-pi, pi), pch = 19, cex = 0.25,
      xlab = expression(X[t]), ylab = expression(Y[t]), col = rainbow(1000))
 linesTorus(samp[, 1], samp[, 2], col = rainbow(1000))
+}
+\seealso{
+\code{\link{euler2D}} for the underlying Euler scheme,
+\code{\link{dTpdWou2D}} for the associated transition density, and
+\code{\link{rTrajWn1D}} for the 1D analogue.
 }

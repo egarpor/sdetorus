@@ -2,36 +2,50 @@
 % Please edit documentation in R/mle.R
 \name{approxMleWnPairs}
 \alias{approxMleWnPairs}
-\title{Approximate MLE of the WN diffusion in 2D from a sample of initial
-and final pairs of angles.}
+\title{Approximate MLE of the WN diffusion in 2D from a sample of initial and
+final pairs of angles.}
 \usage{
-approxMleWnPairs(data, delta, start = c(0, 0, 1, 1, 0, 1, 1),
-  alpha = rep(NA, 3), mu = rep(NA, 2), sigma = rep(NA, 2), rho = NA,
-  lower = c(-pi, -pi, 0.01, 0.01, -25, 0.01, 0.01, -0.99), upper = c(pi,
-  pi, 25, 25, 25, 25, 25, 0.99), maxK = 2, expTrc = 30, ...)
+approxMleWnPairs(
+  data,
+  delta,
+  start = c(1, 1, 0, 0, 0, 1, 1, 0),
+  alpha = rep(NA, 3),
+  mu = rep(NA, 2),
+  sigma = rep(NA, 2),
+  rho = NA,
+  lower = c(0.01, 0.01, -25, -pi, -pi, 0.01, 0.01, -0.99),
+  upper = c(25, 25, 25, pi, pi, 25, 25, 0.99),
+  maxK = 2,
+  expTrc = 30,
+  ...
+)
 }
 \arguments{
 \item{data}{a matrix of dimension \code{c(n, p)}.}
 
 \item{delta}{discretization step.}
 
-\item{start}{starting values, a matrix with \code{p} columns, with each
-entry representing a different starting value.}
+\item{start}{starting values, a matrix with \code{p} columns, with each entry
+representing a different starting value.}
 
-\item{alpha}{vector of length \code{3} parametrizing the \code{A} matrix as in \code{\link{alphaToA}}.}
+\item{alpha}{vector of length \code{3} parametrizing the \code{A} matrix as
+in \code{\link{alphaToA}}.}
 
 \item{mu}{a vector of length \code{2} giving the mean.}
 
-\item{sigma}{vector of length \code{2} containing the \strong{square root} of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
+\item{sigma}{vector of length \code{2} containing the \strong{square root}
+of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
 
 \item{rho}{correlation coefficient of \eqn{\Sigma}.}
 
 \item{lower, upper}{bound for box constraints as in method \code{"L-BFGS-B"}
 of \code{\link[stats]{optim}}.}
 
-\item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
+\item{maxK}{maximum absolute value of the windings considered in the
+computation of the WN.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 
 \item{...}{further parameters passed to \code{\link{mleOptimWrapper}}.}
 }
@@ -56,5 +70,5 @@ end <- t(apply(begin, 1, function(x) rTrajWn2D(x0 = x, alpha = alpha,
                                                delta = 0.1)[2, ]))
 data <- cbind(begin, end)
 approxMleWnPairs(data = data, delta = 0.1,
-                 start = c(2, pi/2, 2, 0.5, 0, 2, 1, 0.5))
+                 start = c(1, 2, 0.5, 0, 0, 1, 1, 0.5))
 }

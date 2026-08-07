@@ -4,13 +4,21 @@
 \alias{linesCirc}
 \title{Lines and arrows with vertical wrapping}
 \usage{
-linesCirc(x = seq_along(y), y, col = 1, lty = 1, ltyCross = lty,
-  arrows = FALSE, ...)
+linesCirc(
+  x = seq_along(y),
+  y,
+  col = 1,
+  lty = 1,
+  ltyCross = lty,
+  arrows = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{vector with horizontal coordinates.}
 
-\item{y}{vector with vertical coordinates, wrapped in \eqn{[-\pi,\pi)}.}
+\item{y}{vector with vertical coordinates, wrapped in
+\eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{col}{color vector of length \code{1} or the same length of \code{x} and
 \code{y}.}
@@ -29,10 +37,10 @@ Nothing. The functions are called for drawing wrapped lines.
 }
 \description{
 Joins the corresponding points with line segments or arrows that
-exhibit wrapping in \eqn{[-\pi,\pi)} in the vertical axis.
+exhibit wrapping in \eqn{\mathbb{T}=[-\pi,\pi)} in the vertical axis.
 }
 \details{
-\code{y} is wrapped to \eqn{[-\pi,\pi)} before plotting.
+\code{y} is wrapped to \eqn{\mathbb{T}=[-\pi,\pi)} before plotting.
 }
 \examples{
 x <- 1:100

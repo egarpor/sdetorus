@@ -17,6 +17,8 @@
 #' \item \code{psi = 1}: gives the Cardioid as stationary density.
 #' }
 #' See Section 2.2.3 in García-Portugués et al. (2019) for details.
+#' @seealso \code{\link{dJp}} for the associated stationary density and
+#' \code{\link{rTrajLangevin}} for simulating trajectories.
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 #' Langevin diffusions on the torus: estimation and applications.
@@ -67,6 +69,8 @@ driftJp <- function(x, alpha, mu, psi) {
 #' be zero.
 #' @return A matrix of the same size as \code{x} containing the drift.
 #' @details See Section 2.2.1 in García-Portugués et al. (2019) for details.
+#' @seealso \code{\link{dVm}} and \code{\link{dBvm}} for the associated von
+#' Mises densities and \code{\link{rTrajLangevin}} for simulating trajectories.
 #' @references
 #' García-Portugués, E., Sørensen, M., Mardia, K. V. and Hamelryck, T. (2019)
 #' Langevin diffusions on the torus: estimation and applications.
@@ -231,7 +235,7 @@ driftMixVm <- function(x, alpha, mu, sigma, p, expTrc = 30) {
   logs <- log(p) + kappa * (cos(x) - 1) - logBesselI0Scaled(x = kappa)
 
   # Weights
-  w <- t(safeSoftMax(logs = t(logs), expTrc = 30))
+  w <- t(safeSoftMax(logs = t(logs), expTrc = expTrc))
 
   # Drift
   colSums(alpha * sin(x) * w)
@@ -258,6 +262,9 @@ driftMixVm <- function(x, alpha, mu, sigma, p, expTrc = 30) {
 #' @return A matrix of the same size as \code{x} containing the drift.
 #' @details \code{\link{driftWn1D}} and \code{\link{driftWn2D}} are more
 #' efficient for the 1D and 2D cases.
+#' @seealso \code{\link{driftWn1D}} and \code{\link{driftWn2D}} for the
+#' efficient 1D and 2D versions, and \code{\link{dTpdWou}} for the associated
+#' transition density.
 #' @examples
 #' # 1D
 #' x <- seq(-pi, pi, l = 200)

@@ -12,7 +12,7 @@ to be drawn on. The axes are placed as follows: \code{1} = x, \code{2} = y,
 \code{3} = z.}
 
 \item{twoPi}{flag indicating that \eqn{[0,2\pi)} is the support, instead of
-\eqn{[-\pi,\pi)}.}
+\eqn{\mathbb{T}=[-\pi,\pi)}.}
 
 \item{...}{further parameters passed to \code{\link[rgl:axes3d]{axis3d}}.}
 }

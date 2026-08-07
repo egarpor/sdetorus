@@ -2,10 +2,22 @@
 % Please edit documentation in R/RcppExports.R
 \name{stepAheadWn2D}
 \alias{stepAheadWn2D}
-\title{Multiple simulation of trajectory ends of the WN or MvM diffusion in 2D}
+\title{Multiple simulation of trajectory ends of the WN or MvM diffusion in
+2D}
 \usage{
-stepAheadWn2D(x0, mu, A, sigma, rho = 0, M = 100L, N = 100L,
-  delta = 0.01, type = 1L, maxK = 2L, expTrc = 30)
+stepAheadWn2D(
+  x0,
+  mu,
+  A,
+  sigma,
+  rho = 0,
+  M = 100L,
+  N = 100L,
+  delta = 0.01,
+  type = 1L,
+  maxK = 2L,
+  expTrc = 30
+)
 }
 \arguments{
 \item{x0}{matrix of size \code{c(nx0, 2)} giving the initial points.}
@@ -14,7 +26,8 @@ stepAheadWn2D(x0, mu, A, sigma, rho = 0, M = 100L, N = 100L,
 
 \item{A}{drift matrix of size \code{c(2, 2)}.}
 
-\item{sigma}{vector of length \code{2} containing the \strong{square root} of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
+\item{sigma}{vector of length \code{2} containing the \strong{square root}
+of the diagonal of \eqn{\Sigma}, the diffusion matrix.}
 
 \item{rho}{correlation coefficient of \eqn{\Sigma}.}
 
@@ -24,17 +37,22 @@ stepAheadWn2D(x0, mu, A, sigma, rho = 0, M = 100L, N = 100L,
 
 \item{delta}{discretization step.}
 
-\item{type}{integer giving the type of diffusion. Currently, only \code{1} for WN and \code{2} for vM are supported.}
+\item{type}{integer giving the type of diffusion. Currently, only \code{1}
+for WN and \code{2} for vM are supported.}
 
-\item{maxK}{maximum absolute value of the windings considered in the computation of the WN.}
+\item{maxK}{maximum absolute value of the windings considered in the
+computation of the WN.}
 
-\item{expTrc}{truncation for exponential: \code{exp(x)} with \code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
+\item{expTrc}{truncation for exponential: \code{exp(x)} with
+\code{x <= -expTrc} is set to zero. Defaults to \code{30}.}
 }
 \value{
 An array of size \code{c(nx0, 2, M)} containing the \code{M} trajectory ends for each starting value \code{x0}.
 }
 \description{
-Simulates \code{M} trajectories starting from different initial values \code{x0} of the WN or MvM diffusion in 2D, by the Euler method, and returns their ends.
+Simulates \code{M} trajectories starting from different initial
+values \code{x0} of the WN or MvM diffusion in 2D, by the Euler method, and
+returns their ends.
 }
 \examples{
 N <- 100

@@ -9,3 +9,4 @@
 ^LICENSE\.md$
 ^\.github$
 ^CRAN-SUBMISSION$
+^sdetorus\.code-workspace$
